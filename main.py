@@ -43,7 +43,7 @@ except ImportError:
 
 
 intents = discord.Intents().default()
-client = commands.Bot(command_prefix=commands.when_mentioned_or(*['n.', 'N.']), case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix=commands.when_mentioned_or(*['A.', 'a.']), case_insensitive=True, intents=intents)
 client.remove_command('help')
 
 
@@ -92,20 +92,20 @@ async def on_message(message):
     '''
     try:
         if int(message.author.id) in banned and (
-                message.content.startswith('n.')
-                or message.content.startswith('N.')
+                message.content.startswith('a.')
+                or message.content.startswith('A.')
                 or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
             ctx = await client.get_context(message)
             embed=Embed('Ooops!', 'Looks like you are **BANNED** from the bot!\n\n__Reason:__ `Sending bot commands too fast.`\n\n*You will be unbanned upon the bot restart.* \n*If you believe this is an error, make sure to contact one of the developers (`n.info`).*', 'tools')
             return await embed.send(ctx, dm=False)
             #return await message.channel.send('Your banned from the bot!')
         if message.author.id == 780980594892341288 and (
-                message.content.startswith('n.')
-                or message.content.startswith('N.')
+                message.content.startswith('a.')
+                or message.content.startswith('A.')
                 or message.content.startswith('<@713352863153258556>')):
                 return await message.channel.send('Happy living as a weasel. -the devs')
         else:
-            if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@713352863153258556>')):
+            if (message.content.startswith('a.') or message.content.startswith('A.') or message.content.startswith('<@713352863153258556>')):
                 if message.author.id not in [ 713352863153258556]:
                     timestamps.append(round(time.time()))
                     authors.append(message.author.id)
@@ -232,12 +232,16 @@ async def on_raw_reaction_add(payload):
     except:
         try:
             req_passed = await check_perms(payload.user_id, user['requirements'])
-            if not req_passed:
+            if req_passed:
                 channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
                 msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
-                return await msg.remove_reaction(payload.emoji, payload.member)
+                await msg.remove_reaction(payload.emoji, payload.member)
                 user['joined'] = [payload.user_id]
                 return await dbclient.update_array(collection, old, user)
+            else:
+                channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
+                msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
+                await msg.remove_reaction(payload.emoji, payload.member)
         except Exception as e:
             pass
     if int(payload.channel_id) == 810296381779476510:
