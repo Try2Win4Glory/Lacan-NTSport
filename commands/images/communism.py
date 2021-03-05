@@ -1,0 +1,44 @@
+'''Join the soviet union!'''
+
+from discord.ext import commands
+from packages.utils import Embed, ImproperType
+from discord import Member, File
+from PIL import Image, ImageSequence
+from io import BytesIO
+from requests import get
+from os import system
+
+class Command(commands.Cog):
+
+    def __init__(self, client):
+        self.client = client
+    @commands.command()
+    async def communism(self, ctx, target:Member=None):
+        #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
+        if await ImproperType.check(ctx): return
+
+        if not target:
+            target = ctx.author
+        
+        profile = Image.open(BytesIO(get(target.avatar_url).content)).convert('RGBA').resize((400, 400), Image.ANTIALIAS)
+        gif = Image.open('./assets/communism/communism.gif')
+
+        frames = [frame.copy().convert('RGBA') for frame in ImageSequence.Iterator(gif)]
+        
+        for idx, frame in enumerate(frames):
+            frames[idx] = Image.blend(frame, profile, 0.37)
+        
+        frames[0].save(f'./storage/communism/{target.id}.gif', save_all=True, append_images=frames[1:])
+
+        file = File(f'./storage/communism/{target.id}.gif', filename='communism.gif')
+
+        embed = Embed(f'Communised {target.display_name}', '', 'camera')
+        embed.image('attachment://communism.gif')
+        embed = embed.default_embed()
+
+        await ctx.send(file=file, embed=embed)
+
+        system(f'rm "./storage/communism/{target.id}.gif"')
+    
+def setup(client):
+    client.add_cog(Command(client))

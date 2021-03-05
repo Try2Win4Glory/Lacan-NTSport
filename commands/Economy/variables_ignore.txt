@@ -1,0 +1,7 @@
+#Only stored some copy variables
+#Variables:
+      channels = self.client.get_all_channels()
+      channel = get(channels, id=803879362226946088)
+      green =0x40AC7B
+      red = 0xE84444
+      orange = 0xF09F19

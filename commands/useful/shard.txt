@@ -1,0 +1,18 @@
+'''Lists all the shards in the client instance'''
+
+from discord.ext import commands
+from packages.utils import Embed, ImproperType
+
+class Command(commands.Cog):
+
+    def __init__(self, client):
+        self.client = client
+    
+    @commands.command()
+    async def shard(self, ctx):
+        #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
+        if await ImproperType.check(ctx): return
+        await Embed('Nitrotype Bot\'s Current Shards', 'Sorry, we are currently not using a sharded client, it will probably be implemented before 1000 servers hit and definetely before 2500 servers.', 'wrench').send(ctx)
+    
+def setup(client):
+    client.add_cog(Command(client))

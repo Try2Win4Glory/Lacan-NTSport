@@ -1,0 +1,34 @@
+'''Give the developers a feedback!'''
+
+from discord.ext import commands
+from packages.utils import Embed, ImproperType
+from datetime import date
+from time import time
+
+class Command(commands.Cog):
+
+    def __init__(self, client):
+        self.client = client
+    
+    @commands.command()
+    async def feedback(self, ctx, *args):
+        return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
+        if await ImproperType.check(ctx): return
+        author = ctx.author.name + '#' + ctx.author.discriminator
+        message = ''
+        for word in args:
+            message += f' {word}'
+
+        if len(message[1:]) < 1:
+            await Embed('Error!', 'Feedback Message is too short', 'warning').send(ctx)
+        else:
+            for user_id in [437984033377484803, 505338178287173642,637638904513691658, 396075607420567552]:
+                user = self.client.get_user(user_id)
+                embed = Embed(f'Feedback by {author}', message, 'wrench')
+                embed.footer(f"{date.fromtimestamp(round(time())).strftime('%d %B %Y')} UTC")
+                await user.send(embed=embed.default_embed(), content=None)
+
+            await Embed('Feedback sent!', 'Thanks for your feedback!', 'wrench').send(ctx)
+
+def setup(client):
+    client.add_cog(Command(client))

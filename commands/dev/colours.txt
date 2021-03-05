@@ -1,0 +1,53 @@
+'''Add colours to a server'''
+
+from discord.ext import commands
+from packages.utils import Embed, ImproperType
+import requests, json, os
+import discord
+
+class Command(commands.Cog):
+
+    def __init__(self, client):
+        self.client = client
+    
+    @commands.command()
+    @commands.has_permissions(manage_roles=True)
+    async def colours(self, ctx):
+        #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
+
+        
+        if ctx.author.id in [505338178287173642]:
+          #Doesn't have permission to run the command:
+          #embed = Embed('Error!', 'You are missing following permissions:\n \n- `Manage Roles` \n\nPlease ask an Administrator to run this command for you.', 'warning')
+          #embed.footer(f'This command is an administrator only command.','https://cdn.discordapp.com/emojis/418066995964149763.gif?v=1')
+          #return await embed.send(ctx)
+
+          #Has Permission to run the command:
+          embed = Embed('Success!', f'The colours for `{str(ctx.author.guild.id)}` were created.','white_check_mark')
+          embed.footer(f'Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is an administrator of this server.\n⚙️This command is an administrator only command.⚙️', 'https://cdn.discordapp.com/emojis/418066995964149763.gif?v=1')
+          guild = ctx.guild
+          await embed.send(ctx)
+          await guild.create_role(name="Teal", colour=discord.Colour(0x1abc9c))
+          await guild.create_role(name="Dark Teal", colour=discord.Colour(0x11806a))
+          await guild.create_role(name="Green", colour=discord.Colour(0x2ecc71))
+          await guild.create_role(name="Dark Green", colour=discord.Colour(0x1f8b4c))
+          await guild.create_role(name="Blue", colour=discord.Colour(0x3498db))
+          await guild.create_role(name="Dark Blue", colour=discord.Colour(0x206694))
+          await guild.create_role(name="Purple", colour=discord.Colour(0x9b59b6))
+          await guild.create_role(name="Dark Purple", colour=discord.Colour(0x71368a))
+          await guild.create_role(name="Magenta", colour=discord.Colour(0xe91e63))
+          await guild.create_role(name="Dark Magenta", colour=discord.Colour(0xad1457))
+          await guild.create_role(name="Gold", colour=discord.Colour(0xf1c40f))
+          await guild.create_role(name="Dark Gold", colour=discord.Colour(0xc27c0e))
+          await guild.create_role(name="Orange", colour=discord.Colour(0xe67e22))
+          await guild.create_role(name="Dark Orange", colour=discord.Colour(0xa84300))
+          await guild.create_role(name="Red", colour=discord.Colour(0xe74c3c))
+          await guild.create_role(name="Dark Red", colour=discord.Colour(0x992d22))
+          await guild.create_role(name="Light Grey", colour=discord.Colour(0x95a5a6))
+          await guild.create_role(name="Dark Grey", colour=discord.Colour(0x607d8b))
+          await guild.create_role(name="Grey", colour=discord.Colour(0x979c9f))
+          await guild.create_role(name="Cove Blue", colour=discord.Colour(0x7289da))
+          await guild.create_role(name="Greyple", colour=discord.Colour(0x99aab5))
+          await guild.create_role(name="Test", colour=discord.Colour (0x03ff00))
+def setup(client):
+    client.add_cog(Command(client))

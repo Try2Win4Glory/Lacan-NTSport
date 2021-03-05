@@ -1,0 +1,84 @@
+'''Look At a User's Profile'''
+
+from discord.ext import commands
+from packages.utils import Embed, ImproperType
+from mongoclient import DBClient
+import discord, random
+class Command(commands.Cog):
+
+    def __init__(self, client):
+        self.client = client
+    
+    @commands.command()
+    async def profile(self, ctx, lookat: discord.Member=None):
+
+        list_of_lacans = ['<:lacan_economy_1:801006407536607262>','<:lacan_economy_2:801004873612132382>','<:lacan_economy_3:801004873214722079>','<:lacan_economy_4:801004868126113822>','<:lacan_economy_5:801004868348936203>','<:lacan_economy_6:801004863433605160>','<:lacan_economy_7:801004870643220481>','<:lacan_economy_8:801004872820457483>','<:lacan_economy_9:801004872417804298>','<:lacan_economy_10:801004872811413514>']
+        random_lacan = random.choice(list_of_lacans)
+        dbclient = DBClient()
+        collection = dbclient.db.pointsdb
+        if lookat == None:
+            data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
+        else:
+            data = await dbclient.get_array(collection, {'$and': [{'userid': lookat}, {'userid': lookat}]})
+        async for d in data:
+            data = d
+            break
+        try:
+            points = data['points']
+        except:
+            userid = ''.join(list(lookat)[2:-1])
+            data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
+            async for d in data:
+                data = d
+                break
+            try:
+                points = data['points']
+            except:
+                userid = ''.join(list(userid)[1:])
+                data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
+                async for d in data:
+                    data = d
+                    break
+                try:
+                    points = data['points']
+                except:
+                    embed = Embed('Error!', 'The user doesn\'t have any lacans!')
+                    return await embed.send(ctx)
+        badges = ['<:Level_0:779456281450119198>', '<:Level_1:779447444495925288>', '<:Level_2:779448909985742908>', '<:Level_3:779450424087281714>', '<:Level_4:779451399960264715>', '<:Level_5:779454461247881246>']
+        cbadges = ['<:developer:779466630598098954>']
+        devs = [505338178287173642, 637638904513691658, 396075607420567552]
+
+        if lookat != None:
+            embed = Embed(f'{str(lookat)}\'s Profile', 'Their Stuff')
+        if lookat == None:
+            embed = Embed(f'{str(ctx.author)}\'s Profile', 'Their Stuff')
+            
+        contributorbadges = ''
+        profilebadges = ''
+        if int(points) >= 10000:
+            profilebadges += badges[-1]
+        if int(points) >= 5000:
+            profilebadges += badges[-2]
+        if int(points) >= 1000:
+            profilebadges += badges[-3]
+        if int(points) >= 500:
+            profilebadges += badges[2]
+        if int(points) >= 100:
+            profilebadges += badges[1]
+        if int(points) >= 0:
+            profilebadges += badges[0]
+        
+        embed.field('__Badges__', profilebadges)
+
+        if lookat != None:
+            if lookat.id in [505338178287173642, 637638904513691658, 396075607420567552]:
+                contributorbadges += cbadges[0]
+                embed.field ('__Contributions__', contributorbadges)
+        if lookat == None:
+            if ctx.author.id in [505338178287173642, 637638904513691658, 396075607420567552]:
+                contributorbadges += cbadges[0]
+                embed.field ('__Contributions__', contributorbadges)
+        embed.field('__Lacans__', '**'+str(points)+'** '+random_lacan+'', inline=False)
+        await embed.send(ctx)
+def setup(client):
+    client.add_cog(Command(client))

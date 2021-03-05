@@ -1,0 +1,94 @@
+'''Not know why a command doesn't work?'''
+
+from discord.ext import commands
+from packages.utils import Embed, ImproperType
+
+class Command(commands.Cog):
+
+    def __init__(self, client):
+        self.client= client
+    
+    @commands.command()
+    async def helpinfo(self, ctx, command=None):
+        #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
+        if await ImproperType.check(ctx): 
+          return
+        listofcommand=['competition', 'endcomp', 'leaderboard', 'add', 'addpremium', 'ban', 'blacklist','colours', 'delroles', 'leave', 'remove', 'removepremium', 'roles', 'say', 'sent', 'servers', 'supregister', 'supunregister', 'supupdate', 'unban', 'whitelist', 'badges', 'bal', 'daily', 'gamble', 'give', 'guess', 'hourly', 'noobguess', 'profile', 'rich', 'withdraw', 'meme', 'communism', 'garage', 'id', 'news', 'ntlb', 'racelogs', 'register', 'signup', 'stats', 'team', 'unregister', 'verify', 'donated', 'donators', 'premium', 'update', 'bug', 'feedback', 'help', 'helpinfo', 'info', 'invite', 'ping', 'shard', 'suggest', 'support', 'vote']
+        if command == None:
+          embed=Embed('Error!','Make sure to specify the command type!\n\n__Example:__ `n.helpinfo competition` to get more information about the command `Competition`.', 'warning')
+          await embed.send(ctx)
+          return
+        else:
+          pass 
+        if command in listofcommand:
+              if command == listofcommand[0]:
+                embed=Embed('<:joinmyteam:798461040542351360>  Competition', '__**Description:**__ Create a competition.\n\n __**Usage:**__ `n.competition [Team] [Amount of time] [Unit]` \n\n__**Note:**__ Make sure to use a space between the amount of time and the unit. \n\n__**Example Usage:**__ `n.competition SSH 1 h` creates a competition (lasting 1 hour) for the team SSH.')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[1]:
+                embed=Embed('<:joinmyteam:798461040542351360>  Endcomp', '__**Description:**__ End your competition.\n\n__**Usage:**__ `n.endcomp [Competition ID]`\n\n__**Status:**__ `Active`\n\n__**Note:**__ You can only end competitions __you__ created.\n\n__**Example Usage:**__ `n.endcomp 12345` ends your competition with the Competition ID `12345`.')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[2]:
+                embed=Embed('<:joinmyteam:798461040542351360>  Leaderboard', '__**Description:**__ View your live competition standings.\n\n__**Usage:**__ `n.leaderboard [Competition ID]` \n\n__**Status:**__ `Active`\n\n__**Note:**__ After the competition ended, this command does not work anymore.\n\n__**Example Usage:**__ `n.leaderboard 12345` shows the live leaderboard of the competition with the Competition ID `12345`.')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[3]:
+                embed=Embed('Add', '__**Description:**__ Add lacans to a user.\n\n__**Usage:**__ `n.add [User ID] [Amount]`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.add 505338178287173642 100` adds `100` Lacans to the user <@505338178287173642>.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[4]:
+                embed=Embed('Addpremium', '__**Description:**__ Add premium to a server.\n\n__**Usage:**__ `n.addpremium`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.addpremium` adds premium to the current server.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[5]:
+                embed=Embed('Ban', '__**Description:**__ Bans a user from the bot.\n\n__**Usage:**__ `n.ban [User ID]`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.ban 505338178287173642` bans the user <@505338178287173642> from the bot.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[6]:
+                embed=Embed('Blacklist', '__**Description:**__ Blacklists a server from the bot.\n\n__**Usage:**__ `n.blacklist [Server ID]`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.blacklist 564880536401870858` blacklists the server `564880536401870858` from the bot.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[7]:
+                embed=Embed('Colours', '__**Description:**__ Create colours for your server.\n\n__**Usage:**__ `n.colours`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :gear: Administrator :gear: only command.\n\n__**Example Usage:**__ `n.colours` adds colours to the current server.', 'gear')
+                await embed.send(ctx)
+                return
+              elif command ==listofcommand[8]:
+                embed=Embed('Delroles', '__**Description:**__ Deletes the Nitro Type roles of a server.\n\n__**Usage:**__ `n.delroles`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.delroles` deletes the server\'s Nitro Type roles.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[9]:
+                embed=Embed('Leave', '__**Description:**__ Leaves a server.\n\n__**Usage:**__ `n.leave [Server ID]`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.leave 564880536401870858` leaves the server with the ID `564880536401870858`.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[10]:
+                embed=Embed('Remove', '__**Description:**__ Removes lacans of a user.\n\n__**Usage:**__ `n.remove [User ID] [Amount]`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.remove 505338178287173642 100` removes `100` Lacans of the user <@505338178287173642>.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[11]:
+                embed=Embed('Removepremium', '__**Description:**__ Removes Premium of a server.\n\n__**Usage:**__ `n.removepremium`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.removepremium` removes Premium of the current server.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[12]:
+                embed=Embed('Roles', '__**Description:**__ Creates Nitro Type roles for the server.\n\n__**Usage:**__ `n.roles`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.roles` creates Nitro Type roles for the server.', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand [13]:
+                embed=Embed('Say', '__**Description:**__ Says a message in a custom channel.\n\n__**Usage:**__ `n.say [Channel ID] [Message]`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.say 564902600835858453 Hey, I\'m Lacan NTSport!` says `Hey, I\'m Lacan NTSport!` in the channel `564902600835858453`.','hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[14]:
+                embed=Embed('Sent', '__**Description:**__ The developers payed out the NT cash you withdrew.\n\n__**Usage**__ `n.sent [User ID] [Amount of Lacans]`\n\n__**Status:**__ `Active`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.sent 505338178287173642 100` means that <@505338178287173642> received `100` Lacans = `100K` NT Cash of the user running the command', 'hammer pick')
+                await embed.send(ctx)
+                return
+              elif command == listofcommand[15]:
+                embed=Embed('Servers', '__**Description:**__ Get a list of servers the bot is inside.\n\n__**Usage:**__ `n.servers`\n\n__**Status:**__ `Under Maintenance`\n\n__**Note:**__ This command is a :hammer_pick: developer :hammer_pick: only command.\n\n__**Example Usage:**__ `n.servers` sends you a list of servers the bot is inside.', 'hammer pick')
+                await embed.send(ctx)
+                return
+        else:
+              embed=Embed('Error!', f' `n.{command}` does not exist. \nMake sure the capitalization is small. \nRun `n.help` for a full list of commands!', 'warning')
+              await embed.send(ctx)
+              return
+       
+def setup(client):
+    client.add_cog(Command(client))
