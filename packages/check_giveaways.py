@@ -24,14 +24,14 @@ class CheckGiveaways(commands.Cog):
                     await dbclient.update_array(collection, old, data)
                     continue
                 try:
-                    winners = random.choices(data['joined'], k=amt_winners)
+                    winners = random.choices(data['joined'], k=int(amt_winners))
                     mentions = ''
                     for winner in winners:
                         mentions += f'<@{winner}>'
                     if data['joined'] == []:
                         await msg.channel.send(f'No one won \n{msg.jump_url}')
                     else:
-                        await msg.channel.send(f'<@{mentions}> won {msg.jump_url}')
+                        await msg.channel.send(f'{mentions} won {msg.jump_url}')
                         
                 except KeyError:
                     await msg.channel.send(f'No one won \n{msg.jump_url}')
