@@ -11,13 +11,18 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command()
-    async def reroll(self, ctx, messageID):
+    async def reroll(self, ctx, messageID: int):
         dbclient = DBClient()
         collection = dbclient.db.giveaways
         dbdata = await dbclient.get_array(collection, {"$and": [{"messageID": messageID}, {"messageID": messageID}]})
         async for d in dbdata:
             giveaway = d
             break
+        try:
+            giveaway['ended']
+        except:
+            embed = Embed('Error!', f'No giveaway found with message ID {messageID}')
+            return await embed.send(ctx)
         if giveaway['ended'] == False:
             embed = Embed('Error!', 'This giveaway hasn\'t ended! Try `n.end` to end the giveaway!')
             return await embed.send(ctx)
