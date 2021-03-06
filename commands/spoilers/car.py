@@ -16,7 +16,7 @@ class Command(commands.Cog):
         for elem in data['list']:
             for v in elem.values():
                 try:
-                    if re.search(str(id).lower(), str(v)).group().lower():
+                    if re.search(str(id).lower(), str(v).lower()).group():
                         cardata = elem
                         break
                 except:
