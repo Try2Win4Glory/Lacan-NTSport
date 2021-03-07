@@ -30,6 +30,8 @@ class Command(commands.Cog):
             return await embed.send(ctx)
         embed = Embed('Car Image', 'Search Query: '+str(id))
         embed.image('https://www.nitrotype.com/cars/'+cardata['options']['largeSrc'])
+        for k, v in cardata.items():
+            embed.field(k, v)
         return await embed.send(ctx)
     
 def setup(client):
