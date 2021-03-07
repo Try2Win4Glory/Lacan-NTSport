@@ -39,7 +39,7 @@ class CheckGiveaways(commands.Cog):
                     else:
                         await msg.channel.send(f'{mentions} won {msg.jump_url}')
                         
-                except KeyError:
+                except:
                     await msg.channel.send(f'No one won \n{msg.jump_url}')
 
                 data['ended'] = True
