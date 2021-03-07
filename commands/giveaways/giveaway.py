@@ -43,6 +43,7 @@ class Command(commands.Cog):
             has_perm = True
         else:
             has_perm = False
+        print(has_perm)
         if has_perm == False:
             embed = Embed(':warning:  Error!', 'Seems like you don\'t have the permission to use this command.\n\nThis command requires a role called `Giveaways`.')
             return await embed.send(ctx)

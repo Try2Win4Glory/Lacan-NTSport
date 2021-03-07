@@ -43,7 +43,7 @@ except ImportError:
 
 
 intents = discord.Intents().default()
-client = commands.Bot(command_prefix=commands.when_mentioned_or(*['n.', 'N.']), case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.']), case_insensitive=True, intents=intents)
 client.remove_command('help')
 
 
