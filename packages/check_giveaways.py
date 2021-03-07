@@ -24,7 +24,13 @@ class CheckGiveaways(commands.Cog):
                     await dbclient.update_array(collection, old, data)
                     continue
                 try:
-                    winners = random.choices(data['joined'], k=int(amt_winners))
+                    try:
+                        winners = random.choices(data['joined'], k=int(amt_winners))
+                    except IndexError:
+                        try:
+                            winners = [random.choice(data['joined'])]
+                        except IndexError:
+                            await msg.channel.send(f'No one won \n{msg.jump_url}')
                     mentions = ''
                     for winner in winners:
                         mentions += f'<@{winner}>'
