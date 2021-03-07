@@ -14,7 +14,7 @@ class DBClient:
     async def get_array(self, collection, dict):
         return collection.find(dict)
     async def update_array(self, collection, old, new):
-        await collection.replace_one(old, new)
+        return await collection.replace_one(old, new)
     async def create_doc(self, collection, data):
         await collection.insert_one(data)
     async def get_big_array(self, collection, array_name):

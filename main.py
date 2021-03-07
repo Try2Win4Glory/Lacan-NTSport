@@ -232,12 +232,16 @@ async def on_raw_reaction_add(payload):
     except:
         try:
             req_passed = await check_perms(payload.user_id, user['requirements'])
-            if not req_passed:
+            if req_passed:
                 channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
                 msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
-                return await msg.remove_reaction(payload.emoji, payload.member)
+                await msg.remove_reaction(payload.emoji, payload.member)
                 user['joined'] = [payload.user_id]
                 return await dbclient.update_array(collection, old, user)
+            else:
+                channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
+                msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
+                await msg.remove_reaction(payload.emoji, payload.member)
         except Exception as e:
             pass
     if int(payload.channel_id) == 810296381779476510:

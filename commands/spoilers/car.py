@@ -16,7 +16,7 @@ class Command(commands.Cog):
         for elem in data['list']:
             for v in elem.values():
                 try:
-                    if re.search(str(id).lower(), str(v)).group().lower():
+                    if re.search(str(id).lower(), str(v).lower()).group():
                         cardata = elem
                         break
                 except:
@@ -30,6 +30,8 @@ class Command(commands.Cog):
             return await embed.send(ctx)
         embed = Embed('Car Image', 'Search Query: '+str(id))
         embed.image('https://www.nitrotype.com/cars/'+cardata['options']['largeSrc'])
+        for k, v in cardata.items():
+            embed.field(k, v)
         return await embed.send(ctx)
     
 def setup(client):
