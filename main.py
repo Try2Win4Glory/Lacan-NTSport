@@ -224,6 +224,7 @@ async def on_raw_reaction_add(payload):
         if not req_passed:
             channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
             msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
+        else:
             return await msg.remove_reaction(payload.emoji, payload.member)
         if payload.user_id in user['joined']:
             return
@@ -235,12 +236,9 @@ async def on_raw_reaction_add(payload):
             if req_passed:
                 channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
                 msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
-                await msg.remove_reaction(payload.emoji, payload.member)
                 user['joined'] = [payload.user_id]
                 return await dbclient.update_array(collection, old, user)
             else:
-                channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
-                msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
                 await msg.remove_reaction(payload.emoji, payload.member)
         except Exception as e:
             pass
