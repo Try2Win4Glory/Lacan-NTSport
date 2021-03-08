@@ -273,7 +273,7 @@ async def on_raw_reaction_add(payload):
             old = copy.deepcopy(data)
             break
         points = data['points']
-        data['points'] = int(points) + 5000
+        data['points'] = int(points) + 1000
         await dbclient.update_array(collection, old, data)
         await msg.delete()
         return await user.send(embed=embed.default_embed())
@@ -299,7 +299,7 @@ async def on_raw_reaction_add(payload):
         author = data['Buyer ID']
         guildid = data['Guild ID']
         guildname = data['Guild Name']
-        amount = 5000
+        amount = 1000
         embed=Embed(':diamond_shape_with_a_dot_inside:  New premium guild!', f'Lacan NTSport just sold a new premium server for `{amount}` {random_lacan}!')
         embed.field('Buyer ID', f'`{author}`')
         embed.field('Buyer Mention', f'<@{author}>')

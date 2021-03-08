@@ -61,15 +61,11 @@ class Command(commands.Cog):
                 import datetime
                 timeleft = str(datetime.timedelta(seconds=75600-(round(time.time())-user['laststamp'])))
                 embed = Embed('<a:error:800338727645216779>  Error!', 'You\'ve already collected your daily '+random_lacan+' today! Your next claim is available in **'+timeleft+'**.')
-                await embed.send(ctx)
-
 
                 #embed1 = embed=Embed(title='Lacan Log', description=f'{str(ctx.author)}', color=0xFF6347)
                 #embed1.add_field(name=''+random_lacan+' Earned', value='5')
                 #embed1.add_field(name='User ID', value=f'`{ctx.author.id}`')
                 #await channel.send(embed=embed1)
-                await embed.send(ctx)
-
                 return await embed.send(ctx)
         except KeyError:
             if user['userid'] == str(ctx.author.id):

@@ -32,9 +32,9 @@ class Command(commands.Cog):
         except:
             embed = Embed('Error!', 'The user doesn\'t have any lacans!')
             return await embed.send(ctx)
-        data['points'] = int(points) - 5000
+        data['points'] = int(points) - 1000
         if data['points'] < 0:
-            embed = Embed('Error!', 'You do not have 5000 lacans!', 'rofl')
+            embed = Embed('Error!', 'You do not have 1000 lacans!', 'rofl')
             return await embed.send(ctx)
         await dbclient.update_array(collection, old, data)
         embed = Embed('Success!', 'You have bought premium for this server, pending dev verification. \n\n*Please wait for a developer to accept your server for premium. If you get rejected, your lacans will be refunded.*', 'white check mark')
