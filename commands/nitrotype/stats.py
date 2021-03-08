@@ -60,7 +60,7 @@ class Command(commands.Cog):
 
         #embed.field('\n\u200b', '\n\u200b')
 
-        embed.field('__Speed__', f':stopwatch: Average: **{racer.wpm_average}**\n:stopwatch: Highscore: **{racer.wpm_high}**')
+        embed.field('__Speed__', f':stopwatch: Avg: **{racer.wpm_average}**\n:stopwatch: High: **{racer.wpm_high}**')
 
         #embed.field('\n\u200b', '\n\u200b')
 
