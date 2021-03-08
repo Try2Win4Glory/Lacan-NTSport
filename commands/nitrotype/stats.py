@@ -38,8 +38,8 @@ class Command(commands.Cog):
           embed = Embed(f'{racer.username} ({racer.name})\'s stats', racer.tag_and_name, 'race car', 0xfc3503)
           embed.footer(f'{racer.name.title()} has a Standard account. \nThese stats are brought to you by adl212, Try2Win4Glory and Joshua_Kim.', 'https://media.discordapp.net/attachments/719414661686099993/765110312482766919/NT_Server_Halloween_Logo_2020_GIF.gif')
 
-          if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
-              embed.footer(f'{racer.name.title()} has a Standard account. \nThese stats are brought to you by adl212, Try2Win4Glory and Joshua_Kim.\nBecome a premium 💠 member today!', 'https://media.discordapp.net/attachments/719414661686099993/765110312482766919/NT_Server_Halloween_Logo_2020_GIF.gif')
+          if (ctx.author.id) not in []:
+              embed.footer(f'{racer.name.title()} has a Standard account.\nThese stats are brought to you by adl212 and Try2Win4Glory','https://media.discordapp.net/attachments/719414661686099993/765110312482766919/NT_Server_Halloween_Logo_2020_GIF.gif')
           else:
               embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a developer of this bot.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
 
@@ -52,7 +52,22 @@ class Command(commands.Cog):
           else:
               embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a developer of this bot.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
         
+        '''try:
+          if racer.car == 'https://www.nitrotype.com/cars/17_large_1.png' and racer.car.id != '17':
+            pass
+            print(racer.car.name)
+          else:
+            embed.thumbnail(racer.car)
+            print(racer.car.name)
+        except:
+          embed.thumbnail(racer.car)'''
+        '''if racer.car == 'https://www.nitrotype.com/cars/110_large_1.png':
+            print('Minnie the coper alarm')
+        else:'''
         embed.thumbnail(racer.car)
+
+
+        print(racer.name+' is from '+racer.country)
 
         embed.field('__General Info__', f':small_blue_diamond: Level: **{racer.level}**\n:small_blue_diamond: XP: **{racer.experience}** \n:small_blue_diamond: **{racer.country}**\n:eyes: **{racer.views}** \n :birthday: **{racer.created}**', inline=True)
 

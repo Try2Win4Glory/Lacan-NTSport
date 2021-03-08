@@ -1499,11 +1499,6 @@
         "verified": "true"
     },
     {
-        "NTuser": "0a6669ba94061467de1984f8ab021fab",
-        "userID": "492849988423122955",
-        "verified": "true"
-    },
-    {
         "NTuser": "hunter93004",
         "userID": "780924954857570354",
         "verified": "true"
@@ -9283,7 +9278,18 @@
     {
         "userID": "427887714701148161",
         "NTuser": "leyosreturns",
-        "verified": "in progress",
+        "verified": "true",
         "verifyCar": "Minnie the Cooper"
+    },
+    {
+        "userID": "503053072512057359",
+        "NTuser": "trevorc12345",
+        "verified": "in progress",
+        "verifyCar": "Screw Tank"
+    },
+    {
+        "NTuser": "ghost5317",
+        "userID": "492849988423122955",
+        "verified": "true"
     }
 ]

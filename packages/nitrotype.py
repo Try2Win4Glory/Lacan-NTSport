@@ -233,7 +233,7 @@ countries = {
 	'UA': 'Ukraine',
 	'UG': 'Uganda',
 	'UM': 'United States Minor Outlying Islands',
-	'US': 'United States of America',
+	'US': 'USA',
 	'UY': 'Uruguay',
 	'UZ': 'Uzbekistan',
 	'VA': 'Vatican City State (Holy See)',
@@ -241,7 +241,7 @@ countries = {
 	'VE': 'Venezuela',
 	'VG': 'British Virgin Islands',
 	'VI': 'United States Virgin Islands',
-	'VN': 'Viet Nam',
+	'VN': 'Vietnam',
 	'VU': 'Vanuatu',
 	'WF': 'Wallis & Futuna Islands',
 	'WS': 'Samoa',
@@ -791,8 +791,34 @@ class RacerClass:
             if self.country != 'Unknown':
                 self.country += f' :flag_{newdata["country"].lower()}: '
             self.views = fn(newdata['profileViews'])
+            #self.created = date.fromtimestamp(newdata['createdStamp']).strftime('%d %B %Y')
             self.created = date.fromtimestamp(newdata['createdStamp']).strftime('%d %B %Y')
-
+            '''if B =='January':
+              mn = '01'
+          elif B == 'February':
+              mn = '02'
+          elif B == 'March':
+              mn = '03'
+          elif B == 'April':
+              mn = '04'
+          elif B == 'May':
+              mn = '05'
+          elif B == 'June':
+              mn = '06'
+          elif B == 'July':
+              mn = '07'
+          elif B == 'August':
+              mn = '08'
+          elif B == 'September':
+              mn = '09'
+          elif B == 'Oktober':
+              mn = '10'
+          elif B == 'November':
+              mn = '11'
+          elif B == 'Dezember':
+              mn = '12'
+        else:
+              mn = B'''
             self.cars_owned = 0
             self.cars_sold = 0
             self.cars_total = 0
