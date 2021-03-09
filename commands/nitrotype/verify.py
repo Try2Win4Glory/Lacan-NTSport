@@ -51,11 +51,11 @@ class Command(commands.Cog):
                         dbclient = DBClient()
                         collection = dbclient.db.NT_to_discord
                         await dbclient.update_big_array(collection, 'registered', dbdata)
-                        embed = Embed('Success', 'You\'ve been verified! In case this is a premium 💠 server do `n.update` to update your roles.', 'white_check_mark')
+                        embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server do `n.update` to update your roles.')
                         await embed.send(ctx)
                         break
                     else:
-                        embed = Embed('Oh No!', f'Remember to switch your car to **__{elem["verifyCar"]}__**. \nIf there is a problem, just wait a few minutes before trying again. \n\n*(If you just registered, make sure to wait 15 minutes so that I can recognize your equipped car.)* \n\nIf any problems occur, please make sure to ping / DM **one** of the following people who are able to register you: \n\n**__Developers:__** \n<@505338178287173642> \n<@637638904513691658> \n<@396075607420567552> \n\n**__Helpers:__**\n<@630761745140547625>\n<@731041476322263050> \n<@527937153817116704>' , 'warning')
+                        embed = Embed('<a:error:800338727645216779>  Oh No!', f'Remember to switch your car to **__{elem["verifyCar"]}__**. \nIf there is a problem, just wait a few minutes before trying again. \n\n***(If you just registered, make sure to wait 15 minutes so that I can recognize your equipped car.)*** \n\nIf any problems occur, please make sure to ping / DM **one** of the following people who are able to register you: \n\n**__Developers:__** \n<@505338178287173642> \n<@637638904513691658> \n<@396075607420567552> \n\n**__Helpers:__**\n<@630761745140547625>\n<@731041476322263050> \n<@527937153817116704>')
                         await embed.send(ctx)
                         break
                 if elem['verified'] == 'true':
@@ -70,7 +70,7 @@ class Command(commands.Cog):
                     break
         #if the for loop doesn't "break"
         else:
-            embed = Embed('Error!', 'Your account isn\'t registered yet', 'warning')
+            embed = Embed('<a:error:800338727645216779>  Error!', 'Your account isn\'t registered yet.\nAlready registered? Make sure to run `n.verify` to verify your ownership!')
             await embed.send(ctx)
             return
 def setup(client):

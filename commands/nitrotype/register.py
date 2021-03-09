@@ -40,9 +40,9 @@ class Command(commands.Cog):
                 await embed.send(ctx)
                 return
             if user == x['NTuser']:
-                embed = Embed('Error!', 'Someone is already registered to this account!', 'warning')
-                await embed.send(ctx)
-                return
+                        embed = Embed('Error!', 'Someone is already registered to this account!\nFor more information on who is registered to **'+x['NTuser']+'**, run `n.id '+x['NTuser']+'`.', 'warning')
+                        await embed.send(ctx)
+                        return
         else:
             dbdata['registered'].append({"userID": str(ctx.author.id), "NTuser": racer.username.lower(), "verified": "false"})
             #if json.loads(requests.post('https://test-db.nitrotypers.repl.co', data={"key": dbkey, "data": json.dumps(dbdata)}).text)['success'] == 'true':

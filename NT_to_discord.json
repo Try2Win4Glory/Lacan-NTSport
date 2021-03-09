@@ -1565,7 +1565,7 @@
         "NTuser": "wisequeen48",
         "verified": "true",
         "verifyCar": "Buggani Vyrus SS",
-        "password": "gAAAAABgHGjp9A3_Kk5QXV2jWpG8Fv5bFiC_-5B7JqC3ukJgRFu7YqMgNEwJugmZcFEu2smHN6qRhs9gSXB1XrDWH1zpfeSgJ0Lkh0aSodWhu1oYYaja_ac="
+        "password": "gAAAAABgRmEEMucfevjB9A-ypBecrRLnkVqYzKnlBjoLyxXXIkNHMmQy8Tm96CAo-OwYg5e1NMyXdK1q2lTNLt5wpxX3T-gsbduGTNqkeUrPsQ95DJQHjBI="
     },
     {
         "userID": "706213967797813339",
@@ -4795,11 +4795,6 @@
         "verified": "true"
     },
     {
-        "userID": "741003391617990756",
-        "NTuser": "inconc3ivabl3",
-        "verified": "false"
-    },
-    {
         "userID": "601445697362984970",
         "NTuser": "baby_cheetah",
         "verified": "false"
@@ -7834,7 +7829,7 @@
         "NTuser": "dolphintyperyt",
         "verified": "true",
         "verifyCar": "The Rolls",
-        "password": "gAAAAABgQ7TOMqmvP_42RBirgBo2_HlxUOHkRIqJk46jw-p5GjCSr-7olQFP_3ev-By1sxVwpZLEDWogUBXFazbx5jsothHqSg=="
+        "password": "gAAAAABgRl980lqfp5204bT7JI9bNpMSC2AI0tcuJtzvNhg_YZIz2XpSiuL5_6lpbRLivBGdFPtgTsh8DslO43_zBFc0v-kflg=="
     },
     {
         "NTuser": "itzelchavez07",
@@ -7988,11 +7983,6 @@
         "verifyCar": "Nitsua Lance 722"
     },
     {
-        "NTuser": "adl212",
-        "userID": "396075607420567552",
-        "verified": "true"
-    },
-    {
         "userID": "789549332847788093",
         "NTuser": "byedylan",
         "verified": "in progress",
@@ -8109,11 +8099,6 @@
         "NTuser": "colin22622",
         "userID": "778200778657103872",
         "verified": "true"
-    },
-    {
-        "userID": "772407958780510219",
-        "NTuser": "homerow2_0",
-        "verified": "false"
     },
     {
         "NTuser": "ethanobritsch1",
@@ -8376,12 +8361,6 @@
         "NTuser": "f7a4b8740d7fabc083eafad8c69fc70e",
         "verified": "true",
         "verifyCar": "Big Blue  "
-    },
-    {
-        "userID": "791904042007789581",
-        "NTuser": "bbrandon234",
-        "verified": "true",
-        "verifyCar": "B-Team Van"
     },
     {
         "NTuser": "dylanl5600",
@@ -8999,11 +8978,6 @@
         "verifyCar": "Jeepers Rubicorn"
     },
     {
-        "NTuser": "hypertyper55",
-        "userID": "505338178287173642",
-        "verified": "true"
-    },
-    {
         "NTuser": "3c42ee2242670d544dbc1ce209a9f6e6",
         "userID": "753279805973332095",
         "verified": "true"
@@ -9023,11 +8997,6 @@
         "NTuser": "sixty",
         "verified": "in progress",
         "verifyCar": "Misoux Toad"
-    },
-    {
-        "NTuser": "nikeeliteaa",
-        "userID": "499001156777803786",
-        "verified": "true"
     },
     {
         "userID": "730575375423373393",
@@ -9297,5 +9266,86 @@
         "NTuser": "bigboy177",
         "verified": "true",
         "verifyCar": "The Fastback"
+    },
+    {
+        "NTuser": "raging_fire37",
+        "userID": "499571419706032128",
+        "verified": "true"
+    },
+    {
+        "NTuser": "e3a0c3379777906a2f70d31d881f9c55",
+        "userID": "621155341316653106",
+        "verified": "true"
+    },
+    {
+        "userID": "780880228003741726",
+        "NTuser": "fd5d046695ce8ad906920c562d394776",
+        "verified": "true",
+        "verifyCar": "Outtie R11"
+    },
+    {
+        "userID": "813054943996411905",
+        "NTuser": "stormgirl3",
+        "verified": "in progress",
+        "verifyCar": "Rat Rod Skully"
+    },
+    {
+        "userID": "816874122842996777",
+        "NTuser": "bonawesome",
+        "verified": "true",
+        "verifyCar": "Bimmer 9.0t"
+    },
+    {
+        "NTuser": "coo222222",
+        "userID": "683524233162522648",
+        "verified": "true"
+    },
+    {
+        "userID": "783383971039543346",
+        "NTuser": "dinonuggie_s",
+        "verified": "true",
+        "verifyCar": "Nitsua Lance 722"
+    },
+    {
+        "userID": "759778122106404866",
+        "NTuser": "lgtanton",
+        "verified": "in progress",
+        "verifyCar": "Fort F-125"
+    },
+    {
+        "NTuser": "slashbreak",
+        "userID": "741003391617990756",
+        "verified": "true"
+    },
+    {
+        "NTuser": "rosesandbuds",
+        "userID": "818571872941244456",
+        "verified": "true"
+    },
+    {
+        "NTuser": "nroberts122903",
+        "userID": "273564726015819776",
+        "verified": "true"
+    },
+    {
+        "NTuser": "ileavenowprovid",
+        "userID": "772407958780510219",
+        "verified": "true"
+    },
+    {
+        "NTuser": "mickeypinkeyes",
+        "userID": "791904042007789581",
+        "verified": "true"
+    },
+    {
+        "userID": "814869384077770783",
+        "NTuser": "myst3ri0us",
+        "verified": "true",
+        "verifyCar": "The Macro"
+    },
+    {
+        "NTuser": "adl212",
+        "userID": "396075607420567552",
+        "verified": "true"
     }
 ]

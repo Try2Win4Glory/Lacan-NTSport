@@ -41,7 +41,7 @@ class Command(commands.Cog):
                         except:
                           pass  
                 dbdata['registered'].pop(dbdata['registered'].index(x))
-                embed = Embed('Success!', 'Unregistered!', 'white_check_mark')
+                embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
                
                 await embed.send(ctx)
                 #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})

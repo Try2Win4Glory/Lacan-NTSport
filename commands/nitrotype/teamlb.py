@@ -1,4 +1,4 @@
-'''Nitrotype TEam Leaderboards'''
+'''Nitrotype Team Leaderboards'''
 
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
