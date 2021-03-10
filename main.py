@@ -229,6 +229,9 @@ async def on_raw_reaction_add(payload):
         if payload.user_id in user['joined']:
             return
         user['joined'].append(payload.user_id)
+        embed = Embed(':partying_face:  You entered the giveaway!  :partying_face:', 'You successfully entered the giveaway!')
+        embed.field('Link', f'[Giveaway Link](https://discord.com/channels/{str(payload.guild_id)}/{str(payload.channel_id)}/{str(payload.message_id)}')
+        await payload.member.send(embed=embed.default_embed())
         return await dbclient.update_array(collection, old, user)
     except:
         try:
@@ -237,6 +240,9 @@ async def on_raw_reaction_add(payload):
                 channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
                 msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
                 user['joined'] = [payload.user_id]
+                embed = Embed(':partying_face:  You entered the giveaway!  :partying_face:', 'You successfully entered the giveaway!')
+                embed.field('Link', f'[Giveaway Link](https://discord.com/channels/{str(payload.guild_id)}/{str(payload.channel_id)}/{str(payload.message_id)})')
+                await payload.member.send(embed=embed.default_embed())
                 return await dbclient.update_array(collection, old, user)
             else:
                 await msg.remove_reaction(payload.emoji, payload.member)
