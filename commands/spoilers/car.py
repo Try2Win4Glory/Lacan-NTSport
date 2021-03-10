@@ -25,7 +25,7 @@ class Command(commands.Cog):
                 continue
             break
         else:
-            embed = Embed('Car Image', 'Search Query: '+str(id))
+            embed = Embed(':frame_photo:  Car Image', 'Search Query: '+str(id))
             embed.field('Results', 'None')
             return await embed.send(ctx)
         embed = Embed('Car Image', 'Search Query: '+str(id))

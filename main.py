@@ -35,12 +35,14 @@ from discord.utils import get
 from nitrotype import check_perms, get_username
 from packages.nitrotype import Team, Racer
 import copy
+import keep_alive
 try: import requests
 except ImportError:
   print ("Trying to Install required module: motor tornado\n")
   os.system('python', '-m', 'pip', 'install', requests)
   import requests
 
+keep_alive.keep_alive()
 
 intents = discord.Intents().default()
 client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.']), case_insensitive=True, intents=intents)
@@ -139,7 +141,7 @@ async def on_message(message):
                 #check for botters
                 #print(f"{message.content} | {message.author.id} | {str(message.author)} | {message.guild.id} | {str(message.guild)}")
                 async with message.channel.typing():
-                    await asyncio.sleep(random.uniform(0.15, 0.2))
+                    await asyncio.sleep(random.uniform(0.05, 0.1))
                 try:
                     ctx = await client.get_context(message)
                     await ctx.command.invoke(ctx)
@@ -147,14 +149,13 @@ async def on_message(message):
                     shouldraise = True
                     if isinstance(e, AttributeError):
                         embed = Embed(
-                            'Error!',
+                            '<a:error:800338727645216779>  Error!',
                             '**Unrecognized command!**\nFor a full list of commands, make sure to use `n.help`.',
-                            'warning',
                             color=0xff0000)
                         await embed.send(ctx)
                         shouldraise = False
                     else:
-                        embed = Embed('Error!', f'```{e}```\n\nThe developers have received your error message.')
+                        embed = Embed('<a:error:800338727645216779>  Error!', f'```{e}```\nThe developers have received your error message.\nUse `n.errors` for an explaination on your error.')
                         return await embed.send(ctx)
                     channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
                     channel2 = discord.utils.get(client.get_all_channels(), id = 803938544175284244)
@@ -277,7 +278,7 @@ async def on_raw_reaction_add(payload):
             old = copy.deepcopy(data)
             break
         points = data['points']
-        data['points'] = int(points) + 5000
+        data['points'] = int(points) + 1000
         await dbclient.update_array(collection, old, data)
         await msg.delete()
         return await user.send(embed=embed.default_embed())
@@ -303,7 +304,7 @@ async def on_raw_reaction_add(payload):
         author = data['Buyer ID']
         guildid = data['Guild ID']
         guildname = data['Guild Name']
-        amount = 5000
+        amount = 1000
         embed=Embed(':diamond_shape_with_a_dot_inside:  New premium guild!', f'Lacan NTSport just sold a new premium server for `{amount}` {random_lacan}!')
         embed.field('Buyer ID', f'`{author}`')
         embed.field('Buyer Mention', f'<@{author}>')

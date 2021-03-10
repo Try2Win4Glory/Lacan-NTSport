@@ -123,6 +123,7 @@ class Command(commands.Cog):
         username = racer.username
         await self.compileGarage(username)
         await ctx.send(file=discord.File("garage.png"))
+        return await ctx.send('Having troubles loading your cars? Do you have too many Minnie the coopers? Please do **NOT** message developers just to say that, this is a common problem, caused by NitroType staff, not this bot\'s developers.')
     
 def setup(client):
     client.add_cog(Command(client))

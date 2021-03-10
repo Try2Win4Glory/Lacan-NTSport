@@ -22,8 +22,36 @@ class Command(commands.Cog):
         for word in sendmessage:
             message += f' {word}'
 
-        if len(message[1:]) < 40:
-            await Embed('Error!', 'Your Message is too short', 'warning').send(ctx)
+        bannedmsgecontent = [
+        #Blacklisted content:
+
+        #General Blacklisted content / Swearting, etc...:
+        "bitch", 
+        "fuck",
+        "shit", 
+        "idiot", 
+        "ass", 
+
+        #Blacklisted NT Content / no instructions read:
+        "verify", 
+        "verification", 
+        "poop", 
+        "trade", 
+        "sell",
+        "garage",
+        "Minnie the Cooper"
+        ]
+
+        for word in bannedmsgecontent:
+          if message.count(word) > 0:
+            embed = Embed('Ooops!', f'Keep the language clean! Your message\n\n```{message}```\n\ncontains the blacklisted word\n\n```{word}```\n\nIn order to get your message submitted, please remove this word.\n\n*Not an offensive word? Then you probably didn\'t read the instructions carefully. Please read the instructions carefully first, before you submit your support request.*')
+            return await embed.send(ctx)
+        else:
+          pass
+        
+
+        if len(message[1:]) < 10:
+            await Embed('Error!', 'Your Message is too short. Your message must at least `10` characters.', 'warning').send(ctx)
         else:
             #client = commands.Bot(command_prefix=commands.when_mentioned_or(*['n.', 'N.']), case_insensitive=True)
             client = self.client
