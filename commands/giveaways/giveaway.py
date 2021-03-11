@@ -33,16 +33,20 @@ class Command(commands.Cog):
             if role.name.lower() == "giveaways":
                 has_perm = True
                 break
-        else:
-            has_perm = False
-        if has_perm == False:
-            pass
-        elif ctx.author.guild_permissions.manage_guild:
+        #else:
+            #has_perm = False
+        #if has_perm == False:
+            #pass
+        if ctx.author.guild_permissions.manage_guild:
             has_perm = True
         elif ctx.author.guild_permissions.administrator:
             has_perm = True
+        elif ctx.author.id in [505338178287173642]:
+            has_perm = True
         else:
             has_perm = False
+        if has_perm == False:
+          pass
         print(has_perm)
         if has_perm == False:
             embed = Embed(':warning:  Error!', 'Seems like you don\'t have the permission to use this command.\n\nThis command requires a role called `Giveaways`.')
