@@ -1,6 +1,7 @@
 from discord.ext import tasks, commands
 from mongoclient import DBClient
 import copy, time, random
+from packages.utils import Embed, ImproperType
 from discord.utils import get
 
 class CheckGiveaways(commands.Cog):
@@ -23,6 +24,7 @@ class CheckGiveaways(commands.Cog):
                     data['ended'] = True
                     await dbclient.update_array(collection, old, data)
                     continue
+                prize = data['gwcontent']
                 try:
                     try:
                         winners = random.choices(data['joined'], k=int(amt_winners))
@@ -35,12 +37,17 @@ class CheckGiveaways(commands.Cog):
                     for winner in winners:
                         mentions += f'<@{winner}>'
                     if data['joined'] == []:
-                        await msg.channel.send(f'No one won \n{msg.jump_url}')
+                        await msg.channel.send(f'I couldn\'t determine a winner for {msg.jump_url}')
                     else:
-                        await msg.channel.send(f'{mentions} won {msg.jump_url}')
+                        await msg.channel.send(f'{mentions} won the giveaway for **{prize}**! {msg.jump_url}')
+                        '''try:
+                          embed=Embed(':tada: Congratulations! :tada:', f'You won the giveaway for **{prize}**\nClick [here]({msg.jump_url}) to jump to the original message!')
+                          await winners.send(embed=embed.default_embed())
+                        except:
+                          pass'''
                         
                 except:
-                    await msg.channel.send(f'No one won \n{msg.jump_url}')
+                    await msg.channel.send(f'I couldn\'t determine a winner for{msg.jump_url}.')
 
                 data['ended'] = True
                 await dbclient.update_array(collection, old, data)

@@ -33,16 +33,22 @@ class Command(commands.Cog):
             if role.name.lower() == "giveaways":
                 has_perm = True
                 break
-        else:
-            has_perm = False
-        if has_perm == False:
-            pass
-        elif ctx.author.guild_permissions.manage_guild:
+        #else:
+            #has_perm = False
+        #if has_perm == False:
+            #pass
+        if ctx.author.guild_permissions.manage_guild:
             has_perm = True
         elif ctx.author.guild_permissions.administrator:
             has_perm = True
+        elif ctx.author.id in [505338178287173642]:
+            has_perm = True
+        elif role.name.lower() == "giveaways":
+                has_perm = True
         else:
             has_perm = False
+        if has_perm == False:
+          pass
         print(has_perm)
         if has_perm == False:
             embed = Embed(':warning:  Error!', 'Seems like you don\'t have the permission to use this command.\n\nThis command requires a role called `Giveaways`.')
@@ -227,7 +233,7 @@ class Command(commands.Cog):
                 await message.add_reaction('💰')
             dbclient = DBClient()
             collection = dbclient.db.giveaways
-            await dbclient.create_doc(collection, {"endtime": int(int(datetime.timestamp(datetime.now()))+addedtime), "messageID": message.id, "channelID": message.channel.id, "ended": False, "requirements": requirements, "winners": winners})
+            await dbclient.create_doc(collection, {"endtime": int(int(datetime.timestamp(datetime.now()))+addedtime), "messageID": message.id, "channelID": message.channel.id, "ended": False, "requirements": requirements, "gwcontent": prize, "winners": winners})
         else:
             embed = Embed('Error!' 'You gave an invalid response! Your giveaway has been canceled.')
             return await embed.send(ctx)
