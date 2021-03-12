@@ -241,8 +241,11 @@ async def on_raw_reaction_add(payload):
                 channel = discord.utils.get(client.get_all_channels(), id=int(payload.channel_id))
                 msg = discord.utils.get(await channel.history().flatten(), id=int(payload.message_id))
                 user['joined'] = [payload.user_id]
-                embed = Embed(':partying_face:  You entered the giveaway!  :partying_face:', 'You successfully entered the giveaway!')
-                embed.field('Link', f'[Giveaway Link](https://discord.com/channels/{str(payload.guild_id)}/{str(payload.channel_id)}/{str(payload.message_id)})')
+                embed = Embed(':partying_face:  Entry approved!  :partying_face:', 'You successfully entered the giveaway!')
+                embed.field(':link:  Link', f'**[Giveaway Link](https://discord.com/channels/{str(payload.guild_id)}/{str(payload.channel_id)}/{str(payload.message_id)})**')
+                embed.field(':tools:  Support Server', 'Join the official **[Support Server](https://discord.gg/Wj96Ehg)**!')
+                embed.field(':arrow_up:  Vote', 'Vote for me **[here](https://top.gg/bot/713352863153258556)**.')
+                embed.field(':link:  Invite', 'Invite me through **[this](https://discord.com/oauth2/authorize?client_id=713352863153258556&permissions=2617633857&redirect_uri=https%3A%2F%2Fnitrotype.com&scope=bot)** link.')
                 await payload.member.send(embed=embed.default_embed())
                 return await dbclient.update_array(collection, old, user)
             else:
