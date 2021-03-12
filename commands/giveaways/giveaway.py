@@ -43,6 +43,8 @@ class Command(commands.Cog):
             has_perm = True
         elif ctx.author.id in [505338178287173642]:
             has_perm = True
+        elif role.name.lower() == "giveaways":
+                has_perm = True
         else:
             has_perm = False
         if has_perm == False:
