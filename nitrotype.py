@@ -89,8 +89,8 @@ async def update_comp(compid):
         page = await fetch(session, f'https://www.nitrotype.com/api/teams/{team}')
     info = json.loads(page)
     try:
-        for elem in info['data']['members']:
-            for user in players:
+        for user in players:
+            for elem in info['data']['members']:
                 if user['username'] == elem['username']:
                     try:
                         racer = await Racer(user['username'])
@@ -119,11 +119,32 @@ async def update_comp(compid):
                         user['wpm'] = 0
                         user['accuracy'] = 0
                         user['points'] = 0
-                    continue
-    except:
+                    break
+            else:
+                user['stillinteam'] = False
+        res = [ sub['username'] for sub in players ]
+        for elem in info['data']['members']:
+            if elem['username'] in res:
+                continue
+            else:
+                players.append({
+                    "username": elem['username'],
+                    "starting-races": elem['played'],
+                    "ending-races": elem['played'],
+                    "total-races": 0,
+                    "display": elem['displayName'] or elem['username'],
+                    "stillinteam": True,
+                    "starting-typed": typed,
+                    "ending-typed": typed, 
+                    "starting-secs": float(secs), 
+                    "ending-secs": float(secs),
+                    "starting-errs": (errs), "ending-errs": (errs)
+                })
+    except Exception as e:
+        raise e
         return
     await dbclient.update_array(collection, old, data)
-
+    return data
 async def l(compid, category="races"):
     await update_comp(compid)
     dbclient = DBClient()
@@ -135,6 +156,8 @@ async def l(compid, category="races"):
     displays = []
     categorylist = []
     for user in data['players']:
+        if user['stillinteam'] == False:
+            continue
         usernames.append(user['username'].lower())
         displays.append(user['display'])
         if category == "races":
