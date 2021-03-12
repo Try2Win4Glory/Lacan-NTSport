@@ -233,7 +233,7 @@ class Command(commands.Cog):
                 await message.add_reaction('💰')
             dbclient = DBClient()
             collection = dbclient.db.giveaways
-            await dbclient.create_doc(collection, {"endtime": int(int(datetime.timestamp(datetime.now()))+addedtime), "messageID": message.id, "channelID": message.channel.id, "ended": False, "requirements": requirements, "winners": winners})
+            await dbclient.create_doc(collection, {"endtime": int(int(datetime.timestamp(datetime.now()))+addedtime), "messageID": message.id, "channelID": message.channel.id, "ended": False, "requirements": requirements, "gwcontent": prize, "winners": winners})
         else:
             embed = Embed('Error!' 'You gave an invalid response! Your giveaway has been canceled.')
             return await embed.send(ctx)

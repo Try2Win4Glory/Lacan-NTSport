@@ -21,19 +21,19 @@ class Command(commands.Cog):
         try:
             giveaway['ended']
         except:
-            embed = Embed('Error!', f'No giveaway found with message ID {messageID}')
+            embed = Embed('Error!', f'No giveaway found with message ID `{messageID}`', 'warning')
             return await embed.send(ctx)
         if giveaway['ended'] == False:
-            embed = Embed('Error!', 'This giveaway hasn\'t ended! Try `n.end` to end the giveaway!')
+            embed = Embed('Error!', 'This giveaway hasn\'t ended! Try `n.end` to end the giveaway!', 'warning')
             return await embed.send(ctx)
         channel = get(self.client.get_all_channels(), id=giveaway['channelID'])
         msg = get(await channel.history(limit=1000).flatten(), id=giveaway['messageID'])
         try:
             winner = random.choice(giveaway['joined'])
             if giveaway['joined'] == []:
-                await msg.channel.send(f'No one won \n{msg.jump_url}')
+                await msg.channel.send(f':weary:No one won\n{msg.jump_url}:weary:')
             else:
-                await msg.channel.send(f'<@{winner}> won {msg.jump_url}')
+                await msg.channel.send(f':tada:The new winner is <@{winner}> {msg.jump_url}!:tada:')
                 
         except KeyError:
             await msg.channel.send(f'No one won because no one joined!\n{msg.jump_url}')
