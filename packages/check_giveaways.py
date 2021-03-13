@@ -35,16 +35,21 @@ class CheckGiveaways(commands.Cog):
                             await msg.channel.send(f'No one won \n{msg.jump_url}')
                     mentions = ''
                     for winner in winners:
-                        mentions += f'<@{winner}>'
+                        mentions += f'<@{winner}> '
+                    embed = msg.embeds[0]
+                    embed.description += f'\n\nWinners: {mentions}'
+                    await msg.edit(embed=embed)
                     if data['joined'] == []:
                         await msg.channel.send(f'I couldn\'t determine a winner for {msg.jump_url}')
                     else:
                         await msg.channel.send(f'{mentions} won the giveaway for **{prize}**! {msg.jump_url}')
-                        '''try:
-                          embed=Embed(':tada: Congratulations! :tada:', f'You won the giveaway for **{prize}**\nClick [here]({msg.jump_url}) to jump to the original message!')
-                          await winners.send(embed=embed.default_embed())
-                        except:
-                          pass'''
+                        embed=Embed(':tada: Congratulations! :tada:', f'You won the giveaway for **{prize}**\nClick [here]({msg.jump_url}) to jump to the original message!')
+                        for winner in winners:
+                            try:
+                                user = await self.client.fetch_user(int(winner))
+                                await user.send(embed=embed.default_embed())
+                            except:
+                                pass
                         
                 except:
                     await msg.channel.send(f'I couldn\'t determine a winner for{msg.jump_url}.')
