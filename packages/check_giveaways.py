@@ -3,7 +3,7 @@ from mongoclient import DBClient
 import copy, time, random
 from packages.utils import Embed, ImproperType
 from discord.utils import get
-
+import discord
 class CheckGiveaways(commands.Cog):
     def __init__(self, client):
         self.check_giveaways.start()
@@ -38,12 +38,17 @@ class CheckGiveaways(commands.Cog):
                         mentions += f'<@{winner}> '
                     embed = msg.embeds[0]
                     embed.description += f'\n\nWinners: {mentions}'
+                    embed.color = 0xFF0000
                     await msg.edit(embed=embed)
                     if data['joined'] == []:
                         await msg.channel.send(f'I couldn\'t determine a winner for {msg.jump_url}')
                     else:
                         await msg.channel.send(f'{mentions} won the giveaway for **{prize}**! {msg.jump_url}')
-                        embed=Embed(':tada: Congratulations! :tada:', f'You won the giveaway for **{prize}**\nClick [here]({msg.jump_url}) to jump to the original message!')
+                        embed=Embed('🎉 Congratulations! 🎉', f'You won **{prize}**!')
+                        embed.field('🔗  Link', f'**[Giveaway Link]({msg.jump_url})**')
+                        embed.field('🛠️  Support Server', 'Join the official **[Support Server](https://discord.gg/Wj96Ehg)**!')
+                        embed.field('⬆️  Vote', 'Vote for me **[here](https://top.gg/bot/713352863153258556)**.')
+                        embed.field('🔗  Invite', 'Invite me through **[this](https://discord.com/oauth2/authorize?client_id=713352863153258556&permissions=2617633857&redirect_uri=https%3A%2F%2Fnitrotype.com&scope=bot)** link.')
                         for winner in winners:
                             try:
                                 user = await self.client.fetch_user(int(winner))
@@ -51,7 +56,8 @@ class CheckGiveaways(commands.Cog):
                             except:
                                 pass
                         
-                except:
+                except Exception as e:
+                    raise e
                     await msg.channel.send(f'I couldn\'t determine a winner for{msg.jump_url}.')
 
                 data['ended'] = True
