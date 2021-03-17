@@ -7,7 +7,7 @@ app = Flask(__name__)
 logger = getLogger('werkzeug')
 logger.setLevel(ERROR)
 
-@app.route('/', methods=['POST', 'GET', 'HEAD'])
+@app.route('/', methods=['POST', 'GET', 'HEAD'])#'POST'
 def home():
     return 'Server is ready'
 
