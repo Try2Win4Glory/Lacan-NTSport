@@ -42,7 +42,7 @@ except ImportError:
   os.system('python', '-m', 'pip', 'install', requests)
   import requests
 
-keep_alive.keep_alive()
+#keep_alive.keep_alive()
 
 intents = discord.Intents().default()
 client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.']), case_insensitive=True, intents=intents)
@@ -156,7 +156,7 @@ async def on_message(message):
                         shouldraise = False
                     else:
                         embed = Embed('<a:error:800338727645216779>  Error!', f'```{e}```\nThe developers have received your error message.\nUse `n.errors` for an explaination on your error.')
-                        return await embed.send(ctx)
+                        await embed.send(ctx)
                     channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
                     channel2 = discord.utils.get(client.get_all_channels(), id = 803938544175284244)
                     embed = Embed('__**Command Log**__', str(message.author))

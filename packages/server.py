@@ -7,9 +7,10 @@ app = Flask(__name__)
 logger = getLogger('werkzeug')
 logger.setLevel(ERROR)
 
+
 @app.route('/', methods=['POST', 'GET', 'HEAD'])#'POST'
 def home():
-    return 'Server is ready'
+      return 'Yes, I\'m alive.'
 
 def run():
     app.run(host='0.0.0.0', port=8080)
@@ -18,7 +19,7 @@ def start_server():
     t = Thread(target=run)
     t.start()
 def restart_program():
-    time.sleep(10800)
+    time.sleep(3600)
     python = sys.executable
     os.execl(python, python, * sys.argv)
 thread = Thread(target=restart_program)

@@ -16,6 +16,7 @@ class CheckGiveaways(commands.Cog):
         documents = await dbclient.get_array(collection, {})
         async for data in documents:
             if int(time.time()) >= data['endtime'] and data['ended'] == False:
+              try:
                 old = copy.deepcopy(data)
                 channel = get(self.client.get_all_channels(), id=data['channelID'])
                 msg = get(await channel.history(limit=1000).flatten(), id=data['messageID'])
@@ -60,6 +61,7 @@ class CheckGiveaways(commands.Cog):
                     raise e
                     await msg.channel.send(f'I couldn\'t determine a winner for{msg.jump_url}.')
 
+              except:
                 data['ended'] = True
                 await dbclient.update_array(collection, old, data)
             else:

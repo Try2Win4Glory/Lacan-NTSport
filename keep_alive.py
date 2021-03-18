@@ -12,7 +12,7 @@ def keep_alive():
     server.start()'''
 
 
-from flask import Flask
+'''from flask import Flask
 from threading import Thread
 
 app = Flask('')
@@ -26,4 +26,4 @@ def run():
 
 def keep_alive():
     t = Thread(target=run)
-    t.start()
+    t.start()'''
