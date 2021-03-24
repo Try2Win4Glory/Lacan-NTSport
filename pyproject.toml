@@ -18,6 +18,7 @@ flask = "^1.1.2"
 bs4 = "^0.0.1"
 tornado = "^6.1"
 dnspython = "^2.1.0"
+pandas = "^1.2.3"
 
 [tool.poetry.dev-dependencies]
 
