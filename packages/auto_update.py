@@ -71,16 +71,12 @@ class AutoUpdate(commands.Cog):
                 )
                 try:
                     user = await self.client.fetch_user(data['other']['author'])
-                except:
-                    pass
-                try:
                     await user.send(embed=embed)
                     await user.send('Your conpetition has ended! Comp ID: `'+compid+'`.  Check out the other categories of your competition by doing `n.lb '+compid+'` and adding `speed`, `accuracy`, `races`, or `points`. Ex: `n.lb '+compid+' points`')
                 except:
                     pass
-                async with aiohttp.ClientSession() as session:
-                    await self.fetch(session, 'https://backupcomps.adl212.repl.co/backupcomp', data={"id": compid, "comp_data": json.dumps(data['players'])})
                 data['other']['ended'] = True
-                (await dbclient.update_array(dbclient.db["test"], old, data))
+                await dbclient.update_array(dbclient.db["test"], old, data)
+        print('Auto Update Done')
 def setup(client):
     client.add_cog(AutoUpdate(client))
