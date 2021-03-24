@@ -142,7 +142,6 @@ async def update_comp(compid):
                     "starting-errs": (elem['errs']), "ending-errs": (elem['errs'])
                 })
     except Exception as e:
-        raise e
         return
     await dbclient.update_array(collection, old, data)
     return data
