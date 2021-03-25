@@ -1,3 +1,4 @@
+
 '''Verify your account ownership after registering!'''
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
@@ -32,9 +33,12 @@ class Command(commands.Cog):
             for elem in dbdata['registered']:
                 if elem['userID'] == str(ctx.author.id):
                     if elem['verified'] == 'false':
-                        embed = Embed(':race_car:  Please Join This Race!', 'Join This Race To Verify This Account Is Yours')
-                        embed.field('__Instructions__', 'Once you join this race, the race leader will leave and you just have to type `n.verify race` again to verify. If this does not work, please try doing the verification again.')
-                        embed.field('__Link__', '[:link:](https://www.nitrotype.com/race/lacanverification)')
+                        username = elem['NTuser']
+                        embed = Embed(':clipboard:  Verify your Identity!', f'Join the race to verify **{username}** is owned by you. You don\'t own **{username}**? Run `n.unregister` to unlink your discord from this account.')
+                        embed.field('__Instructions__', 'Once you join the race, the race leader will leave and you just have to type n.verify again to verify. If this does not work, please try unregistering and registering again.')
+                        embed.field('__Short instructions__', '**1.** Run `n.verify`\n**2.** Join the race track shown under the link category.\n**3.** Run `n.verify` again.')
+                        embed.field('__Common errors__', 'Is the race leader not joining the race? Refresh your page, after maximal **4** refreshs the race leader joins and you can attempt to verify.')
+                        embed.field('__Link__', 'Join [this](https://www.nitrotype.com/race/lacanverification) race to verify your identity.')
                         await embed.send(ctx)
                         elem['verifyCar'] = None
                         elem['verified'] = 'in progress'
@@ -57,9 +61,11 @@ class Command(commands.Cog):
                             await embed.send(ctx)
                             break
                         else:
-                            embed = Embed('Error!', 'Oops it does not seem like you are verified!', 'warning')
-                            embed.field('__Instructions__', 'Please try to do `n.verify race` again and join the race!')
-                            embed.field('__Link__', '[:link:](https://www.nitrotype.com/race/lacanverification)')
+                            username = elem['NTuser']
+                            embed = Embed('Nearly there!', f'You\'re nearly done - just one more step to go!\nYou are just about to verify your ownership for **{username}**. Not you? Run `n.unregister` to unlink your discord from this account.', 'warning')
+                            embed.field('__Instructions__', 'Please join the race and run `n.verify` again.')
+                            embed.field('__Common errors__', 'Is the race leader not joining the race? Refresh your page, after maximal **4** refreshs the race leader joins and you can attempt to verify.')
+                            embed.field('__Link__', 'Join [this](https://www.nitrotype.com/race/lacanverification) race to verify your identity.')
                             await embed.send(ctx)
                             async with aiohttp.ClientSession() as s:
                                 await self.fetch(s,'https://nebuliteforgold-2.adl212.repl.co')
@@ -68,7 +74,7 @@ class Command(commands.Cog):
                         embed = Embed('Error!', 'You are already verified :rofl:', 'joy')
                         return await embed.send(ctx)
             else:
-                embed = Embed('Error!', 'You have not registered yet. Do `n.register <username>`', 'warning')
+                embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
                 await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
