@@ -741,6 +741,7 @@ class RacerClass:
         async with aiohttp.ClientSession() as session:
             response = await self.fetch(session, f'https://www.nitrotype.com/racer/{racer}')
         newdata = json.loads('{"'+re.search(r'RACER_INFO: \{\"(.*)\}', response.strip()).group(1)+'}')
+        self.newdata = newdata
         #print(newdata)
         if newdata == {}:
             self.success = False
