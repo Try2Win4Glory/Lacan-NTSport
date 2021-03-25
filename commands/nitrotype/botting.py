@@ -30,12 +30,11 @@ class Command(commands.Cog):
         with open('data.csv', 'w') as f:
             f.write(csvdata)
         df = pandas.read_csv("data.csv")
-        df = df.sample(frac=1)
-        d = {'bot': 1, 'legit': 0}
-        df['Go'] = df['Go'].map(d)
         features = ['avgSpeed', 'highSpeed', 'racesTotal', 'highestSession']
         avgdivhigh = []
         racesTotal = list(df['racesTotal'])
+        highest = []
+        highest_int = 0
         for x in df['racesTotal']:
             avgSpeed = int(list(df['avgSpeed'])[list(df['racesTotal']).index(x)])
             highSpeed = int(list(df['highSpeed'])[list(df['racesTotal']).index(x)])
