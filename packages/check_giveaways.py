@@ -61,7 +61,6 @@ class CheckGiveaways(commands.Cog):
                                 pass
                         
                 except Exception as e:
-                    raise e
                     await msg.channel.send(f'I couldn\'t determine a winner for{msg.jump_url}.')
 
                 data['ended'] = True
