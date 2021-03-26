@@ -27,12 +27,19 @@ class Command(commands.Cog):
         collection = dbclient.db.NT_to_discord
         dbdata = await dbclient.get_big_array(collection, 'registered')
         for role in ctx.author.roles:
-            if role.id in [741825503337381891, 741825592344969307]:
+            if role.id in [
+              #Insert permitted role IDs here
+            ]:
                 bypass = True
                 break
         else:
             bypass = False
-        if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552, 630761745140547625, 731041476322263050, 527937153817116704, 398643731466551307] and not bypass:
+        if (ctx.author.id) not in [
+          #Try2Win4Glory
+            505338178287173642,
+          #adl212
+            396075607420567552
+          ] and not bypass:
             embed = Embed('Error!', 'Lol, did you really think it\'s possible for you to unregister a user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
             embed.footer('⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
             await embed.send(ctx)
