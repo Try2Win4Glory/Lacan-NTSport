@@ -21,7 +21,7 @@ class Command(commands.Cog):
             async with session.post(url,data=data) as response:
                 return await response.json()
     @commands.command()
-    async def botting(self, ctx, username):
+    async def checkbot(self, ctx, username):
         racer = await Racer(username)
         async with aiohttp.ClientSession() as s:
             botornot = await self.fetch('https://FeistyVacantAddon.adl212.repl.co', s, data={'username': username})
@@ -59,15 +59,15 @@ class Command(commands.Cog):
         plt.scatter([int(racer.races.replace(',', ''))],[(int(racer.races.replace(',', ''))-int(racer.newdata['longestSession']))*(int(racer.wpm_high.replace(',', ''))-int(racer.wpm_average.replace(',', '')))],color='red')
         plt.savefig('graph.png')
         plt.cla()
-        embed = Embed('Botting Or Not?', 'Analysis of '+username)
+        embed = Embed('Botting Or Not?', 'Analysis of **'+username+'**')
         if botornot['botornot'] == 'error':
-            embed.field('Error!', 'We could not find that account!')
+            embed.field('Error!', 'I could not find that account!')
         if botornot['botornot']:
-            embed.field('Bot Or Not', 'BOT')
-            embed.field('Accuracy', str(botornot['accuracy']))
+            embed.field('Bot Or Not', '__BOT__')
+            embed.field('Accuracy', '`'+str(botornot['accuracy'])+'`%')
         else:
-            embed.field('Bot Or Not', 'LEGIT')
-            embed.field('Accuracy', str(botornot['accuracy']))
+            embed.field('Bot Or Not', '__LEGIT__')
+            embed.field('Accuracy', '`'+str(botornot['accuracy'])+'`%')
         file = discord.File("graph.png", filename="graph.png")
         embed.image(url="attachment://graph.png")
         await ctx.send(file=file, embed=embed.default_embed())
