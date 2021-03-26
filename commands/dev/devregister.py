@@ -22,12 +22,19 @@ class Command(commands.Cog):
             embed = Embed('Error!', 'Nitrotype user not found! Make sure to use `n.supregister <Mention / ID> <username>.', 'warning')
             return await embed.send(ctx)
         for role in ctx.author.roles:
-            if role.id in [741825503337381891, 741825592344969307]:
+            if role.id in [
+              #Insert permitted role IDs here
+            ]:
                 bypass = True
                 break
         else:
             bypass = False
-        if (ctx.author.id) not in [396075607420567552, 505338178287173642, 637638904513691658, 527937153817116704, 630761745140547625, 731041476322263050, 398643731466551307] and not bypass:
+        if (ctx.author.id) not in [
+          #Try2Win4Glory
+            505338178287173642,
+          #adl212
+            396075607420567552
+        ] and not bypass:
         
             embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to register a user in this way when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
 
