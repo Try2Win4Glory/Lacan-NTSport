@@ -5,6 +5,9 @@ from packages.utils import Embed, ImproperType
 from discord.utils import get
 from packages.nitrotype import Racer
 import requests, json, os
+import datetime
+from datetime import date
+import random
 from mongoclient import DBClient
 class Command(commands.Cog):
 
@@ -12,8 +15,14 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command()
-    async def update(self, ctx):
+    async def april(self, ctx):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
+        
+      #Define Time variables
+        #Variables = date(year, month, day)
+        d1 = date(2021, 4, 1)
+        dcurrent = date.today()
+
         thelistofroles = ["Gold Member", [">99% Accuracy", "99% Accuracy", "98% Accuracy", "97% Accuracy", "96% Accuracy", "94-95% Accuracy", "90-93% Accuracy", "87-89% Accuracy", "84-86% Accuracy", "80-83% Accuracy", "75-79% Accuracy", "<75% Accuracy"], ["220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM"], ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]]
         listofroles = ["Gold Member", ">99% Accuracy", "99% Accuracy", "98% Accuracy", "97% Accuracy", "96% Accuracy", "94-95% Accuracy", "90-93% Accuracy", "87-89% Accuracy", "84-86% Accuracy", "80-83% Accuracy", "75-79% Accuracy", "<75% Accuracy", "220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM", "500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
         teamswithroles=['[NTA]', '[DRPT]', '[IRAN2]', '[N8TE]', '[NYM]']
@@ -328,21 +337,60 @@ class Command(commands.Cog):
             except:
               pass     
 
-            try:
+            #Start of April Script
+            if d1 == dcurrent:
+              #The current date matches the specified date:
+              print('Hehe april fools day')
+              random_names = [
+                'Huge Elephant',
+                'Slimy Snail',
+                'Fat Panda',
+                'April Cat',
+                'Silent Spy',
+                'Lacan NTSport Developer',
+                '10FF better than NT?',
+                'April Joke',
+                'Joker Typer',
+                'Keyboard Pig',
+                'Typing Nerd',
+                'adl212 is cool',
+                '⚡Try2Win4Glory⚡ is pog',
+                'Lacan = Best Car',
+                'I love Typerush.com!',
+                'Whining Dog',
+                'Potaytoes',
+                'Chicken Typer',
+                'Command Spammer',
+                'The one and only',
+                'I bot on NitroType!',
+                'Ban me plz!',
+                'Happy April fools day!']
+              random_name = random.choice(random_names)
+              try:
+                await ctx.author.edit(nick='[APRIL] '+random_name+'')
+                embed = Embed('Success!', 'Successfully updated your roles and nickname!', 'white_check_mark')
+                embed.footer('Happy April fools day! :-)')
+                return await embed.send(ctx)
+              except Exception:
+                embed = Embed('Error!', 'The bot needs following permissions: `Manage Nicknames` \n \n **Note:** If you are the server owner or not ranked lower than my highest role, I won\'t be able to update your nickname, but I will update your roles. :grinning:', 'warning')
+                embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
+                return await embed.send(ctx)
+            else:
+              try:
                 await ctx.author.edit(nick=racer.tag+' ' +racer.name)
-            except Exception:
+              except Exception:
                 embed = Embed('Error!', 'The bot needs following permissions: `Manage Nicknames` \n \n **Note:** If you are the server owner or not ranked lower than my highest role, I won\'t be able to update your nickname, but I will update your roles. :grinning:', 'warning')
                 if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
-                  embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
+                    embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
 
                 else:
-                    embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
-                return await embed.send(ctx)
-            embed = Embed('Success!', 'Successfully updated your roles and nickname!', 'white_check_mark')        
-            if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
-              embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
-            else:
-              embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
-            await embed.send(ctx)
+                      embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
+                      return await embed.send(ctx)
+              embed = Embed('Success!', 'Successfully updated your roles and nickname!', 'white_check_mark')        
+              if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
+                embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
+              else:
+                embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
+              await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
