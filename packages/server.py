@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route('/', methods=['POST', 'GET', 'HEAD'])#'POST'
 def home():
-      return 'Yes, I\'m alive.'
+      return 'POG! U looking for me? I\'m right there! Online and running, everything is working smoothly! :-)'
 def run():
     app.run(host='0.0.0.0')
 
