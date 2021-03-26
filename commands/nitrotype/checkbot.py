@@ -62,12 +62,10 @@ class Command(commands.Cog):
         embed = Embed('Botting Or Not?', 'Analysis of **'+username+'**')
         if botornot['botornot'] == 'error':
             embed.field('Error!', 'I could not find that account!')
-        if botornot['botornot']:
-            embed.field('Bot Or Not', '__BOT__')
-            embed.field('Accuracy', '`'+str(botornot['accuracy'])+'`%')
         else:
-            embed.field('Bot Or Not', '__LEGIT__')
-            embed.field('Accuracy', '`'+str(botornot['accuracy'])+'`%')
+            embed.field('Bot Or Not', '__BOT__' if botornot['botornot'][0] == 1 else '__LEGIT__')
+            embed.field('Chance Of Being A Bot', str(botornot['botornot'][1]*100)+'%')
+            embed.field('Accuracy', '`'+str(((botornot['accuracy'][0]*100)+(botornot['accuracy'][1]*100))/2)+'`%')
         file = discord.File("graph.png", filename="graph.png")
         embed.image(url="attachment://graph.png")
         await ctx.send(file=file, embed=embed.default_embed())
