@@ -2,20 +2,18 @@ from flask import Flask
 from threading import Thread
 from logging import getLogger, ERROR
 import time, sys, os
+from nitrotype import l
+import asyncio
 app = Flask(__name__)
-
-logger = getLogger('werkzeug')
-logger.setLevel(ERROR)
 
 
 @app.route('/', methods=['POST', 'GET', 'HEAD'])#'POST'
 def home():
       return 'Yes, I\'m alive.'
-
 def run():
-    app.run(host='0.0.0.0', port=8080)
+    app.run(host='0.0.0.0')
 
-def start_server():  
+def start_server():
     t = Thread(target=run)
     t.start()
 def restart_program():
