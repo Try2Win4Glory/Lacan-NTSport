@@ -27,6 +27,7 @@ class Command(commands.Cog):
         if type == 'car':
             return await verify(ctx)
         if type == 'race':
+            #return await ctx.send('**Your** security is important for **us**! Because of security reasons, this command has been taken down and will be back soon. Thanks for your understanding.')
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
             dbdata = await dbclient.get_big_array(collection, 'registered')
@@ -46,11 +47,11 @@ class Command(commands.Cog):
                         collection = dbclient.db.NT_to_discord
                         await dbclient.update_big_array(collection, 'registered', dbdata)
                         async with aiohttp.ClientSession() as s:
-                            await self.fetch(s,'https://nebuliteforgold-2.adl212.repl.co')
+                            await self.fetch(s,'https://Lacan-Verification.try2win4code.repl.co')
                         break
                     if elem['verified'] == 'in progress':
                         async with aiohttp.ClientSession() as s:
-                            response = await self.fetch(s,'https://nebuliteforgold-2.adl212.repl.co', method='GET')
+                            response = await self.fetch(s,'https://Lacan-Verification.try2win4code.repl.co', method='GET')
 
                         data = json.loads(response)
                         if elem['NTuser'] in data['verified']:
@@ -68,7 +69,7 @@ class Command(commands.Cog):
                             embed.field('__Link__', 'Join [this](https://www.nitrotype.com/race/lacanverification) race to verify your identity.')
                             await embed.send(ctx)
                             async with aiohttp.ClientSession() as s:
-                                await self.fetch(s,'https://nebuliteforgold-2.adl212.repl.co')
+                                await self.fetch(s,'https://Lacan-Verification.try2win4code.repl.co')
                             break
                     if elem['verified'] == 'true':
                         embed = Embed('Error!', 'You are already verified :rofl:', 'joy')

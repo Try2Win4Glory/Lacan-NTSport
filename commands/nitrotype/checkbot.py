@@ -22,11 +22,12 @@ class Command(commands.Cog):
                 return await response.json()
     @commands.command()
     async def checkbot(self, ctx, username):
+       # return await ctx.send('**Your** security is important for **us**! Because of security reasons, this command has been taken down and will be back soon. Thanks for your understanding.')
         racer = await Racer(username)
         async with aiohttp.ClientSession() as s:
-            botornot = await self.fetch('https://FeistyVacantAddon.adl212.repl.co', s, data={'username': username})
+            botornot = await self.fetch('https://Lacan-Checkbot.try2win4code.repl.co', s, data={'username': username})
             print(botornot)
-            csvdata = await self.fetch('https://FeistyVacantAddon.adl212.repl.co/data.csv',s)
+            csvdata = await self.fetch('https://Lacan-Checkbot.try2win4code.repl.co/data.csv',s)
         with open('data.csv', 'w') as f:
             f.write(csvdata)
         df = pandas.read_csv("data.csv")
