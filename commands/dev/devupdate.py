@@ -6,6 +6,9 @@ from discord.utils import get
 from packages.nitrotype import Racer
 import requests, json, os, discord
 from mongoclient import DBClient
+import datetime
+from datetime import date
+import random
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -14,6 +17,11 @@ class Command(commands.Cog):
     @commands.command()
     async def devupdate(self, ctx, userid):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
+
+        #Define date variables for April fool
+        d1 = date(2021, 4, 1)
+        dcurrent = date.today()
+
         for role in ctx.author.roles:
             if role.id in [
               #Insert permitted role IDs here
@@ -338,13 +346,59 @@ class Command(commands.Cog):
             except:
               pass  
 
-            try:
+            #April Fool
+            if d1 == dcurrent:
+              if ctx.author.id not in [
+                #Try2Win4Glory
+                  505338178287173642
+                ]:
+                print('Hehe april fools day')
+                random_names = [
+                    'Huge Elephant',
+                    'Slimy Snail',
+                    'Fat Panda',
+                    'April Cat',
+                    'Silent Spy',
+                    'Lacan NTSport Developer',
+                    '10FF better than NT?',
+                    'April Joke',
+                    'Joker Typer',
+                    'Keyboard Pig',
+                    'Typing Nerd',
+                    'adl212 is cool',
+                    '⚡Try2Win4Glory⚡ is pog',
+                    'Lacan = Best Car',
+                    'I love Typerush.com!',
+                    'Whining Dog',
+                    'Potaytoes',
+                    'Chicken Typer',
+                    'Command Spammer',
+                    'The one and only',
+                    'I bot on NitroType!',
+                    'Ban me plz!',
+                    'Happy April fools day!']
+                random_name = random.choice(random_names)
+                try:
+                    await user.edit(nick='[APRIL] '+random_name+'')
+                    embed = Embed('Success!', 'Successfully updated <@'+userid+'>\'s roles and nickname!', 'white_check_mark')
+                    embed.footer('Happy April fools day! :-)')
+                    return await embed.send(ctx)
+                except Exception:
+                    embed = Embed('Error!', 'The bot needs following permissions: `Manage Nicknames` \n \n **Note:** If <@'+userid+'> is the server owner or not ranked lower than my highest role, I won\'t be able to update <@'+userid+'>\'s nickname, but I will update <@'+userid+'>\'s roles. :grinning:', 'warning')
+                    return await embed.send(ctx)
+              else:
+                  try:
+                    await user.edit(nick=racer.tag+' ' +racer.name)
+                  except Exception:
+                    embed = Embed('Error!', 'The bot needs following permissions: `Manage Nicknames` \n \n **Note:** If <@'+userid+'> is the server owner or not ranked lower than my highest role, I won\'t be able to update <@'+userid+'>\'s nickname, but I will update <@'+userid+'>\'s roles. :grinning:', 'warning')
+                    return await embed.send(ctx)
+            else:
+              try:
                 await user.edit(nick=racer.tag+' ' +racer.name)
-            except Exception:
+              except Exception:
                 embed = Embed('Error!', 'The bot needs following permissions: `Manage Nicknames` \n \n **Note:** If <@'+userid+'> is the server owner or not ranked lower than my highest role, I won\'t be able to update <@'+userid+'>\'s nickname, but I will update <@'+userid+'>\'s roles. :grinning:', 'warning')
                 if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
                   embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
-
                 else:
                     embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
                 return await embed.send(ctx)
