@@ -52,10 +52,12 @@ class Command(commands.Cog):
                 premiumserver = True
                 break
         for x in dbdata['registered']:
-            if str(discordid) == x['userID']:
+            discordid0 = discordid.replace("<@!", "")
+            discordid1 = discordid0.replace(">", "")
+            if str(discordid1) == x['userID']:
                 dbdata['registered'].pop(dbdata['registered'].index(x))
                #--Success Embed--#
-                embed = Embed('Success!', 'Unregistered discord user <@' +discordid+'>!','white_check_mark')
+                embed = Embed('Success!', 'Unregistered discord user <@' +discordid1+'>!','white_check_mark')
 
                 #--Footer--#
                 if (ctx.author.id) in [396075607420567552, 505338178287173642, 637638904513691658]:

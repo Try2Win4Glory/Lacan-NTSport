@@ -155,8 +155,8 @@ async def on_message(message):
                         await embed.send(ctx)
                         shouldraise = False
                     else:
-                        embed = Embed('<a:error:800338727645216779>  Error!', f'```{e}```\nThe developers have received your error message.\nUse `n.errors` for an explaination on your error.')
-                        await embed.send(ctx)
+                          embed = Embed('<a:error:800338727645216779>  Error!', f'```{e}```\nThe developers have received your error message.\nUse `n.errors` for an explaination on your error.')
+                          await embed.send(ctx)
                     channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
                     channel2 = discord.utils.get(client.get_all_channels(), id = 803938544175284244)
                     embed = Embed('__**Command Log**__', str(message.author))

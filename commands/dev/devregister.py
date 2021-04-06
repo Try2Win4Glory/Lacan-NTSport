@@ -19,7 +19,7 @@ class Command(commands.Cog):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         racer = await Racer(ntuser)
         if not racer.success:
-            embed = Embed('Error!', 'Nitrotype user not found! Make sure to use `n.supregister <Mention / ID> <username>.', 'warning')
+            embed = Embed('Error!', 'Nitrotype user not found! Make sure to use `n.devregister <Mention / ID> <username>.', 'warning')
             return await embed.send(ctx)
         for role in ctx.author.roles:
             if role.id in [
@@ -42,18 +42,21 @@ class Command(commands.Cog):
 
             return await embed.send(ctx)
         else:
+            discordid0 = discordid.replace("<@!", "")
+            discordid1 = discordid0.replace(">", "")
+            print(discordid1)
             #data = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text)
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
             data = await dbclient.get_big_array(collection, 'registered')
             data['registered'].append({
                 "NTuser": ntuser,
-                "userID": str(discordid),
+                "userID": str(discordid1),
                 "verified": "true"
             })
             #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(data)})
             await dbclient.update_big_array(collection, 'registered', data)
-            embed = Embed('Success!', f'<@{str(ctx.author.id)}> just connected discord user <@'+discordid+'> with NT username `' + ntuser + '`! \nIn case this is a premium :diamond_shape_with_a_dot_inside: server, <@'+discordid+'> needs to run `n.update` to update their roles.', 'white_check_mark')
+            embed = Embed('Success!', f'<@{str(ctx.author.id)}> just connected discord user <@'+discordid1+'> with NT username `' + ntuser + '`! \nIn case this is a premium :diamond_shape_with_a_dot_inside: server, <@'+discordid1+'> needs to run `n.update` to update their roles.', 'white_check_mark')
             
             if (ctx.author.id) in [396075607420567552, 505338178287173642, 637638904513691658]:
               embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \n⚙️This command is a 🛠️developer🛠️ and verified helper only command.⚙️', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
