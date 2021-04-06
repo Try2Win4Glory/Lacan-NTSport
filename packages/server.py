@@ -20,6 +20,7 @@ def restart_program():
     time.sleep(3600)
     python = sys.executable
     os.execl(python, python, * sys.argv)
+start_time = time.time()
 thread = Thread(target=restart_program)
 thread.start()
 '''
