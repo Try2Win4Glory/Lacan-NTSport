@@ -69,13 +69,25 @@ class Command(commands.Cog):
               return new_data'''
 
         try:
-            #Enable Mention
+            #Sent with ID
+            user = await ctx.guild.fetch_member(userid)
+        except:
+          try:
+            #Enable Mention Computer
             userid0 = userid.replace("<@!", "")
             userid1 = userid0.replace(">", "")
             print(userid)
             #Fetch User
             user = await ctx.guild.fetch_member(userid1)
-        except:
+          except:
+            try:
+              #Enable Mention Mobile
+              userid0 = userid.replace("<@", "")
+              userid1 = userid0.replace(">", "")
+              print(userid)
+              #Fetch User
+              user = await ctx.guild.fetch_member(userid1)
+            except:
               embed = Embed('Error!', 'I couldn\'t get the user you are trying to update!', 'warning')
               return await embed.send(ctx)
         for role in (user.roles):
@@ -353,18 +365,18 @@ class Command(commands.Cog):
             try:
                 await user.edit(nick=racer.tag+' ' +racer.name)
             except Exception:
-                embed = Embed('Error!', 'The bot needs following permissions: `Manage Nicknames` \n \n **Note:** If '+user+' is the server owner or not ranked lower than my highest role, I won\'t be able to update '+user+'\'s nickname, but I will update '+user+'\'s roles. :grinning:', 'warning')
+                embed = Embed('Error!', 'The bot needs following permissions: `Manage Nicknames` \n \n **Note:** If '+str(user)+' is the server owner or not ranked lower than my highest role, I won\'t be able to update <@'+str(user.id)+'>\'s nickname, but I will update <@'+str(user.id)+'>\'s roles. :grinning:', 'warning')
                 if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
                   embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
 
                 else:
                     embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
                 return await embed.send(ctx)
-            embed = Embed('Success!', 'Successfully updated '+user+'\'s roles and nickname!', 'white_check_mark')        
+            embed = Embed('Success!', 'Successfully updated '+str(user)+'\'s roles and nickname!', 'white_check_mark')        
             if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
               embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
             else:
-              embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
+              embed.footer('Discord user '+str(ctx.author)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
             await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
