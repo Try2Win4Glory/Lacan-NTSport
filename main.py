@@ -45,7 +45,7 @@ except ImportError:
 #keep_alive.keep_alive()
 
 intents = discord.Intents().default()
-client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.']), case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.', '<@!713352863153258556>', '<@713352863153258556>']), case_insensitive=True, intents=intents)
 client.remove_command('help')
 
 
@@ -75,7 +75,7 @@ authors = []
 banned = [793253843327778816, 793026807351738388, 793250587403747368, 793028952461017119, 793024426152034314]
 @client.event
 async def on_message(message):
-    if message.content == "<@713352863153258556>":
+    if message.content == "<@!713352863153258556>" or message.content == "<@713352863153258556>":
         ctx = await client.get_context(message)
         #return
         #embed=Embed('Lacan NTSport', 'Test')
@@ -96,7 +96,7 @@ async def on_message(message):
         if int(message.author.id) in banned and (
                 message.content.startswith('n.')
                 or message.content.startswith('N.')
-                or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
+                or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
             ctx = await client.get_context(message)
             embed=Embed('Ooops!', 'Looks like you are **BANNED** from the bot!\n\n__Reason:__ `Sending bot commands too fast.`\n\n*You will be unbanned upon the bot restart.* \n*If you believe this is an error, make sure to contact one of the developers (`n.info`).*', 'tools')
             return await embed.send(ctx, dm=False)
@@ -104,15 +104,15 @@ async def on_message(message):
         if message.author.id == 780980594892341288 and (
                 message.content.startswith('n.')
                 or message.content.startswith('N.')
-                or message.content.startswith('<@713352863153258556>')):
+                or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                 return await message.channel.send('Happy living as a weasel. -the devs')
         else:
-            if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@713352863153258556>')):
+            if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                 if message.author.id not in [ 713352863153258556]:
                     timestamps.append(round(time.time()))
                     authors.append(message.author.id)
                     indices = sorted([i for i, x in enumerate(authors) if x == message.author.id])
-                    if len(indices) <= 5:
+                    if len(indices) <= 2:
                         pass
                     else:
                         inbetweens = []

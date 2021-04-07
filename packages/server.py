@@ -10,6 +10,7 @@ app = Flask(__name__)
 @app.route('/', methods=['POST', 'GET', 'HEAD'])#'POST'
 def home():
       return 'POG! U looking for me? I\'m right there! Online and running, everything is working smoothly! :-)'
+run_time = time.time()
 def run():
     app.run(host='0.0.0.0')
 

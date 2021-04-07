@@ -9,6 +9,8 @@ class Command(commands.Cog):
   @commands.command(none='say', pass_context=True, aliases=['announce'])
   async def say(self,ctx, channel, *msg):
     if ctx.author.id in [505338178287173642, 396075607420567552, 637638904513691658]:
+      if channel == 564881617630396426:
+        return
       if channel == 'no':
         await ctx.send(' '.join(msg))
         await ctx.message.delete()

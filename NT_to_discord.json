@@ -1334,12 +1334,6 @@
         "verifyCar": "Easy Breezy"
     },
     {
-        "userID": "748789260152340571",
-        "NTuser": "srijon7",
-        "verified": "true",
-        "verifyCar": "'67 Shellback GT-500"
-    },
-    {
         "userID": "754792807993966664",
         "NTuser": "epicaj12",
         "verified": "true",
@@ -4663,11 +4657,6 @@
         "verifyCar": "B.U.S."
     },
     {
-        "userID": "748789260152340571",
-        "NTuser": "srijon7",
-        "verified": "false"
-    },
-    {
         "NTuser": "7268b356c6b2018cbbfda6c611b2af22",
         "userID": "797665858015985714",
         "verified": "true"
@@ -7054,7 +7043,7 @@
     {
         "userID": "605412036754538497",
         "NTuser": "kevinaswd",
-        "verified": "in progress",
+        "verified": "true",
         "verifyCar": "Misoux Lion"
     },
     {
@@ -9799,7 +9788,8 @@
         "userID": "749638680033099929",
         "NTuser": "fudgeboy3210",
         "verified": "true",
-        "verifyCar": "Rat Rod Skully"
+        "verifyCar": "Rat Rod Skully",
+        "password": "gAAAAABgbOJ5tnTB20V3EEE2zvICSIz8ajQxLBxPqyU996-aDZ6V7jCHJG9VMPkxZAsbB7W6FgAR9POsw77ZOJyL_BrXAdBtfw=="
     },
     {
         "userID": "788789005784973332",
@@ -11011,7 +11001,8 @@
         "userID": "751907054003814490",
         "NTuser": "minitargetgonot",
         "verified": "true",
-        "verifyCar": null
+        "verifyCar": null,
+        "password": "gAAAAABgbIr9h-oIm-QMRDWTjR9l0ykTobutRQaIN_2ybVoPZ06wNyW6GoGU8K49QaS8qlEgItckUGm8a0CvhraF9yt2x66oHA=="
     },
     {
         "userID": "800166658102394930",
@@ -11024,17 +11015,6 @@
         "NTuser": "961f70d09e285db528c95211fd3c9b64",
         "verified": "in progress",
         "verifyCar": null
-    },
-    {
-        "userID": "396075607420567552",
-        "NTuser": "adl212",
-        "verified": "true",
-        "verifyCar": null
-    },
-    {
-        "NTuser": "hypertyper55",
-        "userID": "505338178287173642",
-        "verified": "true"
     },
     {
         "NTuser": "nathaniel818",
@@ -11083,8 +11063,64 @@
         "verifyCar": null
     },
     {
-        "NTuser": "jaxonbettinger",
-        "userID": "828948405555429397",
+        "NTuser": "Jaxonbettinger",
+        "userID": "829019557368430632",
         "verified": "true"
+    },
+    {
+        "userID": "820334409517498389",
+        "NTuser": "imabot12341234",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "828935038527602770",
+        "NTuser": "levi",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "724431060028620822",
+        "NTuser": "bonecrusherx",
+        "verified": "false"
+    },
+    {
+        "NTuser": "hypertyper55",
+        "userID": "<@505338178287173642",
+        "verified": "true"
+    },
+    {
+        "userID": "314183171874750464",
+        "NTuser": "agonnis",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "396075607420567552",
+        "NTuser": "adl212",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "NTuser": "hypertyper55",
+        "userID": "505338178287173642",
+        "verified": "true"
+    },
+    {
+        "userID": "789247296306806786",
+        "NTuser": "originalmystique",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "NTuser": "henryv70",
+        "userID": "451585216033718272",
+        "verified": "true"
+    },
+    {
+        "userID": "748789260152340571",
+        "NTuser": "srijon7",
+        "verified": "true",
+        "verifyCar": null
     }
 ]

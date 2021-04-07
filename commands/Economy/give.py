@@ -45,6 +45,7 @@ class Command(commands.Cog):
                 user['points'] += int(amount)
             elif user['userid'] == str(giveto.id):
                 user['points'] += int(amount)
+            await dbclient.update_array(collection, old, user)
         except:
             embed = Embed('Error!', 'This person you want to send to doesn\'t exist in the database!', 'rofl')
             return await embed.send(ctx)

@@ -32,7 +32,7 @@ class Command(commands.Cog):
                 data = await dbclient.update_array(collection, old, user)
         except:
             dbclient.create_doc(collection, {'userid': str(userid), 'points': userpoints})
-        embed = Embed('Success!', f'<@{ctx.author.id}> just added **{amount}** <:Lacan:766669740545540097> to <@{userid}>\'s balance. \n<@{userid}> now has **{userpoints}** <:Lacan:766669740545540097>!', 'white_check_mark')
+        embed = Embed('Success!', f'<@{ctx.author.id}> just removed **{amount}** <:Lacan:766669740545540097> from <@{userid}>\'s balance. \n<@{userid}> now has **{userpoints}** <:Lacan:766669740545540097>!', 'white_check_mark')
         embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a developer of this bot. \n⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
         try:
           await ctx.message.delete()
