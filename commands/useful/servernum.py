@@ -5,6 +5,7 @@ from packages.utils import Embed, ImproperType
 import textwrap
 import lorem
 import math
+from mongoclient import DBClient
 
 client = discord.Client
 
@@ -23,6 +24,12 @@ class Command(commands.Cog):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         #if (ctx.author.id) in [505338178287173642, 637638904513691658, 396075607420567552]:
       
+        dbclient = DBClient()
+        pcollection = dbclient.db.premium
+        pdata = await dbclient.get_big_array(pcollection, 'premium')
+        premnum = len(pdata['premium'])
+        prempercentage = premnum/len(self.client.guilds)*100
+
         totalusers = 0
         for guild in self.client.guilds:
           totalusers += guild.member_count
@@ -39,7 +46,7 @@ class Command(commands.Cog):
         embed.thumbnail('https://cdn.discordapp.com/avatars/713352863153258556/47823ecf46a380f770769b7a4a7c3449.png?size=256')
         return await embed.send(ctx)'''
        
-        embed=Embed('Server Number', f'**__Guilds:__ `{len(self.client.guilds)}`**\n\n**__Total users:__ `{comma_users}`**\n\n**__Users per guild:__ `{round(divided_users, 2)}`**\n\n**__Invite me:__ `n.invite`**', '1234')
+        embed=Embed('Server Number', f'**__Guilds:__ `{len(self.client.guilds)}`**\n\n**__Premium guilds:__ **`{premnum} ({round(prempercentage,3)}%)`\n\n**__Total users:__ `{comma_users}`**\n\n**__Users per guild:__ `{round(divided_users, 2)}`**\n\n**__Invite me:__ `n.invite`**', '1234')
         embed.thumbnail('https://cdn.discordapp.com/avatars/713352863153258556/47823ecf46a380f770769b7a4a7c3449.png?size=256')
         return await embed.send(ctx)
         '''embed=Embed('Server Number', f'Lacan NTSport is currently used in `{len(self.client.guilds)}` servers by `{comma_users}` users. \nThis is an average of `{round(divided_users, 2)}` users per server.\nIn order to invite me to your server, use `n.invite.`', '1234')
