@@ -26,7 +26,8 @@ class Embed:
             self.footer(self.content, pfp)
 
             list_of_footers = [
-              'Become a premium 💠 member today!', 'Created by adl212, Joshua, Try2Win4Glory', 'https://discord.gg/Wj96Ehg for support']
+              'Become a premium 💠 member today!', 'Created by adl212, Joshua, Try2Win4Glory', 'https://discord.gg/Wj96Ehg for support',
+              'Check out the next item shop (n.itemshop)']
             random_footer = random.choice(list_of_footers)
             self.embed.set_footer(icon_url=pfp, text=str(ctx.author)+' • '+random_footer)
           else:
