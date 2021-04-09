@@ -25,7 +25,12 @@ class Command(commands.Cog):
         if ''.join(list(user)[0:32]) == 'https://www.nitrotype.com/racer/':
             racer = await Racer(''.join(list(user)[32:]))
         else:
+          try:
             racer = await Racer(user)
+          except AttributeError:
+            embed = Embed('Error!', 'Couldn\'t find that user. Make sure to use `n.register <username>`.', 'warning')
+            await embed.send(ctx)
+            return
         if not racer.success:
             embed = Embed('Error!', 'Couldn\'t find that user. Make sure to use `n.register <username>`.', 'warning')
             await embed.send(ctx)

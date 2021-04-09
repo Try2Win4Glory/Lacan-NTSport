@@ -112,7 +112,7 @@ async def on_message(message):
                     timestamps.append(round(time.time()))
                     authors.append(message.author.id)
                     indices = sorted([i for i, x in enumerate(authors) if x == message.author.id])
-                    if len(indices) <= 2:
+                    if len(indices) <= 10:
                         pass
                     else:
                         inbetweens = []
@@ -164,6 +164,12 @@ async def on_message(message):
                     embed.field('__User ID__', f'`{str(message.author.id)}`')
                     embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
                     embed.field('__Guild Name__',f' **{str(message.guild.name)}**')
+                    embed.field('__Channel ID__', f'`{str(ctx.message.channel.id)}`')
+                    try:
+                      invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100)
+                      embed.field('__Invite__', f'{invitelink}')
+                    except:
+                      pass
                     embed.field('__Error__', f'```{e}```')
                     await channel.send(embed=embed.default_embed())
                     await channel2.send(embed=embed.default_embed())
@@ -177,6 +183,12 @@ async def on_message(message):
                 embed.field('__User ID__', f'`{str(message.author.id)}`')
                 embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
                 embed.field('__Guild Name__',f' **{str(message.guild.name)}**')
+                try:
+                      invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100)
+                      embed.field('__Invite__', f'{invitelink}')
+                except:
+                      pass
+                embed.field('__Channel ID__', f'`{str(ctx.message.channel.id)}`')
                 await channel.send(embed=embed.default_embed())
                 await channel2.send(embed=embed.default_embed())
     except:
