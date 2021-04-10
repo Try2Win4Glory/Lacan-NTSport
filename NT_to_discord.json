@@ -1612,7 +1612,8 @@
     {
         "userID": "601926937924861962",
         "NTuser": "cryptonox",
-        "verified": "false"
+        "verified": "in progress",
+        "verifyCar": null
     },
     {
         "NTuser": "dabeast10114",
@@ -5097,12 +5098,6 @@
         "NTuser": "cb2b669097a9e1056c1a747b59161d85",
         "userID": "764970333198352405",
         "verified": "true"
-    },
-    {
-        "userID": "711285107603800077",
-        "NTuser": "cubingmanlol",
-        "verified": "in progress",
-        "verifyCar": "Jet Bicycle"
     },
     {
         "NTuser": "thepurplekeyboard",
@@ -9667,7 +9662,8 @@
         "userID": "444940086233268244",
         "NTuser": "4c7edb0b83d950f850510450610b4c45",
         "verified": "true",
-        "verifyCar": "All Terrain Vehicle"
+        "verifyCar": "All Terrain Vehicle",
+        "password": "gAAAAABgcK3O9wnXFUwcoFhbIBFGBBM5h8Q7Po77Vr-8fJn8Xb5YaR2LofxV5Lp0lFLTvOJmIYug-2o694-gMI5MmYM8mr0EeQ=="
     },
     {
         "userID": "819044209532076042",
@@ -11173,12 +11169,6 @@
         "verifyCar": null
     },
     {
-        "userID": "817303703631560744",
-        "NTuser": "megamanx",
-        "verified": "in progress",
-        "verifyCar": null
-    },
-    {
         "userID": "763155208603303987",
         "NTuser": "wocky",
         "verified": "in progress",
@@ -11262,6 +11252,90 @@
     {
         "userID": "802747565123829821",
         "NTuser": "101notthatgood101",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "745037956099735573",
+        "NTuser": "thejinxxer",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "757337965746716672",
+        "NTuser": "jack1929503",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "827659232530530306",
+        "NTuser": "love_and_hatex3",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "674031445710471218",
+        "NTuser": "lock",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "754055338373808140",
+        "NTuser": "mr_relics",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "709025574043123713",
+        "NTuser": "shroomshin",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "805988381041360946",
+        "NTuser": "nitrozykon",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "711285107603800077",
+        "NTuser": "kingblade1102",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "723624211079364649",
+        "NTuser": "funkydiddy",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "669452973755072524",
+        "NTuser": "hope",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "381372160863764480",
+        "NTuser": "4c4388f6ba04f68b0605a67d3f5edcb7",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "814797193188737025",
+        "NTuser": "buster",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "708634506881531955",
+        "NTuser": "nachitoiv_gg",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "817303703631560744",
+        "NTuser": "megamanx",
         "verified": "in progress",
         "verifyCar": null
     }

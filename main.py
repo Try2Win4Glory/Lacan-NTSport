@@ -73,6 +73,13 @@ async def on_ready():
 timestamps = []
 authors = []
 banned = [793253843327778816, 793026807351738388, 793250587403747368, 793028952461017119, 793024426152034314]
+'''permbanned = [
+  #Try2Win4Glory (Testing)
+    #505338178287173642,
+  #GoodGradesBoy
+    #433411533079314443
+  123
+]'''
 @client.event
 async def on_message(message):
     if message.content == "<@!713352863153258556>" or message.content == "<@713352863153258556>":
@@ -88,6 +95,14 @@ async def on_message(message):
         return
     if "780980594892341288" in message.content.split(' '):
         return
+    #Permanent Bans:
+    '''ctx = await client.get_context(message)
+    if message.author.id == permbanned[0] and (
+                message.content.startswith('n.')
+                or message.content.startswith('N.')
+                or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
+      embed=Embed(':hammer_pick:  Banned  :hammer_pick:', f'<@{message.author.id}> has been banned from the bot.\n\n__**Duration:**__ **`Permanent`**\n\n__**Reason:**__ ```Continously misusing the bot, several times ignoring developers warnings not to abuse any code bypasses. Abusing commands and letting other bots run command after several verbal warnings, creating a server to spam the bot.```\n\n*If you believe this ban is an error, contact <@505338178287173642> for more information.*')
+      return await embed.send(ctx, dm=False)'''
     '''
     if message.author.id != 396075607420567552:
         return
@@ -128,7 +143,7 @@ async def on_message(message):
                                 inbetweens.append(timestamp2-timestamp1)
                                 timestamp1 = 0
                                 timestamp2 = 0
-                        if mean(inbetweens) <= 3:
+                        if mean(inbetweens) <= 2:
                             channel = discord.utils.get(client.get_all_channels(), id=807659844089806898)
                             await channel.send('<@&808658319648227328>')
                             embed = Embed(':tools:  Banned Member!', str(message.author))
@@ -165,11 +180,14 @@ async def on_message(message):
                     embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
                     embed.field('__Guild Name__',f' **{str(message.guild.name)}**')
                     embed.field('__Channel ID__', f'`{str(ctx.message.channel.id)}`')
-                    try:
-                      invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100)
+                    '''try:
+                      try:
+                        invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100, unique='False', reason='Better support features - instant developer notification, easier to help people. Don\'t want this? Remove my permission to create invites, but then don\'t expect immediate support.')
+                      except:
+                        invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100, unique='True', reason='Better support features - instant developer notification, easier to help people. Don\'t want this? Remove my permission to create invites, but then don\'t expect immediate support.')
                       embed.field('__Invite__', f'{invitelink}')
                     except:
-                      pass
+                      pass'''
                     embed.field('__Error__', f'```{e}```')
                     await channel.send(embed=embed.default_embed())
                     await channel2.send(embed=embed.default_embed())
@@ -183,11 +201,14 @@ async def on_message(message):
                 embed.field('__User ID__', f'`{str(message.author.id)}`')
                 embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
                 embed.field('__Guild Name__',f' **{str(message.guild.name)}**')
-                try:
-                      invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100)
-                      embed.field('__Invite__', f'{invitelink}')
+                '''try:
+                    try:
+                        invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100, unique='False', reason='Better support features - instant developer notification, easier to help people. Don\'t want this? Remove my permission to create invites, but then don\'t expect immediate support.')
+                    except:
+                        invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100, unique='True', reason='Better support features - instant developer notification, easier to help people. Don\'t want this? Remove my permission to create invites, but then don\'t expect immediate support.')
+                    embed.field('__Invite__', f'{invitelink}')
                 except:
-                      pass
+                      pass'''
                 embed.field('__Channel ID__', f'`{str(ctx.message.channel.id)}`')
                 await channel.send(embed=embed.default_embed())
                 await channel2.send(embed=embed.default_embed())

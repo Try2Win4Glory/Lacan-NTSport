@@ -29,10 +29,13 @@ class Command(commands.Cog):
                 if user['points'] < int(amount):
                     embed = Embed('Error!', 'You don\'t have that amount of '+random_lacan+'!')
                     return await embed.send(ctx)
+                if int(amount)<0:
+                    embed=Embed('Error!', f'Did you seriously just attempt to get yourself more {random_lacan} by giving your friend **{int(amount)}**{random_lacan}`:flushed:?', 'warning')
+                    return await embed.send(ctx)
                 user['points'] -= int(amount)
                 await dbclient.update_array(dbclient.db.pointsdb, old, user)
         except:
-            embed = Embed('Error!', 'Unfortunately, you haven\'t won a guess game yet so you have no '+random_lacan+' to give!', '<a:error:800338727645216779>')
+            embed = Embed('<a:error:800338727645216779>  Error!', 'Unfortunately, you haven\'t won a guess game yet so you have no '+random_lacan+' to give!')
             return await embed.send(ctx)
         userid = giveto.id or giveto
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(userid)}, {'userid': str(userid)}]})
@@ -63,7 +66,7 @@ class Command(commands.Cog):
             await ctx.message.delete()
           except:
             pass
-          return await embed.send(ctx)
+          #return await embed.send(ctx)
         else:
           try:
             await giveto.send(':tada: :gift: :tada: **WOAH Dude! One of the __DEVS__ just sent you a gift!** :tada: :gift: :tada:\n\nYou have been sent **'+amount+'** '+random_lacan+'> from '+str(ctx.author)+'!')
