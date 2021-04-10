@@ -179,15 +179,16 @@ class Command(commands.Cog):
               embed.field('__**Sticker:**__',f'**Name:** *"{stickername}"*\n**ID:** `{stickerid}`\n**Price:** $**{sticker_comma_price}**\n**Description:** {stickerdesc}\n**Picture:** https://nitrotype.com{stickerpic}')
             except:
               pass
-        try:
-          embed.image(f'https://assets.nitrotype.com/cars/{carpic}')
-        except:
-          pass
 
         try:
           stickerpic_whole = f'https://nitrotype.com{stickerpic}'
           embed.thumbnail(f'{stickerpic_whole}')
         except UnboundLocalError:
+          embed.thumbnail(f'https://assets.nitrotype.com/cars/{carpic}')
+          return await embed.send(ctx)
+        try:
+          embed.image(f'https://assets.nitrotype.com/cars/{carpic}')
+        except:
           pass
 
       except IndexError:
