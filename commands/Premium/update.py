@@ -82,8 +82,8 @@ class Command(commands.Cog):
             #T2W4G's Registered Role
             role = get(ctx.message.guild.roles, name='Registered')
             await ctx.author.add_roles(role)
-            #Add role
-            '''role = get(ctx.message.guild.roles, name='Moderator')
+            '''#Add role
+            role = get(ctx.message.guild.roles, name='Team Captain')
             await ctx.author.add_roles(role)
             #Remove role
             role = get(ctx.message.guild.roles, name='Admin')
@@ -128,7 +128,7 @@ class Command(commands.Cog):
                  pass'''
             
             return
-            
+          
         else:
             wpm = int(racer.wpm_average)
             listofroles = thelistofroles[2]

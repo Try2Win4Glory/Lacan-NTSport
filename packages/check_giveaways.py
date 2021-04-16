@@ -11,26 +11,37 @@ class CheckGiveaways(commands.Cog):
 
     @tasks.loop(seconds=3)
     async def check_giveaways(self):
+        #print('running check gw script')
         dbclient = DBClient()
         collection = dbclient.db.giveaways
         documents = await dbclient.get_array(collection, {})
         async for data in documents:
+            #print('in documents')
+            #print(int(time.time()))
+            #print(data['endtime'])
+            #print(data['ended'])
             if int(time.time()) >= data['endtime'] and data['ended'] == False:
+                print('big enough')
                 old = copy.deepcopy(data)
                 channel = get(self.client.get_all_channels(), id=data['channelID'])
+                print('got the channel')
                 try:
                     msg = get(await channel.history(limit=1000).flatten(), id=data['messageID'])
+                    print('g1')
                 except:
                     data['ended'] = True
-                    return await dbclient.update_array(collection, old, data)
+                    await dbclient.update_array(collection, old, data)
+                    print('g2')
                 amt_winners = data['winners']
                 if msg == None:
                     data['ended'] = True
                     await dbclient.update_array(collection, old, data)
+                    print('g3')
                     continue
                 prize = data['gwcontent']
                 try:
                     try:
+                        winners=''
                         winners = random.choices(data['joined'], k=int(amt_winners))
                     except IndexError:
                         try:
@@ -40,6 +51,8 @@ class CheckGiveaways(commands.Cog):
                     mentions = ''
                     for winner in winners:
                         mentions += f'<@{winner}> '
+                    print({winner})
+                    print({mentions})
                     embed = msg.embeds[0]
                     embed.description += f'\n\nWinners: {mentions}'
                     embed.color = 0xFF0000
