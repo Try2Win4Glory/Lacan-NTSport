@@ -82,6 +82,15 @@ banned = [793253843327778816, 793026807351738388, 793250587403747368, 7930289524
 ]'''
 @client.event
 async def on_message(message):
+  if message.author.bot == True and (
+                message.content.startswith('n.')
+                or message.content.startswith('N.')
+                or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
+    print('Stop using bots on user accounts!')
+    embed=Embed('<:bruh:834049885414227998>  Bruh', 'What are you thinking? If you want to use me, get on a user account. You can\'t use commands through bots. <a:keka:800338138802946098>')
+    ctx = await client.get_context(message)
+    return await embed.send(ctx)
+  else:
     if message.content == "<@!713352863153258556>" or message.content == "<@713352863153258556>":
         ctx = await client.get_context(message)
         #return

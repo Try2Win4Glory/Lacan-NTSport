@@ -47,7 +47,13 @@ class Command(commands.Cog):
             embed = Embed('Cooldown!','You are on cooldown. Wait `5` seconds before running this command again.','alarm clock')
             return await embed.send(ctx)
         if await ImproperType.check(ctx): return
-        if ctx.author.id not in [505338178287173642, 637638904513691658, 396075607420567552]:
+        if ctx.author.id not in [
+          #Try2Win4Glory
+            505338178287173642, 
+          #Typerious
+            637638904513691658, 
+          #adl212
+            396075607420567552]:
             cooldown_add(str(ctx.author))
         def check(message: Message):
             return message.author.id == ctx.author.id
