@@ -1,4 +1,4 @@
-'''description'''
+'''Get car information - use _ as space.'''
 
 from discord.ext import commands
 from packages.utils import Embed, ImproperType

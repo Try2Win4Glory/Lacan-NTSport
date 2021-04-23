@@ -1,3 +1,4 @@
+'''What\'s going to be in tomorrow\'s itemshop?'''
 import aiohttp
 import json
 from discord.ext import tasks, commands

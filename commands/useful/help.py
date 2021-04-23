@@ -1,22 +1,27 @@
 '''Shows a list of commands and their descriptions'''
-
+import discord
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 from discord import Reaction, User
 from asyncio import TimeoutError
 from os import listdir
+from discord.ext import commands
+from packages.utils import Embed, ImproperType
 
 def commands_pagination(current_page):
     global categories
-    categories = ['nitrotype', 'Economy', 'images', 'Premium', 'Competitions', 'giveaways', 'useful', 'dev']
+    categories = ['nitrotype', 'Economy', 'images', 'Premium', 'spoilers', 'Competitions', 'giveaways', 'useful' #'dev'
+    ]
     category_emoji = {'nitrotype': 'race car',
                       'Economy' : 'coin',
                       'images' : 'frame photo',
                       'Premium': 'diamond shape with a dot inside',
+                      'spoilers': 'eyes',
                       'Competitions': 'tm',
                       'giveaways': 'tada',
-                      'useful' : 'wrench',
-                      'dev': 'tools'}
+                      'useful' : 'wrench'
+                      #'dev': 'tools'
+                      }
     commands = ''
     for command in sorted(listdir(f'./commands/{categories[current_page]}')):
         if command.endswith('.py'):
