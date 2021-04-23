@@ -24,7 +24,7 @@ class Command(commands.Cog):
             except:
               embed=Embed('Error!', 'Couldn\'t find that user', 'warning')
         else:
-            racer = await get_username(user)
+            racer = await get_username(user, True)
         try:
             if racer[0] == True:
                 racer = racer[1]
@@ -64,11 +64,7 @@ class Command(commands.Cog):
         '''if racer.car == 'https://www.nitrotype.com/cars/110_large_1.png':
             print('Minnie the coper alarm')
         else:'''
-        if racer.current_car != None:
-          embed.thumbnail(racer.car)
-          print(racer.current_car)
-        else:
-          pass
+        embed.thumbnail(racer.car)
 
 
         print(racer.name+' is from '+racer.country)
@@ -95,8 +91,6 @@ class Command(commands.Cog):
 
         #embed.field('\u200b', '\u200b')
 
-        embed.field('__Settings__', f':gear: Friends: {racer.friend_reqs_allowed}\n:gear: Team invite: {racer.looking_for_team}')
-
         '''
         embed.field('__Money__', f':dollar: **{racer.money}**\n:dollar: **{racer.money_spent}** spent\n:dollar: **{racer.money_total}** total')
         '''
@@ -109,6 +103,9 @@ class Command(commands.Cog):
             embed.field('__Season__', f':trophy: **{fn(racer.season_races)}** races\n :trophy: **{fn(racer.season_pre["errs"])}** errors \n :trophy: **{fn(racer.season_pre["typed"])}** words\n :trophy: **{str(round(racer.season_speed, 2))}** WPM\n :trophy: **{str(round(racer.season_accuracy, 2))}**% acc')
         except:
             pass
+
+        embed.field('__Settings__', f':gear: Friends: {racer.friend_reqs_allowed}\n:gear: Team invite: {racer.looking_for_team}')
+
 
         await embed.send(ctx)
     

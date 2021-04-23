@@ -81,7 +81,7 @@ class Command(commands.Cog):
             old = copy.deepcopy(user)
             try:
                 for car in user['cars']:
-                    if car['img'] in shopcars:
+                    if user['equipped']['img'] in shopcars:
                         carbonus = True
                         break
                 else:

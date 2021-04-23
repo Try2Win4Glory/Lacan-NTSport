@@ -56,7 +56,7 @@ class Command(commands.Cog):
                 ntuser = player['NTuser']
                 break
         else:
-            embed = Embed('Error!', 'Doesn\'t seem like you\'re registered!', 'warning')
+            embed = Embed('Error!', 'Doesn\'t seem like you completed the verification process yet. Try using `n.register <username>`, if that returns you the error that you\'re already registered, use `n.verify` to verify your identity.', 'warning')
             return await embed.send(ctx)
         racer = await Racer(ntuser)
       

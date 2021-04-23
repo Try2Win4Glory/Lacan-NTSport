@@ -10,13 +10,19 @@ class Command(commands.Cog):
     
     @commands.command()
     async def car(self, ctx, id):
+        try:
+          id2 = id.replace("_", " ")
+          print(id2)
+        except:
+          print('not replaced')
+          pass
         text = requests.get('https://www.nitrotype.com/index/d8dad03537419610ef21782a075dde2d94c465c61266-1266/bootstrap.js').text
         result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+,\"name\":\".{10,35}\",\"options\":\{.{20,80}\}.{1,100}\}.*\]', text).group()
         data = json.loads('{"list": '+''.join(list(result)[:-1])+'}')
         for elem in data['list']:
             for v in elem.values():
                 try:
-                    if re.search(str(id).lower(), str(v).lower()).group():
+                    if re.search(str(id2).lower(), str(v).lower()).group():
                         cardata = elem
                         break
                 except:
@@ -25,11 +31,13 @@ class Command(commands.Cog):
                 continue
             break
         else:
-            embed = Embed(':frame_photo:  Car Image', 'Search Query: '+str(id))
+            embed = Embed(':frame_photo:  Car Image', 'Search Query: '+str(id2))
             embed.field('Results', 'None')
+            embed.footer('Not the car you\'re looking for? Replace all spaces with _ .')
             return await embed.send(ctx)
         embed = Embed('Car Image', 'Search Query: '+str(id))
         embed.image('https://www.nitrotype.com/cars/'+cardata['options']['largeSrc'])
+        embed.footer('Not the car you\'re looking for? Replace all spaces with _ .')
         for k, v in cardata.items():
             embed.field(k, v)
         return await embed.send(ctx)

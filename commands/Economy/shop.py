@@ -23,10 +23,10 @@ class Command(commands.Cog):
                 embed.field('Currently equipped', f'__Name:__ `{dbdata["equipped"]["car"]}`')
                 embed.image(f'https://www.nitrotype.com/cars/{dbdata["equipped"]["img"]}')
             except:
-                embed.field('Currently equipped', 'none')
+                embed.field('Currently equipped', 'None')
 
             embed.field('Buy / equip items', 'Use `n.buy [Item ID]` to buy an item and `n.equip [Item ID]` to equip an item')
-            embed.field('Reward', 'Use your items in the typerace command or get epic multipliers when equipped and earning lacans!')
+            embed.field('Reward', 'Equip your cars and get epic multipliers in the economy category!')
             embed.footer('Get amazing perks with items!')
             return embed
         if n == 1:

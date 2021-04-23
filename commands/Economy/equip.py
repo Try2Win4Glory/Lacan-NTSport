@@ -23,10 +23,10 @@ class Command(commands.Cog):
         try:
             user['equipped'] = user['cars'][int(index)-1]
         except:
-            embed = Embed('Error!', f"Can't equip the car with index {index}!")
+            embed = Embed('Error!', f"Can't equip the car with index {index}! Run `n.cars` if you\'re not sure what Index your car, you want to equip, has.'")
             return await embed.send(ctx)
         await dbclient.update_array(collection, old, user)
-        embed = Embed('Success!', f"You have equipped {user['cars'][int(index)-1]['car']}")
+        embed = Embed('Success!', f"You have equipped **{user['cars'][int(index)-1]['car']}**. In case this is currently a weekly or daily car, you\'ll earn double Lacans.'")
         return await embed.send(ctx)
 
 

@@ -78,7 +78,6 @@ banned = [793253843327778816, 793026807351738388, 793250587403747368, 7930289524
     #505338178287173642,
   #GoodGradesBoy
     #433411533079314443
-  123
 ]'''
 @client.event
 async def on_message(message):
@@ -104,14 +103,15 @@ async def on_message(message):
         return
     if "780980594892341288" in message.content.split(' '):
         return
-    #Permanent Bans:
-    '''ctx = await client.get_context(message)
+    '''#Permanent Bans:
+    ctx = await client.get_context(message)
     if message.author.id == permbanned[0] and (
                 message.content.startswith('n.')
                 or message.content.startswith('N.')
                 or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
-      embed=Embed(':hammer_pick:  Banned  :hammer_pick:', f'<@{message.author.id}> has been banned from the bot.\n\n__**Duration:**__ **`Permanent`**\n\n__**Reason:**__ ```Continously misusing the bot, several times ignoring developers warnings not to abuse any code bypasses. Abusing commands and letting other bots run command after several verbal warnings, creating a server to spam the bot.```\n\n*If you believe this ban is an error, contact <@505338178287173642> for more information.*')
-      return await embed.send(ctx, dm=False)'''
+      embed=Embed(':hammer_pick:  Banned  :hammer_pick:', f'<@{message.author.id}> has been banned from the bot.\n\n__**Duration:**__ **`Permanent`**\n\n__**Reason:**__ ```Insanely high amounts of activity.```\n\n*If you believe this ban is an error, contact <@505338178287173642> for more information.*')
+      return await embed.send(ctx, dm=False)
+      return'''
     '''
     if message.author.id != 396075607420567552:
         return
@@ -183,44 +183,44 @@ async def on_message(message):
                           await embed.send(ctx)
                     channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
                     channel2 = discord.utils.get(client.get_all_channels(), id = 803938544175284244)
-                    embed = Embed('__**Command Log**__', str(message.author))
+                    '''embed = Embed('__**Command Log**__', str(message.author))
                     embed.field('__Command__', f'`n.{("".join(list(message.content)[2:]))}`')
                     embed.field('__User ID__', f'`{str(message.author.id)}`')
                     embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
                     embed.field('__Guild Name__',f' **{str(message.guild.name)}**')
                     embed.field('__Channel ID__', f'`{str(ctx.message.channel.id)}`')
-                    '''try:
+                    try:
                       try:
                         invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100, unique='False', reason='Better support features - instant developer notification, easier to help people. Don\'t want this? Remove my permission to create invites, but then don\'t expect immediate support.')
                       except:
                         invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100, unique='True', reason='Better support features - instant developer notification, easier to help people. Don\'t want this? Remove my permission to create invites, but then don\'t expect immediate support.')
                       embed.field('__Invite__', f'{invitelink}')
                     except:
-                      pass'''
+                      pass
                     embed.field('__Error__', f'```{e}```')
                     await channel.send(embed=embed.default_embed())
-                    await channel2.send(embed=embed.default_embed())
+                    await channel2.send(embed=embed.default_embed())'''
                     if shouldraise:
                         raise e
                     return
-                channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
+                '''channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
                 channel2 = discord.utils.get(client.get_all_channels(), id = 803938544175284244)
                 embed = Embed('__**Command Log**__', str(message.author), color=0x2ecc71)
                 embed.field('__Command__', f'`n.{("".join(list(message.content)[2:]))}`')
                 embed.field('__User ID__', f'`{str(message.author.id)}`')
                 embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
                 embed.field('__Guild Name__',f' **{str(message.guild.name)}**')
-                '''try:
+                try:
                     try:
                         invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100, unique='False', reason='Better support features - instant developer notification, easier to help people. Don\'t want this? Remove my permission to create invites, but then don\'t expect immediate support.')
                     except:
                         invitelink = await ctx.channel.create_invite(max_age=300, max_uses=100, unique='True', reason='Better support features - instant developer notification, easier to help people. Don\'t want this? Remove my permission to create invites, but then don\'t expect immediate support.')
                     embed.field('__Invite__', f'{invitelink}')
                 except:
-                      pass'''
+                      pass
                 embed.field('__Channel ID__', f'`{str(ctx.message.channel.id)}`')
                 await channel.send(embed=embed.default_embed())
-                await channel2.send(embed=embed.default_embed())
+                await channel2.send(embed=embed.default_embed())'''
     except:
         return
         ctx = await client.get_context(message)

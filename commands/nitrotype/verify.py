@@ -36,7 +36,7 @@ class Command(commands.Cog):
                     if elem['verified'] == 'false':
                         username = elem['NTuser']
                         embed = Embed(':clipboard:  Verify your Identity!', f'Join the race to verify **{username}** is owned by you. You don\'t own **{username}**? Run `n.unregister` to unlink your discord from this account.')
-                        embed.field('__Instructions__', 'Once you join the race, the race leader will leave and you just have to type n.verify again to verify. If this does not work, please try unregistering and registering again.')
+                        embed.field('__Instructions__', 'Once you join the race, the race leader will leave and you just have to type `n.verify` again to verify. If this does not work after several times typing `n.verify`, please try unregistering and registering again.')
                         embed.field('__Short instructions__', '**1.** Run `n.verify`\n**2.** Join the race track shown under the link category.\n**3.** Run `n.verify` again.')
                         embed.field('__Common errors__', 'Is the race leader not joining the race? Refresh your page, after maximal **4** refreshs the race leader joins and you can attempt to verify.')
                         embed.field('__Link__', 'Join [this](https://www.nitrotype.com/race/lacanverification) race to verify your identity.')
@@ -65,7 +65,7 @@ class Command(commands.Cog):
                             username = elem['NTuser']
                             embed = Embed('Nearly there!', f'You\'re nearly done - just one more step to go!\nYou are just about to verify your ownership for **{username}**. Not you? Run `n.unregister` to unlink your discord from this account.', 'warning')
                             embed.field('__Instructions__', 'Please join the race and run `n.verify` again.')
-                            embed.field('__Common errors__', 'Is the race leader not joining the race? Refresh your page, after maximal **4** refreshs the race leader joins and you can attempt to verify.')
+                            embed.field('__Common errors__', 'Is the race leader not joining the race? Run `n.verify` again and refresh your page, after maximal **5** times running the command, the race leader joins and you can attempt to verify.')
                             embed.field('__Link__', 'Join [this](https://www.nitrotype.com/race/lacanverification) race to verify your identity.')
                             await embed.send(ctx)
                             async with aiohttp.ClientSession() as s:
