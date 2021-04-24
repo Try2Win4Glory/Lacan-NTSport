@@ -42,6 +42,7 @@ class Command(commands.Cog):
               carbonus = True
               break
           else:
+            print(shopcars)
             carbonus = False
         except:
             carbonus = False
