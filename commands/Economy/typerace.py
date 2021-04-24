@@ -78,8 +78,8 @@ class Command(commands.Cog):
             async for d in data:
                 user = d
                 break
-            old = copy.deepcopy(user)
             try:
+                old = copy.deepcopy(user)
                 for car in user['cars']:
                     if user['equipped']['img'] in shopcars:
                         carbonus = True
@@ -110,7 +110,7 @@ class Command(commands.Cog):
                     user['points'] += earned
                     await dbclient.update_array(collection, old, user)
             except:
-                dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': earned})
+                await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': earned})
 
         else:
             embed = Embed('<a:false:800330847865143327>  Oops!', 'You messed up sadly... and lost **3** '+random_lacan+'.')
@@ -123,12 +123,15 @@ class Command(commands.Cog):
             async for d in data:
                 user = d
                 break
-            old = user.copy()
-            if user['userid'] == str(ctx.author.id):
-                user['points'] += lost
-                await dbclient.update_array(collection, old, user)
-            else:
-                dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': lost})
+            try:
+                old = user.copy()
+                if user['userid'] == str(ctx.author.id):
+                    user['points'] += lost
+                    await dbclient.update_array(collection, old, user)
+                else:
+                    await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': lost})
+            except:
+                await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': lost})
             return
 
 

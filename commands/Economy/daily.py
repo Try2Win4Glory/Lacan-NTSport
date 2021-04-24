@@ -40,8 +40,8 @@ class Command(commands.Cog):
         async for d in data:
             user = d
             break
-        old = user.copy()
         try:
+            old = user.copy()
             if ((round(time.time())-user['laststamp'] >= 75600)):
                 user['points'] += 5
                 user['laststamp'] = round(time.time())

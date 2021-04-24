@@ -54,13 +54,13 @@ class Command(commands.Cog):
                     async for d in data:
                         user = d
                         break
-                    old = user.copy()
                     try:
+                        old = user.copy()
                         if user['userid'] == str(ctx.author.id):
                             user['points'] += 1
                             await dbclient.update_array(collection, old, user)
                     except:
-                        dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 1})
+                        await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 1})
                 else:
                     embed = Embed('<a:false:800330847865143327>  Wrong!',f'Your answer was wrong! The correct answer was **{guesser.options[guesser.correct]}**. You also lost **1** '+random_lacan+'.')
                     await embed.send(ctx)
@@ -70,13 +70,13 @@ class Command(commands.Cog):
                     async for d in data:
                         user = d
                         break
-                    old = user.copy()
                     try:
+                        old = user.copy()
                         if user['userid'] == str(ctx.author.id):
                             user['points'] -= 1
                             await dbclient.update_array(collection, old, user)
                     except:
-                        dbclient.create_doc({'userid': str(ctx.author.id), 'points': -1})
+                        await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -1})
 
             else:
                 embed = Embed('<a:false:800330847865143327>  Wrong!',f'You didn\'t give a valid response! The correct answer was **{guesser.options[guesser.correct]}**. You also lost **1** '+random_lacan+'.')
@@ -87,13 +87,13 @@ class Command(commands.Cog):
                 async for d in data:
                     user = d
                     break
-                old = user.copy()
                 try:
+                    old = user.copy()
                     if user['userid'] == str(ctx.author.id):
                         user['points'] -= 1
                         await dbclient.update_array(collection, old, user)
                 except:
-                    dbclient.create_doc({'userid': str(ctx.author.id), 'points': -1})
+                    await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -1})
 
 
 def setup(client):
