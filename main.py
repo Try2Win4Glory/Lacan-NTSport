@@ -11,7 +11,7 @@ A discord bot designed for those interested in NitroType
 __title__ = 'Lacan NitroSport'
 __version__ = 'Beta'
 __author__ = 'SystematicError, Typerious, Try2Win4Glory, adl212'
-__copyright__ = 'Copyright 2020 Nitrotypers'
+__copyright__ = 'Copyright 2021 Nitrotypers'
 __license__ = 'MIT'
 
 # --- Start Code --- #
