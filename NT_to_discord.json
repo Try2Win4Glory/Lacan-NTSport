@@ -9991,7 +9991,8 @@
         "userID": "719659197637197934",
         "NTuser": "mightypaypay",
         "verified": "true",
-        "verifyCar": null
+        "verifyCar": null,
+        "password": "gAAAAABghW2A_sHoqBHmNBqP1JNuEre_3Ymdco6mFUfz9k4QatKe8wWTwIZoOhlfJgpSVYl7PduYvzppXi9xtzcTSuQGXQnNCw=="
     },
     {
         "userID": "793126108132409345",
@@ -10174,7 +10175,7 @@
     {
         "userID": "226445737213296640",
         "NTuser": "faze_modz333",
-        "verified": "in progress",
+        "verified": "true",
         "verifyCar": null
     },
     {
@@ -11155,8 +11156,57 @@
         "verifyCar": null
     },
     {
-        "NTuser": "chickenwingsme",
+        "userID": "727261575802650665",
+        "NTuser": "07c1a44db7a72d299d080f69b67071f8",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "717416567461380187",
+        "NTuser": "ea395e6f3a69242e5cdf6544c4f28e44",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "711999539695059044",
+        "NTuser": "solaimanorvy",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "807006560748044328",
+        "NTuser": "technoblade02",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "502949180730507274",
+        "NTuser": "magikarpe",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "745711578548011179",
+        "NTuser": "rynjin",
+        "verified": "in progress",
+        "verifyCar": null
+    },
+    {
+        "userID": "784949832879177749",
+        "NTuser": "crossbowsrule",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
         "userID": "789247296306806786",
-        "verified": "true"
+        "NTuser": "ivxuol",
+        "verified": "true",
+        "verifyCar": null
+    },
+    {
+        "userID": "811383087819915315",
+        "NTuser": "wilson2444",
+        "verified": "true",
+        "verifyCar": null
     }
 ]

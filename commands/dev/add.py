@@ -20,12 +20,12 @@ class Command(commands.Cog):
         #data = json.loads(requests.get('https://pointsdb.nitrotypers.repl.co', data={'key': os.getenv('DB_KEY')}).text)['data']
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
-        data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
+        data = await dbclient.get_array(collection, {'$and': [{'userid': str(userid)}, {'userid': str(userid)}]})
         async for d in data:
             user = d
             break
-        old = user.copy()
         try:
+            old = user.copy()
             if user['userid'] == str(userid):
                 user['points'] += int(amount)
                 userpoints = user['points']
