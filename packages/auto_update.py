@@ -33,7 +33,7 @@ class AutoUpdate(commands.Cog):
         
         dbclient = DBClient()
         collection = dbclient.db['test']
-        documents = await dbclient.get_array(collection, {})
+        documents = collection.find({})
         async for data in documents:
             old = copy.deepcopy(data)
             compid = data['compid']

@@ -21,9 +21,7 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-        async for d in data:
-            user = d
-            break
+        user = data
         old = user.copy()
         try:
             if user['userid'] == str(userid):

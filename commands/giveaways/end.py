@@ -15,11 +15,9 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.giveaways
         dbdata = await dbclient.get_array(collection, {"$and": [{"messageID": messageID}, {"messageID": messageID}]})
-        async for d in dbdata:
-            giveaway = d
-            old = giveaway.copy()
-            break
+        giveaway = dbdata
         try:
+            old = giveaway.copy()
             giveaway['ended']
         except:
             embed = Embed('Error!', f'No giveaway found with message ID {messageID}')

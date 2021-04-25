@@ -78,9 +78,7 @@ async def update_comp(compid):
     dbclient = DBClient()
     collection = dbclient.db['test']
     data = await dbclient.get_array(collection, {'$and': [{'compid': compid}, {'compid': compid}]})
-    async for d in data:
-        data = d
-        old = copy.deepcopy(data)
+    old = copy.deepcopy(data)
     other = data['other']
     players = data['players']
     team = other['team']
@@ -150,8 +148,6 @@ async def l(compid, category="races"):
     dbclient = DBClient()
     collection = dbclient.db['test']
     data = await dbclient.get_array(collection, {'$and': [{'compid': compid}, {'compid': compid}]})
-    async for d in data:
-        data = d
     usernames = []
     displays = []
     categorylist = []
