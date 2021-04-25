@@ -35,8 +35,8 @@ class Command(commands.Cog):
         async for d in data:
             user = d
             break
-        old = copy.deepcopy(user)
         try:
+          old = copy.deepcopy(user)
           for car in user['cars']:
             if user['equipped']['img'] in shopcars:
               carbonus = True
@@ -158,8 +158,8 @@ class Command(commands.Cog):
                 async for d in data:
                     user = d
                     break
-                old = user.copy()
                 try:
+                    old = user.copy()
                     if user['userid'] == str(ctx.author.id):
                         user['points'] -= 2
                         await dbclient.update_array(collection, old, user)

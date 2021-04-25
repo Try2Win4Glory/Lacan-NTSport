@@ -31,8 +31,8 @@ class Command(commands.Cog):
         async for d in data:
             user = d
             break
-        old = user.copy()
         try:
+            old = user.copy()
             if ((round(time.time())-user['hourlystamp'] >= 3600)):
                 user['points'] += 3
                 user['hourlystamp'] = round(time.time())
