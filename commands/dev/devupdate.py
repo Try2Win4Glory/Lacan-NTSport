@@ -50,7 +50,7 @@ class Command(commands.Cog):
         ]:
           teamswithroles.append('[N8TE]')
         #Team DRPT | Server Owner: 723224207651111003
-        if ctx.cuild.id in [
+        if ctx.guild.id in [
           742854336618561608
         ]:
           teamswithroles.append('[DRPT]')
