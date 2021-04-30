@@ -817,6 +817,15 @@ class RacerClass:
 
             self.membership = newdata['membership']
 
+
+            '''try:
+                    if re.search(str({newdata["carID"]}).lower(), str({newdata["carID"]}).lower()).group():
+                      cardata = elem
+                      self.car = f'https://www.nitrotype.com/cars/{cardata}_large_1.png'
+            except:
+              print('no u')'''
+            '''self.car = f'https://www.nitrotype.com/cars/{newdata["carHueAngle"]}_large_1.png'''
+
             if newdata['carHueAngle'] == 0:
                 self.car = f'https://www.nitrotype.com/cars/{newdata["carID"]}_large_1.png'
             else:
