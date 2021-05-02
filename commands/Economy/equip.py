@@ -16,7 +16,9 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         dbdata = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-        user = dbdata
+        async for d in dbdata:
+            user = d
+            break
         old = user.copy()
         try:
             user['equipped'] = user['cars'][int(index)-1]

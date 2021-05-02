@@ -29,16 +29,25 @@ class Command(commands.Cog):
             data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
         else:
             data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
+        async for d in data:
+            data = d
+            break
         try:
             embed = Embed('Your Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
         except:
             userid = ''.join(list(userid)[2:-1])
             data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
+            async for d in data:
+                data = d
+                break
             try:
                 embed = Embed('Your Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
             except:
                 userid = ''.join(list(userid)[1:])
                 data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
+                async for d in data:
+                    data = d
+                    break
                 try:
                     embed = Embed('Your Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
                 except:
