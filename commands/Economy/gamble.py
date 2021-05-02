@@ -18,7 +18,9 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-        user = data
+        async for d in data:
+            user = d
+            break
         old = user.copy()
         if int(amount) <= 5:
             embed = Embed('Gambling Too Little!', f'We the casino want you to gamble more than `5` '+random_lacan+' at a time.', 'warning')

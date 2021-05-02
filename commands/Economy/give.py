@@ -20,7 +20,9 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-        user = data
+        async for d in data:
+            user = d
+            break
         old = user.copy()
         try:
             if user['userid'] == str(ctx.author.id):
@@ -37,7 +39,9 @@ class Command(commands.Cog):
             return await embed.send(ctx)
         userid = giveto.id or giveto
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(userid)}, {'userid': str(userid)}]})
-        user = data
+        async for d in data:
+            user = d
+            break
         old = user.copy()
         try:
             if user['userid'] == str(giveto):

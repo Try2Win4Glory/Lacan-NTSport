@@ -75,7 +75,9 @@ class Command(commands.Cog):
             dbclient = DBClient()
             collection = dbclient.db.pointsdb
             data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-            user = data
+            async for d in data:
+                user = d
+                break
             try:
                 old = copy.deepcopy(user)
                 for car in user['cars']:
@@ -118,7 +120,9 @@ class Command(commands.Cog):
             collection = dbclient.db.pointsdb
             data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
             lost = -3
-            user = data
+            async for d in data:
+                user = d
+                break
             try:
                 old = user.copy()
                 if user['userid'] == str(ctx.author.id):

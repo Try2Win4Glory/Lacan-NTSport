@@ -19,6 +19,13 @@ bs4 = "^0.0.1"
 tornado = "^6.1"
 dnspython = "^2.1.0"
 pandas = "^1.2.3"
+parse = "^1.19.0"
+pyppeteer = "^0.2.5"
+pyquery = "^1.4.3"
+w3lib = "^1.22.0"
+fake-useragent = "^0.1.11"
+lxml = "^4.6.3"
+nest-asyncio = "^1.5.1"
 
 [tool.poetry.dev-dependencies]
 
