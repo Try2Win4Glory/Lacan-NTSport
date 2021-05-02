@@ -49,9 +49,7 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         dbdata = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-        async for d in dbdata:
-            dbuser = d
-            break
+        dbuser = dbdata
         page = 0
         def check(reaction:Reaction, user:User):
             return user.id == ctx.author.id

@@ -18,9 +18,7 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         dbdata = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-        async for d in dbdata:
-            user = d
-            break
+        user = dbdata
         old = deepcopy(user)
         data = json.loads(requests.get('https://lacanitemshop.nitrotypers.repl.co/data.json').text)
         if item == 'daily':

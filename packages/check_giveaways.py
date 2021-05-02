@@ -14,7 +14,7 @@ class CheckGiveaways(commands.Cog):
         #print('running check gw script')
         dbclient = DBClient()
         collection = dbclient.db.giveaways
-        documents = await dbclient.get_array(collection, {})
+        documents = collection.find({})
         async for data in documents:
             #print('in documents')
             #print(int(time.time()))
