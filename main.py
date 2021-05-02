@@ -36,6 +36,8 @@ from nitrotype import check_perms, get_username
 from packages.nitrotype import Team, Racer
 import copy
 import keep_alive
+import nest_asyncio
+nest_asyncio.apply()
 try: import requests
 except ImportError:
   print ("Trying to Install required module: motor tornado\n")
