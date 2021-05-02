@@ -15,7 +15,9 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.giveaways
         dbdata = await dbclient.get_array(collection, {"$and": [{"messageID": messageID}, {"messageID": messageID}]})
-        giveaway = dbdata
+        async for d in dbdata:
+            giveaway = d
+            break
         try:
             giveaway['ended']
         except:

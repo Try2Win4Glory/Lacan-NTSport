@@ -12,7 +12,7 @@ class DBClient:
         self.client = client
         self.db = self.client.nitrotype
     async def get_array(self, collection, dict):
-        return await collection.find_one(dict)
+        return collection.find(dict)
     async def update_array(self, collection, old, new):
         return await collection.replace_one(old, new)
     async def create_doc(self, collection, data):

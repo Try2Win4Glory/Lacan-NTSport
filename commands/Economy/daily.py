@@ -37,10 +37,10 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-        user = data
-
+        async for d in data:
+            user = d
+            break
         embed = Embed('<a:success:800340618579935233>  Success!', 'You\'ve collected your daily **5** '+random_lacan+' succesfully!')
-
         try:
             old = user.copy()
             if ((round(time.time())-user['laststamp'] >= 75600)):
