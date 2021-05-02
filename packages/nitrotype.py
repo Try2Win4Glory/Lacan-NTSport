@@ -470,7 +470,44 @@ cars = {
     219 : 'Calculatron',
     220 : 'Screw Tank',
     221 : 'Hoverbike',
-    222 : 'Jet Bicycle'
+    222 : 'Jet Bicycle',
+    223: 'Wrapped Flyer',
+    224: 'The Festivitank',
+    225: 'Typiano Pizza Car',
+    226: 'Buggani Vyrus LR',
+    227: 'Jet Powered Truck',
+    228: 'Lamborgotti Vengeance',
+    230: 'X2 Eclipse',
+    232: 'Monster Truck Redux',
+    233: 'Covenant Leo',
+    234: 'Zonday Tricolore 2021',
+    235: 'Strykist 1300',
+    236: 'The Glamrod',
+    237: 'Linux Elipse',
+    238: 'Road Warrior Rally',
+    239: 'Furious Maxx',
+    241: 'Bimmer M6',
+    242: 'The Dominator',
+    243: 'Heartbreaker LV-2',
+    244: 'Ice Hauler',
+    245: 'The Kelvin',
+    246: 'Buggani Vyrus LR',
+    247: 'Error 503',
+    249: 'Sprinter \'90',
+    252: 'Koromoto DJ Cruiser',
+    253: 'Koromoto GT-R',
+    254: 'Koromoto GT-R LS',
+    255: 'Stingtec Technotruck',
+    256: 'Four Leaf Rover',
+    257: 'Corsa Iris',
+    258: 'Sprinter \'90 Vapor',
+    259: 'Winson Track\'d',
+    261: 'Stingtec Marianas',
+    262: 'Personal Water Craft',
+    263: 'Blitz T8 Roadster',
+    264: 'Liberty Demon XRT',
+    266: 'Mongoose SU-5'
+
 }
 
 class NewsClass:
@@ -507,7 +544,7 @@ shadowcars = {
     2:'https://cdn.discordapp.com/attachments/763376521674620928/763377013800697876/wdegexqaZNU2AAAAABJRU5ErkJggg.png',
     3:'https://cdn.discordapp.com/attachments/763376521674620928/763377157409210388/UbKHC2vdl48AAAAASUVORK5CYII.png',
     4:'https://cdn.discordapp.com/attachments/763376521674620928/763377459314950174/Db2Bzxd3hkFQAAAABJRU5ErkJggg.png',
-    5:'https://cdn.discordapp.com/attachments/3763376521674620928/763377566274682940/rKbI2a6LwP8DnU2eCbYj11sAAAAASUVORK5CYII.png',
+    5:'https://media.discordapp.net/attachments/763376521674620928/763377566274682940/rKbI2a6LwP8DnU2eCbYj11sAAAAASUVORK5CYII.png',
     6:'https://cdn.discordapp.com/attachments/763376521674620928/763377705797419028/TbNz0VKupqAyzAalc0RPpum76Cvz91HuRoKAJJnQAAAABJRU5ErkJggg.png',
     7:'https://cdn.discordapp.com/attachments/763376521674620928/763378262746857522/HiMXriMAAAAASUVORK5CYII.png',
     8:'https://cdn.discordapp.com/attachments/763376521674620928/763378531395960872/wF13UXz2IpR1AAAAABJRU5ErkJggg.png',
@@ -779,6 +816,15 @@ class RacerClass:
             self.tag_and_name = f'[{self.tag}{display_name}\n"{newdata["title"].title()}"](https://nitrotype.com/racer/{racer})'
 
             self.membership = newdata['membership']
+
+
+            '''try:
+                    if re.search(str({newdata["carID"]}).lower(), str({newdata["carID"]}).lower()).group():
+                      cardata = elem
+                      self.car = f'https://www.nitrotype.com/cars/{cardata}_large_1.png'
+            except:
+              print('no u')'''
+            '''self.car = f'https://www.nitrotype.com/cars/{newdata["carHueAngle"]}_large_1.png'''
 
             if newdata['carHueAngle'] == 0:
                 self.car = f'https://www.nitrotype.com/cars/{newdata["carID"]}_large_1.png'

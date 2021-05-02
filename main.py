@@ -4,12 +4,12 @@
 NitroType Bot
 ~~~~~~~~~~~~~
 A discord bot designed for those interested in NitroType
-:copyright: (c) 2020 Nitrotypers
+:copyright: (c) 2021 Nitrotypers
 :license: MIT, see LICENSE.txt for more details
 '''
 
-__title__ = 'Lacan NitroSport'
-__version__ = 'Beta'
+__title__ = 'Lacan NTSport'
+__version__ = 'Full'
 __author__ = 'SystematicError, Typerious, Try2Win4Glory, adl212'
 __copyright__ = 'Copyright 2021 Nitrotypers'
 __license__ = 'MIT'

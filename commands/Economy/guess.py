@@ -107,7 +107,7 @@ class Command(commands.Cog):
                       if user['userid'] == str(ctx.author.id):
                         user['points'] += earned
                         await dbclient.update_array(collection, old, user)
-                  except:
+                  except UnboundLocalError:
                         await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': earned})
                     #Embed for lacan Log
                     #embed1 = discord.Embed(title=f'{random_lacan}  Lacan Log', description=str(ctx.author), color= green)
@@ -130,7 +130,7 @@ class Command(commands.Cog):
                         if user['userid'] == str(ctx.author.id):
                             user['points'] -= 2
                             await dbclient.update_array(collection, old, user)
-                    except:
+                    except UnboundLocalError:
                         await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -2})
                     
                     #Embed for lacan Log
@@ -155,7 +155,7 @@ class Command(commands.Cog):
                     if user['userid'] == str(ctx.author.id):
                         user['points'] -= 2
                         await dbclient.update_array(collection, old, user)
-                except:
+                except UnboundLocalError:
                     await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -2})
                 
                 #Embed for lacan Log

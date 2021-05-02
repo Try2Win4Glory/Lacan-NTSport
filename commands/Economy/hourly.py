@@ -28,14 +28,15 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
+
         user = data
+        embed = Embed('<a:success:800340618579935233>  Success!', 'You\'ve collected your hourly succesfully!')
         try:
             old = user.copy()
             if ((round(time.time())-user['hourlystamp'] >= 3600)):
                 user['points'] += 3
                 user['hourlystamp'] = round(time.time())
                 await dbclient.update_array(collection, old, user)
-                embed = Embed('<a:success:800340618579935233>  Success!', 'You\'ve collected your hourly succesfully!')
                 #Embed for lacan Log
                 #embed1 = discord.Embed(title=f'{random_lacan}  Lacan Log', description=str(ctx.author), color= green)
                 #embed1.add_field(name='__Won__', value=f'3')
@@ -65,6 +66,8 @@ class Command(commands.Cog):
                 #await channel.send(embed=embed1)
             else:
                 await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 3, 'hourlystamp': round(time.time())})
+        except UnboundLocalError:
+          await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 3, 'hourlystamp': round(time.time())})
         await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))

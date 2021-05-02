@@ -107,7 +107,7 @@ class Command(commands.Cog):
                 if user['userid'] == str(ctx.author.id):
                     user['points'] += earned
                     await dbclient.update_array(collection, old, user)
-            except:
+            except UnboundLocalError:
                 await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': earned})
 
         else:
@@ -126,7 +126,7 @@ class Command(commands.Cog):
                     await dbclient.update_array(collection, old, user)
                 else:
                     await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': lost})
-            except:
+            except UnboundLocalError:
                 await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': lost})
             return
 

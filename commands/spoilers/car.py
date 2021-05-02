@@ -31,11 +31,11 @@ class Command(commands.Cog):
                 continue
             break
         else:
-            embed = Embed(':frame_photo:  Car Image', 'Search Query: '+str(id2))
+            embed = Embed(':frame_photo:  Car Image', 'Search Query: `'+str(id2)+'`')
             embed.field('Results', 'None')
             embed.footer('Not the car you\'re looking for? Replace all spaces with _ .')
             return await embed.send(ctx)
-        embed = Embed('Car Image', 'Search Query: '+str(id))
+        embed = Embed('Car Image', 'Search Query: `'+str(id)+'`')
         embed.image('https://www.nitrotype.com/cars/'+cardata['options']['largeSrc'])
         embed.footer('Not the car you\'re looking for? Replace all spaces with _ .')
         for k, v in cardata.items():
