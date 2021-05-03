@@ -48,7 +48,7 @@ class Command(commands.Cog):
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         discordid0 = discordid.replace("<@!", "")
         discordid1 = discordid0.replace(">", "")
-        dbdata = await dbclient.get_big_array(collection, {'userID': str(discordid1)})
+        dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
