@@ -6,7 +6,7 @@ from packages.nitrotype import Racer, cars
 import requests
 import os
 import json
-import random
+import random, copy
 from mongoclient import DBClient
 from nitrotype import verify
 import aiohttp
@@ -30,8 +30,9 @@ class Command(commands.Cog):
             #return await ctx.send('**Your** security is important for **us**! Because of security reasons, this command has been taken down and will be back soon. Thanks for your understanding.')
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
-            dbdata = await dbclient.get_big_array(collection, 'registered')
-            for elem in dbdata['registered']:
+            dbdata = await dbclient.get_array(collection, {})
+            async for elem in dbdata:
+                old = copy.deepcopy(elem)
                 if elem['userID'] == str(ctx.author.id):
                     if elem['verified'] == 'false':
                         username = elem['NTuser']
@@ -45,7 +46,7 @@ class Command(commands.Cog):
                         elem['verified'] = 'in progress'
                         dbclient = DBClient()
                         collection = dbclient.db.NT_to_discord
-                        await dbclient.update_big_array(collection, 'registered', dbdata)
+                        await dbclient.update_array(collection, old, elem)
                         async with aiohttp.ClientSession() as s:
                             await self.fetch(s,'https://Lacan-Verification.try2win4code.repl.co')
                         break
@@ -57,7 +58,7 @@ class Command(commands.Cog):
                         if elem['NTuser'] in data['verified']:
                             elem['verified'] = 'true'
                             dbclient = DBClient()
-                            await dbclient.update_big_array(collection, 'registered', dbdata)
+                            await dbclient.update_array(collection, old, elem)
                             embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server do `n.update` to update your roles.')
                             await embed.send(ctx)
                             break

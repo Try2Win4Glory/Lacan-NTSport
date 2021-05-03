@@ -25,7 +25,6 @@ class Command(commands.Cog):
         #dbdata = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": dbkey}).text)
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        dbdata = await dbclient.get_big_array(collection, 'registered')
         for role in ctx.author.roles:
             if role.id in [
               #Insert permitted role IDs here
@@ -47,15 +46,15 @@ class Command(commands.Cog):
         premiumserver = False
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
+        discordid0 = discordid.replace("<@!", "")
+        discordid1 = discordid0.replace(">", "")
+        dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
                 break
-        for x in dbdata['registered']:
-            discordid0 = discordid.replace("<@!", "")
-            discordid1 = discordid0.replace(">", "")
-            if str(discordid1) == x['userID']:
-                dbdata['registered'].pop(dbdata['registered'].index(x))
+        async for x in dbdata:
+                await collection.delete_one(x)
                #--Success Embed--#
                 embed = Embed('Success!', 'Unregistered discord user <@' +discordid1+'>!','white_check_mark')
 
@@ -69,10 +68,7 @@ class Command(commands.Cog):
                 except:
                   pass
                 await embed.send(ctx)
-
-
-                #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})
-                await dbclient.update_big_array(collection, 'registered', dbdata)
+                break
                 #return
         #Remove roles if the server is premium:
         try:

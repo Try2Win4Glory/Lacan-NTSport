@@ -15,32 +15,20 @@ __copyright__ = 'Copyright 2021 Nitrotypers'
 __license__ = 'MIT'
 
 # --- Start Code --- #
+import nest_asyncio
+nest_asyncio.apply()
 from discord.ext import commands
-from discord import Streaming
 from packages.server import start_server
-from os import listdir, getenv, system
-import json, requests
+from os import listdir, getenv
 from mongoclient import DBClient
-import dbl
-from packages.utils import Embed, ImproperType
+from packages.utils import Embed
 import asyncio, random
-import subprocess
-import sys
 import logging
 import discord
-import os 
 import time
 from statistics import mean
-from discord.utils import get
-from nitrotype import check_perms, get_username
-from packages.nitrotype import Team, Racer
+from nitrotype import check_perms
 import copy
-import keep_alive
-try: import requests
-except ImportError:
-  print ("Trying to Install required module: motor tornado\n")
-  os.system('python', '-m', 'pip', 'install', requests)
-  import requests
 
 #keep_alive.keep_alive()
 
@@ -166,10 +154,12 @@ async def on_message(message):
                 #print(f"{message.content} | {message.author.id} | {str(message.author)} | {message.guild.id} | {str(message.guild)}")
                 async with message.channel.typing():
                     await asyncio.sleep(random.uniform(0.05, 0.1))
+                #return await client.process_commands(message)
                 try:
                     ctx = await client.get_context(message)
                     await ctx.command.invoke(ctx)
                 except Exception as e:
+                    raise e
                     shouldraise = True
                     if isinstance(e, AttributeError):
                         embed = Embed(

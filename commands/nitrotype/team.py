@@ -17,9 +17,9 @@ class Command(commands.Cog):
         #thedata = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={'key': os.getenv('DB_KEY')}).text)
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        thedata = await dbclient.get_big_array(collection, 'registered')
+        thedata = await dbclient.get_array(collection, {})
         if team_name == '': 
-            for player in thedata['registered']:
+            async for player in thedata:
                 if player['userID'] == str(ctx.author.id):
                     racer = await Racer(player['NTuser'])
                     tname = ''.join(list(racer.tag)[1:-1])
@@ -31,7 +31,7 @@ class Command(commands.Cog):
             team = await Team(team_name)
         if team.data == {} or team.success == False:
             userid = str(''.join(list(team_name)[3:-1]))
-            for elem in thedata['registered']:
+            async for elem in thedata:
                 if userid == elem['userID']:
                     racer = await Racer(elem['NTuser'])
                     team_name = racer.tag
@@ -47,7 +47,7 @@ class Command(commands.Cog):
                         return await Embed('Error!', 'Couldn\'t find that team', 'warning').send(ctx)
                     break
             else:
-                for elem in thedata['registered']:
+                async for elem in thedata:
                     if str(team_name) == elem['userID']:
                         racer = await Racer(elem['NTuser'])
                         team_name = racer.tag

@@ -60,12 +60,11 @@ class Command(commands.Cog):
             return await ctx.author.send("You didn't type your password in time!")
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        data = await dbclient.get_big_array(collection, 'registered')
-        for user in data['registered']:
-            if user['userID'] == str(ctx.author.id) or user['NTuser'].lower() == var[1].username.lower():
-                user['password'] = self.encrypt(response.content)
-                break
-        await dbclient.update_big_array(collection, 'registered', data)
+        data = await dbclient.get_array(collection, {'$or': [{'userID': str(ctx.author.id), 'NTuser': var[1].username.lower()}]})
+        async for user in data:
+            old = user.copy()
+            user['password'] = self.encrypt(response.content)
+        await dbclient.update_array(collection, old, user)
         thepassword = (response.content)
         username = user['NTuser']
         embed = Embed('Success!', f"Your password for your account `{username}` was successfuly set to `{thepassword}`, encrypted and added into the database!\n\n__Your Data:__\nusername: `{user['NTuser']}`\npassword: `{thepassword}` \n\n__Please note that:__ \n*1. This password is **safe**, it doesn't even exist unencrypted anymore.*\n*2. Wrong use of this command like putting wrong data into the bot on purpose can end in a **ban** of this bot as our database does not have enough space for wrong data.*", 'white check mark')

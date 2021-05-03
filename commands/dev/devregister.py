@@ -48,14 +48,12 @@ class Command(commands.Cog):
             #data = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text)
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
-            data = await dbclient.get_big_array(collection, 'registered')
-            data['registered'].append({
+            await dbclient.create_doc(collection, {
                 "NTuser": ntuser,
                 "userID": str(discordid1),
                 "verified": "true"
             })
             #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(data)})
-            await dbclient.update_big_array(collection, 'registered', data)
             embed = Embed('Success!', f'<@{str(ctx.author.id)}> just connected discord user <@'+discordid1+'> with NT username `' + ntuser + '`! \nIn case this is a premium :diamond_shape_with_a_dot_inside: server, <@'+discordid1+'> needs to run `n.update` to update their roles.', 'white_check_mark')
             
             if (ctx.author.id) in [396075607420567552, 505338178287173642, 637638904513691658]:

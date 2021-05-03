@@ -3,10 +3,8 @@ from math import ceil, floor
 from PIL import Image
 from io import BytesIO
 import numpy, aiohttp
-import nest_asyncio
 import time, asyncio, logging
-nest_asyncio.apply()
-async def compileProfileAsync(username):
+async def compileRawGarageAsync(username):
     import re
     from bs4 import BeautifulSoup
     from garageScript.requests_html import AsyncHTMLSession
@@ -20,14 +18,12 @@ async def compileProfileAsync(username):
         f.write(soup.prettify())
     parent = (soup.find('div', class_='garage'))
     children = (parent.findChildren('div', class_='garage-spot'))
-    list_of_links = []
     for child in children:
         search = (re.search(r'background\-image: url\((.{40,100})\)', str(child)))
         if search:
-            list_of_links.append(search.group(1))
+            yield (search.group(1))
         else:
-            list_of_links.append('')
-    return {'garage': list_of_links}
+            yield ('')
 async def fetchRaw(session, url):
     async with session.get(url) as response:
         return await response.content.read()
@@ -50,25 +46,30 @@ async def compileCarAsync(link):
                 c.save('garageScript/'+link.split('.com/')[-1])
                 byt.seek(0)
     return b
+async def compileProfileAsync(username):
+    async for car in compileRawGarageAsync(username):
+        if car == '':
+            yield ''
+            continue
+        yield await compileCarAsync(car)
 async def compileGarage(username):
     print(time.time())
-    profile = await compileProfileAsync(username)
+    profile = [car async for car in  compileProfileAsync(username)]
     width = 913 + 24
-    height = 30 + (ceil(len(profile['garage']) / 30) * 291)
+    height = 30 + (ceil(len(profile) / 30) * 291)
     with Image.new('RGBA', (width, height)) as img:
 
         # Pasting lots
         with Image.open('packages/parking_spots_all.png') as lots:
-            for i in range(ceil(len(profile['garage']) / 30)):
+            for i in range(ceil(len(profile) / 30)):
                 img.paste(lots, (12, 15 + (291 * i)), lots)
-        garage = numpy.reshape(profile['garage'],
-                            (ceil(len(profile['garage']) / 15), 15))
+        garage = numpy.reshape(profile,
+                            (ceil(len(profile) / 15), 15))
         for y, row in enumerate(garage):
             for x, id in enumerate(row):
                 if id == '':
                     continue
-                car = await compileCarAsync(
-                    id)
+                car = id
                 with Image.open(car) as c:
                     width = c.size[1]
                     length = c.size[0]

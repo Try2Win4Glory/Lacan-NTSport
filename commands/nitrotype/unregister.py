@@ -49,14 +49,14 @@ class Command(commands.Cog):
         #dbdata = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": dbkey}).text)
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        dbdata = await dbclient.get_big_array(collection, 'registered')
+        dbdata = await dbclient.get_array(collection, {})
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
                 break
-        for x in dbdata['registered']:
+        async for x in dbdata:
             if str(ctx.author.id) == x['userID']:
                 if premiumserver:
                     for role in (ctx.author.roles):
@@ -69,14 +69,11 @@ class Command(commands.Cog):
                           await ctx.author.add_roles(role)
                         except:
                           pass  
-                dbdata['registered'].pop(dbdata['registered'].index(x))
+                await collection.delete_one(x)
                 embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
                
                 await embed.send(ctx)
                 #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})
-                dbclient = DBClient()
-                collection = dbclient.db.NT_to_discord
-                await dbclient.update_big_array(collection, 'registered', dbdata)
                 return
 def setup(client):
     client.add_cog(Command(client))
