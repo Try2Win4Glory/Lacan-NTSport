@@ -15,34 +15,20 @@ __copyright__ = 'Copyright 2021 Nitrotypers'
 __license__ = 'MIT'
 
 # --- Start Code --- #
-from discord.ext import commands
-from discord import Streaming
-from packages.server import start_server
-from os import listdir, getenv, system
-import json, requests
-from mongoclient import DBClient
-import dbl
-from packages.utils import Embed, ImproperType
-import asyncio, random
-import subprocess
-import sys
-import logging
-import discord
-import os 
-import time
-from statistics import mean
-from discord.utils import get
-from nitrotype import check_perms, get_username
-from packages.nitrotype import Team, Racer
-import copy
-import keep_alive
 import nest_asyncio
 nest_asyncio.apply()
-try: import requests
-except ImportError:
-  print ("Trying to Install required module: motor tornado\n")
-  os.system('python', '-m', 'pip', 'install', requests)
-  import requests
+from discord.ext import commands
+from packages.server import start_server
+from os import listdir, getenv
+from mongoclient import DBClient
+from packages.utils import Embed
+import asyncio, random
+import logging
+import discord
+import time
+from statistics import mean
+from nitrotype import check_perms
+import copy
 
 #keep_alive.keep_alive()
 
