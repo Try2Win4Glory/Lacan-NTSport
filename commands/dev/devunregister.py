@@ -37,8 +37,15 @@ class Command(commands.Cog):
           #Try2Win4Glory
             505338178287173642,
           #adl212
-            396075607420567552
-          ] and not bypass:
+            396075607420567552,
+            663893592003182602,
+            485662574176632833,
+            433411533079314443,
+            740619181942243470,
+            630761745140547625,
+            710179321653756077,
+            398643731466551307
+        ] and not bypass:
             embed = Embed('Error!', 'Lol, did you really think it\'s possible for you to unregister a user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
             embed.footer('⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
             await embed.send(ctx)
@@ -48,7 +55,7 @@ class Command(commands.Cog):
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         discordid0 = discordid.replace("<@!", "")
         discordid1 = discordid0.replace(">", "")
-        dbdata = await dbclient.get_big_array(collection, {'userID': str(discordid1)})
+        dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
