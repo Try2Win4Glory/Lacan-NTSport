@@ -33,7 +33,7 @@ import copy
 #keep_alive.keep_alive()
 
 intents = discord.Intents().default()
-client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.', '<@!713352863153258556>', '<@713352863153258556>']), case_insensitive=True, intents=intents)
+client = commands.Bot(command_prefix=commands.when_mentioned_or(*['a.', 'a.', '<@!713352863153258556>', '<@713352863153258556>']), case_insensitive=True, intents=intents)
 client.remove_command('help')
 
 
@@ -70,8 +70,8 @@ banned = [793253843327778816, 793026807351738388, 793250587403747368, 7930289524
 @client.event
 async def on_message(message):
   if message.author.bot == True and (
-                message.content.startswith('n.')
-                or message.content.startswith('N.')
+                message.content.startswith('a.')
+                or message.content.startswith('A.')
                 or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
     print('Stop using bots on user accounts!')
     embed=Embed('<:bruh:834049885414227998>  Bruh', 'What are you thinking? If you want to use me, get on a user account. You can\'t use commands through bots. <a:keka:800338138802946098>')
@@ -84,7 +84,7 @@ async def on_message(message):
         #embed=Embed('Lacan NTSport', 'Test')
         #await embed.send
         #return
-        embed=Embed('Lacan NTSport', '**__FAQ:__**\n\nWho am I?\nI\'m Lacan NTSport, a multi purpose discord bot for the game [nitrotype](https://nitrotype.com/).\n\nWhat\'s my prefix?\nMy prefix is `n.` or `N.`.\n\nHow do I get a list of commands?\nIn order to get a full list of commands make sure to run `n.help`.\n\nHow can you invite me to your server?\nIn order to invite me to your server, run `n.invite`.\n\nWho are my developers?\nI was developed by <@505338178287173642>, <@396075607420567552>, <@637638904513691658>.\n\nWhat\'s premium? How can I get it?\nIn order to learn more about premium, make sure to run `n.premium`.', 'information source')
+        embed=Embed('Lacan NTSport', '**__FAQ:__**\n\nWho am I?\nI\'m Lacan NTSport, a multi purpose discord bot for the game [nitrotype](https://nitrotype.com/).\n\nWhat\'s my prefix?\nMy prefix is `a.` or `a.`.\n\nHow do I get a list of commands?\nIn order to get a full list of commands make sure to run `a.help`.\n\nHow can you invite me to your server?\nIn order to invite me to your server, run `a.invite`.\n\nWho are my developers?\nI was developed by <@505338178287173642>, <@396075607420567552>, <@637638904513691658>.\n\nWhat\'s premium? How can I get it?\nIn order to learn more about premium, make sure to run `a.premium`.', 'information source')
         return await embed.send(ctx, dm=False)
         #return await message.channel.send('<@505338178287173642> **YOU FUCKING BASTARD**')
     if message.author.id == 713352863153258556:
@@ -94,10 +94,10 @@ async def on_message(message):
     '''#Permanent Bans:
     ctx = await client.get_context(message)
     if message.author.id == permbanned[0] and (
-                message.content.startswith('n.')
-                or message.content.startswith('N.')
+                message.content.startswith('a.')
+                or message.content.startswith('a.')
                 or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
-      embed=Embed(':hammer_pick:  Banned  :hammer_pick:', f'<@{message.author.id}> has been banned from the bot.\n\n__**Duration:**__ **`Permanent`**\n\n__**Reason:**__ ```Insanely high amounts of activity.```\n\n*If you believe this ban is an error, contact <@505338178287173642> for more information.*')
+      embed=Embed(':hammer_pick:  Banned  :hammer_pick:', f'<@{message.author.id}> has been banned from the bot.\n\n__**Duration:**__ **`Permanent`**\n\n__**Reason:**__ ```Insanely high amounts of activity.```\n\n*If you believe this ban is an error, contact <@505338178287173642> for more informatioa.*')
       return await embed.send(ctx, dm=False)
       return'''
     '''
@@ -106,20 +106,20 @@ async def on_message(message):
     '''
     try:
         if int(message.author.id) in banned and (
-                message.content.startswith('n.')
-                or message.content.startswith('N.')
+                message.content.startswith('a.')
+                or message.content.startswith('A.')
                 or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
             ctx = await client.get_context(message)
-            embed=Embed('Ooops!', 'Looks like you are **BANNED** from the bot!\n\n__Reason:__ `Sending bot commands too fast.`\n\n*You will be unbanned upon the bot restart.* \n*If you believe this is an error, make sure to contact one of the developers (`n.info`).*', 'tools')
+            embed=Embed('Ooops!', 'Looks like you are **BANNED** from the bot!\n\n__Reason:__ `Sending bot commands too fast.`\n\n*You will be unbanned upon the bot restart.* \n*If you believe this is an error, make sure to contact one of the developers (`a.info`).*', 'tools')
             return await embed.send(ctx, dm=False)
             #return await message.channel.send('Your banned from the bot!')
         if message.author.id == 780980594892341288 and (
-                message.content.startswith('n.')
-                or message.content.startswith('N.')
+                message.content.startswith('a.')
+                or message.content.startswith('a.')
                 or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                 return await message.channel.send('Happy living as a weasel. -the devs')
         else:
-            if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
+            if (message.content.startswith('a.') or message.content.startswith('a.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                 if message.author.id not in [ 713352863153258556]:
                     timestamps.append(round(time.time()))
                     authors.append(message.author.id)
@@ -164,17 +164,17 @@ async def on_message(message):
                     if isinstance(e, AttributeError):
                         embed = Embed(
                             '<a:error:800338727645216779>  Error!',
-                            '**Unrecognized command!**\nFor a full list of commands, make sure to use `n.help`.',
+                            '**Unrecognized command!**\nFor a full list of commands, make sure to use `a.help`.',
                             color=0xff0000)
                         await embed.send(ctx)
                         shouldraise = False
                     else:
-                          embed = Embed('<a:error:800338727645216779>  Error!', f'```{e}```\nThe developers have received your error message.\nUse `n.errors` for an explaination on your error.')
+                          embed = Embed('<a:error:800338727645216779>  Error!', f'```{e}```\nThe developers have received your error message.\nUse `a.errors` for an explaination on your error.')
                           await embed.send(ctx)
                     channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
                     channel2 = discord.utils.get(client.get_all_channels(), id = 803938544175284244)
                     '''embed = Embed('__**Command Log**__', str(message.author))
-                    embed.field('__Command__', f'`n.{("".join(list(message.content)[2:]))}`')
+                    embed.field('__Command__', f'`a.{("".join(list(message.content)[2:]))}`')
                     embed.field('__User ID__', f'`{str(message.author.id)}`')
                     embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
                     embed.field('__Guild Name__',f' **{str(message.guild.name)}**')
@@ -196,7 +196,7 @@ async def on_message(message):
                 '''channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
                 channel2 = discord.utils.get(client.get_all_channels(), id = 803938544175284244)
                 embed = Embed('__**Command Log**__', str(message.author), color=0x2ecc71)
-                embed.field('__Command__', f'`n.{("".join(list(message.content)[2:]))}`')
+                embed.field('__Command__', f'`a.{("".join(list(message.content)[2:]))}`')
                 embed.field('__User ID__', f'`{str(message.author.id)}`')
                 embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
                 embed.field('__Guild Name__',f' **{str(message.guild.name)}**')
@@ -221,7 +221,7 @@ async def on_command_error(ctx, error):
     if isinstance(error, commands.CommandNotFound):
         embed = Embed(
             'Error!',
-            '**Unrecognized command!**\nFor a full list of commands, make sure to use `n.help`.',
+            '**Unrecognized command!**\nFor a full list of commands, make sure to use `a.help`.',
             'warning',
             color=0xff0000)
         await embed.send(ctx)
@@ -235,7 +235,7 @@ async def on_guild_join(guild):
     for channel in guild.text_channels:
         if channel.permissions_for(guild.me).send_messages:
             try:
-              embed=Embed('Thanks for inviting me!', 'Thank you for inviting me to your server.\n\n**__FAQ:__**\n\nWho am I?\nI\'m Lacan NTSport, a multi purpose discord bot for the game [nitrotype](https://nitrotype.com/).\n\nWhat\'s my prefix?\nMy prefix is `n.` or `N.`.\n\nHow do I get a list of commands?\nIn order to get a full list of commands make sure to run `n.help`.\n\nHow can you invite me to your server?\nIn order to invite me to your server, run `n.invite`.\n\nWho are my developers?\nI was developed by <@505338178287173642>, <@396075607420567552>, <@637638904513691658>.\n\nWhat\'s premium? How can I get it?\nIn order to learn more about premium, make sure to run `n.premium`.', 'information source')
+              embed=Embed('Thanks for inviting me!', 'Thank you for inviting me to your server.\n\n**__FAQ:__**\n\nWho am I?\nI\'m Lacan NTSport, a multi purpose discord bot for the game [nitrotype](https://nitrotype.com/).\n\nWhat\'s my prefix?\nMy prefix is `a.` or `a.`.\n\nHow do I get a list of commands?\nIn order to get a full list of commands make sure to run `a.help`.\n\nHow can you invite me to your server?\nIn order to invite me to your server, run `a.invite`.\n\nWho are my developers?\nI was developed by <@505338178287173642>, <@396075607420567552>, <@637638904513691658>.\n\nWhat\'s premium? How can I get it?\nIn order to learn more about premium, make sure to run `a.premium`.', 'information source')
               return await embed.send
               break
             except:
