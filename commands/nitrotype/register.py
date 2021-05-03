@@ -38,8 +38,8 @@ class Command(commands.Cog):
         #dbdata = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": dbkey}).text)
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        dbdata = await dbclient.get_big_array(collection, 'registered')
-        for x in dbdata['registered']:
+        dbdata = await dbclient.get_array(collection, {})
+        async for x in dbdata:
             if str(ctx.author.id) == x['userID']:
                 embed = Embed('Error!', 'You\'ve already registered!\nRun `n.verify` to check if you already verified your identity and in case this is a premium :diamond_shape_with_a_dot_inside: server and you are already verified, run `n.update` to update your roles.', 'warning')
                 await embed.send(ctx)

@@ -176,35 +176,36 @@ async def l(compid, category="races"):
         cleanresult.append((t[1], t[2], t[0]))
 
     return ('nothing LMAO', cleanresult)
-async def NT_to_discord(id, bypass_verified=False):
+async def NT_to_discord(id, bypass_verified=False, get_id=False):
     from mongoclient import DBClient
     dbclient = DBClient()
     collection = dbclient.db.NT_to_discord
-    data = await dbclient.get_big_array(collection, 'registered')
-    for elem in data['registered']:
-        if str(id) == elem['userID'] or str(id) == elem['NTuser']:
-            if elem['verified'] == 'true' or bypass_verified:
-                racer = await Racer(elem['NTuser'])
-                return True, racer
-            else:
-                embed = Embed('Error!', 'You\'re not verified yet!', 'warning')
-                return False, embed
+    data = await dbclient.get_array(collection, {'$or': [{'userID': str(id)}, {'NTuser': str(id)}]})
+    async for elem in data:
+        if elem['verified'] == 'true' or bypass_verified:
+            if get_id:
+                return True, elem['userID']
+            racer = await Racer(elem['NTuser'])
+            return True, racer
+        else:
+            embed = Embed('Error!', 'You\'re not verified yet!', 'warning')
+            return False, embed
     else:
         try:
             return True, await Racer(str(id))
         except:
             embed = Embed('Error!', 'Couldn\'t find that user', 'warning')
             return False, embed
-async def get_username(string, bypass=False):
+async def get_username(string, bypass=False, get_id=False):
     string = list(str(string))
     if ''.join(string[:3]) == "<@!":
-        return await NT_to_discord(''.join(string[3:-1]), bypass)
+        return await NT_to_discord(''.join(string[3:-1]), bypass, get_id)
     if ''.join(string[:2]) == "<@":
-        return await NT_to_discord(''.join(string[2:-1]), bypass)
+        return await NT_to_discord(''.join(string[2:-1]), bypass, get_id)
     if len(string) in [17, 18]:
-        return await NT_to_discord(''.join(string), bypass)
+        return await NT_to_discord(''.join(string), bypass, get_id)
     else:
-        return await NT_to_discord(''.join(string), bypass)
+        return await NT_to_discord(''.join(string), bypass, get_id)
 async def check_perms(userid, perms: dict):
     racer = await get_username(userid)
     if racer[0] == False:
@@ -229,8 +230,8 @@ async def check_perms(userid, perms: dict):
 async def verify(ctx):
     dbclient = clientDB()
     collection = dbclient.db.NT_to_discord
-    dbdata = await dbclient.get_big_array(collection, 'registered')
-    for elem in dbdata['registered']:
+    dbdata = await dbclient.get_array(collection, {'userID': str(ctx.author.id)})
+    async for elem in dbdata:
         if elem['userID'] == str(ctx.author.id):
             racer = await Racer(elem['NTuser'])
             if elem['verified'] == 'false':

@@ -72,8 +72,6 @@ class Command(commands.Cog):
         #data = requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text
         #data = json.loads(data)
         dbclient = DBClient()
-        collection = dbclient.db.NT_to_discord
-        data = await dbclient.get_big_array(collection, 'registered')
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for server in pdata['premium']:
@@ -128,10 +126,11 @@ class Command(commands.Cog):
               await user.remove_roles(role)
             except:
               pass  
-        for player in data['registered']:
-            if player['userID'] == str(user.id) and player['verified'] == 'true':
-                ntuser = player['NTuser']
-                break
+        collection = dbclient.db.NT_to_discord
+        data = await dbclient.get_array(collection, {'$and': [{'userID': str(user.id), 'verified': 'true'}]})
+        async for player in data:
+            ntuser = player['NTuser']
+            break
         else:
             embed = Embed('Error!', 'Doesn\'t seem like '+userid+' is registered!', 'warning')
             return await embed.send(ctx)

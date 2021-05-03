@@ -9,6 +9,7 @@ import datetime
 from datetime import date
 import random
 from mongoclient import DBClient
+from nitrotype import get_username
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -57,8 +58,6 @@ class Command(commands.Cog):
         #data = requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text
         #data = json.loads(data)
         dbclient = DBClient()
-        collection = dbclient.db.NT_to_discord
-        data = await dbclient.get_big_array(collection, 'registered')
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for server in pdata['premium']:
@@ -79,15 +78,13 @@ class Command(commands.Cog):
             if name in listofroles or name in teamswithroles:
                 role = get(ctx.message.guild.roles, id=role.id)
                 await ctx.author.remove_roles(role)
-        for player in data['registered']:
-            if player['userID'] == str(ctx.author.id) and player['verified'] == 'true':
-                ntuser = player['NTuser']
-                break
+        success, ntuser = await get_username(str(ctx.author.id))
+        if success:
+            pass
         else:
             embed = Embed('Error!', 'Doesn\'t seem like you\'re registered!', 'warning')
             return await embed.send(ctx)
-        racer = await Racer(ntuser)
-      
+        racer = ntuser
         if ctx.author.id in [505338178287173642]:
             #T2W4G's Speed Role
             listofroles = thelistofroles[2]

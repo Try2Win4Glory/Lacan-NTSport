@@ -154,10 +154,12 @@ async def on_message(message):
                 #print(f"{message.content} | {message.author.id} | {str(message.author)} | {message.guild.id} | {str(message.guild)}")
                 async with message.channel.typing():
                     await asyncio.sleep(random.uniform(0.05, 0.1))
+                return await client.process_commands(message)
                 try:
                     ctx = await client.get_context(message)
                     await ctx.command.invoke(ctx)
                 except Exception as e:
+                    raise e
                     shouldraise = True
                     if isinstance(e, AttributeError):
                         embed = Embed(

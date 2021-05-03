@@ -38,8 +38,8 @@ class Command(commands.Cog):
     async def get_user_cred(self, userid):
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        data = await dbclient.get_big_array(collection, 'registered')
-        for user in data['registered']:
+        data = await dbclient.get_array(collection, {})
+        async for user in data:
             if user['userID'] == str(userid):
                 return user['NTuser'], await self.decrypt(user['password'])
 
