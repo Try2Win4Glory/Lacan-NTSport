@@ -49,11 +49,11 @@ class Command(commands.Cog):
                         await embed.send(ctx)
                         return
         else:
-            dbdata['registered'].append({"userID": str(ctx.author.id), "NTuser": racer.username.lower(), "verified": "false"})
+            await dbclient.create_doc(collection, {"userID": str(ctx.author.id), "NTuser": racer.username.lower(), "verified": "false"})
             #if json.loads(requests.post('https://test-db.nitrotypers.repl.co', data={"key": dbkey, "data": json.dumps(dbdata)}).text)['success'] == 'true':
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        await dbclient.update_big_array(collection, 'registered', dbdata)
+        #await dbclient.update_big_array(collection, 'registered', dbdata)
         embed = Embed('Success!', 'You are now registered to `' + racer.username.lower() + '`. Type `n.verify` to verify your ownership!', 'white_check_mark')
         await embed.send(ctx)
 def setup(client):
