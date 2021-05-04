@@ -8,7 +8,7 @@ import os
 import json
 import random, copy
 from mongoclient import DBClient
-from nitrotype import verify
+from nitrotype import verify, verify_race
 import aiohttp
 class Command(commands.Cog):
 
@@ -16,18 +16,19 @@ class Command(commands.Cog):
         self.client = client
     async def fetch(self, session, url, method='POST', data=None):
         if method == 'POST':
-            async with session.post(url) as response:
+            async with session.post(url, data=data) as response:
                 return await response.text()
         if method == 'GET':
             async with session.get(url) as response:
                 return await response.text()
     @commands.command()
-    async def verify(self, ctx, type="race"):
+    async def verify(self, ctx, type="friend"):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         if type == 'car':
             return await verify(ctx)
         if type == 'race':
-            #return await ctx.send('**Your** security is important for **us**! Because of security reasons, this command has been taken down and will be back soon. Thanks for your understanding.')
+            return await verify_race(ctx)
+        if type == 'friend':
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
             dbdata = await dbclient.get_array(collection, {})
@@ -36,47 +37,35 @@ class Command(commands.Cog):
                 if elem['userID'] == str(ctx.author.id):
                     if elem['verified'] == 'false':
                         username = elem['NTuser']
-                        embed = Embed(':clipboard:  Verify your Identity!', f'Join the race to verify **{username}** is owned by you. You don\'t own **{username}**? Run `n.unregister` to unlink your discord from this account.')
-                        embed.field('__Instructions__', 'Once you join the race, the race leader will leave and you just have to type `n.verify` again to verify. If this does not work after several times typing `n.verify`, please try unregistering and registering again.')
-                        embed.field('__Short instructions__', '**1.** Run `n.verify`\n**2.** Join the race track shown under the link category.\n**3.** Run `n.verify` again.')
-                        embed.field('__Common errors__', 'Is the race leader not joining the race? Run `n.verify` again and refresh your page, after maximal **5** times running the command, the race leader joins and you can attempt to verify.')
-                        embed.field('__Link__', 'Join [this](https://www.nitrotype.com/race/lacanverification) race to verify your identity.')
-                        await embed.send(ctx)
+                        embed = Embed(':clipboard:  Verify your Identity!', 'Friend me on nitrotype! [:link:](https://www.nitrotype.com/racer/lacanverification')
                         elem['verifyCar'] = None
                         elem['verified'] = 'in progress'
                         dbclient = DBClient()
                         collection = dbclient.db.NT_to_discord
                         await dbclient.update_array(collection, old, elem)
-                        async with aiohttp.ClientSession() as s:
-                            await self.fetch(s,'https://Lacan-Verification.try2win4code.repl.co')
-                        break
+                        return await embed.send(ctx)
                     if elem['verified'] == 'in progress':
-                        async with aiohttp.ClientSession() as s:
-                            response = await self.fetch(s,'https://Lacan-Verification.try2win4code.repl.co', method='GET')
-
-                        data = json.loads(response)
-                        if elem['NTuser'] in data['verified']:
+                        async with aiohttp.ClientSession() as session:
+                            await self.fetch(session, 'https://www.nitrotype.com/api/login', data={'username': os.getenv('verification_username'), 'password': os.getenv('verification_password')})
+                            friends = await self.fetch(session, 'https://www.nitrotype.com/api/friend-requests', method='GET')
+                            friends = json.loads(friends)
+                            for friend in friends['data']['requests']:
+                                if friend['username'] == elem['NTuser']:
+                                    break
+                            else:
+                                embed = Embed('Nearly there!', 'You did not friend request me! Here is my link! Click [here](https://www.nitrotype.com/racer/lacanverification)')
+                                return await embed.send(ctx)
                             elem['verified'] = 'true'
                             dbclient = DBClient()
                             await dbclient.update_array(collection, old, elem)
                             embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server do `n.update` to update your roles.')
-                            await embed.send(ctx)
-                            break
-                        else:
-                            username = elem['NTuser']
-                            embed = Embed('Nearly there!', f'You\'re nearly done - just one more step to go!\nYou are just about to verify your ownership for **{username}**. Not you? Run `n.unregister` to unlink your discord from this account.', 'warning')
-                            embed.field('__Instructions__', 'Please join the race and run `n.verify` again.')
-                            embed.field('__Common errors__', 'Is the race leader not joining the race? Run `n.verify` again and refresh your page, after maximal **5** times running the command, the race leader joins and you can attempt to verify.')
-                            embed.field('__Link__', 'Join [this](https://www.nitrotype.com/race/lacanverification) race to verify your identity.')
-                            await embed.send(ctx)
-                            async with aiohttp.ClientSession() as s:
-                                await self.fetch(s,'https://Lacan-Verification.try2win4code.repl.co')
-                            break
+                            return await embed.send(ctx)
                     if elem['verified'] == 'true':
                         embed = Embed('Error!', 'You are already verified :rofl:', 'joy')
                         return await embed.send(ctx)
             else:
                 embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
-                await embed.send(ctx)
+                return await embed.send(ctx)
+        
 def setup(client):
     client.add_cog(Command(client))
