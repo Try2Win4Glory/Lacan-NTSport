@@ -7,6 +7,7 @@ from datetime import date
 from random import randint, choice
 from packages.misc import format_number as fn
 import aiohttp
+import math
 async def fetch(session, url):
     async with session.get(url) as response:
         return await response.text()
@@ -948,6 +949,44 @@ class RacerClass:
                 self.season_speed = 0
                 self.season_accuracy = 0
                 self.season_points = 0
+            self.speed_rounded = int(math.floor(int(self.wpm_average)/10)*10)
+            if self.speed_rounded > 220:
+                self.speed_role = '220+ WPM'
+            else:
+                self.speed_role = f'{str(self.speed_rounded)}-{str(self.speed_rounded+9)} WPM'
+            try:
+                accuracy = int(round(self.season_accuracy, 1))
+            except:
+                accuracy = int(round(self.daily_accuracy, 1))
+            accuracy_roles = [">99% Accuracy", "99% Accuracy", "98% Accuracy", "97% Accuracy", "96% Accuracy", "94-95% Accuracy", "90-93% Accuracy", "87-89% Accuracy", "84-86% Accuracy", "80-83% Accuracy", "75-79% Accuracy", "<75% Accuracy"]
+            for role in accuracy_roles:
+                if '>' in role and accuracy > 99:
+                    self.accuracy_role = '>99% Accuracy'
+                    break
+                if '-' in role.split('%')[0]:
+                    new_role = role.split('%')[0].split('-')
+                    the_range = range(int(new_role[0]), int(new_role[1]))
+                    if math.floor(accuracy) in the_range:
+                        self.accuracy_role = role
+                        break
+                    continue
+                if '<' in role and accuracy < 75:
+                    self.accuracy_role = "<75% Accuracy"
+                    break
+                else:
+                    new_role = role.split('%')
+                    if math.floor(accuracy) == int(new_role[0].replace('>', '').replace('<', '')):
+                        self.accuracy_role = role
+                        break
+            self.race_roles = ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
+            self.race_zones = [(int(x.split('+')[0]),) if '+' in x else range(int(x.split('-')[0].strip().replace(' Races', '')), int(x.split('-')[1].strip().replace(' Races', ''))) for x in self.race_roles]
+            index = 0
+            races = newdata['racesPlayed']
+            for zone in self.race_zones:
+                if int(races) in zone:
+                    self.race_role = self.race_roles[index]
+                    break
+                index += 1
             self.friend_reqs_allowed = ':white_check_mark: ' if newdata['allowFriendRequests'] == 1 else ':negative_squared_cross_mark:'
             self.looking_for_team = ':white_check_mark: ' if newdata['lookingForTeam'] == 1 else ':negative_squared_cross_mark:'
 async def Racer(username):
