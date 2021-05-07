@@ -27,7 +27,6 @@ class Command(commands.Cog):
             505338178287173642,
           #adl212
             396075607420567552,
-<<<<<<< HEAD
             663893592003182602,
             485662574176632833,
             433411533079314443,
@@ -36,11 +35,6 @@ class Command(commands.Cog):
             710179321653756077,
             398643731466551307
         ] and not bypass:
-=======
-          #Nate Dogg
-            630761745140547625
-          ] and bypass == False:
->>>>>>> master
         
             embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to register a user in this way when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
 

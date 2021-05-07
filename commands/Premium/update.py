@@ -174,7 +174,6 @@ class Command(commands.Cog):
             role = get(ctx.message.guild.roles, name='Registered')
             try:
                 roles_to_add.append(role)
-            
             except Exception:
                 embed = Embed('Error!', 'The bot is not able to update your roles. Make sure I have the `Manage Roles` permission, am ranked higher than that roles and you did a season race yet.')
                 await embed.send(ctx)
