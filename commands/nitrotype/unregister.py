@@ -59,16 +59,20 @@ class Command(commands.Cog):
         async for x in dbdata:
             if str(ctx.author.id) == x['userID']:
                 if premiumserver:
+                    roles_to_remove = []
                     for role in (ctx.author.roles):
                         name = role.name
                         if name in thelistofroles or name in teamswithroles:
                             role = get(ctx.message.guild.roles, id=role.id)
-                            await ctx.author.remove_roles(role)
-                        try:
-                          role = get(ctx.message.guild.roles, name='Unregistered')
-                          await ctx.author.add_roles(role)
-                        except:
-                          pass  
+                            roles_to_remove.append(role)
+                    if roles_to_remove != []:
+                        await ctx.author.remove_roles(roles_to_remove)
+                    try:
+                        role = get(ctx.message.guild.roles, name='Unregistered')
+                        await ctx.author.add_roles(role)
+                    except:
+                        pass 
+                print('yes') 
                 await collection.delete_one(x)
                 embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
                

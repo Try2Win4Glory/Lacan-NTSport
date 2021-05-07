@@ -1,4 +1,3 @@
-
 '''Verify your account ownership after registering!'''
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
