@@ -14,8 +14,8 @@ async def compileRawGarageAsync(username):
     #print(r.html.html)
     html = re.sub('&quot;', '', r.html.html)
     soup = BeautifulSoup(html, 'html.parser')
-    with open('test.html', 'w') as f:
-        f.write(soup.prettify())
+    '''with open('test.html', 'w') as f:
+        f.write(soup.prettify())'''
     parent = (soup.find('div', class_='garage'))
     children = (parent.findChildren('div', class_='garage-spot'))
     for child in children:
