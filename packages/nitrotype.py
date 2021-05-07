@@ -949,6 +949,7 @@ class RacerClass:
                 self.season_speed = 0
                 self.season_accuracy = 0
                 self.season_points = 0
+
             self.speed_rounded = int(math.floor(int(self.wpm_average)/10)*10)
             if self.speed_rounded > 220:
                 self.speed_role = '220+ WPM'
