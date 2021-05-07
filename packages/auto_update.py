@@ -41,8 +41,11 @@ class AutoUpdate(commands.Cog):
                 continue
             endcomptime = data['other']['endcomptime']
             if round(time.time()) < endcomptime:
-                await nitrotype.update_comp(compid)
-                continue
+              try:
+                  await nitrotype.update_comp(compid)
+                  continue
+              except:
+                pass
             elif round(time.time()) >= endcomptime:
                 await nitrotype.update_comp(str(compid))
                 lb = await nitrotype.l(str(compid))
