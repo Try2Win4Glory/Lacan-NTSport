@@ -73,11 +73,13 @@ class Command(commands.Cog):
               embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \n⚙️This command is a premium 💠 only command.⚙️', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
             
             return await embed.send(ctx)
+        roles_to_remove = []
         for role in (ctx.author.roles):
             name = role.name
             if name in listofroles or name in teamswithroles:
                 role = get(ctx.message.guild.roles, id=role.id)
-                await ctx.author.remove_roles(role)
+                roles_to_remove.append(role)
+        await ctx.author.remove_roles(*roles_to_remove)
         success, ntuser = await get_username(str(ctx.author.id))
         if success:
             pass
@@ -86,27 +88,29 @@ class Command(commands.Cog):
             return await embed.send(ctx)
         racer = ntuser
         if ctx.author.id in [505338178287173642]:
+            roles_to_add = []
             #T2W4G's Speed Role
             listofroles = thelistofroles[2]
             role = get(ctx.message.guild.roles,
             name=listofroles[12])
-            await ctx.author.add_roles(role)
+            roles_to_add.append(role)
             #T2W4G's Accuracy Role
             listofroles = thelistofroles[1]
             role = get(ctx.message.guild.roles,
             name=listofroles[0])
-            await ctx.author.add_roles(role)
+            roles_to_add.append(role)
             #T2W4G's Races Role
             listofroles = thelistofroles[3]
             role = get(ctx.message.guild.roles,
             name=listofroles[8])
-            await ctx.author.add_roles(role)
+            roles_to_add.append(role)
             #T2W4G's Gold Member Role
             role = get(ctx.message.guild.roles, name="Gold Member")
-            await ctx.author.add_roles(role)
+            roles_to_add.append(role)
             #T2W4G's Registered Role
             role = get(ctx.message.guild.roles, name='Registered')
-            await ctx.author.add_roles(role)
+            roles_to_add.append(role)
+            #await ctx.author.add_roles(roles_to_add)
             #Add role
             '''role = get(ctx.message.guild.roles, name='Moderator')
             await ctx.author.add_roles(role)
@@ -155,185 +159,22 @@ class Command(commands.Cog):
             return
             
         else:
-            wpm = int(racer.wpm_average)
-            listofroles = thelistofroles[2]
-            if wpm > 220:
-                role = get(ctx.message.guild.roles, name=listofroles[0])
-                await ctx.author.add_roles(role)
-            elif wpm > 210:
-                role = get(ctx.message.guild.roles, name=listofroles[1])
-                await ctx.author.add_roles(role)
-            elif wpm > 200:
-                role = get(ctx.message.guild.roles, name=listofroles[2])
-                await ctx.author.add_roles(role)
-            elif wpm > 190:
-                role = get(ctx.message.guild.roles, name=listofroles[3])
-                await ctx.author.add_roles(role)
-            elif wpm > 180:
-                role = get(ctx.message.guild.roles, name=listofroles[4])
-                await ctx.author.add_roles(role)
-            elif wpm > 170:
-                role = get(ctx.message.guild.roles, name=listofroles[5])
-                await ctx.author.add_roles(role)
-            elif wpm > 160:
-                role = get(ctx.message.guild.roles, name=listofroles[6])
-                await ctx.author.add_roles(role)
-            elif wpm > 150:
-                role = get(ctx.message.guild.roles, name=listofroles[7])
-                await ctx.author.add_roles(role)
-            elif wpm > 140:
-                role = get(ctx.message.guild.roles, name=listofroles[8])
-                await ctx.author.add_roles(role)
-            elif wpm > 130:
-                role = get(ctx.message.guild.roles, name=listofroles[9])
-                await ctx.author.add_roles(role)
-            elif wpm > 120:
-                role = get(ctx.message.guild.roles, name=listofroles[10])
-                await ctx.author.add_roles(role)
-            elif wpm > 110:
-                role = get(ctx.message.guild.roles, name=listofroles[11])
-                await ctx.author.add_roles(role)
-            elif wpm > 100:
-                role = get(ctx.message.guild.roles, name=listofroles[12])
-                await ctx.author.add_roles(role)
-            elif wpm > 90:
-                role = get(ctx.message.guild.roles, name=listofroles[13])
-                await ctx.author.add_roles(role)
-            elif wpm > 80:
-                role = get(ctx.message.guild.roles, name=listofroles[14])
-                await ctx.author.add_roles(role)
-            elif wpm > 70:
-                role = get(ctx.message.guild.roles, name=listofroles[15])
-                await ctx.author.add_roles(role)
-            elif wpm > 60:
-                role = get(ctx.message.guild.roles, name=listofroles[16])
-                await ctx.author.add_roles(role)
-            elif wpm > 50:
-                role = get(ctx.message.guild.roles, name=listofroles[17])
-                await ctx.author.add_roles(role)
-            elif wpm > 40:
-                role = get(ctx.message.guild.roles, name=listofroles[18])
-                await ctx.author.add_roles(role)
-            elif wpm > 30:
-                role = get(ctx.message.guild.roles, name=listofroles[19])
-                await ctx.author.add_roles(role)
-            elif wpm > 20:
-                role = get(ctx.message.guild.roles, name=listofroles[20])
-                await ctx.author.add_roles(role)
-            elif wpm > 10:
-                role = get(ctx.message.guild.roles, name=listofroles[21])
-                await ctx.author.add_roles(role)
-            elif wpm > 1:
-                role = get(ctx.message.guild.roles, name=listofroles[22])
-                await ctx.author.add_roles(role)
-                
-            try:
-                accuracy = int(round(racer.season_accuracy))
-            except:
-                accuracy = int(round(racer.daily_accuracy))
-            listofroles = thelistofroles[1]
-            if accuracy > 99:
-                role = get(ctx.message.guild.roles, name=listofroles[0])
-                await ctx.author.add_roles(role)
-            elif accuracy == 99:
-                role = get(ctx.message.guild.roles, name=listofroles[1])
-                await ctx.author.add_roles(role)
-            elif accuracy == 98:
-                role = get(ctx.message.guild.roles, name=listofroles[2])
-                await ctx.author.add_roles(role)
-            elif accuracy == 97:
-                role = get(ctx.message.guild.roles, name=listofroles[3])
-                await ctx.author.add_roles(role)
-            elif accuracy == 96:
-                role = get(ctx.message.guild.roles, name=listofroles[4])
-                await ctx.author.add_roles(role)
-            elif accuracy >= 94:
-                role = get(ctx.message.guild.roles, name=listofroles[5])
-                await ctx.author.add_roles(role)
-            elif accuracy >= 90:
-                role = get(ctx.message.guild.roles, name=listofroles[6])
-                await ctx.author.add_roles(role)
-            elif accuracy >= 87:
-                role = get(ctx.message.guild.roles, name=listofroles[7])
-                await ctx.author.add_roles(role)
-            elif accuracy >= 84:
-                role = get(ctx.message.guild.roles, name=listofroles[8])
-                await ctx.author.add_roles(role)
-            elif accuracy >= 80:
-                role = get(ctx.message.guild.roles, name=listofroles[9])
-                await ctx.author.add_roles(role)
-            elif accuracy > 75:
-                role = get(ctx.message.guild.roles, name=listofroles[10])
-                await ctx.author.add_roles(role)
-            else:
-                role = get(ctx.message.guild.roles, name=listofroles[11])
-                await ctx.author.add_roles(role)
-
-            races = int(racer.races.replace(',', ''))
-            listofroles = thelistofroles[3]
-            print(listofroles[13])
-            if int(races) > 500000:
-                role = get(ctx.message.guild.roles, name=listofroles[0])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 250000:
-                role = get(ctx.message.guild.roles, name=listofroles[1])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 200000:
-                role = get(ctx.message.guild.roles, name=listofroles[2])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 150000:
-                role = get(ctx.message.guild.roles, name=listofroles[3])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 100000:
-                role = get(ctx.message.guild.roles, name=listofroles[4])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 75000:
-                role = get(ctx.message.guild.roles, name=listofroles[5])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 50000:
-                role = get(ctx.message.guild.roles, name=listofroles[6])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 40000:
-                role = get(ctx.message.guild.roles, name=listofroles[7])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 30000:
-                role = get(ctx.message.guild.roles, name=listofroles[8])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 20000:
-                role = get(ctx.message.guild.roles, name=listofroles[9])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 10000:
-                role = get(ctx.message.guild.roles, name=listofroles[10])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 5000:
-                role = get(ctx.message.guild.roles, name=listofroles[11])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 3000:
-                role = get(ctx.message.guild.roles, name=listofroles[12])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 1000:
-                role = get(ctx.message.guild.roles, name=listofroles[13])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 500:
-                role = get(ctx.message.guild.roles, name=listofroles[14])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 100:
-                role = get(ctx.message.guild.roles, name=listofroles[15])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 50:
-                role = get(ctx.message.guild.roles, name=listofroles[16])
-                await ctx.author.add_roles(role)
-            elif int(races) >= 0:
-                role = get(ctx.message.guild.roles, name=listofroles[17])
-                await ctx.author.add_roles(role)
-          
+            roles_to_add = []
+            role = get(ctx.message.guild.roles, name=racer.speed_role)
+            roles_to_add.append(role)
+            role = get(ctx.message.guild.roles, name=racer.accuracy_role)
+            roles_to_add.append(role)
+            role = get(ctx.message.guild.roles, name=racer.race_role)
+            roles_to_add.append(role)
+            
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
-                await ctx.author.add_roles(role)
+                roles_to_add.append(role)
 
             role = get(ctx.message.guild.roles, name='Registered')
             try:
-                await ctx.author.add_roles(role)
+                roles_to_add.append(role)
+
             except Exception:
                 embed = Embed('Error!', 'The bot is not able to update your roles. Make sure I have the `Manage Roles` permission, am ranked higher than that roles and you did a season race yet.')
                 await embed.send(ctx)
@@ -343,19 +184,19 @@ class Command(commands.Cog):
                 try:
                     guild=ctx.author.guild
                     role = get(ctx.message.guild.roles, name=f'{racer.tag}')
-                    await ctx.author.add_roles(role)
+                    roles_to_add.append(role)
                     print('pog')
                 except:
                     guild=ctx.author.guild
                     await guild.create_role(name=racer.tag)
                     role = get(ctx.message.guild.roles, name=f'{racer.tag}')
-                    await ctx.author.add_roles(role)
+                    roles_to_add.append(role)
                     print('created')
             else:
                 #embed=Embed('Error!', 'Team tag: '+racer.tag+'', 'warning')
                 #return await embed.send(ctx)
                  pass
-
+            await ctx.author.add_roles(*roles_to_add)
             try:
               role = get(ctx.message.guild.roles, name='Unregistered')
               await ctx.author.remove_roles(role)
