@@ -1,4 +1,5 @@
 from requests import get, post
+import aiocfscrape
 from bs4 import BeautifulSoup
 from re import findall
 from json import loads
@@ -8,6 +9,8 @@ from random import randint, choice
 from packages.misc import format_number as fn
 import aiohttp
 import math
+import cloudscraper
+import functools, asyncio
 async def fetch(session, url):
     async with session.get(url) as response:
         return await response.text()
@@ -515,7 +518,9 @@ class NewsClass:
     def __init__(self):
         return
     async def create_attr(self):
-        async with aiohttp.ClientSession() as session:
+        '''scraper = cloudscraper.create_scraper()
+        raw_data = loads(scraper.get('https://www.nitrotype.com/api/news').text)'''
+        async with aiocfscrape.CloudflareScraper() as session:
             raw_data = loads(await api_get('news', session))
 
         if not raw_data['success']:
@@ -776,8 +781,12 @@ class RacerClass:
             return
 
         newdata = {}
-        async with aiohttp.ClientSession() as session:
-            response = await self.fetch(session, f'https://www.nitrotype.com/racer/{racer}')
+        '''async with aiocfscrape.CloudflareScraper() as session:
+            response = await self.fetch(session, f'https://www.nitrotype.com/racer/{racer}')'''
+        loop = asyncio.get_running_loop()
+        scraper = cloudscraper.create_scraper()
+        fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/racer/{racer}'))
+        response = fut.text
         newdata = json.loads('{"'+re.search(r'RACER_INFO: \{\"(.*)\}', response.strip()).group(1)+'}')
         self.newdata = newdata
         #print(newdata)
@@ -1065,8 +1074,10 @@ class TeamClass:
     async def create_attr(self):
         team = self.team
         try:
-            async with aiohttp.ClientSession() as session:
+            async with aiocfscrape.CloudflareScraper() as session:
                 self.data = loads(await api_get(f'teams/{team}', session))
+            '''scraper = cloudscraper.create_scraper()
+            self.data = loads(scraper.get(f'https://www.nitrotype.com/api/teams/{team}').text)'''
             self.success = True
             if self.data['success'] == False:
                 self.success = False
