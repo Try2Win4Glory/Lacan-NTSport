@@ -4,12 +4,15 @@ from re import findall
 from requests import get
 import json
 import aiohttp
-import os, copy, random
+import aiocfscrape
+import os, copy, random, asyncio
 import time
 from compsmongo import DBClient
 from mongoclient import DBClient as clientDB
 from packages.nitrotype import Racer, Team, cars
 from packages.utils import Embed
+import cloudscraper
+import functools
 def player_data(racer):
     newdata = {}
     response = get(f'https://www.nitrotype.com/racer/{racer}').content
@@ -22,10 +25,18 @@ def player_data(racer):
 async def fetch(session, url):
     async with session.get(url) as response:
         return await response.text()
-
-async def create_comp(team, compid, endcomptime, authorid):
-    async with aiohttp.ClientSession() as session:
-        page = await fetch(session, f'https://www.nitrotype.com/api/teams/{team}')
+async def team_data(team, async_cloudflare=True):
+    if async_cloudflare:
+        async with aiocfscrape.CloudflareScraper() as session:
+            page = await fetch(session, f'https://www.nitrotype.com/api/teams/{team}')
+            return page
+    else:
+        loop = asyncio.get_running_loop()
+        scraper = cloudscraper.create_scraper()
+        fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/api/teams/{team}'))
+        return fut.text
+async def create_comp(team, compid, endcomptime, authorid, async_cloudflare=True):
+    page = await team_data(team, async_cloudflare)
     info = json.loads(page)
     dbclient = DBClient()
     data = {
@@ -74,7 +85,7 @@ async def create_comp(team, compid, endcomptime, authorid):
     await dbclient.create_doc(dbclient.db.test, data['data'])
     return True
 
-async def update_comp(compid):
+async def update_comp(compid, async_cloudflare=False):
     dbclient = DBClient()
     collection = dbclient.db['test']
     data = await dbclient.get_array(collection, {'$and': [{'compid': compid}, {'compid': compid}]})
@@ -86,8 +97,7 @@ async def update_comp(compid):
     team = other['team']
     if round(time.time()) >= other['endcomptime']:
         return
-    async with aiohttp.ClientSession() as session:
-        page = await fetch(session, f'https://www.nitrotype.com/api/teams/{team}')
+    page = await team_data(team, async_cloudflare)
     info = json.loads(page)
     try:
         for user in players:

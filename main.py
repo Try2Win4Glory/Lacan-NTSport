@@ -383,6 +383,7 @@ async def on_raw_reaction_remove(payload):
         return
     await dbclient.update_array(collection, old, user)
 #system('clear')
-start_server()
-print('Server is ready')
-client.run(getenv('TOKEN'))
+if __name__ == '__main__':
+    start_server()
+    print('Server is ready')
+    client.run(getenv('TOKEN'))
