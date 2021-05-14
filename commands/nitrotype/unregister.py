@@ -66,7 +66,7 @@ class Command(commands.Cog):
                             role = get(ctx.message.guild.roles, id=role.id)
                             roles_to_remove.append(role)
                     if roles_to_remove != []:
-                        await ctx.author.remove_roles(roles_to_remove)
+                        await ctx.author.remove_roles(*roles_to_remove)
                     try:
                         role = get(ctx.message.guild.roles, name='Unregistered')
                         await ctx.author.add_roles(role)
