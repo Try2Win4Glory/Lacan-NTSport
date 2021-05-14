@@ -33,15 +33,6 @@ class Command(commands.Cog):
           #Try2Win4Glory
             505338178287173642,
           #adl212
-            396075607420567552,
-            663893592003182602,
-            485662574176632833,
-            433411533079314443,
-            740619181942243470,
-            630761745140547625,
-            710179321653756077,
-            398643731466551307
-
         ] and not bypass:
         
             embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to register a user in this way when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
