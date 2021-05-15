@@ -25,3 +25,4 @@ parse
 pandas
 discord
 pymongo
+pillow
