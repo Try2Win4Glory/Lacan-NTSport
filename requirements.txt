@@ -19,7 +19,6 @@ praw
 w3lib
 cloudscraper
 pyppeteer
-keras
 motor
 parse
 pandas
@@ -27,4 +26,3 @@ discord
 pymongo
 pillow
 matplotlib
-tensorflow
