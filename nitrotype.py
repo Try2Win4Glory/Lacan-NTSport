@@ -35,7 +35,7 @@ async def team_data(team, async_cloudflare=True):
         scraper = cloudscraper.create_scraper()
         fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/api/teams/{team}'))
         return fut.text
-async def create_comp(team, compid, endcomptime, authorid, async_cloudflare=True):
+async def create_comp(team, compid, endcomptime, authorid, async_cloudflare=False):
     page = await team_data(team, async_cloudflare)
     info = json.loads(page)
     dbclient = DBClient()

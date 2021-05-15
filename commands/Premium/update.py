@@ -18,7 +18,6 @@ class Command(commands.Cog):
     @commands.command()
     async def update(self, ctx):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
-        
       #Define Time variables
         #Variables = date(year, month, day)
         d1 = date(2021, 4, 1)
@@ -110,7 +109,7 @@ class Command(commands.Cog):
             #T2W4G's Registered Role
             role = get(ctx.message.guild.roles, name='Registered')
             roles_to_add.append(role)
-            #await ctx.author.add_roles(roles_to_add)
+            await ctx.author.add_roles(*roles_to_add)
             #Add role
             '''role = get(ctx.message.guild.roles, name='Moderator')
             await ctx.author.add_roles(role)
