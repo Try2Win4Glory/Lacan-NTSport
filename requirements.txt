@@ -27,3 +27,4 @@ discord
 pymongo
 pillow
 matplotlib
+tensorflow
