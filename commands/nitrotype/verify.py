@@ -9,6 +9,9 @@ import random, copy
 from mongoclient import DBClient
 from nitrotype import verify, verify_race
 import aiohttp
+import cloudscraper
+import asyncio
+import functools
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -44,21 +47,23 @@ class Command(commands.Cog):
                         await dbclient.update_array(collection, old, elem)
                         return await embed.send(ctx)
                     if elem['verified'] == 'in progress':
-                        async with aiohttp.ClientSession() as session:
-                            await self.fetch(session, 'https://www.nitrotype.com/api/login', data={'username': os.getenv('verification_username'), 'password': os.getenv('verification_password')})
-                            friends = await self.fetch(session, 'https://www.nitrotype.com/api/friend-requests', method='GET')
-                            friends = json.loads(friends)
-                            for friend in friends['data']['requests']:
-                                if friend['username'] == elem['NTuser']:
-                                    break
-                            else:
-                                embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/lacanverification) and friend request me. \nAfter that make sure to run `n.verify` again.')
-                                return await embed.send(ctx)
-                            elem['verified'] = 'true'
-                            dbclient = DBClient()
-                            await dbclient.update_array(collection, old, elem)
-                            embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server do `n.update` to update your roles.')
+                        session = cloudscraper.create_scraper()
+                        loop = asyncio.get_event_loop()
+                        fut = await loop.run_in_executor(None, functools.partial(session.post, 'https://www.nitrotype.com/api/login', data={'username': os.getenv('verification_username'), 'password': os.getenv('verification_password')}))
+                        fut = await loop.run_in_executor(None, functools.partial(session.get, 'https://www.nitrotype.com/api/friend-requests'))
+                        friends = json.loads(fut.text)
+                        
+                        for friend in friends['data']['requests']:
+                            if friend['username'] == elem['NTuser']:
+                                break
+                        else:
+                            embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/lacanverification) and friend request me. \nAfter that make sure to run `n.verify` again.')
                             return await embed.send(ctx)
+                        elem['verified'] = 'true'
+                        dbclient = DBClient()
+                        await dbclient.update_array(collection, old, elem)
+                        embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server do `n.update` to update your roles.')
+                        return await embed.send(ctx)
                     if elem['verified'] == 'true':
                         embed = Embed('Error!', 'You are already verified :rofl:', 'joy')
                         return await embed.send(ctx)
