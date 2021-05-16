@@ -1080,7 +1080,7 @@ class TeamClass:
                 self.data = loads(await api_get(f'teams/{team}', session))'''
             loop = asyncio.get_running_loop()
             scraper = cloudscraper.create_scraper()
-            fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/teams/{team}'))
+            fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/api/teams/{team}'))
             self.data = json.loads(fut.text)
             self.success = True
             if self.data['success'] == False:
