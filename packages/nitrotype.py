@@ -518,10 +518,12 @@ class NewsClass:
     def __init__(self):
         return
     async def create_attr(self):
-        '''scraper = cloudscraper.create_scraper()
-        raw_data = loads(scraper.get('https://www.nitrotype.com/api/news').text)'''
-        async with aiocfscrape.CloudflareScraper() as session:
-            raw_data = loads(await api_get('news', session))
+        loop = asyncio.get_running_loop()
+        scraper = cloudscraper.create_scraper()
+        fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/api/news'))
+        raw_data = json.loads(fut.text)
+        '''async with aiocfscrape.CloudflareScraper() as session:
+            raw_data = loads(await api_get('news', session))'''
 
         if not raw_data['success']:
             raise Exception("News couldn't be fetched")
@@ -1074,10 +1076,12 @@ class TeamClass:
     async def create_attr(self):
         team = self.team
         try:
-            async with aiocfscrape.CloudflareScraper() as session:
-                self.data = loads(await api_get(f'teams/{team}', session))
-            '''scraper = cloudscraper.create_scraper()
-            self.data = loads(scraper.get(f'https://www.nitrotype.com/api/teams/{team}').text)'''
+            '''async with aiocfscrape.CloudflareScraper() as session:
+                self.data = loads(await api_get(f'teams/{team}', session))'''
+            loop = asyncio.get_running_loop()
+            scraper = cloudscraper.create_scraper()
+            fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/teams/{team}'))
+            self.data = json.loads(fut.text)
             self.success = True
             if self.data['success'] == False:
                 self.success = False
