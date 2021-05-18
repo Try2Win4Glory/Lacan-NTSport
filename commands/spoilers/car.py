@@ -17,7 +17,7 @@ class Command(commands.Cog):
           print('not replaced')
           pass
         text = requests.get('https://www.nitrotype.com/index/d8dad03537419610ef21782a075dde2d94c465c61266-1266/bootstrap.js').text
-        result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+,\"name\":\".{10,35}\",\"options\":\{.{20,80}\}.{1,100}\}.*\]', text).group()
+        result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+.*\]', text).group()
         data = json.loads('{"list": '+''.join(list(result)[:-1])+'}')
         for elem in data['list']:
             for v in elem.values():
