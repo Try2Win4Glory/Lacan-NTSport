@@ -165,7 +165,6 @@ class Command(commands.Cog):
             roles_to_add.append(role)
             role = get(ctx.message.guild.roles, name=racer.race_role)
             roles_to_add.append(role)
-            
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
                 roles_to_add.append(role)
@@ -194,7 +193,7 @@ class Command(commands.Cog):
             else:
                 #embed=Embed('Error!', 'Team tag: '+racer.tag+'', 'warning')
                 #return await embed.send(ctx)
-                 pass
+                pass
             await ctx.author.add_roles(*roles_to_add)
             try:
               role = get(ctx.message.guild.roles, name='Unregistered')
