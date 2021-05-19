@@ -4,6 +4,7 @@ from discord.ext import commands
 from packages.utils import Embed, ImproperType
 from discord.utils import get
 from packages.nitrotype import Racer
+import packages.nitrotype
 import requests, json, os
 import datetime
 from datetime import date
@@ -165,9 +166,12 @@ class Command(commands.Cog):
             roles_to_add.append(role)
             try:
               role = get(ctx.message.guild.roles, name=racer.race_role)
+              await ctx.author.add(role)
             except:
-              races = newdata['racesPlayed']
               otherraceroles = ['"I < 3 Typing"', '"I Really Love Typing!"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
+              print(otherraceroles)
+              races = int(racer.races.replace(',', ''))
+              print(races)
               if int(races) >= 500000:
                 role = get(ctx.message.guild.roles, name=otherraceroles[16])
                 roles_to_add.append(role)
@@ -219,8 +223,10 @@ class Command(commands.Cog):
               elif int(races) >= 0:
                 role = get(ctx.message.guild.roles, name=otherraceroles[0])
                 roles_to_add.append(role)
+              print(role)
+              print(roles_to_add)
 
-            roles_to_add.append(role)
+            #roles_to_add.append(role)
             
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
@@ -251,6 +257,7 @@ class Command(commands.Cog):
                 #embed=Embed('Error!', 'Team tag: '+racer.tag+'', 'warning')
                 #return await embed.send(ctx)
                  pass
+            print(*roles_to_add)
             await ctx.author.add_roles(*roles_to_add)
             try:
               role = get(ctx.message.guild.roles, name='Unregistered')
