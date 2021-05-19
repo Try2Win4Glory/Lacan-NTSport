@@ -231,11 +231,11 @@ class Command(commands.Cog):
             
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
-                roles_to_add.append(role)
+                await ctx.author.add(role)
 
             role = get(ctx.message.guild.roles, name='Registered')
             try:
-                roles_to_add.append(role)
+                await ctx.author.add(role)
 
             except Exception:
                 embed = Embed('Error!', 'The bot is not able to update your roles. Make sure I have the `Manage Roles` permission, am ranked higher than that roles and you did a season race yet.')
@@ -258,7 +258,7 @@ class Command(commands.Cog):
                 #embed=Embed('Error!', 'Team tag: '+racer.tag+'', 'warning')
                 #return await embed.send(ctx)
                  pass
-            print(*roles_to_add)
+            #print(*roles_to_add)
             await ctx.author.add_roles(*roles_to_add)
             try:
               role = get(ctx.message.guild.roles, name='Unregistered')
