@@ -4,7 +4,6 @@ from discord.ext import commands
 from packages.utils import Embed, ImproperType
 from discord.utils import get
 from packages.nitrotype import Racer
-from packages.nitrotype import newdata
 import requests, json, os
 import datetime
 from datetime import date
