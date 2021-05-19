@@ -314,11 +314,11 @@ class Command(commands.Cog):
                 else:
                       embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
                       return await embed.send(ctx)
-              embed = Embed('Success!', 'Successfully updated your roles and nickname!', 'white_check_mark')        
-              if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
+            embed = Embed('Success!', 'Successfully updated your roles and nickname!', 'white_check_mark')        
+            if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
                 embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
-              else:
+            else:
                 embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
-              await embed.send(ctx)
+            await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
