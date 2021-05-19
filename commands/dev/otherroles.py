@@ -11,7 +11,7 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command()
-    async def roles(self, ctx):
+    async def otherroles(self, ctx):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         if (ctx.author.id) not in [396075607420567552, 505338178287173642, 637638904513691658]:
             embed = Embed('Error!', 'You\'re not a developer of this bot! Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
