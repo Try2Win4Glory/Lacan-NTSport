@@ -87,7 +87,7 @@ class Command(commands.Cog):
             embed = Embed('Error!', 'Doesn\'t seem like you\'re registered!', 'warning')
             return await embed.send(ctx)
         racer = ntuser
-        if ctx.author.id in [505338178287173642]:
+        if ctx.author.id in []:
             roles_to_add = []
             #T2W4G's Speed Role
             listofroles = thelistofroles[2]
