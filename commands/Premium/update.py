@@ -167,7 +167,7 @@ class Command(commands.Cog):
             try:
               role = get(ctx.message.guild.roles, name=racer.race_role)
               roles_to_add.append(role)
-              await ctx.author.add(role)
+              await ctx.author.add_roles(role)
             except:
               otherraceroles = ['"I < 3 Typing"', '"I Really Love Typing!"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
               print(otherraceroles)
@@ -231,11 +231,11 @@ class Command(commands.Cog):
             
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
-                await ctx.author.add(role)
+                await ctx.author.add_roles(role)
 
             role = get(ctx.message.guild.roles, name='Registered')
             try:
-                await ctx.author.add(role)
+                await ctx.author.add_roles(role)
 
             except Exception:
                 embed = Embed('Error!', 'The bot is not able to update your roles. Make sure I have the `Manage Roles` permission, am ranked higher than that roles and you did a season race yet.')
