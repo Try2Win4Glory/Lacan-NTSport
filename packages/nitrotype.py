@@ -1150,3 +1150,4 @@ class TeamClass:
 async def Team(team):
     teamclass = TeamClass(team)
     await teamclass.create_attr()
+    return teamclass
