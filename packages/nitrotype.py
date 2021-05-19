@@ -518,12 +518,10 @@ class NewsClass:
     def __init__(self):
         return
     async def create_attr(self):
-        loop = asyncio.get_running_loop()
-        scraper = cloudscraper.create_scraper()
-        fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/api/news'))
-        raw_data = json.loads(fut.text)
-        '''async with aiocfscrape.CloudflareScraper() as session:
-            raw_data = loads(await api_get('news', session))'''
+        '''scraper = cloudscraper.create_scraper()
+        raw_data = loads(scraper.get('https://www.nitrotype.com/api/news').text)'''
+        async with aiocfscrape.CloudflareScraper() as session:
+            raw_data = loads(await api_get('news', session))
 
         if not raw_data['success']:
             raise Exception("News couldn't be fetched")
@@ -837,30 +835,11 @@ class RacerClass:
             except:
               print('no u')'''
             '''self.car = f'https://www.nitrotype.com/cars/{newdata["carHueAngle"]}_large_1.png'''
-            fut = await loop.run_in_executor(None, functools.partial(scraper.get,'https://www.nitrotype.com/index/d8dad03537419610ef21782a075dde2d94c465c61266-1266/bootstrap.js'))
-            text = fut.text
-            result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+.*\]', text).group()
-            data = json.loads('{"list": '+''.join(list(result)[:-1])+'}')
-            for elem in data['list']:
-                for v in elem.values():
-                    try:
-                        if str(v) == str(newdata['carID']):
-                            if newdata['carHueAngle'] != 0:
-                                self.car = 'https://www.nitrotype.com/cars/painted/'+elem['options']['largeSrc'].replace('.png', '_'+str(newdata['carHueAngle']))+'.png'
-                            else:
-                                self.car = 'https://www.nitrotype.com/cars/'+elem['options']['largeSrc']
-                            break
-                    except:
-                        continue
-                else:
-                    continue
-                break
-            '''
+
             if newdata['carHueAngle'] == 0:
                 self.car = f'https://www.nitrotype.com/cars/{newdata["carID"]}_large_1.png'
             else:
                 self.car = f'https://www.nitrotype.com/cars/painted/{newdata["carID"]}_large_1_{newdata["carHueAngle"]}.png'
-            '''
             
             self.level = fn(newdata['level'])
             self.experience = fn(newdata['experience'])
@@ -996,7 +975,7 @@ class RacerClass:
                     break
                 if '-' in role.split('%')[0]:
                     new_role = role.split('%')[0].split('-')
-                    the_range = tuple(range(int(new_role[0]), int(new_role[1])+1))
+                    the_range = range(int(new_role[0]), int(new_role[1]))
                     if math.floor(accuracy) in the_range:
                         self.accuracy_role = role
                         break
@@ -1009,18 +988,19 @@ class RacerClass:
                     if math.floor(accuracy) == int(new_role[0].replace('>', '').replace('<', '')):
                         self.accuracy_role = role
                         break
-            else:
-                print(accuracy)
-                self.accuracy_role = '<75% Accuracy'
             self.race_roles = ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
             self.race_zones = [(int(x.split('+')[0]),) if '+' in x else range(int(x.split('-')[0].strip().replace(' Races', '')), int(x.split('-')[1].strip().replace(' Races', ''))) for x in self.race_roles]
             index = 0
             races = newdata['racesPlayed']
             for zone in self.race_zones:
+              try:
                 if int(races) in zone:
                     self.race_role = self.race_roles[index]
                     break
                 index += 1
+              except:
+                  races = newdata['racesPlayed']
+                  self.titlerace_roles = ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
             self.friend_reqs_allowed = ':white_check_mark: ' if newdata['allowFriendRequests'] == 1 else ':negative_squared_cross_mark:'
             self.looking_for_team = ':white_check_mark: ' if newdata['lookingForTeam'] == 1 else ':negative_squared_cross_mark:'
 async def Racer(username):
@@ -1098,13 +1078,10 @@ class TeamClass:
     async def create_attr(self):
         team = self.team
         try:
-            '''async with aiocfscrape.CloudflareScraper() as session:
-                self.data = loads(await api_get(f'teams/{team}', session))'''
-            loop = asyncio.get_running_loop()
-            scraper = cloudscraper.create_scraper()
-            fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/api/teams/{team}'))
-            print(fut.text)
-            self.data = json.loads(fut.text)
+            async with aiocfscrape.CloudflareScraper() as session:
+                self.data = loads(await api_get(f'teams/{team}', session))
+            '''scraper = cloudscraper.create_scraper()
+            self.data = loads(scraper.get(f'https://www.nitrotype.com/api/teams/{team}').text)'''
             self.success = True
             if self.data['success'] == False:
                 self.success = False
@@ -1150,3 +1127,4 @@ class TeamClass:
 async def Team(team):
     teamclass = TeamClass(team)
     await teamclass.create_attr()
+    return teamclass
