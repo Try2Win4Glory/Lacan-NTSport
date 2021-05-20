@@ -299,64 +299,67 @@ class Command(commands.Cog):
             print(listofroles[13])
             try:
                 role = get(ctx.message.guild.roles, name=racer.race_role)
-                await user.add_roles(role)
-                print('gotcha')
-                print(role)
+                if role != None:
+                    await user.add_roles(role)
+                    print('gotcha')
+                    print(role)
+                else:
+                      otherraceroles = ['"I < 3 Typing"', '"I Really Love Typing!"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
+                      if int(races) >= 500000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[16])
+                        roles_to_add.append(role)
+                      elif int(races) >= 250000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[15])
+                        roles_to_add.append(role)
+                      elif int(races) >= 200000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[14])
+                        roles_to_add.append(role)
+                      elif int(races) >= 150000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[13])
+                        roles_to_add.append(role)
+                      elif int(races) >= 125000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[12])
+                        roles_to_add.append(role)
+                      elif int(races) >= 100000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[11])
+                        roles_to_add.append(role)
+                      elif int(races) >= 75000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[10])
+                        roles_to_add.append(role)
+                      elif int(races) >= 50000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[9])
+                        roles_to_add.append(role)
+                      elif int(races) >= 40000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[8])
+                        roles_to_add.append(role)
+                      elif int(races) >= 30000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[7])
+                        roles_to_add.append(role)
+                      elif int(races) >= 20000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[6])
+                        roles_to_add.append(role)
+                      elif int(races) >= 10000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[5])
+                        roles_to_add.append(role)
+                      elif int(races) >= 5000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[4])
+                        roles_to_add.append(role)
+                      elif int(races) >= 1000:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[3])
+                        roles_to_add.append(role)
+                      elif int(races) >= 500:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[2])
+                        roles_to_add.append(role)
+                      elif int(races) >= 100:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[1])
+                        roles_to_add.append(role)
+                      elif int(races) >= 0:
+                        role = get(ctx.message.guild.roles, name=otherraceroles[0])
+                        roles_to_add.append(role)
+                      print(roles_to_add)
+                      await user.add_roles(*roles_to_add)
             except:
-              otherraceroles = ['"I < 3 Typing"', '"I Really Love Typing!"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
-              if int(races) >= 500000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[16])
-                roles_to_add.append(role)
-              elif int(races) >= 250000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[15])
-                roles_to_add.append(role)
-              elif int(races) >= 200000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[14])
-                roles_to_add.append(role)
-              elif int(races) >= 150000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[13])
-                roles_to_add.append(role)
-              elif int(races) >= 125000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[12])
-                roles_to_add.append(role)
-              elif int(races) >= 100000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[11])
-                roles_to_add.append(role)
-              elif int(races) >= 75000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[10])
-                roles_to_add.append(role)
-              elif int(races) >= 50000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[9])
-                roles_to_add.append(role)
-              elif int(races) >= 40000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[8])
-                roles_to_add.append(role)
-              elif int(races) >= 30000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[7])
-                roles_to_add.append(role)
-              elif int(races) >= 20000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[6])
-                roles_to_add.append(role)
-              elif int(races) >= 10000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[5])
-                roles_to_add.append(role)
-              elif int(races) >= 5000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[4])
-                roles_to_add.append(role)
-              elif int(races) >= 1000:
-                role = get(ctx.message.guild.roles, name=otherraceroles[3])
-                roles_to_add.append(role)
-              elif int(races) >= 500:
-                role = get(ctx.message.guild.roles, name=otherraceroles[2])
-                roles_to_add.append(role)
-              elif int(races) >= 100:
-                role = get(ctx.message.guild.roles, name=otherraceroles[1])
-                roles_to_add.append(role)
-              elif int(races) >= 0:
-                role = get(ctx.message.guild.roles, name=otherraceroles[0])
-                roles_to_add.append(role)
-              print(roles_to_add)
-              await user.add_roles(*roles_to_add)
+                print('devupdate error')
           
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
