@@ -137,7 +137,7 @@ class Command(commands.Cog):
         racer = await Racer(ntuser)
         
   
-        if user.id in [505338178287173642]:
+        if user.id in []:
             #T2W4G's Speed Role
             listofroles = thelistofroles[2]
             role = get(ctx.message.guild.roles,
