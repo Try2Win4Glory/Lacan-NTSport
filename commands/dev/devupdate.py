@@ -221,7 +221,6 @@ class Command(commands.Cog):
                 await user.add_roles(role)
             elif wpm > 100:
                 role = get(ctx.message.guild.roles, name=listofroles[12])
-                await user.add_roles(role)
             elif wpm > 90:
                 role = get(ctx.message.guild.roles, name=listofroles[13])
                 await user.add_roles(role)
@@ -331,7 +330,11 @@ class Command(commands.Cog):
                   await user.add_roles(role)
               elif int(races) >= 10000:
                   role = get(ctx.message.guild.roles, name=listofroles[10])
-                  await user.add_roles(role)
+                  if role != None:
+                    await user.add_roles(role)
+                  else:
+                    roles = get(ctx.message.guild.roles, name='"Corsair"')
+                    await user.add_roles(role)
               elif int(races) >= 5000:
                   role = get(ctx.message.guild.roles, name=listofroles[11])
                   await user.add_roles(role)
