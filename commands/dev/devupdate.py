@@ -298,7 +298,13 @@ class Command(commands.Cog):
             listofroles = thelistofroles[3]
             print(listofroles[13])
             try:
-              if int(races) > 500000:
+                role = get(ctx.message.guild.roles, name=racer.race_role)
+                await user.add_roles(role)
+                print('gotcha')
+                print(role)
+            except:
+                print('Exception')
+              '''if int(races) > 500000:
                   role = get(ctx.message.guild.roles, name=listofroles[0])
                   await user.add_roles(role)
               elif int(races) >= 250000:
@@ -414,7 +420,7 @@ class Command(commands.Cog):
                 role = get(ctx.message.guild.roles, name=otherraceroles[0])
                 roles_to_add.append(role)
               print(roles_to_add)
-              await user.add_roles(*roles_to_add)
+              await user.add_roles(*roles_to_add)'''
 
           
             if racer.membership == 'gold': 
