@@ -80,6 +80,7 @@ class Command(commands.Cog):
             if name in listofroles or if name in teamswithroles or if name in achievementroles:
                 role = get(ctx.message.guild.roles, id=role.id)
                 roles_to_remove.append(role)
+        print(roles_to_remove)
         await ctx.author.remove_roles(*roles_to_remove)
         success, ntuser = await get_username(str(ctx.author.id))
         if success:
