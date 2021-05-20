@@ -221,6 +221,7 @@ class Command(commands.Cog):
                 await user.add_roles(role)
             elif wpm > 100:
                 role = get(ctx.message.guild.roles, name=listofroles[12])
+                await user.add_roles(role)
             elif wpm > 90:
                 role = get(ctx.message.guild.roles, name=listofroles[13])
                 await user.add_roles(role)
