@@ -413,7 +413,7 @@ class Command(commands.Cog):
                         role = get(ctx.message.guild.roles, name=otherraceroles[0])
                         roles_to_add.append(role)
                       print(roles_to_add)
-                      await user.add_roles(*roles_to_add)
+                      await user.add_roles(roles_to_add)
           
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
