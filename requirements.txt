@@ -26,3 +26,4 @@ discord
 pymongo
 pillow
 matplotlib
+gunicorn
