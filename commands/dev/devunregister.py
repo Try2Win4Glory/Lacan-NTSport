@@ -108,10 +108,12 @@ class Command(commands.Cog):
           user = await ctx.guild.fetch_member(discordid)
           for role in (user.roles):
             name = role.name
-            if name in listofroles or name in teamswithroles or name in registered or name in achievementroles:
+            if name in thelistofroles or name in teamswithroles or name in achievementroles:
                 role = get(ctx.message.guild.roles, id=role.id)
                 await user.remove_roles(role)
                 try:
+                  role = get(ctx.message.guild.roles, name='Registered')
+                  await user.remove_roles(role)
                   role = get(ctx.message.guild.roles, name='Unregistered')
                   await user.add_roles(role)
                 except:
