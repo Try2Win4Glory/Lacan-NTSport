@@ -105,19 +105,22 @@ class Command(commands.Cog):
           ]:
             teamswithroles.append('[TEST]')
           registered=['Registered']
+          roles_to_remove=[]
           user = await ctx.guild.fetch_member(discordid)
           for role in (user.roles):
             name = role.name
             if name in thelistofroles or name in teamswithroles or name in achievementroles:
+                print('devunregister roles in user roles')
                 role = get(ctx.message.guild.roles, id=role.id)
-                await user.remove_roles(role)
+                roles_to_remove.append(role)
                 try:
                   role = get(ctx.message.guild.roles, name='Registered')
-                  await user.remove_roles(role)
+                  roles_ro_remove.append(role)
                   role = get(ctx.message.guild.roles, name='Unregistered')
-                  await user.add_roles(role)
+                  roles_to_remove.append(role)
                 except:
                   pass  
+                await user.remove_roles(*roles_to_remove)
         except:
           pass
     
