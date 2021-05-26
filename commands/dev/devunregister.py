@@ -115,7 +115,7 @@ class Command(commands.Cog):
                 roles_to_remove.append(role)
                 try:
                   role = get(ctx.message.guild.roles, name='Registered')
-                  roles_ro_remove.append(role)
+                  roles_to_remove.append(role)
                   role = get(ctx.message.guild.roles, name='Unregistered')
                   roles_to_remove.append(role)
                 except:
