@@ -11,7 +11,7 @@ app = Flask(__name__)
 def home():
       return 'POG! U looking for me? I\'m right there! Online and running, everything is working smoothly! :-)'
 run_time = time.time()
-port = process.env.PORT || 8080
+port = os.environ.get('PORT', '5000')
 def run():
     app.run(host='0.0.0.0', port=port)
 
