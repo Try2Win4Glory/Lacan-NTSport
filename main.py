@@ -386,6 +386,13 @@ async def on_raw_reaction_remove(payload):
         return
     await dbclient.update_array(collection, old, user)
 #system('clear')
+#Clear Cache
+from discord.ext import tasks
+@tasks.loop(hours=1)
+async def clear_cache():
+  bot.clear()
+clear_cache.start()
+
 if __name__ == '__main__':
     start_server()
     print('Server is ready')
