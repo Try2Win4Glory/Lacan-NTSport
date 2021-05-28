@@ -22,7 +22,7 @@ class Command(commands.Cog):
         achievementroles = ['"I < 3 Typing"', '"I Really Love Typing!"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
         guild = ctx.guild
         for role in guild.roles:
-            if str(role.name) in listofroles or achievementroles:
+            if str(role.name) in listofroles or str(role.name) in achievementroles:
                 await role.delete()
                 continue
         embed = Embed('Success!', f'The roles for `{str(ctx.author.guild.id)}` were deleted by '+str(ctx.author.name + '#' + ctx.author.discriminator)+'.','white_check_mark')
