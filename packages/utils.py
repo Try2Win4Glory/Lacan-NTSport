@@ -3,6 +3,7 @@ from discord import ChannelType
 import random
 import time
 from datetime import datetime
+from mongoclient import DBClient
 class Embed:
     def __init__ (self, title, content, emoji=None, color=0xff6347, timestamp=None):
         self.content = content
@@ -25,7 +26,15 @@ class Embed:
             pfp = ctx.author.avatar_url
             self.footer(self.content, pfp)
 
-            list_of_footers = [
+            dbclient = DBClient()
+            pcollection = dbclient.db.premium
+            pdata = await dbclient.get_big_array(pcollection, 'premium')
+            for server in pdata['premium']:
+                if str(ctx.author.guild.id) == server['serverID']:
+                    list_of_footers = ['💖 Thanks for being a premium 💠 member. 💖']
+                    break
+            else:
+                list_of_footers = [
               'Become a premium 💠 member today!', 'Created by adl212, Joshua, Try2Win4Glory', 'https://discord.gg/Wj96Ehg for support', 'Officially the biggest Nitrotype Bot']
             random_footer = random.choice(list_of_footers)
             self.embed.set_footer(icon_url=pfp, text=str(ctx.author)+' • '+random_footer)
