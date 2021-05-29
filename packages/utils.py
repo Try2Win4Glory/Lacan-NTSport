@@ -31,11 +31,11 @@ class Embed:
             pdata = await dbclient.get_big_array(pcollection, 'premium')
             for server in pdata['premium']:
                 if str(ctx.author.guild.id) == server['serverID']:
-                    list_of_footers = ['💖 Thanks for being a premium 💠 member. 💖']
+                    list_of_footers = ['💖Thanks for being a premium 💠 member!💖']
                     break
             else:
                 list_of_footers = [
-              'Become a premium 💠 member today!', 'Created by adl212, Joshua, Try2Win4Glory', 'https://discord.gg/Wj96Ehg for support', 'Officially the biggest Nitrotype Bot']
+              'Become a premium 💠 member today!']
             random_footer = random.choice(list_of_footers)
             self.embed.set_footer(icon_url=pfp, text=str(ctx.author)+' • '+random_footer)
           else:
