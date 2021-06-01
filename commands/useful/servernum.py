@@ -43,7 +43,7 @@ class Command(commands.Cog):
         registeredusers = await collection.count_documents({})
         registered_users = "{:,}".format(registeredusers)
         
-        verifiedusers = await collection.count_documents({"verified": True})
+        verifiedusers = await collection.count_documents({"verified" : "true"})
         verified_users = "{:,}".format(verifiedusers)
         
         verpercent = (verifiedusers/registeredusers)*100
