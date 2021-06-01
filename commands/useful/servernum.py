@@ -39,7 +39,7 @@ class Command(commands.Cog):
         divided_users = totalusers/guilds
         
         dbclient = DBClient()
-        collection = dbclient.db.nitrotype
+        collection = dbclient.db.NT_to_discord
         registeredusers = await collection.count_documents({})
         registered_users = "{:,}".format(registeredusers)
 
