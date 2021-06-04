@@ -25,10 +25,10 @@ class Command(commands.Cog):
             usernames = []
             races = []
             for stat in lb[1]:
-                if stat[1] == '':
-                    usernames.append(f'{stat[0]}\n')
-                else:
-                    usernames.append(f'{stat[1]}\n')
+                #if stat[1] == '':
+                usernames.append(f'{stat[0]}\n')
+                #else:
+                    #usernames.append(f'{stat[1]}\n')
                 races.append(str(round(stat[2], 2)))
             usernames = ''.join(usernames)
             races = '\n'.join(races)
