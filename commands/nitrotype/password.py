@@ -47,7 +47,10 @@ class Command(commands.Cog):
         return check
     @commands.command()
     async def password(self, ctx):
-        
+      if ctx.guild.id in [564880536401870858]:
+        embed=Embed('Error!', 'This server has been **blacklisted** from using this command.')
+        return await embed.send(ctx)
+      else:  
         var = await get_username(str(ctx.author.id))
         if var[0] == False:
             return await var[1].send(ctx)
