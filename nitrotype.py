@@ -47,7 +47,8 @@ async def create_comp(team, compid, endcomptime, authorid, async_cloudflare=Fals
         }
     }
     for elem in info['data']['members']:
-        if elem['displayName'] != None:
+        #if elem['displayName'] != None:
+        if elem['displayName'] is not None:
             displayname = elem['displayName']
         else:
             displayname = elem['username']
