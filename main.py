@@ -1,24 +1,24 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 '''
-NitroType Bot
+Lacan NTSport
 ~~~~~~~~~~~~~
 A discord bot designed for those interested in NitroType
-:copyright: (c) 2021 Nitrotypers
-:license: MIT, see LICENSE.txt for more details
+:copyright: (c) 2021 Try2Win4Glory
+:license: GNU General Public License v3.0, see LICENSE.md for more details
 '''
 
 __title__ = 'Lacan NTSport'
 __version__ = 'Full'
 __author__ = 'SystematicError, Typerious, Try2Win4Glory, adl212'
-__copyright__ = 'Copyright 2021 Nitrotypers'
-__license__ = 'MIT'
+__copyright__ = 'Copyright 2021 Try2Win4Glory'
+__license__ = 'GNU General Public License v3.0'
 
 # --- Start Code --- #
 import nest_asyncio
 nest_asyncio.apply()
 from discord.ext import commands
-from packages.server import start_server, app
+from packages.server import start_server
 from os import listdir, getenv
 from mongoclient import DBClient
 from packages.utils import Embed
@@ -165,7 +165,6 @@ async def on_message(message):
                         ctx = await client.get_context(message)
                         await ctx.command.invoke(ctx)
                     except Exception as e:
-                        raise e
                         shouldraise = True
                         if isinstance(e, AttributeError):
                             embed = Embed(
@@ -201,7 +200,6 @@ async def on_message(message):
                         await channel2.send(embed=embed.default_embed())'''
                         if shouldraise:
                             raise e
-                        return
                     '''channel = discord.utils.get(client.get_all_channels(), id=787018607481192479)
                     channel2 = discord.utils.get(client.get_all_channels(), id = 803938544175284244)
                     embed = Embed('__**Command Log**__', str(message.author), color=0x2ecc71)
@@ -221,7 +219,7 @@ async def on_message(message):
                     await channel.send(embed=embed.default_embed())
                     await channel2.send(embed=embed.default_embed())'''
         except:
-            return
+            
             ctx = await client.get_context(message)
             await ctx.command.invoke(ctx)
 
