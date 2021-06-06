@@ -26,4 +26,5 @@ discord
 pymongo
 pillow
 matplotlib
+sklearn
 gunicorn
