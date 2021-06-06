@@ -1,7 +1,7 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 '''
-NitroType Bot
+Lacan NTSport
 ~~~~~~~~~~~~~
 A discord bot designed for those interested in NitroType
 :copyright: (c) 2021 Try2Win4Glory
