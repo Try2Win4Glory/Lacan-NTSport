@@ -30,6 +30,9 @@ from statistics import mean
 from nitrotype import check_perms
 import copy
 
+from packages.nitrotype import Racer
+from nitrotype import get_username
+
 #keep_alive.keep_alive()
 
 intents = discord.Intents().default()
@@ -365,8 +368,33 @@ async def on_member_join(member):
     welcomechannel = discord.utils.get(client.get_all_channels(), id=764089160100216863)
     embed=Embed('Welcome :wave:', 'A new member has arrived :eyes:', color=0xff0000)
     await welcomechannel.send(embed=embed.default_embed())
+    racer = await get_username(user, True)
     #verifiedRole = discord.utils.get(member.guild.roles, id = THE_ROLE_ID)
     #await member.add_roles(verifiedRole)
+    if user == None:
+            success, result = await get_username(str(ctx.author.id), True)
+            if success:
+                racer = result
+            else:
+                racer = Racer('nothiswillnotbesuccesffulbecauseitistoolong')
+        if user != None:
+            racer = await Racer(user)
+        if not racer.success:
+            userid = str(''.join(list(user)[3:-1]))
+            success, result = await get_username(str(userid), True)
+            if success:
+                racer = result
+            else:
+                userid = str(''.join(list(user)[2:-1]))
+                success, result = await get_username(str(userid), True)
+                if success:
+                    racer = result
+                else:
+                    success, result = await get_username(user, True)
+                    if success:
+                        racer = result
+    print(racer)
+    print(result)
 '''
         def __init__(self, client):
           self.client = client
