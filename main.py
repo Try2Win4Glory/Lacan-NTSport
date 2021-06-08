@@ -356,6 +356,16 @@ async def on_raw_reaction_add(payload):
         await channel1.send(embed=embed.default_embed())
         await channel2.send(embed=embed.default_embed())
       
+    
+@client.event
+async def on_member_join(member): 
+    await member.send('Hello!') 
+    #await asyncio.sleep(30)
+    welcomechannel = discord.utils.get(client.get_all_channels(), id=764089160100216863)
+    embed=Embed('Welcome :wave:', 'A new member has arrived :eyes:', color=0xff0000)
+    await welcomechannel.send(embed=embed.default_embed())
+    #verifiedRole = discord.utils.get(member.guild.roles, id = THE_ROLE_ID)
+    #await member.add_roles(verifiedRole)
 '''
         def __init__(self, client):
           self.client = client
