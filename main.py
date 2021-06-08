@@ -18,7 +18,7 @@ __license__ = 'GNU General Public License v3.0'
 import nest_asyncio
 nest_asyncio.apply()
 from discord.ext import commands
-from packages.server import start_server
+from packages.server import start_server, app
 from os import listdir, getenv
 from mongoclient import DBClient
 from packages.utils import Embed
