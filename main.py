@@ -388,7 +388,7 @@ async def on_raw_reaction_remove(payload):
 from discord.ext import tasks
 @tasks.loop(hours=1)
 async def clear_cache():
-  bot.clear()
+  client.clear()
 clear_cache.start()
 
 if __name__ == '__main__':
