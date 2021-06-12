@@ -366,35 +366,19 @@ async def on_member_join(member):
     await member.send('Hello!') 
     #await asyncio.sleep(30)
     welcomechannel = discord.utils.get(client.get_all_channels(), id=764089160100216863)
-    embed=Embed('Welcome :wave:', 'A new member has arrived :eyes:', color=0xff0000)
     await welcomechannel.send(embed=embed.default_embed())
     racer = await get_username(user, True)
     #verifiedRole = discord.utils.get(member.guild.roles, id = THE_ROLE_ID)
     #await member.add_roles(verifiedRole)
-    if user == None:
-            success, result = await get_username(str(ctx.author.id), True)
-            if success:
-                racer = result
-            else:
-                racer = Racer('nothiswillnotbesuccesffulbecauseitistoolong')
-        if user != None:
-            racer = await Racer(user)
-        if not racer.success:
-            userid = str(''.join(list(user)[3:-1]))
-            success, result = await get_username(str(userid), True)
-            if success:
-                racer = result
-            else:
-                userid = str(''.join(list(user)[2:-1]))
-                success, result = await get_username(str(userid), True)
-                if success:
-                    racer = result
-                else:
-                    success, result = await get_username(user, True)
-                    if success:
-                        racer = result
-    print(racer)
-    print(result)
+    try:
+      racer = await get_username(member, True))
+      if racer.membership = 'gold':
+            goldstatus = 'True'
+      else:
+            goldstatus = 'False'
+      embed=Embed('Welcome! :wave:', f'{member} [:link:](https://www.nitrotype.com/racer/{racer}), welcome to **{ctx.guild.name}**!\n\n__Quick stats:__\n**Status:** {goldstatus}', color=0xff0000)
+    except:
+      embed=Embed('Welcome! :wave:', f'{member}, welcome to **{ctx.guild.name}**!\nYour account is currently not linked to a [Nitro Type](https://www.nitrotype.com) player account. Please consider starting the registration process by running `n.register`.', 'warning', color=0xff0000)
 '''
         def __init__(self, client):
           self.client = client
