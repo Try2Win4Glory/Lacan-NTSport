@@ -313,7 +313,7 @@ async def on_raw_reaction_add(payload):
         return
     if accepted == False:
         user = await client.fetch_user(int(data['Buyer ID']))
-        embed = Embed('Declined!', 'Your server will not be given premium. You have been refunded the lacans.')
+        embed = Embed(':weary:  Declined!', 'Your server\'s premium application has been denied. It will not be given premium. You have been refunded the Lacans.')
         collection = dbclient.db.pointsdb
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(data['Buyer ID'])}, {'userid': str(data['Buyer ID'])}]})
         async for d in data:
@@ -321,7 +321,7 @@ async def on_raw_reaction_add(payload):
             old = copy.deepcopy(data)
             break
         points = data['points']
-        data['points'] = int(points) + 1000
+        data['points'] = int(points) + 3000
         await dbclient.update_array(collection, old, data)
         await msg.delete()
         return await user.send(embed=embed.default_embed())
@@ -347,7 +347,7 @@ async def on_raw_reaction_add(payload):
         author = data['Buyer ID']
         guildid = data['Guild ID']
         guildname = data['Guild Name']
-        amount = 1000
+        amount = 3000
         embed=Embed(':diamond_shape_with_a_dot_inside:  New premium guild!', f'Lacan NTSport just sold a new premium server for `{amount}` {random_lacan}!')
         embed.field('Buyer ID', f'`{author}`')
         embed.field('Buyer Mention', f'<@{author}>')
