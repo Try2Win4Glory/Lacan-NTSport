@@ -371,7 +371,7 @@ async def on_member_join(member):
     #verifiedRole = discord.utils.get(member.guild.roles, id = THE_ROLE_ID)
     #await member.add_roles(verifiedRole)
     try:
-      racer = await get_username(member, True))
+      racer = await get_username(member, True)
       if racer.membership = 'gold':
             goldstatus = 'True'
       else:
