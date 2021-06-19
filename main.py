@@ -18,7 +18,7 @@ __license__ = 'GNU General Public License v3.0'
 import nest_asyncio
 nest_asyncio.apply()
 from discord.ext import commands
-from packages.server import start_server
+from packages.server import start_server, app
 from os import listdir, getenv
 from mongoclient import DBClient
 from packages.utils import Embed
@@ -313,7 +313,7 @@ async def on_raw_reaction_add(payload):
         return
     if accepted == False:
         user = await client.fetch_user(int(data['Buyer ID']))
-        embed = Embed('Declined!', 'Your server will not be given premium. You have been refunded the lacans.')
+        embed = Embed(':weary:  Declined!', 'Your server\'s premium application has been denied. It will not be given premium. You have been refunded the Lacans.')
         collection = dbclient.db.pointsdb
         data = await dbclient.get_array(collection, {'$and': [{'userid': str(data['Buyer ID'])}, {'userid': str(data['Buyer ID'])}]})
         async for d in data:
@@ -321,7 +321,7 @@ async def on_raw_reaction_add(payload):
             old = copy.deepcopy(data)
             break
         points = data['points']
-        data['points'] = int(points) + 1000
+        data['points'] = int(points) + 3000
         await dbclient.update_array(collection, old, data)
         await msg.delete()
         return await user.send(embed=embed.default_embed())
@@ -347,7 +347,7 @@ async def on_raw_reaction_add(payload):
         author = data['Buyer ID']
         guildid = data['Guild ID']
         guildname = data['Guild Name']
-        amount = 1000
+        amount = 3000
         embed=Embed(':diamond_shape_with_a_dot_inside:  New premium guild!', f'Lacan NTSport just sold a new premium server for `{amount}` {random_lacan}!')
         embed.field('Buyer ID', f'`{author}`')
         embed.field('Buyer Mention', f'<@{author}>')
@@ -388,7 +388,7 @@ async def on_raw_reaction_remove(payload):
 from discord.ext import tasks
 @tasks.loop(hours=1)
 async def clear_cache():
-  bot.clear()
+  client.clear()
 clear_cache.start()
 
 if __name__ == '__main__':

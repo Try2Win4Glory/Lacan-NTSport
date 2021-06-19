@@ -18,8 +18,10 @@ class Command(commands.Cog):
         if not racer.success:
             return Embed('Error!', 'That account does not exist!')
         prediction = await check(username)
-        pred = prediction['accuracy'][0]
+        print(prediction)
+        pred = prediction['botornot'][1]
         botornot_value = prediction['botornot'][0]
+        accuracy = sum(prediction['accuracy'])/2
         df = pandas.read_csv("data.csv")
         features = ['avgSpeed', 'highSpeed', 'racesTotal', 'highestSession']
         avgdivhigh = []
@@ -55,8 +57,8 @@ class Command(commands.Cog):
             embed.field('Error!', 'I could not find that account!')
         else:
             embed.field('Bot Or Not', '__BOT__' if botornot_value == 1 else '__LEGIT__')
-            embed.field('Chance Of Being A Bot', str(100-round(pred*100,2))+'%')
-            #embed.field('Accuracy', '`'+str(((botornot['accuracy'][0]*100)+(botornot['accuracy'][1]*100))/2)+'`%')
+            embed.field('Chance Of Being A Bot', str(round(pred*100,2))+'%')
+            embed.field('Accuracy', '`'+str(accuracy)+'`%')
         file = discord.File("graph.png", filename="graph.png")
         embed.image(url="attachment://graph.png")
         await ctx.send(file=file, embed=embed.default_embed())
