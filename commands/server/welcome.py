@@ -65,7 +65,7 @@ class Command(commands.Cog):
         embed.field('__Instructions:__', 'Type in a message including variables to create your own custom welcoming system!')
         embed.field('__Variables:__', 'Put `{{` and `}}` around text to define a variable.')
         embed.field('__Types Of Variables:__', '`user.mention`, `user.id`, `user.racer.username`, `user.racer.speed`, `user.racer.accuracy`, `user.racer.races`')
-        embed.field('__Example:__', 'Welcome to the server {{user.mention}}! Your nitrotype account (username {{user.racer.username}} can be found [here](https://www.nitrotype.com/racer/{{user.racer.username}})! Type `n.update` to get your roles which should be @{{user.racer.races}}, @{{user.racer.speed}}, @{{user.racer.accuracy}}.')
+        embed.field('__Example:__', '{{user.mention}} has joined the server. :tada:\n\nThey are linked to https://nitrotype.com/racer/{{user.racer.username}}.\n\nFollowing roles should be given:\n{{user.racer.races}}, {{user.racer.speed}}, {{user.racer.accuracy}}')
         await embed.send(ctx)
         msg = await self.wait_for_msg(ctx)
         if msg[0] == False:
