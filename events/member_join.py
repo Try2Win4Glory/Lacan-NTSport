@@ -21,19 +21,18 @@ class Events(commands.Cog):
         channel_id = data['channel_id']
         channel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
         message = data['message']
-        try:
-            racer = await NT_to_discord(member.id)
-            racer = racer[1]
-        except:
-            embed=Embed('Welcome to the server! :wave:', f'{member.mention} unfortunately isn\'t associated to a Nitro Type account yet. Please type `n.register` to start the verification process.')
-            return await channel.send(embed=embed.default_embed())
+        racer = await NT_to_discord(member.id)
+        racer = racer[1]
         try:
             username = racer.username
             speed = racer.speed_role
             accuracy = racer.accuracy_role
             races = racer.race_role
-        except Exception as e:
-            print(e)
+        #except Exception as e:
+            #print(e)
+        except UnboundLocalError:
+            embed=Embed('Welcome to the server! :wave:', f'{member.mention} unfortunately isn\'t associated to a Nitro Type account yet. Please type `n.register` to start the verification process.')
+            return await channel.send(embed=embed.default_embed())
         message = message.replace('{{user.mention}}', member.mention)
         message = message.replace('{{user.id}}', str(member.id))
         message = message.replace('{{user.racer.username}}', username)
