@@ -36,6 +36,7 @@ class Events(commands.Cog):
         message = message.replace('{{user.racer.speed}}', speed)
         message = message.replace('{{user.racer.accuracy}}', accuracy)
         message = message.replace('{{user.racer.races}}', races)
-        await channel.send(message)
+        embed=Embed(f'Welcome to {ctx.guild.name}! :wave:', f'{message}`)
+        await channel.send(embed=Embed)
 def setup(client):
     client.add_cog(Events(client))
