@@ -21,8 +21,12 @@ class Events(commands.Cog):
         channel_id = data['channel_id']
         channel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
         message = data['message']
-        racer = await NT_to_discord(member.id)
-        racer = racer[1]
+        try:
+            racer = await NT_to_discord(member.id)
+            racer = racer[1]
+        except:
+            embed=Embed('Welcome to the server! :wave:', f'{member.mention} unfortunately isn\'t associated to a Nitro Type account yet. Please type `n.register` to start the verification process.')
+            return await channel.send(embed=embed.default_embed())
         try:
             username = racer.username
             speed = racer.speed_role
