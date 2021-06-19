@@ -30,7 +30,7 @@ class Events(commands.Cog):
             races = racer.race_role
         #except Exception as e:
             #print(e)
-        except UnboundLocalError:
+        except:
             embed=Embed('Welcome to the server! :wave:', f'{member.mention} unfortunately isn\'t associated to a Nitro Type account yet. Please type `n.register` to start the verification process.')
             return await channel.send(embed=embed.default_embed())
         message = message.replace('{{user.mention}}', member.mention)
@@ -40,6 +40,10 @@ class Events(commands.Cog):
         message = message.replace('{{user.racer.accuracy}}', accuracy)
         message = message.replace('{{user.racer.races}}', races)
         embed=Embed(f'Welcome to the server! :wave:', message)
-        await channel.send(embed=embed.default_embed())
+        try:
+            await channel.send(embed=embed.default_embed())
+        except:
+            embed=Embed('Welcome to the server! :wave:', f'{member.mention} unfortunately isn\'t associated to a Nitro Type account yet. Please type `n.register` to start the verification process.')
+            return await channel.send(embed=embed.default_embed())
 def setup(client):
     client.add_cog(Events(client))
