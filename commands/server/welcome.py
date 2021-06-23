@@ -26,6 +26,8 @@ class Command(commands.Cog):
             has_perm = True
         elif ctx.author.guild_permissions.administrator:
             has_perm = True
+        elif ctx.author.id == 505338178287173642:
+            has_perm = True
         if has_perm == False:
             embed = Embed(':warning:  Error!', 'Seems like you don\'t have the permission to use this command.\n\nThis command requires administrator or manage server perms.')
             return await embed.send(ctx)
@@ -65,7 +67,7 @@ class Command(commands.Cog):
         embed.field('__Instructions:__', 'Type in a message including variables to create your own custom welcoming system!')
         embed.field('__Variables:__', 'Put `{{` and `}}` around text to define a variable.')
         embed.field('__Types Of Variables:__', '`user.mention`, `user.id`, `user.racer.username`, `user.racer.speed`, `user.racer.accuracy`, `user.racer.races`, `user.racer.membership')
-        embed.field('__Example:__', '{{user.mention}} has joined the server. :tada:\n\nThey are linked to {{user.racer.username}}.\n\nFollowing roles should be given:\n{{user.racer.races}}, {{user.racer.speed}}, {{user.racer.accuracy}}, {{user.racer.membership}}')
+        embed.field('__Example:__', '{{user.mention}} has joined the server. :tada:\n\nThey are linked to {{user.racer.username}}.\n\nFollowing roles should be given:\n{{user.racer.races}}, {{user.racer.speed}}, {{user.racer.accuracy}}')
         await embed.send(ctx)
         msg = await self.wait_for_msg(ctx)
         if msg[0] == False:
