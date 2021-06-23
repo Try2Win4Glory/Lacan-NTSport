@@ -3,7 +3,6 @@ from PIL import Image, ImageDraw, ImageFont
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 import random, os, base64, discord, time
-from cooldowns.guess import rateLimit, cooldown_add
 from mongoclient import DBClient
 from discord.utils import get
 import asyncio, json, requests, copy
