@@ -38,7 +38,8 @@ class Command(commands.Cog):
         guilds = len(self.client.guilds)
         divided_users = totalusers/guilds
         
-        mcnew = {len(self.client.members)}
+        mcnew = {len(list(self.client.get_all_members()))}
+        mcnew = "{:;}".format(mcnew)
         
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
