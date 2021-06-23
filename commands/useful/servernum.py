@@ -38,6 +38,8 @@ class Command(commands.Cog):
         guilds = len(self.client.guilds)
         divided_users = totalusers/guilds
         
+        mcnew = {len(self.client.member_count)}
+        
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
         registeredusers = await collection.count_documents({})
@@ -56,7 +58,7 @@ class Command(commands.Cog):
         embed.thumbnail('https://cdn.discordapp.com/avatars/713352863153258556/47823ecf46a380f770769b7a4a7c3449.png?size=256')
         return await embed.send(ctx)'''
        
-        embed=Embed('Server Number', f'**__Guilds:__ `{len(self.client.guilds)}`**\n\n**__Premium guilds:__ **`{premnum} ({round(prempercentage,2)}%)`\n\n**__Total users:__ `{comma_users}`**\n\n**__Registered users:__ `{registered_users}`**\n\n**__Verified users:__ `{verified_users} ({round(verpercent,2)}%)`**\n\n**__Users per guild:__ `{round(divided_users, 2)}`**\n\n**__Invite me:__ `n.invite`**', '1234')
+        embed=Embed('Server Number', f'**__Guilds:__ `{len(self.client.guilds)}`**\n\n**__Premium guilds:__ **`{premnum} ({round(prempercentage,2)}%)`\n\n**__Total users:__ `{mcnew}`**\n\n**__Registered users:__ `{registered_users}`**\n\n**__Verified users:__ `{verified_users} ({round(verpercent,2)}%)`**\n\n**__Users per guild:__ `{round(divided_users, 2)}`**\n\n**__Invite me:__ `n.invite`**', '1234')
         embed.thumbnail('https://cdn.discordapp.com/avatars/713352863153258556/47823ecf46a380f770769b7a4a7c3449.png?size=256')
         return await embed.send(ctx)
         '''embed=Embed('Server Number', f'Lacan NTSport is currently used in `{len(self.client.guilds)}` servers by `{comma_users}` users. \nThis is an average of `{round(divided_users, 2)}` users per server.\nIn order to invite me to your server, use `n.invite.`', '1234')
