@@ -31,7 +31,6 @@ class Events(commands.Cog):
             speed = racer.speed_role
             accuracy = racer.accuracy_role
             races = racer.race_role
-            membership = racer.membership_role
         #except Exception as e:
             #print(e)
         except:
@@ -43,7 +42,6 @@ class Events(commands.Cog):
         message = message.replace('{{user.racer.speed}}', speed)
         message = message.replace('{{user.racer.accuracy}}', accuracy)
         message = message.replace('{{user.racer.races}}', races)
-        message = message.replace('{{user.racer.membership}}', membership)
         embed=Embed(f'Welcome to the server! :wave:', message)
         try:
             await channel.send(embed=embed.default_embed())
