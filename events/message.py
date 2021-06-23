@@ -20,10 +20,12 @@ class Events(commands.Cog):
                     message.content.startswith('n.')
                     or message.content.startswith('N.')
                     or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
-            print('Stop using bots on user accounts!')
-            embed=Embed('<:bruh:834049885414227998>  Bruh', 'What are you thinking? If you want to use me, get on a user account. You can\'t use commands through bots. <a:keka:800338138802946098>')
+            print('Stop using bots!')
+            #embed=Embed('<:bruh:834049885414227998>  Bruh', 'What are you thinking? If you want to use me, get on a user account. You can\'t use commands through bots. <a:keka:800338138802946098>')
             ctx = await self.client.get_context(message)
-            return await embed.send(ctx)
+            print(ctx.guild.name)
+            #return await embed.send(ctx)
+            return
         else:
             if message.content == "<@!713352863153258556>" or message.content == "<@713352863153258556>":
                 ctx = await self.client.get_context(message)
