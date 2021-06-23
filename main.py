@@ -19,6 +19,7 @@ from discord.ext import commands
 from os import listdir, getenv
 import logging
 import discord
+from packages.server import start_server, app
 
 
 intents = discord.Intents().default()
