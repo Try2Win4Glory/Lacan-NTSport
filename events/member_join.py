@@ -17,12 +17,15 @@ class Events(commands.Cog):
                 break
         except:
             return
-        print(data)
-        channel_id = data['channel_id']
-        channel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
-        message = data['message']
-        racer = await NT_to_discord(member.id)
-        racer = racer[1]
+        try:
+            print(data)
+            channel_id = data['channel_id']
+            channel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
+            message = data['message']
+            racer = await NT_to_discord(member.id)
+            racer = racer[1]
+        except:
+            return
         try:
             username = racer.username
             speed = racer.speed_role
