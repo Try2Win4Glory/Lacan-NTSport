@@ -38,7 +38,7 @@ class Command(commands.Cog):
         guilds = len(self.client.guilds)
         divided_users = totalusers/guilds
         
-        mcnew = {len(self.client.member_count)}
+        mcnew = {len(self.client.members)}
         
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
