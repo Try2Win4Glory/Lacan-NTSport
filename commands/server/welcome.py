@@ -64,8 +64,8 @@ class Command(commands.Cog):
         embed = Embed('Welcoming Message: Step 2 - Message', 'What message should be sent?')
         embed.field('__Instructions:__', 'Type in a message including variables to create your own custom welcoming system!')
         embed.field('__Variables:__', 'Put `{{` and `}}` around text to define a variable.')
-        embed.field('__Types Of Variables:__', '`user.mention`, `user.id`, `user.racer.username`, `user.racer.speed`, `user.racer.accuracy`, `user.racer.races`')
-        embed.field('__Example:__', '{{user.mention}} has joined the server. :tada:\n\nThey are linked to https://nitrotype.com/racer/{{user.racer.username}}.\n\nFollowing roles should be given:\n{{user.racer.races}}, {{user.racer.speed}}, {{user.racer.accuracy}}')
+        embed.field('__Types Of Variables:__', '`user.mention`, `user.id`, `user.racer.username`, `user.racer.speed`, `user.racer.accuracy`, `user.racer.races`, `user.racer.membership')
+        embed.field('__Example:__', '{{user.mention}} has joined the server. :tada:\n\nThey are linked to {{user.racer.username}}.\n\nFollowing roles should be given:\n{{user.racer.races}}, {{user.racer.speed}}, {{user.racer.accuracy}}, {{user.racer.membership}}')
         await embed.send(ctx)
         msg = await self.wait_for_msg(ctx)
         if msg[0] == False:
