@@ -40,7 +40,7 @@ class Command(commands.Cog):
         
         #mcnew = {len(list(self.client.get_all_members()))}
         mcnew = len([m for m in ctx.guild.members if not m.bot])
-        mcnew = "{:;}".format(mcnew)
+        mcnew = "{:,}".format(mcnew)
         
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
