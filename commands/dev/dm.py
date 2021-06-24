@@ -23,7 +23,7 @@ class Command(commands.Cog):
             embed=Embed('New Direct Message', 'speech_left')
             embed.field('Author:', f'Message sent by {ctx.author}')
             embed.field('Message:', f'Following message was sent: {message}')
-            return await user.send(embed=Embed)
+            return await user.embed.send(ctx)
         else:
             return await ctx.send('You do not have perms, dude.')
     
