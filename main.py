@@ -61,6 +61,6 @@ async def clear_cache():
 clear_cache.start()
 
 if __name__ == '__main__':
-    #start_server()
+    start_server()
     print('Server is ready')
     client.run(getenv('TOKEN'))
