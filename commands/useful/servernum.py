@@ -38,8 +38,9 @@ class Command(commands.Cog):
         guilds = len(self.client.guilds)
         divided_users = totalusers/guilds
         
-        #mcnew = {len(list(self.client.get_all_members()))}
-        mcnew = len([m for m in ctx.guild.members if not m.bot])
+        #Counts users in current guild
+        #mcnew = len([m for m in ctx.guild.members if not m.bot])
+        mcnew = sum([len(guild.members) for guild in self.client.guilds])
         mcnew = "{:,}".format(mcnew)
         
         dbclient = DBClient()
