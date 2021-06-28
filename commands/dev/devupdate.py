@@ -76,6 +76,16 @@ class Command(commands.Cog):
           833317505888026644
         ]:
           teamswithroles.append('[TEST]')
+        #Team TBZ | Server Owner: 657296213087092756
+        if ctx.guild.id in [
+            857697272317345792
+        ]:
+            teamswithroles.append('[TBZ]')
+        #Team SSH | Server Owner: 363082908270985217
+        if ctx.guild.id in [
+            788547373701136425
+        ]:
+            teamswithroles.append('[SSH]')
         #data = requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text
         #data = json.loads(data)
         dbclient = DBClient()
