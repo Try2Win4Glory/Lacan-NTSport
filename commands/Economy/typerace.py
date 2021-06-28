@@ -3,10 +3,10 @@ from PIL import Image, ImageDraw, ImageFont
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 import random, os, base64, discord, time
-from cooldowns.guess import rateLimit, cooldown_add
 from mongoclient import DBClient
 from discord.utils import get
 import asyncio, json, requests, copy
+from cooldowns.typerace import rateLimit, cooldown_add
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -39,7 +39,21 @@ class Command(commands.Cog):
         green =0x40AC7B
         red = 0xE84444
         orange = 0xF09F19
-
+        
+        if str(ctx.author) in rateLimit:
+            embed = Embed('Cooldown!','You are on cooldown. Wait `10` seconds before running this command again.','alarm clock')
+            return await embed.send(ctx)
+        if await ImproperType.check(ctx): return
+        if ctx.author.id not in [
+          #Try2Win4Glory
+            505338178287173642, 
+          #Typerious
+            637638904513691658, 
+          #adl212
+            396075607420567552]:
+            cooldown_add(str(ctx.author))
+        
+        
         with open('text.txt') as f:
             sentences = f.readlines()
         t = random.choice(sentences).strip()
