@@ -28,6 +28,12 @@ class Command(commands.Cog):
         for role in ctx.author.roles:
             if role.id in [
               #Insert permitted role IDs here
+               #SSH Administrator
+                788549177545588796,
+               #SSH Moderator
+                788549154560671755,
+               #SSH Server Support
+                788549207149248562
             ]:
                 bypass = True
                 break
@@ -104,6 +110,16 @@ class Command(commands.Cog):
             833317505888026644
           ]:
             teamswithroles.append('[TEST]')
+          #Team TBZ | Server Owner: 657296213087092756
+          if ctx.guild.id in [
+            857697272317345792
+          ]:
+             teamswithroles.append('[TBZ]')
+          #Team SSH | Server Owner: 363082908270985217
+          if ctx.guild.id in [
+            788547373701136425
+          ]:
+            teamswithroles.append('[SSH]')
           registered=['Registered']
           roles_to_remove=[]
           user = await ctx.guild.fetch_member(discordid)
