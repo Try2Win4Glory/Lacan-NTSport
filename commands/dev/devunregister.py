@@ -28,6 +28,12 @@ class Command(commands.Cog):
         for role in ctx.author.roles:
             if role.id in [
               #Insert permitted role IDs here
+               #SSH Administrator
+                788549177545588796,
+               #SSH Moderator
+                788549154560671755,
+               #SSH Server Support
+                788549207149248562
             ]:
                 bypass = True
                 break
