@@ -12,7 +12,7 @@ class Command(commands.Cog):
     @commands.command()
     async def add(self, ctx, userid, amount):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
-        if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
+        if (ctx.author.id) not in [505338178287173642]:
             embed = Embed('Error!', 'Lol, did you really think it\'s possible for you to add <:Lacan:766669740545540097> to a user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
             embed.footer('⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
             await embed.send(ctx)
