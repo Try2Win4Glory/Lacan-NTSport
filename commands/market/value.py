@@ -23,6 +23,9 @@ class Command(commands.Cog):
         if not racer.success:
             return
         l = f"{int(racer.races.replace(',', ''))},{racer.wpm_average},{racer.wpm_high},{racer.newdata['longestSession']},{1 if racer.newdata['membership'] == 'gold' else 0},{racer.cars_owned},{racer.views.replace(',', '')},{racer.first.replace(',', '')},{racer.second.replace(',', '')},{racer.third.replace(',', '')},{racer.newdata['createdStamp']}".split(',')
-        return await ctx.send(str(dtree.predict([l])))
+        pred = dtree.predict([l])
+        embed = Embed(f'Value of {racer.username}', 'Using Machine Learning!')
+        embed.field('Value', str(pred[0]*10**6))
+        await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
