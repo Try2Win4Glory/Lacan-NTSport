@@ -22,11 +22,11 @@ class Command(commands.Cog):
                 embed = result
                 await embed.send(ctx)
                 return
+            if racer.success:
+                success, result = await get_username(str(ctx.author.id), get_id=True)
+                userid = result
         if user != None:
             racer = await Racer(user)
-        if racer.success:
-            success, result = await get_username(str(ctx.author.id), get_id=True)
-            userid = result
         if not racer.success:
             userid = str(''.join(list(user)[3:-1]))
             success, result = await get_username(str(userid))
