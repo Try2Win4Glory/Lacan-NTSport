@@ -8,7 +8,7 @@ class Command(commands.Cog):
     #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
   @commands.command(none='say', pass_context=True, aliases=['announce'])
   async def say(self,ctx, channel, *msg):
-    if ctx.author.id in [505338178287173642,396075607420567552s]:
+    if ctx.author.id in [505338178287173642,396075607420567552]:
       if channel == 564881617630396426:
         return
       if channel == 'no':
