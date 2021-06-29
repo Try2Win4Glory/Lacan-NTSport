@@ -27,6 +27,9 @@ class Command(commands.Cog):
                 userid = result
         if user != None:
             racer = await Racer(user)
+            success, result = await get_username(racer.username.lower(), get_id=True)
+            if racer.success:            
+                userid = result
         if not racer.success:
             userid = str(''.join(list(user)[3:-1]))
             success, result = await get_username(str(userid))
@@ -50,8 +53,10 @@ class Command(commands.Cog):
                             embed = result
                             await embed.send(ctx)
                             return
-        embed = Embed('Identification', f'<@'+userid+'>\'s NT Profile [:link:](https://www.nitrotype.com/racer/'+racer.username+')')
-
+        try:
+            embed = Embed('Identification', f'<@'+userid+'>\'s NT Profile [:link:](https://www.nitrotype.com/racer/'+racer.username+')')
+        except:
+            embed = Embed('Identification', f'{racer.username}\'s NT Profile [:link:](https://www.nitrotype.com/racer/'+racer.username+')')
         embed.field('Nitrotype username ', '`'+racer.username+'`', inline=True)
         embed.field('Nitrotype Display name', '`'+racer.name+'`', inline=True)
         embed.field('Nitrotype ID', '`'+str(racer.userid)+'`', inline=True)
