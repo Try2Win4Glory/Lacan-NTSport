@@ -24,6 +24,12 @@ class Command(commands.Cog):
         for role in ctx.author.roles:
             if role.id in [
               #Insert permitted role IDs here
+               #SSH Administrator
+                788549177545588796,
+               #SSH Moderator
+                788549154560671755,
+               #SSH Server Support
+                788549207149248562
             ]:
                 bypass = True
                 break
@@ -32,8 +38,6 @@ class Command(commands.Cog):
         if (ctx.author.id) not in [
           #Try2Win4Glory
             505338178287173642,
-          #adl212
-            396075607420567552
         ] and not bypass:
         
             embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to register a user in this way when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
