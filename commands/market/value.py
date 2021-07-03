@@ -21,11 +21,11 @@ class Command(commands.Cog):
         dtree = dtree.fit(features, targets)
         racer = await Racer(username)
         if not racer.success:
-            embed=Embed('Error!', f'The requested Nitrotype User **{username}** [:link:](https://nitrotype.com/racer/{username}) couldn\'t be found.')
+            embed=Embed(':warning:  Error!', f'The requested Nitrotype User **{username}** [:link:](https://nitrotype.com/racer/{username}) couldn\'t be found.')
             return await embed.send(ctx)
         l = f"{int(racer.races.replace(',', ''))},{racer.wpm_average},{racer.wpm_high},{racer.newdata['longestSession']},{1 if racer.newdata['membership'] == 'gold' else 0},{racer.cars_owned},{racer.views.replace(',', '')},{racer.first.replace(',', '')},{racer.second.replace(',', '')},{racer.third.replace(',', '')},{racer.newdata['createdStamp']}".split(',')
         pred = dtree.predict([l])
-        rawval = str(pred[0]*10**6)
+        rawval = int(pred[0]*10**6)
         formwal = "{:,}".format(rawval)
         embed = Embed(f':money_with_wings:  Value', 'This value is calculated by Machine Learning.')
         embed.field('Nitrotype User', f'**{racer.username}** [:link:](https://nitrotype.com/racer/{racer.username})')
