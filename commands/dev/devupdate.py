@@ -30,7 +30,8 @@ class Command(commands.Cog):
             bypass = False
         if (ctx.author.id) not in [
           #Try2Win4Glory
-            505338178287173642
+            505338178287173642,
+            396075607420567552
           ] and bypass == False:
         
             embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to register a user in this way when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')

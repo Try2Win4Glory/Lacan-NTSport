@@ -20,8 +20,9 @@ from os import listdir, getenv
 import logging
 import discord
 from packages.server import start_server, app
+from dotenv import load_dotenv
 
-
+load_dotenv()
 intents = discord.Intents().default()
 intents.members = True
 client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.', '<@!713352863153258556>', '<@713352863153258556>']), case_insensitive=True, intents=intents)
@@ -61,6 +62,6 @@ async def clear_cache():
 clear_cache.start()
 
 if __name__ == '__main__':
-    start_server()
+    #start_server()
     print('Server is ready')
     client.run(getenv('TOKEN'))

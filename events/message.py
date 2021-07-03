@@ -13,13 +13,14 @@ class Events(commands.Cog):
     async def on_message(self, message):
         timestamps = []
         authors = []
-        banned = []
+        banned = [793253843327778816, 793026807351738388, 793250587403747368, 793028952461017119, 793024426152034314]
         if message.author.id in [433411533079314443, 651155235699687465]:
             return
         if message.author.bot == True and (
                     message.content.startswith('n.')
                     or message.content.startswith('N.')
                     or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
+
             print('Stop using bots!')
             #embed=Embed('<:bruh:834049885414227998>  Bruh', 'What are you thinking? If you want to use me, get on a user account. You can\'t use commands through bots. <a:keka:800338138802946098>')
             ctx = await self.client.get_context(message)
@@ -44,6 +45,10 @@ class Events(commands.Cog):
             '''#Permanent Bans:
             ctx = await self.client.get_context(message)
             if message.author.id == permbanned[0] and (
+<<<<<<< HEAD
+
+=======
+>>>>>>> 13f09721595a86bf9933f4e55fed664d5d6b9bd7
                         message.content.startswith('n.')
                         or message.content.startswith('N.')
                         or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
@@ -126,6 +131,10 @@ class Events(commands.Cog):
                             channel = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
                             channel2 = discord.utils.get(self.client.get_all_channels(), id = 803938544175284244)
                             '''embed = Embed('__**Command Log**__', str(message.author))
+<<<<<<< HEAD
+
+=======
+>>>>>>> 13f09721595a86bf9933f4e55fed664d5d6b9bd7
                             embed.field('__Command__', f'`n.{("".join(list(message.content)[2:]))}`')
                             embed.field('__User ID__', f'`{str(message.author.id)}`')
                             embed.field('__Guild ID__', f'`{str(message.guild.id)}`')

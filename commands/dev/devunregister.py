@@ -13,6 +13,7 @@ import os
 from packages.nitrotype import Racer
 from discord.utils import get
 from mongoclient import DBClient
+from nitrotype import get_username
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -41,7 +42,8 @@ class Command(commands.Cog):
             bypass = False
         if (ctx.author.id) not in [
           #Try2Win4Glory
-            505338178287173642
+            505338178287173642,
+            396075607420567552
           ] and not bypass:
             embed = Embed('Error!', 'Lol, did you really think it\'s possible for you to unregister a user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
             embed.footer('⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
@@ -52,6 +54,12 @@ class Command(commands.Cog):
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         discordid0 = discordid.replace("<@!", "")
         discordid1 = discordid0.replace(">", "")
+        success, userid = await get_username(discordid, get_id=True)
+        if success:
+            user = await ctx.guild.fetch_member(userid)
+        else:
+            user = await ctx.guild.fetch_member(discordid)
+        discordid1 = user.id
         dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
@@ -60,7 +68,7 @@ class Command(commands.Cog):
         async for x in dbdata:
                 await collection.delete_one(x)
                #--Success Embed--#
-                embed = Embed('Success!', 'Unregistered discord user <@' +discordid1+'>!','white_check_mark')
+                embed = Embed('Success!', 'Unregistered discord user <@' +str(discordid1)+'>!','white_check_mark')
 
                 #--Footer--#
                 if (ctx.author.id) in [396075607420567552, 505338178287173642, 637638904513691658]:
@@ -120,7 +128,15 @@ class Command(commands.Cog):
             teamswithroles.append('[SSH]')
           registered=['Registered']
           roles_to_remove=[]
-          user = await ctx.guild.fetch_member(discordid)
+          try:
+              success, userid = await get_username(discordid, get_id=True)
+              if success:
+                  user = await ctx.guild.fetch_member(userid)
+              else:
+                  user = await ctx.guild.fetch_member(discordid)
+          except:
+              user = await ctx.guild.fetch_member(discordid)
+
           for role in (user.roles):
             name = role.name
             if name in thelistofroles or name in teamswithroles or name in achievementroles:

@@ -125,6 +125,7 @@ class Events(commands.Cog):
             embed1.field('Buyer ID', f'{str(ctx.author.id)}')
             embed1.field('Buyer Name', str(ctx.author))
             msg = await channelsendsuccess.send(embed=embed.default_embed())
+
             return await user.send(embed=embed.default_embed())
             '''
 def setup(client):
