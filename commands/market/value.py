@@ -29,7 +29,7 @@ class Command(commands.Cog):
         print(rawval)
         roundval = round(float(rawval)
         #formval = "{:,}".format(roundval)
-        embed = Embed('Calculating Account Value', 'This value is calculated by Machine Learning.', 'money_with_wings')
+        embed=Embed('Calculating Account Value', 'This value is calculated by Machine Learning.', 'money with wings')
         embed.field('Nitrotype User', f'**{racer.username}** [:link:](https://nitrotype.com/racer/{racer.username})')
         embed.field('Value', f'$**{roundval}**')
         await embed.send(ctx)
