@@ -11,7 +11,7 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command()
-    async def value(self, ctx, username):
+    async def value(self, ctx, username=None):
         dtree = DecisionTreeRegressor()
         df = pandas.read_csv('./commands/market/data.csv')
         f_names = ['races','wpm_average','wpm_high','longestSession','membership','cars_owned','views','first','second','third','created']
@@ -21,11 +21,15 @@ class Command(commands.Cog):
         dtree = dtree.fit(features, targets)
         racer = await Racer(username)
         if not racer.success:
-            return
+            embed=Embed('Error!', f'The requested Nitrotype User **{username}** [:link:](https://nitrotype.com/racer/{username}) couldn\'t be found.')
+            return await embed.send(ctx)
         l = f"{int(racer.races.replace(',', ''))},{racer.wpm_average},{racer.wpm_high},{racer.newdata['longestSession']},{1 if racer.newdata['membership'] == 'gold' else 0},{racer.cars_owned},{racer.views.replace(',', '')},{racer.first.replace(',', '')},{racer.second.replace(',', '')},{racer.third.replace(',', '')},{racer.newdata['createdStamp']}".split(',')
         pred = dtree.predict([l])
-        embed = Embed(f'Value of {racer.username}', 'Using Machine Learning!')
-        embed.field('Value', str(pred[0]*10**6))
+        rawval = str(pred[0]*10**6)
+        formwal = "{:,}".format(rawval)
+        embed = Embed(f':money_with_wings:  Value', 'This value is calculated by Machine Learning.')
+        embed.field('Nitrotype User', f'**{racer.username}** [:link:](https://nitrotype.com/racer/{racer.username})')
+        embed.field('Value', f'$**{round(formval, 0)}**')
         await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
