@@ -26,7 +26,7 @@ class Command(commands.Cog):
         l = f"{int(racer.races.replace(',', ''))},{racer.wpm_average},{racer.wpm_high},{racer.newdata['longestSession']},{1 if racer.newdata['membership'] == 'gold' else 0},{racer.cars_owned},{racer.views.replace(',', '')},{racer.first.replace(',', '')},{racer.second.replace(',', '')},{racer.third.replace(',', '')},{racer.newdata['createdStamp']}".split(',')
         pred = dtree.predict([l])
         rawval = int(pred[0]*10**6)
-        formwal = "{:,}".format(rawval)
+        formval = "{:,}".format(rawval)
         embed = Embed(f':money_with_wings:  Value', 'This value is calculated by Machine Learning.')
         embed.field('Nitrotype User', f'**{racer.username}** [:link:](https://nitrotype.com/racer/{racer.username})')
         embed.field('Value', f'$**{round(formval, 0)}**')
