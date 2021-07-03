@@ -26,11 +26,11 @@ class Command(commands.Cog):
         l = f"{int(racer.races.replace(',', ''))},{racer.wpm_average},{racer.wpm_high},{racer.newdata['longestSession']},{1 if racer.newdata['membership'] == 'gold' else 0},{racer.cars_owned},{racer.views.replace(',', '')},{racer.first.replace(',', '')},{racer.second.replace(',', '')},{racer.third.replace(',', '')},{racer.newdata['createdStamp']}".split(',')
         pred = dtree.predict([l])
         rawval = str(pred[0]*10**6)
-        formval = "{:,}".format(rawval)
-        roundval = float(formval)
+        roundval = [round(int(value)) for value in rawval]
+        formval = "{:,}".format(roundval)
         embed = Embed(f':money_with_wings:  Value', 'This value is calculated by Machine Learning.')
         embed.field('Nitrotype User', f'**{racer.username}** [:link:](https://nitrotype.com/racer/{racer.username})')
-        embed.field('Value', f'$**{round(roundval, 0)}**')
+        embed.field('Value', f'$**{formval}**')
         await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
