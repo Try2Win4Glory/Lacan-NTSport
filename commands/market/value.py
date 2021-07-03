@@ -28,10 +28,10 @@ class Command(commands.Cog):
         rawval = str(pred[0]*10**6)
         print(rawval)
         roundval = round(float(rawval)
-        formval = "{:,}".format(roundval)
+        #formval = "{:,}".format(roundval)
         embed = Embed(f':money_with_wings:  Value', 'This value is calculated by Machine Learning.')
         embed.field('Nitrotype User', f'**{racer.username}** [:link:](https://nitrotype.com/racer/{racer.username})')
-        embed.field('Value', f'$**{formval}**')
+        embed.field('Value', f'$**{roundval}**')
         await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
