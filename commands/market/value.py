@@ -32,8 +32,8 @@ class Command(commands.Cog):
         formval = "{:,}".format(roundval)
         print(formval)
         embed=Embed('Account Value', 'This value is calculated by Machine Learning.', 'money with wings')
-        embed.field('Nitrotype User', f'**{racer.username}** [:link:](https://nitrotype.com/racer/{racer.username})')
-        embed.field('Value', f'$**{formval}**')
+        embed.field('__Nitrotype User__', f'{racer.username} [:link:](https://nitrotype.com/racer/{racer.username})')
+        embed.field('__Value__', f'$**{formval}**')
         await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
