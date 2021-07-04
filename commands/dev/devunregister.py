@@ -126,6 +126,11 @@ class Command(commands.Cog):
             788547373701136425
           ]:
             teamswithroles.append('[SSH]')
+         #Team NYM | Server Owner: 714147755974721556
+         if ctx.guild.id in [
+            860954147342909440
+         ]:
+            teamswithroles.append('[NYM]')
           registered=['Registered']
           roles_to_remove=[]
           try:
