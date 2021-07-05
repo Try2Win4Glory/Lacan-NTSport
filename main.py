@@ -53,7 +53,7 @@ async def on_ready():
     print('Bot is ready')
 
 from discord.ext import tasks
-@tasks.loop(hours=8)
+@tasks.loop(hours=1)
 async def clear_cache():
   client.clear()
 clear_cache.start()
