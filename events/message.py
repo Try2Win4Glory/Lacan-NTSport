@@ -75,7 +75,7 @@ class Events(commands.Cog):
                         or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                         return await message.channel.send('Happy living as a weasel. -the devs')'''
                 #else:
-                    if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
+                if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                         if message.author.id not in [713352863153258556]:
                             timestamps.append(round(time.time()))
                             authors.append(message.author.id)
