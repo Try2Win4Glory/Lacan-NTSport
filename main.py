@@ -20,6 +20,12 @@ from os import listdir, getenv
 import logging
 import discord
 from packages.server import start_server, app
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 intents = discord.Intents().default()
 intents.members = True
 client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.', '<@!713352863153258556>', '<@713352863153258556>']), case_insensitive=True, intents=intents)

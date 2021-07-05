@@ -8,6 +8,12 @@ from mongoclient import DBClient
 from packages.utils import Embed
 from nitrotype import NT_to_discord
 import urllib.parse
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 class Command(commands.Cog):
     def __init__(self, client):
         self.client = client

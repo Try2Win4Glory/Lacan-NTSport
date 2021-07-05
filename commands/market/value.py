@@ -3,6 +3,7 @@
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 from sklearn.tree import DecisionTreeRegressor
+from sklearn.linear_model import LinearRegression
 from packages.nitrotype import Racer
 import pandas
 class Command(commands.Cog):
@@ -12,7 +13,7 @@ class Command(commands.Cog):
     
     @commands.command()
     async def value(self, ctx, username=None):
-        dtree = DecisionTreeRegressor()
+        dtree = LinearRegression()
         df = pandas.read_csv('./commands/market/data.csv')
         f_names = ['races','wpm_average','wpm_high','longestSession','membership','cars_owned','views','first','second','third','created']
 
@@ -26,11 +27,8 @@ class Command(commands.Cog):
         l = f"{int(racer.races.replace(',', ''))},{racer.wpm_average},{racer.wpm_high},{racer.newdata['longestSession']},{1 if racer.newdata['membership'] == 'gold' else 0},{racer.cars_owned},{racer.views.replace(',', '')},{racer.first.replace(',', '')},{racer.second.replace(',', '')},{racer.third.replace(',', '')},{racer.newdata['createdStamp']}".split(',')
         pred = dtree.predict([l])
         rawval = str(pred[0]*10**6)
-        print(rawval)
         roundval = round(float(rawval))
-        print(roundval)
         formval = "{:,}".format(roundval)
-        print(formval)
         embed=Embed('Account Value', 'This value is calculated by Machine Learning.', 'money with wings')
         embed.field('__Nitrotype User__', f'{racer.username} [:link:](https://nitrotype.com/racer/{racer.username})')
         embed.field('__Value__', f'$**{formval}**')

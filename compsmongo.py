@@ -5,6 +5,12 @@ import time
 import queue
 import threading
 import motor
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 client = motor.motor_tornado.MotorClient(f"mongodb+srv://adl212:{os.getenv('DB_KEY')}@cluster0.q3r5v.mongodb.net/test?retryWrites=true&w=majority")
 class DBClient:
     def __init__(self):

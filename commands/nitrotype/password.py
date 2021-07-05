@@ -7,6 +7,12 @@ from nitrotype import get_username
 from collections.abc import Sequence
 import asyncio, os
 from cryptography.fernet import Fernet
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 class Command(commands.Cog):
 
     def __init__(self, client):
