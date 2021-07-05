@@ -13,8 +13,8 @@ class Events(commands.Cog):
     async def on_message(self, message):
         timestamps = []
         authors = []
-        banned = [793253843327778816, 793026807351738388, 793250587403747368, 793028952461017119, 793024426152034314]
-        if message.author.id in [433411533079314443, 651155235699687465]:
+        banned = [713352863153258556]
+        if message.author.id in [713352863153258556]:
             return
         if message.author.bot == True and (
                     message.content.startswith('n.')
@@ -40,8 +40,8 @@ class Events(commands.Cog):
                 #return await message.channel.send('<@505338178287173642> **YOU FUCKING BASTARD**')
             if message.author.id == 713352863153258556:
                 return
-            if "780980594892341288" in message.content.split(' '):
-                return
+            #if "780980594892341288" in message.content.split(' '):
+                #return
             '''#Permanent Bans:
             ctx = await self.client.get_context(message)
             if message.author.id == permbanned[0] and (
@@ -69,14 +69,14 @@ class Events(commands.Cog):
                     embed=Embed('Ooops!', 'Looks like you are **BANNED** from the bot!\n\n__Reason:__ `Sending bot commands too fast.`\n\n*You will be unbanned upon the bot restart.* \n*If you believe this is an error, make sure to contact one of the developers (`n.info`).*', 'tools')
                     return await embed.send(ctx, dm=False)
                     #return await message.channel.send('Your banned from the bot!')
-                if message.author.id == 780980594892341288 and (
+                '''if message.author.id == 780980594892341288 and (
                         message.content.startswith('n.')
                         or message.content.startswith('N.')
                         or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
-                        return await message.channel.send('Happy living as a weasel. -the devs')
+                        return await message.channel.send('Happy living as a weasel. -the devs')'''
                 else:
                     if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
-                        if message.author.id not in [ 713352863153258556]:
+                        if message.author.id not in [713352863153258556]:
                             timestamps.append(round(time.time()))
                             authors.append(message.author.id)
                             indices = sorted([i for i, x in enumerate(authors) if x == message.author.id])
