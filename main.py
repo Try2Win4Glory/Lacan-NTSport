@@ -57,7 +57,7 @@ async def on_ready():
             client.load_extension('events.'+event[:-3])
             print('Loaded Event on_'+event[:-3])
     print('Bot is ready')
-
+    await client.wait_until_ready()
 from discord.ext import tasks
 @tasks.loop(hours=8)
 async def clear_cache():
@@ -67,5 +67,4 @@ clear_cache.start()
 if __name__ == '__main__':
     #start_server()
     print('Server is ready')
-    client.wait_until_ready()
     client.run(getenv('TOKEN'))
