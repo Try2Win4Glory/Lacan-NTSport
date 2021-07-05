@@ -74,7 +74,7 @@ class Events(commands.Cog):
                         or message.content.startswith('N.')
                         or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                         return await message.channel.send('Happy living as a weasel. -the devs')'''
-                else:
+                #else:
                     if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                         if message.author.id not in [713352863153258556]:
                             timestamps.append(round(time.time()))
@@ -172,7 +172,6 @@ class Events(commands.Cog):
                         await channel.send(embed=embed.default_embed())
                         await channel2.send(embed=embed.default_embed())'''
             except:
-                
                 ctx = await self.client.get_context(message)
                 await ctx.command.invoke(ctx)
 
