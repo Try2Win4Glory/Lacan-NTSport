@@ -97,6 +97,7 @@ class Events(commands.Cog):
                                         timestamp1 = 0
                                         timestamp2 = 0
                                 if mean(inbetweens) <= 2:
+                                    await client.wait_until_ready()
                                     channel = discord.utils.get(self.client.get_all_channels(), id=807659844089806898)
                                     await channel.send('<@&808658319648227328>')
                                     embed = Embed(':tools:  Banned Member!', str(message.author))
@@ -108,6 +109,7 @@ class Events(commands.Cog):
                                     
                         #check for botters
                         #print(f"{message.content} | {message.author.id} | {str(message.author)} | {message.guild.id} | {str(message.guild)}")
+                        await client.wait_until_ready()
                         async with message.channel.typing():
                             await asyncio.sleep(random.uniform(0.05, 0.1))
                         #return await self.client.process_commands(message)
@@ -128,7 +130,8 @@ class Events(commands.Cog):
 
                                 embed = Embed('<a:error:800338727645216779>  Error!', f'```{e}```\nThe developers have received your error message.\nUse `n.errors` for an explaination on your error.')
                                 await embed.send(ctx)
-                            channel = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
+                            await client.wait_until_ready()
+                            channel1 = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
                             channel2 = discord.utils.get(self.client.get_all_channels(), id = 803938544175284244)
                             '''embed = Embed('__**Command Log**__', str(message.author))
 <<<<<<< HEAD
