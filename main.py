@@ -61,5 +61,5 @@ clear_cache.start()
 if __name__ == '__main__':
     #start_server()
     print('Server is ready')
-    await client.wait_until_ready()
+    client.wait_until_ready()
     client.run(getenv('TOKEN'))
