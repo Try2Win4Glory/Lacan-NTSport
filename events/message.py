@@ -64,7 +64,7 @@ class Events(commands.Cog):
 
                         message.content.startswith('n.')
                         or message.content.startswith('N.')
-                        or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
+                        or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                     ctx = await self.client.get_context(message)
                     embed=Embed('Ooops!', 'Looks like you are **BANNED** from the bot!\n\n__Reason:__ `Sending bot commands too fast.`\n\n*You will be unbanned upon the bot restart.* \n*If you believe this is an error, make sure to contact one of the developers (`n.info`).*', 'tools')
                     return await embed.send(ctx, dm=False)
