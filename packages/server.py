@@ -19,7 +19,7 @@ def start_server():
     t = Thread(target=run)
     t.start()
 def restart_program():
-    time.sleep(3600)
+    time.sleep(28800)
     python = sys.executable
     os.execl(python, python, * sys.argv)
 start_time = time.time()

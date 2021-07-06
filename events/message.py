@@ -13,13 +13,14 @@ class Events(commands.Cog):
     async def on_message(self, message):
         timestamps = []
         authors = []
-        banned = []
-        if message.author.id in [433411533079314443, 651155235699687465]:
+        banned = [713352863153258556]
+        if message.author.id in [713352863153258556]:
             return
         if message.author.bot == True and (
                     message.content.startswith('n.')
                     or message.content.startswith('N.')
                     or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
+
             print('Stop using bots!')
             #embed=Embed('<:bruh:834049885414227998>  Bruh', 'What are you thinking? If you want to use me, get on a user account. You can\'t use commands through bots. <a:keka:800338138802946098>')
             ctx = await self.client.get_context(message)
@@ -39,11 +40,15 @@ class Events(commands.Cog):
                 #return await message.channel.send('<@505338178287173642> **YOU FUCKING BASTARD**')
             if message.author.id == 713352863153258556:
                 return
-            if "780980594892341288" in message.content.split(' '):
-                return
+            #if "780980594892341288" in message.content.split(' '):
+                #return
             '''#Permanent Bans:
             ctx = await self.client.get_context(message)
             if message.author.id == permbanned[0] and (
+<<<<<<< HEAD
+
+=======
+>>>>>>> 13f09721595a86bf9933f4e55fed664d5d6b9bd7
                         message.content.startswith('n.')
                         or message.content.startswith('N.')
                         or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
@@ -59,19 +64,19 @@ class Events(commands.Cog):
 
                         message.content.startswith('n.')
                         or message.content.startswith('N.')
-                        or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')) or int(message.guild.id) == 799733929481207858:
+                        or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
                     ctx = await self.client.get_context(message)
                     embed=Embed('Ooops!', 'Looks like you are **BANNED** from the bot!\n\n__Reason:__ `Sending bot commands too fast.`\n\n*You will be unbanned upon the bot restart.* \n*If you believe this is an error, make sure to contact one of the developers (`n.info`).*', 'tools')
                     return await embed.send(ctx, dm=False)
                     #return await message.channel.send('Your banned from the bot!')
-                if message.author.id == 780980594892341288 and (
+                '''if message.author.id == 780980594892341288 and (
                         message.content.startswith('n.')
                         or message.content.startswith('N.')
                         or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
-                        return await message.channel.send('Happy living as a weasel. -the devs')
-                else:
-                    if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
-                        if message.author.id not in [ 713352863153258556]:
+                        return await message.channel.send('Happy living as a weasel. -the devs')'''
+                #else:
+                if (message.content.startswith('n.') or message.content.startswith('N.') or message.content.startswith('<@!713352863153258556>') or message.content.startswith('<@713352863153258556>')):
+                        if message.author.id not in [713352863153258556]:
                             timestamps.append(round(time.time()))
                             authors.append(message.author.id)
                             indices = sorted([i for i, x in enumerate(authors) if x == message.author.id])
@@ -92,6 +97,7 @@ class Events(commands.Cog):
                                         timestamp1 = 0
                                         timestamp2 = 0
                                 if mean(inbetweens) <= 2:
+                                    #await client.wait_until_ready()
                                     channel = discord.utils.get(self.client.get_all_channels(), id=807659844089806898)
                                     await channel.send('<@&808658319648227328>')
                                     embed = Embed(':tools:  Banned Member!', str(message.author))
@@ -103,6 +109,7 @@ class Events(commands.Cog):
                                     
                         #check for botters
                         #print(f"{message.content} | {message.author.id} | {str(message.author)} | {message.guild.id} | {str(message.guild)}")
+                        #await client.wait_until_ready()
                         async with message.channel.typing():
                             await asyncio.sleep(random.uniform(0.05, 0.1))
                         #return await self.client.process_commands(message)
@@ -123,9 +130,14 @@ class Events(commands.Cog):
 
                                 embed = Embed('<a:error:800338727645216779>  Error!', f'```{e}```\nThe developers have received your error message.\nUse `n.errors` for an explaination on your error.')
                                 await embed.send(ctx)
-                            channel = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
+                            #await client.wait_until_ready()
+                            channel1 = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
                             channel2 = discord.utils.get(self.client.get_all_channels(), id = 803938544175284244)
                             '''embed = Embed('__**Command Log**__', str(message.author))
+<<<<<<< HEAD
+
+=======
+>>>>>>> 13f09721595a86bf9933f4e55fed664d5d6b9bd7
                             embed.field('__Command__', f'`n.{("".join(list(message.content)[2:]))}`')
                             embed.field('__User ID__', f'`{str(message.author.id)}`')
                             embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
@@ -163,7 +175,6 @@ class Events(commands.Cog):
                         await channel.send(embed=embed.default_embed())
                         await channel2.send(embed=embed.default_embed())'''
             except:
-                
                 ctx = await self.client.get_context(message)
                 await ctx.command.invoke(ctx)
 
