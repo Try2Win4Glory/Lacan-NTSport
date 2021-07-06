@@ -69,7 +69,7 @@ class Command(commands.Cog):
 
         print(racer.name+' is from '+racer.country)
 
-        embed.field('__General Info__', f':small_blue_diamond: Level: **{racer.level}**\n:small_blue_diamond: XP: **{racer.experience}** \n:small_blue_diamond: **{racer.country}**\n:eyes: **{racer.views}** \n :birthday: **{racer.created}** \n <:nitrotypegold:857836031634440203> **{"Lifetime" if racer.lifetime_gold else "Gold" if racer.newdata["membership"] != "basic" else "Basic"}**', inline=True)
+        embed.field('__General Info__', f':small_blue_diamond: Level: **{racer.level}**\n:small_blue_diamond: XP: **{racer.experience}** \n:small_blue_diamond: **{racer.country}**\n:eyes: **{racer.views}** \n :birthday: **{racer.created}** \n <:nt_gold:861944319102418944> **{"Lifetime" if racer.lifetime_gold else "Gold" if racer.newdata["membership"] != "basic" else "Basic"}**', inline=True)
 
         #Achievement points: **{racer.points}**
 
