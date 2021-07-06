@@ -20,6 +20,12 @@ from os import listdir, getenv
 import logging
 import discord
 from packages.server import start_server, app
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 intents = discord.Intents().default()
 intents.members = True
 client = commands.Bot(command_prefix=commands.when_mentioned_or(*['N.', 'n.', '<@!713352863153258556>', '<@713352863153258556>']), case_insensitive=True, intents=intents)
@@ -51,7 +57,7 @@ async def on_ready():
             client.load_extension('events.'+event[:-3])
             print('Loaded Event on_'+event[:-3])
     print('Bot is ready')
-
+    await client.wait_until_ready()
 from discord.ext import tasks
 @tasks.loop(hours=8)
 async def clear_cache():
@@ -61,5 +67,4 @@ clear_cache.start()
 if __name__ == '__main__':
     #start_server()
     print('Server is ready')
-    client.wait_until_ready()
     client.run(getenv('TOKEN'))

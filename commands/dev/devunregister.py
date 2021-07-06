@@ -14,6 +14,12 @@ from packages.nitrotype import Racer
 from discord.utils import get
 from mongoclient import DBClient
 from nitrotype import get_username
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 class Command(commands.Cog):
 
     def __init__(self, client):
