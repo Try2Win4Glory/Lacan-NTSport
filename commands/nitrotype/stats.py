@@ -24,7 +24,7 @@ class Command(commands.Cog):
             except:
               embed=Embed('Error!', 'Couldn\'t find that user', 'warning')
         else:
-            racer = await get_username(user, True)
+            racer = await get_username(user)
         try:
             if racer[0] == True:
                 racer = racer[1]
