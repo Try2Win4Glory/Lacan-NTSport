@@ -25,11 +25,11 @@ class Command(commands.Cog):
         # Uptime
         embed.field(name="__Uptime__", value='`'+uptime+'`')
         # Runtime
-        embed.field(name="__Runtime__", value='`'+uptime2+'`')
+        #embed.field(name="__Runtime__", value='`'+uptime2+'`')
         # Birthday
         embed.field(name=':birthday: __Birthday__', value="**Fri, May 22, 2020 7:29 AM**")
         # Explaination
-        embed.field(name="Restarting", value="The uptime resets every hour because of the bot being automatically restarted.")
+        embed.field(name="Restarting", value="The uptime resets every 8 hours because of the bot being automatically restarted.")
         try:
             await embed.send(ctx)
         except discord.HTTPException:
