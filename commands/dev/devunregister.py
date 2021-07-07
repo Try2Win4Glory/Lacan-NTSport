@@ -58,9 +58,9 @@ class Command(commands.Cog):
         premiumserver = False
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
-        #discordid = discordid.replace("<@", "")
-        #discordid0 = discordid.replace("<@!", "")
-        discordid1 = discordid.replace(">", "")
+        discordid = discordid.replace("<@", "")
+        discordid0 = discordid.replace("<@!", "")
+        discordid1 = discordid0.replace(">", "")
         success, userid = await get_username(discordid, get_id=True, bypass=True)
         if success:
             user = await ctx.guild.fetch_member(userid)
@@ -70,7 +70,7 @@ class Command(commands.Cog):
             except:
                 user = await ctx.guild.fetch_member(discordid1)
         print(user)
-        #discordid1 = user.id
+        discordid1 = user.id
         dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
