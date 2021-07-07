@@ -60,11 +60,15 @@ class Command(commands.Cog):
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         discordid0 = discordid.replace("<@!", "")
         discordid1 = discordid0.replace(">", "")
-        success, userid = await get_username(discordid, get_id=True)
+        success, userid = await get_username(discordid, get_id=True, bypass=True)
         if success:
             user = await ctx.guild.fetch_member(userid)
         else:
-            user = await ctx.guild.fetch_member(discordid)
+            try:
+                user = await ctx.guild.fetch_member(discordid)
+            except:
+                user = await ctx.guild.fetch_member(discordid1)
+        print(user)
         discordid1 = user.id
         dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         for x in pdata['premium']:
