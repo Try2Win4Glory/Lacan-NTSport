@@ -47,6 +47,7 @@ class Command(commands.Cog):
 
             return await embed.send(ctx)
         else:
+            discordid = discordid.replace("<@", "")
             discordid0 = discordid.replace("<@!", "")
             discordid1 = discordid0.replace(">", "")
             print(discordid1)
