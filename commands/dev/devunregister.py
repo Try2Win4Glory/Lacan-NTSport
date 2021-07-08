@@ -70,7 +70,7 @@ class Command(commands.Cog):
             except:
                 user = await ctx.guild.fetch_member(discordid1)
         print(user)
-        discordid1 = user.id
+        #discordid1 = user.id
         dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
