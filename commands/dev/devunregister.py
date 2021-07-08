@@ -59,7 +59,7 @@ class Command(commands.Cog):
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         discordid = discordid.replace("<@", "")
-        discordid0 = discordid.replace("<@!", "")
+        #discordid0 = discordid.replace("<@!", "")
         discordid1 = discordid0.replace(">", "")
         success, userid = await get_username(discordid, get_id=True, bypass=True)
         if success:
