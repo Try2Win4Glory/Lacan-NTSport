@@ -1,3 +1,4 @@
+'''View the bot\'s uptime'''
 import discord, datetime, time
 from discord.ext import commands
 import sys
