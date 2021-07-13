@@ -8,6 +8,12 @@ import discord
 import copy, aiohttp
 from compsmongo import DBClient
 import os, functools, asyncio, sys
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 async def decision_making(self, data, dbclient):
     await asyncio.sleep(2)
     old = copy.deepcopy(data)

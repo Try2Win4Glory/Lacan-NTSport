@@ -47,7 +47,8 @@ class Command(commands.Cog):
 
             return await embed.send(ctx)
         else:
-            discordid0 = discordid.replace("<@!", "")
+            discordid = discordid.replace("!", "")
+            discordid0 = discordid.replace("<@", "")
             discordid1 = discordid0.replace(">", "")
             print(discordid1)
             #data = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text)

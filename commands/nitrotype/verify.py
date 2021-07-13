@@ -12,6 +12,12 @@ import aiohttp
 import cloudscraper
 import asyncio
 import functools
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 class Command(commands.Cog):
 
     def __init__(self, client):

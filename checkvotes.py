@@ -3,6 +3,12 @@ from discord.ext import commands
 import dbl
 import os
 from mongoclient import DBClient
+try:
+    from dotenv import load_dotenv
+
+    load_dotenv()
+except:
+    pass
 class TopGG(commands.Cog):
     """
     This example uses dblpy's webhook system.
