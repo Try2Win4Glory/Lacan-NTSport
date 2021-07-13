@@ -1,4 +1,4 @@
-'''User Id and stuff'''
+'''Check a user ID'''
 
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
