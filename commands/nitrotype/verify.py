@@ -45,7 +45,7 @@ class Command(commands.Cog):
                 if elem['userID'] == str(ctx.author.id):
                     if elem['verified'] == 'false':
                         username = elem['NTuser']
-                        embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{elem["NTuser"]}**, friend me on nitrotype [here](https://www.nitrotype.com/racer/lacanverification)! \nAfter that run `n.verify` again.')
+                        embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{elem["NTuser"]}**, friend me on nitrotype [here](https://www.nitrotype.com/racer/verifywithlacan)! \nAfter that run `n.verify` again.')
                         elem['verifyCar'] = None
                         elem['verified'] = 'in progress'
                         dbclient = DBClient()
@@ -63,12 +63,12 @@ class Command(commands.Cog):
                             if friend['username'] == elem['NTuser']:
                                 break
                         else:
-                            embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/lacanverification) and friend request me. \nAfter that make sure to run `n.verify` again.')
+                            embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/verifywithlacan) and friend request me. \nAfter that make sure to run `n.verify` again.')
                             return await embed.send(ctx)
                         elem['verified'] = 'true'
                         dbclient = DBClient()
                         await dbclient.update_array(collection, old, elem)
-                        embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server do `n.update` to update your roles.')
+                        embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
                         return await embed.send(ctx)
                     if elem['verified'] == 'true':
                         embed = Embed('Error!', 'You are already verified :rofl:', 'joy')
