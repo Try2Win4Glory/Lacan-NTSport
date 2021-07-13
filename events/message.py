@@ -133,11 +133,11 @@ class Events(commands.Cog):
                             #await client.wait_until_ready()
                             channel1 = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
                             channel2 = discord.utils.get(self.client.get_all_channels(), id = 803938544175284244)
-                            '''embed = Embed('__**Command Log**__', str(message.author))
-<<<<<<< HEAD
+                            'embed = Embed('__**Command Log**__', str(message.author))
+#<<<<<<< HEAD
 
-=======
->>>>>>> 13f09721595a86bf9933f4e55fed664d5d6b9bd7
+#=======
+#>>>>>>> 13f09721595a86bf9933f4e55fed664d5d6b9bd7
                             embed.field('__Command__', f'`n.{("".join(list(message.content)[2:]))}`')
                             embed.field('__User ID__', f'`{str(message.author.id)}`')
                             embed.field('__Guild ID__', f'`{str(message.guild.id)}`')
@@ -153,9 +153,9 @@ class Events(commands.Cog):
                             pass
                             embed.field('__Error__', f'```{e}```')
                             await channel.send(embed=embed.default_embed())
-                            await channel2.send(embed=embed.default_embed())'''
-                            if shouldraise:
-                                raise e
+                            await channel2.send(embed=embed.default_embed())
+                            #if shouldraise:
+                                #raise e
                         '''channel = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
                         channel2 = discord.utils.get(self.client.get_all_channels(), id = 803938544175284244)
                         embed = Embed('__**Command Log**__', str(message.author), color=0x2ecc71)
