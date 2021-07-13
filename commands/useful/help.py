@@ -19,7 +19,7 @@ def commands_pagination(current_page):
                       'spoilers': 'eyes',
                       'market': 'shopping cart',
                       'images': 'frame photo',
-                      'server': ':zap:'
+                      'server': ':zap:',
                       'giveaways': 'tada',
                       'useful' : 'wrench'
                       #'dev': 'tools'
