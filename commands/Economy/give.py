@@ -1,4 +1,4 @@
-'''Give your friend some <:lacan_economy:800335440719642704> after they beg'''
+'''Give your friend some Lacans after they beg'''
 
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
