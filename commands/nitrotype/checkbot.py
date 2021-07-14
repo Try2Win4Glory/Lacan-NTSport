@@ -21,7 +21,7 @@ class Command(commands.Cog):
         print(prediction)
         pred = prediction['botornot'][1]
         botornot_value = prediction['botornot'][0]
-        accuracy = sum(prediction['accuracy'])/2
+        accuracy = sum(prediction['accuracy'])/2*100
         df = pandas.read_csv("data.csv")
         features = ['avgSpeed', 'highSpeed', 'racesTotal', 'highestSession']
         avgdivhigh = []
@@ -58,7 +58,7 @@ class Command(commands.Cog):
         else:
             embed.field('Bot Or Not', '__BOT__' if botornot_value == 1 else '__LEGIT__')
             embed.field('Chance Of Being A Bot', str(round(pred*100,2))+'%')
-            embed.field('Accuracy', '`'+str(accuracy)+'`%')
+            embed.field('Result Accuracy', '`'+str(accuracy)+'%`')
         file = discord.File("graph.png", filename="graph.png")
         embed.image(url="attachment://graph.png")
         await ctx.send(file=file, embed=embed.default_embed())
