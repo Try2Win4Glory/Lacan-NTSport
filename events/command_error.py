@@ -15,6 +15,10 @@ class Events(commands.Cog):
         #await ctx.send('Error!')
         #pass
         else:
-            raise (error)
+            if error!=None:
+              try:
+                raise (error)
+              except:
+                pass
 def setup(client):
     client.add_cog(Events(client))
