@@ -66,7 +66,7 @@ async def decision_making(self, data, dbclient):
         return old == data
 async def create_processing_pool(self, dbclient, documents):
     async for data in documents:
-        print(await decision_making(self, data, dbclient))
+        pass
 class AutoUpdate(commands.Cog):
     def __init__(self, client):
         self.always_update.start()
