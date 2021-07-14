@@ -22,9 +22,11 @@ async def decision_making(self, data, dbclient):
     if round(time.time()) < endcomptime:
         try:
             await nitrotype.update_comp(compid)
+            return
             #return('Updated Comp #', compid)
         except Exception as e:
             raise e
+            return
             #return ('Couldn\'t update Comp! #', compid)
         pass
     elif round(time.time()) >= endcomptime:
@@ -56,7 +58,7 @@ async def decision_making(self, data, dbclient):
         try:
             user = await self.client.fetch_user(data['other']['author'])
             await user.send(embed=embed)
-            await user.send('Your conpetition has ended! Comp ID: `'+compid+'`.  Check out the other categories of your competition by doing `n.lb '+compid+'` and adding `speed`, `accuracy`, `races`, or `points`. Ex: `n.lb '+compid+' points`')
+            await user.send('Your competition has ended! Comp ID: `'+compid+'`.  Check out the other categories of your competition by doing `n.lb '+compid+'` and adding `speed`, `accuracy`, `races`, or `points`. Ex: `n.lb '+compid+' points`')
         except:
             pass
         data['other']['ended'] = True
@@ -72,7 +74,7 @@ class AutoUpdate(commands.Cog):
     async def fetch(self, session, url, data=None):
         async with session.post(url, data=data) as response:
             return await response.text()
-    @tasks.loop(seconds=120)
+    @tasks.loop(seconds=180)
     async def always_update(self):
         print('started auto update')
         f = open('dailyupdate.txt')
