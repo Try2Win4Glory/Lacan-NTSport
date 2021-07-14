@@ -23,6 +23,11 @@ Credits
 
 @GoodGradesBoy#9166
 
+## Self-hosting
+Simply change the config.json and .env files to your certain needs and bot and run on node.js
+
+##
+
 To invite the bot to your server click [here](https://discord.com/oauth2/authorize?client_id=713352863153258556&permissions=469888065&redirect_uri=https%3A%2F%2Fnitrotype.com&scope=bot)
 
 Bot Prefix:` n.`
