@@ -56,6 +56,11 @@ class Command(commands.Cog):
             860954147342909440
         ]:
             teamswithroles.append('[NYM]')
+        #Team 5TORM | Server Owner: 850880126979932180
+        if ctx.guild.id in [
+            862845786580582401
+        ]:
+            teamswithroles.append('[5TORM]')
         premiumserver = False
         #dbdata = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": dbkey}).text)
         dbclient = DBClient()
