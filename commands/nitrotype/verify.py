@@ -62,8 +62,8 @@ class Command(commands.Cog):
                         for friend in friends['data']['requests']:
                             if friend['username'] == elem['NTuser']:
                                 break
-                            elif friends['data']['requests']==None:
-                                break
+                            #elif friends['data']['requests']==None:
+                                #break
                         else:
                             embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/lacanverification) and friend request me. \nAfter that make sure to run `n.verify` again.')
                             return await embed.send(ctx)
