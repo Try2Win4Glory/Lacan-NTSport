@@ -22,10 +22,10 @@ async def decision_making(self, data, dbclient):
     if round(time.time()) < endcomptime:
         try:
             await nitrotype.update_comp(compid)
-            return('Updated Comp #', compid)
+            #return('Updated Comp #', compid)
         except Exception as e:
             raise e
-            return ('Couldn\'t update Comp! #', compid)
+            #return ('Couldn\'t update Comp! #', compid)
         pass
     elif round(time.time()) >= endcomptime:
         await nitrotype.update_comp(str(compid))

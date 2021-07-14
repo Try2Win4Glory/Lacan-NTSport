@@ -54,7 +54,7 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
         #await dbclient.update_big_array(collection, 'registered', dbdata)
-        embed = Embed('Success!', 'You are now registered to `' + racer.username.lower() + '`. Type `n.verify` to verify your ownership!', 'white_check_mark')
+        embed = Embed('<a:Check:797009550003666955>  Success!', 'You are now registered to `' + racer.username.lower() + '`. Type `n.verify` to verify your ownership!')
         await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))

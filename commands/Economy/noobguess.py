@@ -1,4 +1,4 @@
-'''A game where you guess a silhouetted Nitro Type car'''
+'''A game where you guess a Nitro Type car'''
 
 from discord.ext import commands
 from discord import Message

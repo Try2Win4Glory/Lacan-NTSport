@@ -20,8 +20,8 @@ class Command(commands.Cog):
         embed.field('Rule 7', '__Personal information written to the bot remains private.__\n\nAsking for personal information, such as password shared to the bot before is not allowed.')
         embed.field('Rule 8', '__No complaining without reading.__\n\nPlease abide from complaining about the bot (for example verification waiting times) if it clearly states that this feature takes its time.')
         embed.field('Rule 9', '__No scamming or botting support.__\n\nThis bot does not support botters or scammers and it\'s not allowed to use it for any features like that.')
-        embed.field('Rule 10', '__Reuse of the code is not permitted.__\n\nThe code for this bot is public, but any reuse of the code is strictly prohibited and subject to an immediate ban from the bot.')
-        embed.footer(str(ctx.author)+' • © 2020 / 2021 Try2Win4Glory, adl212, Typerious')
+        embed.field('Rule 10', '__Follow the License guidelines__\n\nThe code for this bot is public, and you are free to fork it. However, the code remains under the GNU Public License v3.0.')
+        embed.footer(str(ctx.author)+' • © 2020 / 2021 Try2Win4Glory')
         return await embed.send(ctx)
     
 def setup(client):

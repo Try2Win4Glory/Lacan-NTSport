@@ -1,4 +1,4 @@
-'''Reroll The Winner!'''
+'''End a giveaway!'''
 
 from discord.ext import commands
 from packages.utils import Embed, ImproperType

@@ -1,3 +1,4 @@
+'''Display common Errors'''
 from discord.ext import commands
 import discord
 from packages.utils import Embed, ImproperType
