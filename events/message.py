@@ -152,8 +152,11 @@ class Events(commands.Cog):
                             embed.field('__Error__', f'```{e}```')
                             await channel.send(embed=embed.default_embed())
                             await channel2.send(embed=embed.default_embed())'''
-                            if shouldraise:
-                                raise e
+                            if shouldraise and e!=None:
+                                try:
+                                  raise e
+                                except:
+                                  return
                         '''channel = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
                         channel2 = discord.utils.get(self.client.get_all_channels(), id = 803938544175284244)
                         embed = Embed('__**Command Log**__', str(message.author), color=0x2ecc71)
