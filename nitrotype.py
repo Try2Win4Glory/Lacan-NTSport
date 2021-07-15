@@ -187,7 +187,7 @@ async def l(compid, category="races"):
         cleanresult.append((t[1], t[2], t[0]))
 
     return ('nothing LMAO', cleanresult)
-async def NT_to_discord(id, bypass_verified=False, get_id=False):
+async def NT_to_discord(id, bypass_verified=True, get_id=False):
     from mongoclient import DBClient
     dbclient = DBClient()
     collection = dbclient.db.NT_to_discord
