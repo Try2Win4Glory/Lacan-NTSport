@@ -81,7 +81,8 @@ class Command(commands.Cog):
                 else:
                     embed.description = f'Type a letter in chat to guess.\n\n**{" ".join(string)}**\n\n{new}'
                 await msg.delete()
-                await original.edit(embed = embed)
+                #await original.edit(embed = embed)
+                await original.edit(ctx)
 
     '''@hangman.error
     async def hangman_error(self, ctx, error):
