@@ -84,4 +84,4 @@ class Command(commands.Cog):
         await ctx.send(error)'''    
 
 def setup(client):
-    client.add_cog(CardGames(client))
+    client.add_cog(Command(client))
