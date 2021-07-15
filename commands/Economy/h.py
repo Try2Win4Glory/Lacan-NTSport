@@ -27,6 +27,7 @@ class Command(commands.Cog):
             string = [':blue_square:' for i in word]
             embed=Embed('Hangman', f'Type a letter in the chat to guess.\n\n**{" ".join(string)}**\n\n{empty}')
             original = await embed.send(ctx)
+            embed2=Embed('Hangman', f'Type a letter in the chat to guess.\n\n**{" ".join(string)}**\n\n{empty}')
             '''embed = discord.Embed(
                 title = "Hangman",
                 color = ctx.author.color,
@@ -61,7 +62,7 @@ class Command(commands.Cog):
                         
                     else:
                         #embed.field(name = "Incorrect letters:", value = ', '.join(incorrect_guessed))'''
-                    embed.field('Incorrect letters:', f'", ".join{incorrect_guessed}')
+                    embed2.field('Incorrect letters:', f'", ".join{incorrect_guessed}')
                     
                     part = man[incorrect]
                     if len(part) > 2:
@@ -75,14 +76,14 @@ class Command(commands.Cog):
                             string[j] = word[j]
                 new = '\n'.join(hang)
                 if ':blue_square:' not in string:
-                    embed.description = f'You guessed the word!\n\n**{" ".join(string)}**\n\n{new}'
+                    embed2.description = f'You guessed the word!\n\n**{" ".join(string)}**\n\n{new}'
                 elif incorrect == len(man):
-                    embed.description = f'You\'ve been hanged! The word was \n\n**{" ".join([k for k in word])}**\n\n{new}'
+                    embed2.description = f'You\'ve been hanged! The word was \n\n**{" ".join([k for k in word])}**\n\n{new}'
                 else:
-                    embed.description = f'Type a letter in chat to guess.\n\n**{" ".join(string)}**\n\n{new}'
+                    embed2.description = f'Type a letter in chat to guess.\n\n**{" ".join(string)}**\n\n{new}'
                 await msg.delete()
                 #await original.edit(embed = embed)
-                await original.edit(Embed=embed)
+                await original.edit(embed=embed2)
 
     '''@hangman.error
     async def hangman_error(self, ctx, error):
