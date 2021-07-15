@@ -8,7 +8,7 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command(aliases = ['hang', 'hm'])
-        async def hangman(self, ctx):
+    async def hangman(self, ctx):
             print(f"{ctx.guild.name} - #{ctx.channel.name} - {ctx.author.name} - {ctx.message.content}")
             with open('./commands/Economy/hw.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
