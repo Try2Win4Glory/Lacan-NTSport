@@ -60,7 +60,7 @@ class Command(commands.Cog):
                         #fut = await loop.run_in_executor(None, functools.partial(session.post, 'https://www.nitrotype.com/api/login', data={'username': os.getenv('verification_username'), 'password': os.getenv('verification_password')}))
                         
                         # Login with Cookies
-                        session.cookies['ntuserrem'] = os.environ('ntuserrem')
+                        session.cookies['ntuserrem'] = os.environ(ntuserrem)
                         session.cookies['PHPNTSESSION'] = "applesandbananas"
                         session.cookies['applesandbananas'] = os.getenv('phpntsessiondata')
 
