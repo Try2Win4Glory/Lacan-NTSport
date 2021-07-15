@@ -207,7 +207,7 @@ async def NT_to_discord(id, bypass_verified=True, get_id=False):
         except:
             embed = Embed('Error!', 'Couldn\'t find that user', 'warning')
             return False, embed
-async def get_username(string, bypass=False, get_id=False):
+async def get_username(string, bypass=True, get_id=False):
     string = list(str(string))
     if ''.join(string[:3]) == "<@!":
         return await NT_to_discord(''.join(string[3:-1]), bypass, get_id)
