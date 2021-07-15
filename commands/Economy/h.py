@@ -56,10 +56,13 @@ class Command(commands.Cog):
                 guessed += letter
                 if letter not in word:
                     incorrect_guessed += letter
-                    if embed.fields:
-                        embed.field_at(0, name = "Incorrect letters:", value = ', '.join(incorrect_guessed))
+                    '''if embed.fields:
+                        #embed.field_at(0, name = "Incorrect letters:", value = ', '.join(incorrect_guessed))
+                        
                     else:
-                        embed.field(name = "Incorrect letters:", value = ', '.join(incorrect_guessed))
+                        #embed.field(name = "Incorrect letters:", value = ', '.join(incorrect_guessed))'''
+                    embed.field('Incorrect letters:', f'", ".join{incorrect_guessed}')
+                    
                     part = man[incorrect]
                     if len(part) > 2:
                         hang[part[1]] = hang[part[1]][0:part[2]] + part[0] + hang[part[1]][part[2] + 1:]
