@@ -55,7 +55,15 @@ class Command(commands.Cog):
                     if elem['verified'] == 'in progress':
                         session = cloudscraper.create_scraper()
                         loop = asyncio.get_event_loop()
-                        fut = await loop.run_in_executor(None, functools.partial(session.post, 'https://www.nitrotype.com/api/login', data={'username': os.getenv('verification_username'), 'password': os.getenv('verification_password')}))
+                        
+                        # Login with Username and Password
+                        #fut = await loop.run_in_executor(None, functools.partial(session.post, 'https://www.nitrotype.com/api/login', data={'username': os.getenv('verification_username'), 'password': os.getenv('verification_password')}))
+                        
+                        # Login with Cookies
+                        session.cookies['ntuserrem'] = os.environ(ntuserrem)
+                        session.cookies['PHPNTSESSION'] = "applesandbananas"
+                        session.cookies['applesandbananas'] = os.getenv('phpntsessiondata')
+
                         fut = await loop.run_in_executor(None, functools.partial(session.get, 'https://www.nitrotype.com/api/friend-requests'))
                         friends = json.loads(fut.text)
                         
