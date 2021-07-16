@@ -187,7 +187,7 @@ async def l(compid, category="races"):
         cleanresult.append((t[1], t[2], t[0]))
 
     return ('nothing LMAO', cleanresult)
-async def NT_to_discord(id, bypass_verified=True, get_id=False):
+async def NT_to_discord(id, bypass_verified=False, get_id=False):
     from mongoclient import DBClient
     dbclient = DBClient()
     collection = dbclient.db.NT_to_discord
@@ -207,7 +207,7 @@ async def NT_to_discord(id, bypass_verified=True, get_id=False):
         except:
             embed = Embed('Error!', 'Couldn\'t find that user', 'warning')
             return False, embed
-async def get_username(string, bypass=True, get_id=False):
+async def get_username(string, bypass=False, get_id=False):
     string = list(str(string))
     if ''.join(string[:3]) == "<@!":
         return await NT_to_discord(''.join(string[3:-1]), bypass, get_id)
