@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from packages.nitrotype import Racer
 import os
 from packages.checkbot import check
+from cooldowns.checkbot import rateLimit, cooldown_add
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -14,6 +15,21 @@ class Command(commands.Cog):
     @commands.command()
     async def checkbot(self, ctx, username):
         # return await ctx.send('**Your** security is important for **us**! Because of security reasons, this command has been taken down and will be back soon. Thanks for your understanding.')
+        
+        # Cooldown
+        if str(ctx.author) in rateLimit:
+            embed = Embed('Cooldown!','You are on cooldown. Wait `5` seconds before running this command again.','alarm clock')
+            return await embed.send(ctx)
+        if await ImproperType.check(ctx): return
+        if ctx.author.id not in [
+          #Try2Win4Glory
+            505338178287173642, 
+          #Typerious
+            637638904513691658, 
+          #adl212
+            396075607420567552]:
+            cooldown_add(str(ctx.author))
+            
         racer = await Racer(username)
         if not racer.success:
             return Embed('Error!', 'That account does not exist!')
