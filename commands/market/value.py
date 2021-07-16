@@ -6,6 +6,7 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.linear_model import LinearRegression
 from packages.nitrotype import Racer
 import pandas
+from cooldowns.value import rateLimit, cooldown_add
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -13,6 +14,21 @@ class Command(commands.Cog):
     
     @commands.command()
     async def value(self, ctx, username=None):
+        
+        # Cooldown
+        if str(ctx.author) in rateLimit:
+            embed = Embed('Cooldown!','You are on cooldown. Wait `5` seconds before running this command again.','alarm clock')
+            return await embed.send(ctx)
+        if await ImproperType.check(ctx): return
+        if ctx.author.id not in [
+          #Try2Win4Glory
+            505338178287173642, 
+          #Typerious
+            637638904513691658, 
+          #adl212
+            396075607420567552]:
+            cooldown_add(str(ctx.author))
+        
         linear = LinearRegression(positive=True, fit_intercept=False)
         df = pandas.read_csv('./commands/market/data.csv')
         f_names = ['races','wpm_average','wpm_high','longestSession','membership','cars_owned','views','first','second','third','created']
