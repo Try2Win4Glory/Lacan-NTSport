@@ -29,7 +29,7 @@ class Command(commands.Cog):
                 if user['points'] < int(amount):
                     embed = Embed('Error!', 'You don\'t have that amount of '+random_lacan+'!')
                     return await embed.send(ctx)
-                if int(amount)<0:
+                if int(amount)<1:
                     embed=Embed('Error!', f'Did you seriously just attempt to get yourself more {random_lacan} by giving your friend **{int(amount)}**{random_lacan}`:flushed:?', 'warning')
                     return await embed.send(ctx)
                 user['points'] -= int(amount)
