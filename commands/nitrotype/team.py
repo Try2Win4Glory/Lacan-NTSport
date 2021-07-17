@@ -85,7 +85,16 @@ class Command(commands.Cog):
         #Team Description
         embed.field('Description', f" {info['otherRequirements']}")
         #team stats
-        embed.field('Stats', f":trophy: **Daily**\n{team.daily_races} races ({round(int(team.daily_speed), 2)} wpm, {round(team.daily_accuracy, 2)}% acc)\n{round(team.daily_points, 2)} points\n:trophy: **Season**\n{team.season_races} races ({round(int(team.season_speed), 2)} wpm, {round(team.season_accuracy, 2)}% acc)\n{round(team.season_points, 2)} points\n:trophy: **All-Time**\n{team.alltime_races} races ({round(int(team.alltime_speed), 2)} wpm, {round(team.alltime_accuracy, 2)}% acc)\n{round(team.alltime_points, 2)} points")
+        try:
+          embed.field('Stats', f":trophy: **Daily**\n{team.daily_races} races ({round(int(team.daily_speed), 2)} wpm, {round(team.daily_accuracy, 2)}% acc)\n{round(team.daily_points, 2)} points\n:trophy: **Season**\n{team.season_races} races ({round(int(team.season_speed), 2)} wpm, {round(team.season_accuracy, 2)}% acc)\n{round(team.season_points, 2)} points\n:trophy: **All-Time**\n{team.alltime_races} races ({round(int(team.alltime_speed), 2)} wpm, {round(team.alltime_accuracy, 2)}% acc)\n{round(team.alltime_points, 2)} points")
+        except IndexError:
+          try:
+             embed.field('Stats', f":trophy: **Season**\n{team.season_races} races ({round(int(team.season_speed), 2)} wpm, {round(team.season_accuracy, 2)}% acc)\n{round(team.season_points, 2)} points\n:trophy: **All-Time**\n{team.alltime_races} races ({round(int(team.alltime_speed), 2)} wpm, {round(team.alltime_accuracy, 2)}% acc)\n{round(team.alltime_points, 2)} points")
+          except IndexError:
+             try:
+                embed.field('Stats', f":trophy: **All-Time**\n{team.alltime_races} races ({round(int(team.alltime_speed), 2)} wpm, {round(team.alltime_accuracy, 2)}% acc)\n{round(team.alltime_points, 2)} points")
+             except IndexError:
+                embed.field('Stats', f"No stats could be found!")
         #send the embed
         await embed.send(ctx)
     
