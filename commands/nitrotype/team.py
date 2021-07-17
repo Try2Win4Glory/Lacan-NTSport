@@ -87,12 +87,15 @@ class Command(commands.Cog):
         #team stats
         try:
           embed.field('Stats', f":trophy: **Daily**\n{team.daily_races} races ({round(int(team.daily_speed), 2)} wpm, {round(team.daily_accuracy, 2)}% acc)\n{round(team.daily_points, 2)} points\n:trophy: **Season**\n{team.season_races} races ({round(int(team.season_speed), 2)} wpm, {round(team.season_accuracy, 2)}% acc)\n{round(team.season_points, 2)} points\n:trophy: **All-Time**\n{team.alltime_races} races ({round(int(team.alltime_speed), 2)} wpm, {round(team.alltime_accuracy, 2)}% acc)\n{round(team.alltime_points, 2)} points")
+          return await embed.send(ctx)
         except IndexError:
           try:
              embed.field('Stats', f":trophy: **Season**\n{team.season_races} races ({round(int(team.season_speed), 2)} wpm, {round(team.season_accuracy, 2)}% acc)\n{round(team.season_points, 2)} points\n:trophy: **All-Time**\n{team.alltime_races} races ({round(int(team.alltime_speed), 2)} wpm, {round(team.alltime_accuracy, 2)}% acc)\n{round(team.alltime_points, 2)} points")
+             return await embed.send(ctx)
           except IndexError:
              try:
                 embed.field('Stats', f":trophy: **All-Time**\n{team.alltime_races} races ({round(int(team.alltime_speed), 2)} wpm, {round(team.alltime_accuracy, 2)}% acc)\n{round(team.alltime_points, 2)} points")
+                return await embed.send(ctx)
              except IndexError:
                 embed.field('Stats', f"No stats could be found!")
         #send the embed
