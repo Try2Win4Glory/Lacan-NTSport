@@ -73,11 +73,14 @@ class Command(commands.Cog):
         embed.field('Requirements', f":stopwatch: Min Speed: {info['minSpeed']}\n:checkered_flag: Min Races: {info['minRaces']}")
         #officers/captain of team       
         leaders = f":tools: **{team.captain[1]}**[:link:](https://www.nitrotype.com/racer/{team.captain[0]})\n"
-        for elem in team.leaders:
-            if elem[1] is None:
-                leaders += ':man_police_officer: **'+elem[0]+'**[:link:](https://www.nitrotype.com/racer/'+elem[0]+')\n'
-            else:
-                leaders += ':man_police_officer: **'+elem[1]+'**[:link:](https://www.nitrotype.com/racer/'+elem[0]+')\n'
+        try:
+            for elem in team.leaders:
+                if elem[1] is None:
+                  leaders += ':man_police_officer: **'+elem[0]+'**[:link:](https://www.nitrotype.com/racer/'+elem[0]+')\n'
+                else:
+                  leaders += ':man_police_officer: **'+elem[1]+'**[:link:](https://www.nitrotype.com/racer/'+elem[0]+')\n'
+        except IndexError:
+            pass
         embed.field('Leaders', leaders)
         #Team Description
         embed.field('Description', f" {info['otherRequirements']}")
