@@ -67,6 +67,7 @@ class Command(commands.Cog):
                         fut = await loop.run_in_executor(None, functools.partial(session.get, 'https://www.nitrotype.com/api/friend-requests'))
                         friends = json.loads(fut.text)
                         
+                        print(friends)
                         for friend in friends['data']['requests']:
                             if friend['username'] == elem['NTuser']:
                                 break
