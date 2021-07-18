@@ -2,6 +2,7 @@
 import discord
 import random
 from discord.ext import commands
+import asyncio, json, requests, copy
 from packages.utils import Embed, ImproperType
 from mongoclient import DBClient
 
