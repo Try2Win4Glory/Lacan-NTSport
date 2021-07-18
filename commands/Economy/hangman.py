@@ -119,7 +119,7 @@ class Command(commands.Cog):
                 except UnboundLocalError:
                     await dbclient.create_doc({'userid': str(ctx.author.id), 'points': earned})
                 
-                embed.description = f"You guessed the word and earned **{earnings}** {random_lacan}!\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"You guessed the word and earned **{earned}** {random_lacan}!\n\n**{' '.join(string)}**\n\n{new}"
             elif incorrect == len(man):
                 embed.description = f"You've been hanged! The word was \n\n**{' '.join([k for k in word])}**\n\n{new}"
             else:
