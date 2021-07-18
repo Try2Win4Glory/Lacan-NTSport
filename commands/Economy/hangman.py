@@ -3,6 +3,7 @@ import discord
 import random
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
+from mongoclient import DBClient
 
 class Command(commands.Cog):
 
@@ -11,6 +12,32 @@ class Command(commands.Cog):
     
     @commands.command(aliases = ['hang', 'hm'])
     async def hangman(self, ctx):
+        
+       # Database
+        list_of_lacans = ['<:lacan_economy_1:801006407536607262>','<:lacan_economy_2:801004873612132382>','<:lacan_economy_3:801004873214722079>','<:lacan_economy_4:801004868126113822>','<:lacan_economy_5:801004868348936203>','<:lacan_economy_6:801004863433605160>','<:lacan_economy_7:801004870643220481>','<:lacan_economy_8:801004872820457483>','<:lacan_economy_9:801004872417804298>','<:lacan_economy_10:801004872811413514>']
+        random_lacan = random.choice(list_of_lacans)
+        
+        data = json.loads(requests.get('https://lacanitemshop.nitrotypers.repl.co/data.json').text)
+        shopcars = [data['daily']['img'], data['weekly']['img']]
+        dbclient = DBClient()
+        collection = dbclient.db.pointsdb
+        data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
+        async for d in data:
+            user = d
+            break
+        try:
+          old = copy.deepcopy(user)
+          for car in user['cars']:
+            if user['equipped']['img'] in shopcars:
+              carbonus = True
+              break
+          else:
+            print(shopcars)
+            carbonus = False
+        except:
+            carbonus = False
+        
+        
         print(f"{ctx.guild.name} - #{ctx.channel.name} - {ctx.author.name} - {ctx.message.content}")
         with open('./commands/Economy/hw.txt') as f:
             word = random.choice(f.readlines()).rstrip("\n")
@@ -72,8 +99,26 @@ class Command(commands.Cog):
                         string[j] = word[j]
             new = '\n'.join(hang)
             if ':blue_square:' not in string:
-                earnings = random.randint(5, 30)
-                embed.description = f"You guessed the word!\n\n**{' '.join(string)}**\n\n{new}"
+                # Database Add Points
+                if carbonus:
+                    earned = 8
+                else:
+                    earned = 4
+                dbclient = DBClient()
+                collection = dbclient.db.pointsdb
+                data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
+                async for d in data:
+                    user = d
+                    break
+                try:
+                    old = user.copy()
+                    if user['userid'] == str(ctx.author.id):
+                        user['points'] += earned
+                        await dbclient.update_array(collection, old, user)
+                except UnboundLocalError:
+                    await dbclient.create_doc({'userid': str(ctx.author.id), 'points': earned})
+                
+                embed.description = f"You guessed the word and earned **{earnings}** {random_lacan}!\n\n**{' '.join(string)}**\n\n{new}"
             elif incorrect == len(man):
                 embed.description = f"You've been hanged! The word was \n\n**{' '.join([k for k in word])}**\n\n{new}"
             else:
