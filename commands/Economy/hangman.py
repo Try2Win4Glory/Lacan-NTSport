@@ -52,7 +52,7 @@ class Command(commands.Cog):
             "___|__________```**"
         ]
         empty = '\n'.join(hang)
-        man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
+        man = [[':astonished:', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         string = [':blue_square:' for i in word]
         embed = discord.Embed(
             title = "Hangman",
@@ -102,9 +102,9 @@ class Command(commands.Cog):
             if ':blue_square:' not in string:
                 # Database Add Points
                 if carbonus:
-                    earned = 8
+                    earned = len(word)+len(word)
                 else:
-                    earned = 4
+                    earned = len(word)
                 dbclient = DBClient()
                 collection = dbclient.db.pointsdb
                 data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
