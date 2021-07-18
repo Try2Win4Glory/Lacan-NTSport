@@ -52,7 +52,7 @@ class Command(commands.Cog):
             "___|__________```**"
         ]
         empty = '\n'.join(hang)
-        man = [[':astonished:', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
+        man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         string = [':blue_square:' for i in word]
         embed = discord.Embed(
             title = "Hangman",
