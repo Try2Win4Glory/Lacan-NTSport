@@ -69,10 +69,14 @@ class Command(commands.Cog):
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         string = [':blue_square:' for i in word]
+        if carbonus:
+              earned = len(word)+len(word)
+        else:
+              earned = len(word)
         embed = discord.Embed(
-            title = "Hangman",
+            title = "Nitrotype Hangman",
             color = ctx.author.color,
-            description = f"Type a letter in chat to guess.\n\n**{' '.join(string)}**\n\n{empty}",
+            description = f"Type a letter in chat to guess.\nValue: **{earned}**{random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
         )
         orange = 0xF09F19
         incorrect = 0
@@ -87,7 +91,9 @@ class Command(commands.Cog):
                 msg = await self.client.wait_for('message', timeout = 120.0, check = check)
                 letter = msg.content.lower()
             except asyncio.TimeoutError:
-                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game started by {ctx.author.mention} timed out.\n\nCorrect word: **{word}**.')
+                embed.colour = 0xF09F19
+                await original.edit(embed = embed)
+                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game started by {ctx.author.mention} timed out.\nCorrect word: **{word}**\nValue: {earned}{random_lacan}', color=orange)
                 return await embed.send(ctx)
                 #return await ctx.send("Your Game timed out.")
             if already_guessed:
@@ -120,10 +126,6 @@ class Command(commands.Cog):
             new = '\n'.join(hang)
             if ':blue_square:' not in string:
                 # Database Add Points
-                if carbonus:
-                    earned = len(word)+len(word)
-                else:
-                    earned = len(word)
                 dbclient = DBClient()
                 collection = dbclient.db.pointsdb
                 data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
