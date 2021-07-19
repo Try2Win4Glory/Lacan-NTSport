@@ -14,7 +14,6 @@ class Command(commands.Cog):
     
     @commands.command(aliases = ['hang', 'hm'])
     async def hangman(self, ctx):
-      
         # Cooldown
         if str(ctx.author) in rateLimit:
             embed = Embed('Cooldown!','You are on cooldown. Wait `15` seconds before running this command again.','alarm clock')
@@ -67,16 +66,21 @@ class Command(commands.Cog):
             "___|__________```**"
         ]
         empty = '\n'.join(hang)
-        man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
+        #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
+        man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         string = [':blue_square:' for i in word]
+        if carbonus:
+              earned = len(word)+len(word)
+        else:
+              earned = len(word)
         embed = discord.Embed(
-            title = "Hangman",
+            title = "Nitrotype Hangman",
             color = ctx.author.color,
-            description = f"Type a letter in chat to guess.\n\n**{' '.join(string)}**\n\n{empty}",
+            description = f"Type a letter in chat to guess.\nValue: **{earned}**{random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
         )
+        orange = 0xF09F19
         incorrect = 0
         original = await ctx.send(embed = embed)
-        print('File Hang.py: \'original\' success!')
         guessed = []
         incorrect_guessed = []
         already_guessed = None
@@ -87,14 +91,20 @@ class Command(commands.Cog):
                 msg = await self.client.wait_for('message', timeout = 120.0, check = check)
                 letter = msg.content.lower()
             except asyncio.TimeoutError:
-                await ctx.send("Your Game timed out.")
-                return
+                embed.colour = 0xF09F19
+                await original.edit(embed = embed)
+                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game started by {ctx.author.mention} timed out.\nCorrect word: **{word}**\nValue: {earned}{random_lacan}', color=orange)
+                return await embed.send(ctx)
+                #return await ctx.send("Your Game timed out.")
             if already_guessed:
                 await already_guessed.delete()
                 already_guessed = None
             if letter in guessed:
                 already_guessed = await ctx.send("You have already guessed that letter.")
-                await msg.delete()
+                try:
+                    await msg.delete()
+                except:
+                    pass
                 continue
             guessed += letter
             if letter not in word:
@@ -116,10 +126,6 @@ class Command(commands.Cog):
             new = '\n'.join(hang)
             if ':blue_square:' not in string:
                 # Database Add Points
-                if carbonus:
-                    earned = len(word)+len(word)
-                else:
-                    earned = len(word)
                 dbclient = DBClient()
                 collection = dbclient.db.pointsdb
                 data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
@@ -135,8 +141,10 @@ class Command(commands.Cog):
                     await dbclient.create_doc({'userid': str(ctx.author.id), 'points': earned})
                 
                 embed.description = f"You guessed the word and earned **{earned}** {random_lacan}!\n\n**{' '.join(string)}**\n\n{new}"
+                embed.colour = 0x40AC7B
             elif incorrect == len(man):
                 embed.description = f"You've been hanged! The word was \n\n**{' '.join([k for k in word])}**\n\n{new}"
+                embed.colour = 0xE84444
             else:
                 embed.description = f"Type a letter in chat to guess.\n\n**{' '.join(string)}**\n\n{new}"
             await msg.delete()
