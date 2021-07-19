@@ -22,7 +22,13 @@ class Command(commands.Cog):
             user = d
             break
         old = deepcopy(user)
-        data = json.loads(requests.get('https://lacanitemshop.nitrotypers.repl.co/data.json').text)
+        scollection = dbclient.db.shop
+        data = {"data": "", "weekly": ""}
+        async for x in scollection.find({}):
+            if x['type'] == 'weekly':
+                data['weekly'] = x
+            if x['type'] == 'daily':
+                data['daily'] = x
         if item == 'daily':
             data = data['daily']
             if user['points'] < int(data['price']):
