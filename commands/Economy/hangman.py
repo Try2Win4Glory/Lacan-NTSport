@@ -14,10 +14,6 @@ class Command(commands.Cog):
     
     @commands.command(aliases = ['hang', 'hm'])
     async def hangman(self, ctx):
-      '''if ctx.guild.id != 719414661686099989:
-        embed=Embed('Please have patience!', 'This command is currently under maintenance and will be back soon:tm:.\nPlease use other commands like e.g. `n.guess` or `n.typerace` in the meantime. Thanks for your patience!')
-        return await embed.send(ctx)
-      else:'''
         # Cooldown
         if str(ctx.author) in rateLimit:
             embed = Embed('Cooldown!','You are on cooldown. Wait `15` seconds before running this command again.','alarm clock')
