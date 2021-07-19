@@ -51,7 +51,7 @@ class Command(commands.Cog):
         rawval = str(pred[0]*10**6)
         roundval = round(float(rawval))
         formval = "{:,}".format(roundval)
-        embed=Embed('Account Value', 'This value is calculated by Machine Learning.', 'money with wings')
+        embed=Embed('Account Value', 'This value is supposed to show the price on the trading market', 'money with wings')
         embed.field('__Nitrotype User__', f'{racer.username} [:link:](https://nitrotype.com/racer/{racer.username})')
         embed.field('__Value__', f'$**{formval}**')
         for x in l:
