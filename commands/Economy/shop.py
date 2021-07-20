@@ -30,24 +30,33 @@ class Command(commands.Cog):
             embed.footer('Get amazing perks with items!')
             return embed
         if n == 1:
-            f = open('weeklyupdate.txt')
-            timeleft = int(f.readlines()[0]) - round(time.time())
+            '''f = open('weeklyupdate.txt')
+            timeleft = int(f.readlines()[0]) - round(time.time())'''
+            timeleft = int(data['weekly']['timestamp']) - round(time.time())
             embed.field('Weekly Items:', f'__Name:__ `{data["weekly"]["car"]}`\n__Price:__ `{str(data["weekly"]["price"])}` Lacans\n__Time left:__ `{self.format_time(timeleft)}` hours')
             embed.footer('Get amazing perks with items!')
             embed.image(f'https://www.nitrotype.com/cars/{data["weekly"]["img"]}')
             return embed
         if n == 2:
-            f = open('dailyupdate.txt')
-            timeleft = int(f.readlines()[0]) - round(time.time())
+            '''f = open('dailyupdate.txt')
+            timeleft = int(f.readlines()[0]) - round(time.time())'''
+            timeleft = int(data['daily']['timestamp']) - round(time.time())
             embed.field('Daily Items:', f'__Name:__ `{data["daily"]["car"]}`\n__Price:__ `{str(data["daily"]["price"])}` Lacans\n__Time left:__ `{self.format_time(timeleft)}` hours')
             embed.footer('Get amazing perks with items!')
             embed.image(f'https://www.nitrotype.com/cars/{data["daily"]["img"]}')
             return embed
     @commands.command()
     async def shop(self, ctx):
-        data = json.loads(requests.get('https://lacanitemshop.nitrotypers.repl.co/data.json').text)
+        #data = json.loads(requests.get('https://lacanitemshop.nitrotypers.repl.co/data.json').text)
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
+        scollection = dbclient.db.shop
+        data = {"data": "", "weekly": ""}
+        async for x in scollection.find({}):
+            if x['type'] == 'weekly':
+                data['weekly'] = x
+            if x['type'] == 'daily':
+                data['daily'] = x
         dbdata = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
         async for d in dbdata:
             dbuser = d
