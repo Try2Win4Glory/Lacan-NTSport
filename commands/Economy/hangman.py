@@ -80,10 +80,16 @@ class Command(commands.Cog):
         )
         orange = 0xF09F19
         incorrect = 0
-        original = await ctx.send(embed = embed)
         guessed = []
         incorrect_guessed = []
         already_guessed = None
+        space = ' '
+        for space in word:
+          guessed += space
+        number = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        for number in word:
+          guessed += number
+        original = await ctx.send(embed = embed)
         def check(m):
             return m.channel == ctx.channel and m.content.isalpha() and len(m.content) == 1 and m.author == ctx.author
         while incorrect < len(man) and ':blue_square:' in string:
