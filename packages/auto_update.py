@@ -90,7 +90,7 @@ class AutoUpdate(commands.Cog):
         if find == None or cond:
             while True:
                 daily_car = random.choice(data['list'])
-                if str(daily_car['name']) == 'Lacan Hypersport':
+                if str(daily_car['name']) == 'Fonicci Lacan Hypersport':
                     continue
                 else:
                     break
@@ -104,7 +104,7 @@ class AutoUpdate(commands.Cog):
         if find == None or cond:
             while True:
                 weekly_car = random.choice(data['list'])
-                if str(weekly_car['name']) == 'Lacan Hypersport':
+                if str(weekly_car['name']) == 'Fonicci Lacan Hypersport':
                     continue
                 else:
                     break
