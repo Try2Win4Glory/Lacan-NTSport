@@ -33,6 +33,7 @@ class Command(commands.Cog):
         random_lacan = random.choice(list_of_lacans)
         
         dbclient = DBClient()
+        scollection = dbclient.db.shop
         data = {"data": "", "weekly": ""}
         async for x in scollection.find({}):
             if x['type'] == 'weekly':
