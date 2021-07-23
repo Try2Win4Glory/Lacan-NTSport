@@ -13,6 +13,7 @@ from packages.nitrotype import Racer, Team, cars
 from packages.utils import Embed
 import cloudscraper
 import functools
+import re
 def player_data(racer):
     newdata = {}
     response = get(f'https://www.nitrotype.com/racer/{racer}').content
@@ -238,6 +239,13 @@ async def check_perms(userid, perms: dict):
                 return False
     else:
         return True
+async def get_all_cars():
+    requests = cloudscraper.create_scraper()
+    text = requests.get('https://www.nitrotype.com/index/d8dad03537419610ef21782a075dde2d94c465c61266-1266/bootstrap.js').text
+    result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+.*\]', text).group()
+    data = '{"list": '+''.join(list(result)[:-1])+'}'
+    data = json.loads(data)
+    return data
 async def verify(ctx):
     dbclient = clientDB()
     collection = dbclient.db.NT_to_discord

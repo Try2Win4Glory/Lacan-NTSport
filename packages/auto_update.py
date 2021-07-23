@@ -8,6 +8,8 @@ import discord
 import copy, aiohttp
 from compsmongo import DBClient
 import os, functools, asyncio, sys
+import cloudscraper
+import random
 try:
     from dotenv import load_dotenv
 
@@ -74,7 +76,7 @@ class AutoUpdate(commands.Cog):
     async def fetch(self, session, url, data=None):
         async with session.post(url, data=data) as response:
             return await response.text()
-    @tasks.loop(seconds=180)
+    '''@tasks.loop(seconds=180)
     async def always_update(self):
         print('started auto update')
         f = open('dailyupdate.txt')
@@ -90,9 +92,40 @@ class AutoUpdate(commands.Cog):
                 await self.fetch(session, 'https://lacanitemshop.nitrotypers.repl.co/update/weekly', data={'key': os.getenv('DB_KEY')})
             f.close()
             with open('weeklyupdate.txt', 'w') as f:
-                f.write(str(round(time.time())+604800))
+                f.write(str(round(time.time())+604800))'''
         
+        data = await nitrotype.get_all_cars()
         dbclient = DBClient()
+        print('started auto update')
+        collection = dbclient.client.nitrotype.shop
+        find = await collection.find_one({'type': 'daily'})
+        try:
+            cond = int(time.time()) >= int(find['timestamp'])
+        except:
+            cond = False
+        if find == None or cond:
+            while True:
+                daily_car = random.choice(data['list'])
+                if str(daily_car['name']) == 'Fonicci Lacan Hypersport':
+                    continue
+                else:
+                    break
+            new_data = {"type": "daily", "timestamp": str(round(time.time())+86400), "car": daily_car['name'], "img": daily_car['options']['largeSrc'], "price": random.randint(25, 60)}
+            update = await collection.update_one({'type': 'daily'}, {"$set": new_data}, upsert=True)
+        find = await collection.find_one({'type': 'weekly'})
+        try:
+            cond = int(time.time()) >= int(find['timestamp'])
+        except:
+            cond = False
+        if find == None or cond:
+            while True:
+                weekly_car = random.choice(data['list'])
+                if str(weekly_car['name']) == 'Fonicci Lacan Hypersport':
+                    continue
+                else:
+                    break
+            new_data = {"type": "weekly", "timestamp": str(round(time.time())+604800), "car": weekly_car['name'], "img": weekly_car['options']['largeSrc'], "price": random.randint(80, 125)}
+            update = await collection.update_one({'type': 'weekly'}, {"$set": new_data}, upsert=True)
         collection = dbclient.db['test']
         documents = await dbclient.get_array(collection, {'other.ended': False})
         await create_processing_pool(self, dbclient, documents)
