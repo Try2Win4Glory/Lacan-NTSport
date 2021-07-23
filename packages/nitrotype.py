@@ -1060,7 +1060,7 @@ class Guesser:
             self.correct = choice('abcd')
             used.append(id)
             self.options[self.correct] = cars.get(id)
-
+            
             for option in self.options:
                 if not option == self.correct:
                     id = randint(1, 219)
@@ -1077,11 +1077,6 @@ class Guesser:
                 self.formatted += f':regional_indicator_{option}:  {self.options.get(option)}\n'
             return
         #if not shadowed
-        '''exceptions = [12, 32, 41, 108, 147, 148]
-        id = randint(1, 219)
-        while id in exceptions: id = randint(1, 219)'''
-
-        #self.pic = f'https://www.nitrotype.com/cars/{id}_large_1.png'
 
         self.options = {'a' : '',
                 'b' : '',
@@ -1090,10 +1085,7 @@ class Guesser:
 
         used = []
         self.correct = choice('abcd')
-        '''used.append(id)
-        self.options[self.correct] = cars.get(id)'''
-
-	scraper = cloudscraper.create_scraper()
+        scraper = cloudscraper.create_scraper()
         loop = asyncio.get_event_loop()
         fut = scraper.get(f'https://www.nitrotype.com/index//bootstrap.js')
         text = fut.text
@@ -1106,9 +1098,7 @@ class Guesser:
         used.append(correct_car['id'])
         for option in self.options:
             if not option == self.correct:
-                '''id = randint(1, 219)
-                while id in exceptions and id in used: id = randint(1, 219)'''
-		car_data = choice(cars)
+                car_data = choice(cars)
                 id = car_data['id']
                 while id in used:
                     car_data = choice(cars)
@@ -1116,8 +1106,7 @@ class Guesser:
 
                 used.append(id)
                 
-                #self.options[option] = cars.get(id)
-		self.options[option] = car_data['name']
+                self.options[option] = car_data['name']
 
         
         self.formatted = ''
