@@ -84,9 +84,15 @@ class Command(commands.Cog):
         if ctx.author.id not in [505338178287173642, 637638904513691658, 396075607420567552]:
             cooldown_add(str(ctx.author))
         if response.content == t:
-            data = json.loads(requests.get('https://lacanitemshop.nitrotypers.repl.co/data.json').text)
-            shopcars = [data['daily']['img'], data['weekly']['img']]
             dbclient = DBClient()
+            scollection = dbclient.db.shop
+            data = {"data": "", "weekly": ""}
+            async for x in scollection.find({}):
+                if x['type'] == 'weekly':
+                    data['weekly'] = x
+                if x['type'] == 'daily':
+                    data['daily'] = x
+            shopcars = [data['daily']['img'], data['weekly']['img']]
             collection = dbclient.db.pointsdb
             data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
             async for d in data:
