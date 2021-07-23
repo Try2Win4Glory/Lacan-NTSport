@@ -68,7 +68,7 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        string = [':blue_square:' for i in word]
+        string = [':blue_square:' for i in word.isalpha()]
         if carbonus:
               earned = len(word)+len(word)
         else:
@@ -80,10 +80,10 @@ class Command(commands.Cog):
         )
         orange = 0xF09F19
         incorrect = 0
-        original = await ctx.send(embed = embed)
         guessed = []
         incorrect_guessed = []
         already_guessed = None
+        original = await ctx.send(embed = embed)
         def check(m):
             return m.channel == ctx.channel and m.content.isalpha() and len(m.content) == 1 and m.author == ctx.author
         while incorrect < len(man) and ':blue_square:' in string:
