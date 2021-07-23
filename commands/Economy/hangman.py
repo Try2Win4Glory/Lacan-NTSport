@@ -13,7 +13,18 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command(aliases = ['hang', 'hm'])
-    async def hangman(self, ctx):
+    async def hangman(self, ctx, type='easy'):
+        easy = ['easy', 'e', 'ez', 'ey', '1', 'a']
+        medium = ['medium', 'm', 'med', 'me', '2', 'b']
+        hard = ['hard', 'h', 'ha', 'har', '3', 'c']
+        
+        if type in easy:
+            type = 'easy'
+        elif type in medium:
+            type = 'medium'
+        elif type in hard:
+            type = 'hard'
+        
         # Cooldown
         if str(ctx.author) in rateLimit:
             embed = Embed('Cooldown!','You are on cooldown. Wait `15` seconds before running this command again.','alarm clock')
@@ -60,7 +71,14 @@ class Command(commands.Cog):
         
         
         print(f"{ctx.guild.name} - #{ctx.channel.name} - {ctx.author.name} - {ctx.message.content}")
-        with open('./commands/Economy/hw.txt') as f:
+        if type == 'easy':
+            with open('./commands/Economy/hangeasy.txt') as f:
+            word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'medium':
+            with open('./commands/Economy/hangmedium.txt') as f:
+            word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'hard':
+            with open('./commands/Economy/hanghard.txt') as f:
             word = random.choice(f.readlines()).rstrip("\n")
         hang = [
             "**```    ____",
@@ -76,10 +94,17 @@ class Command(commands.Cog):
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
         string = [':blue_square:'  if i not in display else i for i in word]
+        
+        if type == 'easy':
+            earned = round(len(word)/3)
+        if type == 'medium':
+            earned = round(len(word/2)
+        if type == 'hard':
+            earned = len(word)
+                           
         if carbonus:
-              earned = len(word)+len(word)
-        else:
-              earned = len(word)
+              earned = earned*2
+
         embed = discord.Embed(
             title = "Nitrotype Hangman",
             color = ctx.author.color,
