@@ -76,24 +76,8 @@ class AutoUpdate(commands.Cog):
     async def fetch(self, session, url, data=None):
         async with session.post(url, data=data) as response:
             return await response.text()
-    '''@tasks.loop(seconds=180)
+    @tasks.loop(seconds=180)
     async def always_update(self):
-        print('started auto update')
-        f = open('dailyupdate.txt')
-        if int(time.time()) >= int(f.readlines()[0].strip()):
-            async with aiohttp.ClientSession() as session:
-                await self.fetch(session, 'https://lacanitemshop.nitrotypers.repl.co/update/daily', data={'key': os.getenv('DB_KEY')})
-            f.close()
-            with open('dailyupdate.txt', 'w') as f:
-                f.write(str(round(time.time())+86400))
-        f = open('weeklyupdate.txt')
-        if int(time.time()) >= int(f.readlines()[0].strip()):
-            async with aiohttp.ClientSession() as session:
-                await self.fetch(session, 'https://lacanitemshop.nitrotypers.repl.co/update/weekly', data={'key': os.getenv('DB_KEY')})
-            f.close()
-            with open('weeklyupdate.txt', 'w') as f:
-                f.write(str(round(time.time())+604800))'''
-        
         data = await nitrotype.get_all_cars()
         dbclient = DBClient()
         print('started auto update')
@@ -106,7 +90,7 @@ class AutoUpdate(commands.Cog):
         if find == None or cond:
             while True:
                 daily_car = random.choice(data['list'])
-                if str(daily_car['name']) == 'Fonicci Lacan Hypersport':
+                if str(daily_car['name']) == 'Lacan Hypersport':
                     continue
                 else:
                     break
@@ -120,12 +104,12 @@ class AutoUpdate(commands.Cog):
         if find == None or cond:
             while True:
                 weekly_car = random.choice(data['list'])
-                if str(weekly_car['name']) == 'Fonicci Lacan Hypersport':
+                if str(weekly_car['name']) == 'Lacan Hypersport':
                     continue
                 else:
                     break
             new_data = {"type": "weekly", "timestamp": str(round(time.time())+604800), "car": weekly_car['name'], "img": weekly_car['options']['largeSrc'], "price": random.randint(80, 125)}
-            update = await collection.update_one({'type': 'weekly'}, {"$set": new_data}, upsert=True)
+            update = await collection.update_one({'type': 'weekly'}, {"$set": new_data}, upsert=True)     
         collection = dbclient.db['test']
         documents = await dbclient.get_array(collection, {'other.ended': False})
         await create_processing_pool(self, dbclient, documents)
