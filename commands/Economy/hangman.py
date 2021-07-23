@@ -74,7 +74,8 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        string = [':blue_square:' for i in word.isalpha()]
+        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        string = [':blue_square:'  if i not in display else i for i in word]
         if carbonus:
               earned = len(word)+len(word)
         else:
