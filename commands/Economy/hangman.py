@@ -76,13 +76,13 @@ class Command(commands.Cog):
         print(f"{ctx.guild.name} - #{ctx.channel.name} - {ctx.author.name} - {ctx.message.content}")
         if type == 'easy':
             with open('./commands/Economy/hangeasy.txt') as f:
-            word = random.choice(f.readlines()).rstrip("\n")
+                word = random.choice(f.readlines()).rstrip("\n")
         elif type == 'medium':
             with open('./commands/Economy/hangmedium.txt') as f:
-            word = random.choice(f.readlines()).rstrip("\n")
+                word = random.choice(f.readlines()).rstrip("\n")
         elif type == 'hard':
             with open('./commands/Economy/hanghard.txt') as f:
-            word = random.choice(f.readlines()).rstrip("\n")
+                word = random.choice(f.readlines()).rstrip("\n")
         hang = [
             "**```    ____",
             "   |    |",
