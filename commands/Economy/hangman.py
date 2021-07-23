@@ -101,7 +101,7 @@ class Command(commands.Cog):
         if type == 'easy':
             earned = round(len(word)/3)
         if type == 'medium':
-            earned = round(len(word/2)
+            earned = round(len(word)/2)
         if type == 'hard':
             earned = len(word)
                            
