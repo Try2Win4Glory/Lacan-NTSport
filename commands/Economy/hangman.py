@@ -111,8 +111,9 @@ class Command(commands.Cog):
         embed = discord.Embed(
             title = "Nitrotype Hangman",
             color = ctx.author.color,
-            description = f"Type a letter in chat to guess.\nType: {type}\nValue: **{earned}**{random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
+            description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
         )
+        embed.set_footer(text=f"Hangman game by {ctx.author}")
         orange = 0xF09F19
         incorrect = 0
         guessed = []
@@ -128,7 +129,7 @@ class Command(commands.Cog):
             except asyncio.TimeoutError:
                 embed.colour = 0xF09F19
                 await original.edit(embed = embed)
-                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game ({type}) started by {ctx.author.mention} timed out.\nCorrect word: **{word}**\nValue: {earned}{random_lacan}', color=orange)
+                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game (**{type}**) started by {ctx.author.mention} timed out.\nCorrect word: **{word}**\nValue: {earned} {random_lacan}', color=orange)
                 return await embed.send(ctx)
                 #return await ctx.send("Your Game timed out.")
             if already_guessed:
@@ -176,12 +177,15 @@ class Command(commands.Cog):
                     await dbclient.create_doc({'userid': str(ctx.author.id), 'points': earned})
                 
                 embed.description = f"You guessed the word and earned **{earned}** {random_lacan} in {type} mode!\n\n**{' '.join(string)}**\n\n{new}"
+                embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0x40AC7B
             elif incorrect == len(man):
-                embed.description = f"You've been hanged! The word was \n\n**{' '.join([k for k in word])}**\n\n{new}"
+                embed.description = f"{ctx.author.mention} has been hanged!\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join([k for k in word])}**\n\n{new}"
+                embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0xE84444
             else:
-                embed.description = f"Type a letter in chat to guess.\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join(string)}**\n\n{new}"
+                embed.set_footer(text=f"Hangman game by {ctx.author}")
             await msg.delete()
             await original.edit(embed = embed)
     '''@hangman.error
