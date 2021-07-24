@@ -94,7 +94,7 @@ class AutoUpdate(commands.Cog):
                     continue
                 else:
                     break
-            new_data = {"type": "daily", "timestamp": str(round(time.time())+86400), "car": daily_car['name'], "img": daily_car['options']['largeSrc'], "price": random.randint(50, 100)}
+            new_data = {"type": "daily", "timestamp": str(round(time.time())+86400), "car": daily_car['name'], "img": daily_car['options']['largeSrc'], "price": random.randint(100, 250)}
             update = await collection.update_one({'type': 'daily'}, {"$set": new_data}, upsert=True)
         find = await collection.find_one({'type': 'weekly'})
         try:
@@ -108,7 +108,7 @@ class AutoUpdate(commands.Cog):
                     continue
                 else:
                     break
-            new_data = {"type": "weekly", "timestamp": str(round(time.time())+604800), "car": weekly_car['name'], "img": weekly_car['options']['largeSrc'], "price": random.randint(500, 1000)}
+            new_data = {"type": "weekly", "timestamp": str(round(time.time())+604800), "car": weekly_car['name'], "img": weekly_car['options']['largeSrc'], "price": random.randint(700, 1750)}
             update = await collection.update_one({'type': 'weekly'}, {"$set": new_data}, upsert=True)     
         collection = dbclient.db['test']
         documents = await dbclient.get_array(collection, {'other.ended': False})
