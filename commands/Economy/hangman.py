@@ -13,7 +13,21 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command(aliases = ['hang', 'hm'])
-    async def hangman(self, ctx):
+    async def hangman(self, ctx, type=None):
+        easy = ['easy', 'e', 'ez', 'ey', '1', 'a']
+        medium = ['medium', 'm', 'med', 'me', '2', 'b']
+        hard = ['hard', 'h', 'ha', 'har', '3', 'c']
+ 
+        if type in easy:
+            type = 'easy'
+        elif type in medium:
+            type = 'medium'
+        elif type in hard:
+            type = 'hard'
+        types = ['easy', 'medium', 'hard']   
+        if type == None:
+            type = random.choice(types)
+        
         # Cooldown
         if str(ctx.author) in rateLimit:
             embed = Embed('Cooldown!','You are on cooldown. Wait `15` seconds before running this command again.','alarm clock')
@@ -60,8 +74,15 @@ class Command(commands.Cog):
         
         
         print(f"{ctx.guild.name} - #{ctx.channel.name} - {ctx.author.name} - {ctx.message.content}")
-        with open('./commands/Economy/hw.txt') as f:
-            word = random.choice(f.readlines()).rstrip("\n")
+        if type == 'easy':
+            with open('./commands/Economy/hangeasy.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'medium':
+            with open('./commands/Economy/hangmedium.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'hard':
+            with open('./commands/Economy/hanghard.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
         hang = [
             "**```    ____",
             "   |    |",
@@ -74,22 +95,30 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        string = [':blue_square:' for i in word]
+        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        string = [':blue_square:'  if i not in display else i for i in word]
+        
+        if type == 'easy':
+            earned = round(len(word)/3)
+        if type == 'medium':
+            earned = round(len(word)/2)
+        if type == 'hard':
+            earned = len(word)
+                           
         if carbonus:
-              earned = len(word)+len(word)
-        else:
-              earned = len(word)
+            earned = earned*2
+
         embed = discord.Embed(
             title = "Nitrotype Hangman",
             color = ctx.author.color,
-            description = f"Type a letter in chat to guess.\nValue: **{earned}**{random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
+            description = f"Type a letter in chat to guess.\nType: {type}\nValue: **{earned}**{random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
         )
         orange = 0xF09F19
         incorrect = 0
-        original = await ctx.send(embed = embed)
         guessed = []
         incorrect_guessed = []
         already_guessed = None
+        original = await ctx.send(embed = embed)
         def check(m):
             return m.channel == ctx.channel and m.content.isalpha() and len(m.content) == 1 and m.author == ctx.author
         while incorrect < len(man) and ':blue_square:' in string:
@@ -99,7 +128,7 @@ class Command(commands.Cog):
             except asyncio.TimeoutError:
                 embed.colour = 0xF09F19
                 await original.edit(embed = embed)
-                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game started by {ctx.author.mention} timed out.\nCorrect word: **{word}**\nValue: {earned}{random_lacan}', color=orange)
+                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game ({type}) started by {ctx.author.mention} timed out.\nCorrect word: **{word}**\nValue: {earned}{random_lacan}', color=orange)
                 return await embed.send(ctx)
                 #return await ctx.send("Your Game timed out.")
             if already_guessed:
@@ -146,7 +175,7 @@ class Command(commands.Cog):
                 except UnboundLocalError:
                     await dbclient.create_doc({'userid': str(ctx.author.id), 'points': earned})
                 
-                embed.description = f"You guessed the word and earned **{earned}** {random_lacan}!\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"You guessed the word and earned **{earned}** {random_lacan} in {type} mode!\n\n**{' '.join(string)}**\n\n{new}"
                 embed.colour = 0x40AC7B
             elif incorrect == len(man):
                 embed.description = f"You've been hanged! The word was \n\n**{' '.join([k for k in word])}**\n\n{new}"
