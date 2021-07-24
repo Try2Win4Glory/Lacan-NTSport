@@ -115,7 +115,7 @@ class Command(commands.Cog):
         embed = discord.Embed(
             title = "Nitrotype Hangman",
             color = ctx.author.color,
-            description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
+            description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{empty}",
         )
         embed.set_footer(text=f"Hangman game by {ctx.author}")
         orange = 0xF09F19
@@ -180,15 +180,15 @@ class Command(commands.Cog):
                 except UnboundLocalError:
                     await dbclient.create_doc({'userid': str(ctx.author.id), 'points': earned})
                 
-                embed.description = f"You guessed the word and earned **{earned}** {random_lacan} in {type} mode!\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"You guessed the word and earned **{earned}** {random_lacan} in {type} mode!\n\n**{''.join(string)}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0x40AC7B
             elif incorrect == len(man):
-                embed.description = f"{ctx.author.mention} has been hanged!\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join([k for k in word])}**\n\n{new}"
+                embed.description = f"{ctx.author.mention} has been hanged!\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join([k for k in word])}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0xE84444
             else:
-                embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
             await msg.delete()
             await original.edit(embed = embed)
