@@ -17,236 +17,236 @@ Minnie the Cooper
 Nizza 350x
 One Ace
 Cougar Ace
-Rand Rover R/T',
-B-Team Van',
-Mercedex Bens V-20',
-Mercedex Bens C-64',
-Portch Spyder',
-Auttie Roadster',
-Bimmer M2.0',
-Bimmer 9.0t',
-Thunder Cougarbird',
-Rat Rod Skully',
-Outtie R11',
-The Flamerod',
-Valent Performo',
-Portch GT3 RS',
-Ponce de Leon',
-'67 Shellback GT-500',
-Road Warrior',
-Linux Elise',
-'69 Shellback RT-500',
-The Gator',
-Bastok Suprillia',
-The Judge',
-The Stallion',
-The Macro',
-The Fastback',
-The Covenant',
-The Trifecta',
-8 Bit Racer',
-Mini Sherman',
-Typiano Pizza Car',
-Rocket Man',
-All Terrain Vehicle',
-MP 427',
-Wambulance',
-Hotdog Mobile',
-F-35 JSF',
-NASA Shuttle',
-Caterham Racer',
-Mack Daddy',
-Big Hauler',
-Big Blue  ',
-Fort GT40',
-Dom Vipper GST-R',
-Alpha Romero 8Ω',
-Blazing Buggy',
-F4U Corsair',
-Rocket Sleigh',
-XMaxx Tree Racer',
-Shadow Xmaxx Tree',
-Party Sleigh',
-Zonday Tricolore',
-The Monster',
-Flux Capacitor',
-The Gotham',
-The Pirc',
-Suziki GXRS 1200',
+Rand Rover R/T
+B-Team Van
+Mercedex Bens V-20
+Mercedex Bens C-64
+Portch Spyder
+Auttie Roadster
+Bimmer M2.0
+Bimmer 9.0t
+Thunder Cougarbird
+Rat Rod Skully
+Outtie R11
+The Flamerod
+Valent Performo
+Portch GT3 RS
+Ponce de Leon
+'67 Shellback GT-500
+Road Warrior
+Linux Elise
+'69 Shellback RT-500
+The Gator
+Bastok Suprillia
+The Judge
+The Stallion
+The Macro
+The Fastback
+The Covenant
+The Trifecta
+8 Bit Racer
+Mini Sherman
+Typiano Pizza Car
+Rocket Man
+All Terrain Vehicle
+MP 427
+Wambulance
+Hotdog Mobile
+F-35 JSF
+NASA Shuttle
+Caterham Racer
+Mack Daddy
+Big Hauler
+Big Blue
+Fort GT40
+Dom Vipper GST-R
+Alpha Romero 8Ω
+Blazing Buggy
+F4U Corsair
+Rocket Sleigh
+XMaxx Tree Racer
+Shadow Xmaxx Tree
+Party Sleigh
+Zonday Tricolore
+The Monster
+Flux Capacitor
+The Gotham
+The Pirc
+Suziki GXRS 1200
 EZ Rider',
-Lamborgotti AdventX',
-Summer Classic',
-Hang Ten',
-'41 Woodie Deluxx',
-Hang Eleven',
-'41 Woodie Sunshine',
-The Xcelsior V12',
-'68 Roadtripper',
-Hang Fifteen',
-Wach 6',
-Fort F-125',
-Wisker Electric',
-'67 Vette',
-MSG 01',
-Fort Stallion',
-Police Bimmer',
-Auttie R-8.1',
-Wampus',
-Pumpkin Hauler',
-Wreath Racer',
-Santa\'s Buggy',
-Travis\' Car',
-Dark Elf',
-The Golden Gift',
-Corndog\'s Car',
-'14 Mantaray',
-Ferreti Samsher 458',
-Lacan Hypersport',
-Sun Buggie',
-Hammer Wheels',
-Kringle 4000',
-Buddy\'s Snowmobile',
-Kringle 4000 XL',
-Buddy\'s Snowmorocket',
-Six Four',
-Six Four Plus Three',
-The Midnight Hauler',
-The Candy Hauler',
-Kringle 5000',
-Wrapped Wracer',
-Wrapped Wracer GT',
-Holiday Hero',
-Kringle 5000 L.T.',
-Mercedex McLaro SLR',
-Floaty Blue',
-B.O.A.T.',
-I\'m Spicy!',
-Y.A.C.H.T.',
-Mercedex McLaro SLR 12.5',
-Nitr-o\'-Lantern',
-Nitr-o\'-the-Wisp',
-Xmaxx Xxpress',
-XMaxx Xxpress XXL',
-Gilded Xxpress',
-Lamborgotti Xmaxx LT',
-Lamborgotti Xmaxx LT-C',
-Mercedex McLaro SHS 15.0',
-Strykist 1300',
-Range Runner',
-Strykist 1300 XT-LR',
-Track-o\'-Lantern',
-Gingerbread Racer',
-Gingerbread Racer H&T',
-Missile Toe',
-Missile Toe H&T',
-The Dark Chocolate Knight',
-Teggsla',
-Egg Beater',
-Eggcedes',
-Egg Hauler',
-Mercedex GT 20.0',
-Rocky Roo',
-NitroPAC',
-Matchbox',
-Lucky Number 7',
-Easy Breezy',
-HoverJet 5000 Mk. 3',
-Golden Breeze',
-B.U.S.',
-S'cool B.U.S.',
-AU-79',
-The Underachiever',
-The Overachiever',
-The Wildflower',
-Jolly RS',
-Jolly GTX LG',
-The Goldray',
-can hav nt g0ld plx?',
-The Wraptor',
-Travis' Truck',
-The Wraptor GG',
-The Silent Knight',
-NT Gold',
-Lamborgotti Tiesto',
-Portch Cobalt',
-Alpha Romero 123Ω',
-Travis' Big Truck',
-Bright Idea',
-Sandstorm',
-The Jury',
-The Goldfish',
-Shock Value',
-Gold Standard',
-Solar Roller',
-H2GO',
-The DevasTater',
-Creepy Crawler',
-The Goblin',
-Something Wicked',
-Frosted Roller',
-Gingerbread GT',
-Holiday Heat',
-Cold Snap',
-The Snowy Knight',
-The Rocket Klaus',
-Golden Ticket',
-Wavebreaker',
-Broadwing',
-Bimmer Prism i20',
-Heartbreaker',
-The Danger 9',
-The Wild 500',
-Tigreen',
-X1 Eclipse',
-Error 500',
-Vapor',
-9 Bit Racer',
-Chompus\' Wild Ride',
-Whiplash XS',
-The Hydro Planer',
-Timber Speeder',
-Wampus\' Waffle Wagon',
-Webmobile Spider',
-Rand Rover Evar',
-SpaceZ Crew Draco',
-MacLaro Sienna',
-Calculatron',
-Screw Tank',
-Hoverbike',
-Jet Bicycle',
-Wrapped Flyer',
-The Festivitank',
-Typiano Pizza Car',
-Buggani Vyrus LR',
-Jet Powered Truck',
-Lamborgotti Vengeance',
-X2 Eclipse',
-Monster Truck Redux',
-Covenant Leo',
-Zonday Tricolore 2021',
-Strykist 1300',
-The Glamrod',
-Linux Elipse',
-Road Warrior Rally',
-Furious Maxx',
-Bimmer M6',
-The Dominator',
-Heartbreaker LV-2',
-Ice Hauler',
-The Kelvin',
-Buggani Vyrus LR',
-Error 503',
-Sprinter \'90',
-Koromoto DJ Cruiser',
-Koromoto GT-R',
-Koromoto GT-R LS',
-Stingtec Technotruck',
-Four Leaf Rover',
-Corsa Iris',
-Sprinter \'90 Vapor',
-Winson Track\'d',
-Stingtec Marianas',
-Personal Water Craft',
-Blitz T8 Roadster',
-Liberty Demon XRT',
-Mongoose SU-5'
+Lamborgotti AdventX
+Summer Classic
+Hang Ten
+'41 Woodie Deluxx
+Hang Eleven
+'41 Woodie Sunshine
+The Xcelsior V12
+'68 Roadtripper
+Hang Fifteen
+Wach 6
+Fort F-125
+Wisker Electric
+'67 Vette
+MSG 01
+Fort Stallion
+Police Bimmer
+Auttie R-8.1
+Wampus
+Pumpkin Hauler
+Wreath Racer
+Santa's Buggy
+Travis' Car
+Dark Elf
+The Golden Gift
+Corndog's Car
+'14 Mantaray
+Ferreti Samsher 458
+Lacan Hypersport
+Sun Buggie
+Hammer Wheels
+Kringle 4000
+Buddy's Snowmobile
+Kringle 4000 XL
+Buddy's Snowmorocket
+Six Four
+Six Four Plus Three
+The Midnight Hauler
+The Candy Hauler
+Kringle 5000
+Wrapped Wracer
+Wrapped Wracer GT
+Holiday Hero
+Kringle 5000 L.T.
+Mercedex McLaro SLR
+Floaty Blue
+B.O.A.T.
+I'm Spicy!
+Y.A.C.H.T.
+Mercedex McLaro SLR 12.5
+Nitr-o'-Lantern
+Nitr-o'-the-Wisp
+Xmaxx Xxpress
+XMaxx Xxpress XXL
+Gilded Xxpress
+Lamborgotti Xmaxx LT
+Lamborgotti Xmaxx LT-C
+Mercedex McLaro SHS 15.0
+Strykist 1300
+Range Runner
+Strykist 1300 XT-LR
+Track-o'-Lantern
+Gingerbread Racer
+Gingerbread Racer H&T
+Missile Toe
+Missile Toe H&T
+The Dark Chocolate Knight
+Teggsla
+Egg Beater
+Eggcedes
+Egg Hauler
+Mercedex GT 20.0
+Rocky Roo
+NitroPAC
+Matchbox
+Lucky Number 7
+Easy Breezy
+HoverJet 5000 Mk. 3
+Golden Breeze
+B.U.S.
+S'cool B.U.S.
+AU-79
+The Underachiever
+The Overachiever
+The Wildflower
+Jolly RS
+Jolly GTX LG
+The Goldray
+can hav nt g0ld plx?
+The Wraptor
+Travis' Truck
+The Wraptor GG
+The Silent Knight
+NT Gold
+Lamborgotti Tiesto
+Portch Cobalt
+Alpha Romero 123Ω
+Travis' Big Truck
+Bright Idea
+Sandstorm
+The Jury
+The Goldfish
+Shock Value
+Gold Standard
+Solar Roller
+H2GO
+The DevasTater
+Creepy Crawler
+The Goblin
+Something Wicked
+Frosted Roller
+Gingerbread GT
+Holiday Heat
+Cold Snap
+The Snowy Knight
+The Rocket Klaus
+Golden Ticket
+Wavebreaker
+Broadwing
+Bimmer Prism i20
+Heartbreaker
+The Danger 9
+The Wild 500
+Tigreen
+X1 Eclipse
+Error 500
+Vapor
+9 Bit Racer
+Chompus' Wild Ride
+Whiplash XS
+The Hydro Planer
+Timber Speeder
+Wampus' Waffle Wagon
+Webmobile Spider
+Rand Rover Evar
+SpaceZ Crew Draco
+MacLaro Sienna
+Calculatron
+Screw Tank
+Hoverbike
+Jet Bicycle
+Wrapped Flyer
+The Festivitank
+Typiano Pizza Car
+Buggani Vyrus LR
+Jet Powered Truck
+Lamborgotti Vengeance
+X2 Eclipse
+Monster Truck Redux
+Covenant Leo
+Zonday Tricolore 2021
+Strykist 1300
+The Glamrod
+Linux Elipse
+Road Warrior Rally
+Furious Maxx
+Bimmer M6
+The Dominator
+Heartbreaker LV-2
+Ice Hauler
+The Kelvin
+Buggani Vyrus LR
+Error 503
+Sprinter '90
+Koromoto DJ Cruiser
+Koromoto GT-R
+Koromoto GT-R LS
+Stingtec Technotruck
+Four Leaf Rover
+Corsa Iris
+Sprinter '90 Vapor
+Winson Track'd
+Stingtec Marianas
+Personal Water Craft
+Blitz T8 Roadster
+Liberty Demon XRT
+Mongoose SU-5
