@@ -95,15 +95,16 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\'', 'Ω', '-', '.', '!', '?', ',']
+        word = word.lower()
         string = [':blue_square:'  if i not in display else i for i in word]
         
         if type == 'easy':
-            earned = round(len(word)/3)
-        if type == 'medium':
             earned = round(len(word)/2)
-        if type == 'hard':
+        if type == 'medium':
             earned = len(word)
+        if type == 'hard':
+            earned = len(word)*2
                            
         if carbonus:
             earned = earned*2
