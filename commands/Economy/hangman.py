@@ -83,6 +83,7 @@ class Command(commands.Cog):
         elif type == 'hard':
             with open('./commands/Economy/hanghard.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
+        print(word)
         hang = [
             "**```    ____",
             "   |    |",
@@ -96,7 +97,35 @@ class Command(commands.Cog):
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\'', 'Ω', '-', '.', '!', '?', ',']
-        word = word.lower()
+        #word = word.lower()
+        # Replace capital letters with lowercase letters
+        word.replace('A', 'a')
+        word.replace('B', 'b')
+        word.replace('C', 'c')
+        word.replace('D', 'd')
+        word.replace('E', 'e')
+        word.replace('F', 'f')
+        word.replace('G', 'g')
+        word.replace('H', 'h')
+        word.replace('I', 'i')
+        word.replace('J', 'j')
+        word.replace('K', 'k')
+        word.replace('L', 'l')
+        word.replace('M', 'm')
+        word.replace('N', 'n')
+        word.replace('O', 'o')
+        word.replace('P', 'p')
+        word.replace('Q', 'q')
+        word.replace('R', 'r')
+        word.replace('S', 's')
+        word.replace('T', 't')
+        word.replace('U', 'u')
+        word.replace('V', 'v')
+        word.replace('W', 'w')
+        word.replace('X', 'x')
+        word.replace('Y', 'y')
+        word.replace('Z', 'z')
+        
         string = [':blue_square:'  if i not in display else i for i in word]
         
         if type == 'easy':
