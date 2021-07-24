@@ -96,21 +96,25 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\'', 'Ω', '-', '.', '!', '?', ',']
+        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\'', 'Ω', '-', '.', '!', '?', ',']
         # Replace capital letters with lowercase letters
         word = word.lower()
         
         string = [':blue_square:'  if i not in display else i for i in word]
+        try:
+             string.replace(' ', '   ')
+        except:
+             pass
         
         if type == 'easy':
-            earned = round(len(word)/2)
+            earned = round(len(word)/3)
         if type == 'medium':
-            earned = len(word)
+            earned = round(len(word)/2)
         if type == 'hard':
-            earned = len(word)*2
+            earned = len(word)
                            
         if carbonus:
-            earned = earned*2
+            earned = earned+5
 
         embed = discord.Embed(
             title = "Nitrotype Hangman",
