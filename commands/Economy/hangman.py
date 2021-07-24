@@ -97,36 +97,10 @@ class Command(commands.Cog):
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '\'', 'Ω', '-', '.', '!', '?', ',']
-        #word = word.lower()
         # Replace capital letters with lowercase letters
-        word.replace('A', 'a')
-        word.replace('B', 'b')
-        word.replace('C', 'c')
-        word.replace('D', 'd')
-        word.replace('E', 'e')
-        word.replace('F', 'f')
-        word.replace('G', 'g')
-        word.replace('H', 'h')
-        word.replace('I', 'i')
-        word.replace('J', 'j')
-        word.replace('K', 'k')
-        word.replace('L', 'l')
-        word.replace('M', 'm')
-        word.replace('N', 'n')
-        word.replace('O', 'o')
-        word.replace('P', 'p')
-        word.replace('Q', 'q')
-        word.replace('R', 'r')
-        word.replace('S', 's')
-        word.replace('T', 't')
-        word.replace('U', 'u')
-        word.replace('V', 'v')
-        word.replace('W', 'w')
-        word.replace('X', 'x')
-        word.replace('Y', 'y')
-        word.replace('Z', 'z')
+        word = word.lower()
         
-        string = [':blue_square:'  if i not in display else i for i in word]
+        string = [':blue_square: '  if i not in display else i for i in word]
         
         if type == 'easy':
             earned = round(len(word)/2)
@@ -141,7 +115,7 @@ class Command(commands.Cog):
         embed = discord.Embed(
             title = "Nitrotype Hangman",
             color = ctx.author.color,
-            description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
+            description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{string}**\n\n{empty}",
         )
         embed.set_footer(text=f"Hangman game by {ctx.author}")
         orange = 0xF09F19
@@ -152,7 +126,7 @@ class Command(commands.Cog):
         original = await ctx.send(embed = embed)
         def check(m):
             return m.channel == ctx.channel and m.content.isalpha() and len(m.content) == 1 and m.author == ctx.author
-        while incorrect < len(man) and ':blue_square:' in string:
+        while incorrect < len(man) and ':blue_square: ' in string:
             try:
                 msg = await self.client.wait_for('message', timeout = 120.0, check = check)
                 letter = msg.content.lower()
@@ -210,11 +184,11 @@ class Command(commands.Cog):
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0x40AC7B
             elif incorrect == len(man):
-                embed.description = f"{ctx.author.mention} has been hanged!\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join([k for k in word])}**\n\n{new}"
+                embed.description = f"{ctx.author.mention} has been hanged!\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{[k for k in word]}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0xE84444
             else:
-                embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{string}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
             await msg.delete()
             await original.edit(embed = embed)
