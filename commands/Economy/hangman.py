@@ -83,6 +83,7 @@ class Command(commands.Cog):
         elif type == 'hard':
             with open('./commands/Economy/hanghard.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
+        print(word)
         hang = [
             "**```    ____",
             "   |    |",
@@ -95,8 +96,15 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\'', 'Ω', '-', '.', '!', '?', ',']
+        # Replace capital letters with lowercase letters
+        word = word.lower()
+        
         string = [':blue_square:'  if i not in display else i for i in word]
+        try:
+             string.replace(' ', '   ')
+        except:
+             pass
         
         if type == 'easy':
             earned = round(len(word)/3)
@@ -106,12 +114,12 @@ class Command(commands.Cog):
             earned = len(word)
                            
         if carbonus:
-            earned = earned*2
+            earned = earned+5
 
         embed = discord.Embed(
             title = "Nitrotype Hangman",
             color = ctx.author.color,
-            description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
+            description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{empty}",
         )
         embed.set_footer(text=f"Hangman game by {ctx.author}")
         orange = 0xF09F19
@@ -176,15 +184,15 @@ class Command(commands.Cog):
                 except UnboundLocalError:
                     await dbclient.create_doc({'userid': str(ctx.author.id), 'points': earned})
                 
-                embed.description = f"You guessed the word and earned **{earned}** {random_lacan} in {type} mode!\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"You guessed the word and earned **{earned}** {random_lacan} in {type} mode!\n\n**{''.join(string)}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0x40AC7B
             elif incorrect == len(man):
-                embed.description = f"{ctx.author.mention} has been hanged!\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join([k for k in word])}**\n\n{new}"
+                embed.description = f"{ctx.author.mention} has been hanged!\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join([k for k in word])}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0xE84444
             else:
-                embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
             await msg.delete()
             await original.edit(embed = embed)
