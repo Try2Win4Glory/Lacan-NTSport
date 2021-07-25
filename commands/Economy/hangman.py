@@ -17,6 +17,7 @@ class Command(commands.Cog):
         easy = ['easy', 'e', 'ez', 'ey', '1', 'a']
         medium = ['medium', 'm', 'med', 'me', '2', 'b']
         hard = ['hard', 'h', 'ha', 'har', '3', 'c']
+        extreme = ['extreme', 'e', 'x', 'ex', 'extr', 'extrem'] 
  
         if type in easy:
             type = 'easy'
@@ -24,7 +25,9 @@ class Command(commands.Cog):
             type = 'medium'
         elif type in hard:
             type = 'hard'
-        types = ['easy', 'medium', 'hard']   
+        elif type in extreme:
+            type = 'extreme'
+        types = ['easy', 'medium', 'hard', 'extreme']   
         if type == None:
             type = random.choice(types)
         
@@ -83,6 +86,9 @@ class Command(commands.Cog):
         elif type == 'hard':
             with open('./commands/Economy/hanghard.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'extreme':
+            with open('./commands/Economy/hangextreme.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
         print(word)
         hang = [
             "**```    ____",
@@ -112,6 +118,8 @@ class Command(commands.Cog):
             earned = round(len(word)/2)
         if type == 'hard':
             earned = len(word)
+        if type == 'extreme':
+            earned = len(word)+3
                            
         if carbonus:
             earned = earned+5
