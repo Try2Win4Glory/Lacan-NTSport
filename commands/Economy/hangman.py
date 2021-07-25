@@ -78,16 +78,16 @@ class Command(commands.Cog):
         
         print(f"{ctx.guild.name} - #{ctx.channel.name} - {ctx.author.name} - {ctx.message.content}")
         if type == 'easy':
-            with open('./commands/Economy/hangeasy.txt') as f:
+            with open('./commands/Economy/words/hangeasy.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
         elif type == 'medium':
-            with open('./commands/Economy/hangmedium.txt') as f:
+            with open('./commands/Economy/words/hangmedium.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
         elif type == 'hard':
-            with open('./commands/Economy/hanghard.txt') as f:
+            with open('./commands/Economy/words/hanghard.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
         elif type == 'extreme':
-            with open('./commands/Economy/hangextreme.txt') as f:
+            with open('./commands/Economy/words/hangextreme.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
         print(word)
         hang = [
@@ -102,7 +102,7 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\'', 'Ω', '-', '.', '!', '?', ',', '&', '#', '_', '=', '<', '>', '|', '$', '%', '/', '[', ']','{', '}']
+        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\'', 'Ω', '-', '.', '!', '?', ',', '&', '#', '_', '=', '<', '>', '|', '$', '%', '/', '[', ']','{', '}', '™️', '🎵', '✅']
         # Replace capital letters with lowercase letters
         word = word.lower()
         
