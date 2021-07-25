@@ -3,7 +3,7 @@ import threading
 import time
 rateLimit = []
 rateLimitQueue = queue.Queue()
-def cooldown_add(user, cooldown_amount=5):
+def cooldown_add(user, cooldown_amount=10):
     rateLimitQueue.put((user, time.time()+cooldown_amount))
     rateLimit.append(user)
 def deleteLimit():
