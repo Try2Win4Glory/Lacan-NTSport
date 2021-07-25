@@ -18,7 +18,7 @@ class Command(commands.Cog):
         
         # Cooldown
         if str(ctx.author) in rateLimit:
-            embed = Embed('Cooldown!','You are on cooldown. Wait `5` seconds before running this command again.','alarm clock')
+            embed = Embed('Cooldown!','You are on cooldown. Wait `15` seconds before running this command again.','alarm clock')
             return await embed.send(ctx)
         if await ImproperType.check(ctx): return
         if ctx.author.id not in [
