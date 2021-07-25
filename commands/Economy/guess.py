@@ -100,12 +100,12 @@ class Command(commands.Cog):
             if response.content.lower() in list('abcd'):
                 if response.content.lower() == guesser.correct:
                   if carbonus == True:
-                    earned = 4
-                    embed = Embed('<a:Check:797009550003666955>  Correct!', 'Your answer was right! You also earned **4** '+random_lacan+' because of equipping a daily / weekly car!')
+                    earned = 10
+                    embed = Embed('<a:Check:797009550003666955>  Correct!', 'Your answer was right! You also earned **10** '+random_lacan+' because of equipping a daily / weekly car!')
                     await embed.send(ctx)
                   else:
-                    earned = 2
-                    embed = Embed('<a:Check:797009550003666955>  Correct!', 'Your answer was right! You also earned **2** '+random_lacan+'!')
+                    earned = 5
+                    embed = Embed('<a:Check:797009550003666955>  Correct!', 'Your answer was right! You also earned **5** '+random_lacan+'!')
                     await embed.send(ctx)
                   dbclient = DBClient()
                   collection = dbclient.db.pointsdb
@@ -141,10 +141,10 @@ class Command(commands.Cog):
                     try:
                         old = user.copy()
                         if user['userid'] == str(ctx.author.id):
-                            user['points'] -= 2
+                            user['points'] -= 5
                             await dbclient.update_array(collection, old, user)
                     except UnboundLocalError:
-                        await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -2})
+                        await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -5})
                     
                     #Embed for lacan Log
                     #embed1 = discord.Embed(title=f'{random_lacan}  Lacan Log', description=str(ctx.author), color= red)
@@ -157,7 +157,7 @@ class Command(commands.Cog):
                     #await channel1.send(embed=embed1)
 
             else:
-                embed = Embed('<a:false:800330847865143327>  Wrong!',f'You didn\'t give a valid response! The correct answer was **{guesser.options[guesser.correct]}**. You also lost **2** '+random_lacan+'.')
+                embed = Embed('<a:false:800330847865143327>  Wrong!',f'You didn\'t give a valid response! The correct answer was **{guesser.options[guesser.correct]}**. You also lost **5** '+random_lacan+'.')
                 await embed.send(ctx)
                 dbclient = DBClient()
                 collection = dbclient.db.pointsdb

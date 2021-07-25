@@ -112,10 +112,10 @@ class Command(commands.Cog):
             total = end-start
             bonus = round(5/total)
             if carbonus:
-                default = 3
+                default = 5
                 earned = (default+bonus)*2
             else:
-                default = 3
+                default = 5
                 earned = default+bonus
             embed = Embed('<a:Check:797009550003666955>  Congrats!', f'You Earned {random_lacan}!')
             embed.field('Default', str(default))
@@ -133,13 +133,13 @@ class Command(commands.Cog):
                 await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': earned})
 
         else:
-            embed = Embed('<a:false:800330847865143327>  Oops!', 'You messed up sadly... and lost **3** '+random_lacan+'.')
+            embed = Embed('<a:false:800330847865143327>  Oops!', 'You messed up sadly... and lost **5** '+random_lacan+'.')
             await embed.send(ctx)
             #Loose lacans
             dbclient = DBClient()
             collection = dbclient.db.pointsdb
             data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
-            lost = -3
+            lost = -5
             async for d in data:
                 user = d
                 break
