@@ -27,6 +27,9 @@ class Command(commands.Cog):
             type = 'hard'
         elif type in extreme:
             type = 'extreme'
+        elif type == 'info':
+            embed=Embed('<:nt_basic:868772526321438740>  Nitrotype Hangman Info', '__**General Information**__\nThis is a Hangman game about Nitrotype. nWhether cars, stickers, titles, well known players - you will find a huge variety of words!\n\n__**Difficulty Levels:**__\nThere are 4 different difficulty Levels.\n**`easy`**: \n*"Are you a Nitrotype starter? Those words will fit perfect for you!"*\n- Very well known people in the Nitrotype Community\n- Very well known Nitrotype cars.\n- Very well known Nitrotype titles.\n- Very well known general typing words.\n\n:star:**`medium`**: \n*"Perfect for every average Nitrotype Player!"*\n- Well known people in the Nitrotype Community.\n- General words concerning Nitrotype.\n\n:star::star:**`hard`**:\n*"Loving challenges? You\'ll Never Beat Me!"*\n- Full Nitrotype car names.\n- Full Nitrotype loot item names.\n\n:star::star::star:**`extreme`**\n*"You think you know __everything__ about Nitrotype? - Only true Nitrotype Masters can beat this level!"*\n- Nitrotype titles collection.')
+            return await embed.send(ctx)
         types = ['easy', 'medium', 'hard', 'extreme']   
         if type == None:
             type = random.choice(types)
@@ -125,7 +128,7 @@ class Command(commands.Cog):
             earned = earned+5
 
         embed = discord.Embed(
-            title = "Nitrotype Hangman",
+            title = "<:nt_basic:868772526321438740>  Nitrotype Hangman",
             color = ctx.author.color,
             description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{empty}",
         )
