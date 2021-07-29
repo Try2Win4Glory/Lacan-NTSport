@@ -46,7 +46,7 @@ class Command(commands.Cog):
         else:
             if response.content.lower() in list('abcd'):
                 if response.content.lower() == guesser.correct:
-                    embed = Embed('<a:Check:797009550003666955>  Correct!', 'Your answer was right! You also earned **1** '+random_lacan+'!')
+                    embed = Embed('<a:Check:797009550003666955>  Correct!', 'Your answer was right! You also earned **3** '+random_lacan+'!')
                     await embed.send(ctx)
                     dbclient = DBClient()
                     collection = dbclient.db.pointsdb
@@ -60,9 +60,9 @@ class Command(commands.Cog):
                             user['points'] += 1
                             await dbclient.update_array(collection, old, user)
                     except:
-                        await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 1})
+                        await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 3})
                 else:
-                    embed = Embed('<a:false:800330847865143327>  Wrong!',f'Your answer was wrong! The correct answer was **{guesser.options[guesser.correct]}**. You also lost **1** '+random_lacan+'.')
+                    embed = Embed('<a:false:800330847865143327>  Wrong!',f'Your answer was wrong! The correct answer was **{guesser.options[guesser.correct]}**. You also lost **3** '+random_lacan+'.')
                     await embed.send(ctx)
                     dbclient = DBClient()
                     collection = dbclient.db.pointsdb
@@ -73,13 +73,13 @@ class Command(commands.Cog):
                     try:
                         old = user.copy()
                         if user['userid'] == str(ctx.author.id):
-                            user['points'] -= 1
+                            user['points'] -= 3
                             await dbclient.update_array(collection, old, user)
                     except:
-                        await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -1})
+                        await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -3})
 
             else:
-                embed = Embed('<a:false:800330847865143327>  Wrong!',f'You didn\'t give a valid response! The correct answer was **{guesser.options[guesser.correct]}**. You also lost **1** '+random_lacan+'.')
+                embed = Embed('<a:false:800330847865143327>  Wrong!',f'You didn\'t give a valid response! The correct answer was **{guesser.options[guesser.correct]}**. You also lost **3** '+random_lacan+'.')
                 await embed.send(ctx)
                 dbclient = DBClient()
                 collection = dbclient.db.pointsdb
@@ -90,10 +90,10 @@ class Command(commands.Cog):
                 try:
                     old = user.copy()
                     if user['userid'] == str(ctx.author.id):
-                        user['points'] -= 1
+                        user['points'] -= 3
                         await dbclient.update_array(collection, old, user)
                 except:
-                    await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -1})
+                    await dbclient.create_doc({'userid': str(ctx.author.id), 'points': -3})
 
 
 def setup(client):

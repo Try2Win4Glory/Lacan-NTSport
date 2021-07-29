@@ -13,7 +13,27 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command(aliases = ['hang', 'hm'])
-    async def hangman(self, ctx):
+    async def hangman(self, ctx, type=None):
+        easy = ['easy', 'e', 'ez', 'ey', '1', 'a']
+        medium = ['medium', 'm', 'med', 'me', '2', 'b']
+        hard = ['hard', 'h', 'ha', 'har', '3', 'c']
+        extreme = ['extreme', 'e', 'x', 'ex', 'extr', 'extrem'] 
+ 
+        if type in easy:
+            type = 'easy'
+        elif type in medium:
+            type = 'medium'
+        elif type in hard:
+            type = 'hard'
+        elif type in extreme:
+            type = 'extreme'
+        elif type == 'info':
+            embed=Embed('<:nt_basic:868772526321438740>  Nitrotype Hangman Info', '__**General Information**__\nThis is a Hangman game about Nitrotype. \nWhether cars, stickers, titles, well known players - you will find a huge variety of words!\n\n__**Difficulty Levels:**__\nThere are 4 different difficulty Levels.\n\n:thumbsup:**`easy`**: \n*"Are you a Nitrotype starter? Those words will fit perfect for you!"*\n- Very well known people in the Nitrotype Community\n- Very well known Nitrotype cars.\n- Very well known Nitrotype titles.\n- Very well known general typing words.\n\n:star:**`medium`**: \n*"Perfect for every average Nitrotype Player!"*\n- Well known people in the Nitrotype Community.\n- General words concerning Nitrotype.\n\n:star::star:**`hard`**:\n*"Loving challenges? You\'ll Never Beat Me!"*\n- Full Nitrotype car names.\n- Full Nitrotype loot item names.\n\n:star::star::star:**`extreme`**\n*"You think you know __everything__ about Nitrotype? - Only true Nitrotype Masters can beat this level!"*\n- Nitrotype titles collection.')
+            return await embed.send(ctx)
+        types = ['easy', 'medium', 'hard', 'extreme']   
+        if type == None:
+            type = random.choice(types)
+        
         # Cooldown
         if str(ctx.author) in rateLimit:
             embed = Embed('Cooldown!','You are on cooldown. Wait `15` seconds before running this command again.','alarm clock')
@@ -60,8 +80,19 @@ class Command(commands.Cog):
         
         
         print(f"{ctx.guild.name} - #{ctx.channel.name} - {ctx.author.name} - {ctx.message.content}")
-        with open('./commands/Economy/hw.txt') as f:
-            word = random.choice(f.readlines()).rstrip("\n")
+        if type == 'easy':
+            with open('./commands/Economy/words/hangeasy.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'medium':
+            with open('./commands/Economy/words/hangmedium.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'hard':
+            with open('./commands/Economy/words/hanghard.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'extreme':
+            with open('./commands/Economy/words/hangextreme.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
+        print(word)
         hang = [
             "**```    ____",
             "   |    |",
@@ -74,16 +105,34 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        string = [':blue_square:' for i in word.isalpha()]
+        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\'', 'Ω', '-', '.', '!', '?', ',', '&', '#', '_', '=', '<', '>', '|', '$', '%', '/', '[', ']','{', '}', '™️', '🎵', '✅', '⭕', '"', '+', '~']
+        # Replace capital letters with lowercase letters
+        word = word.lower()
+        
+        string = [':blue_square:'  if i not in display else i for i in word]
+        try:
+             string.replace(' ', '   ')
+        except:
+             pass
+        
+        if type == 'easy':
+            earned = round(len(word)/3)
+        if type == 'medium':
+            earned = round(len(word)/2)
+        if type == 'hard':
+            earned = len(word)
+        if type == 'extreme':
+            earned = len(word)+3
+                           
         if carbonus:
-              earned = len(word)+len(word)
-        else:
-              earned = len(word)
+            earned = earned+5
+
         embed = discord.Embed(
-            title = "Nitrotype Hangman",
+            title = "<:nt_basic:868772526321438740>  Nitrotype Hangman",
             color = ctx.author.color,
-            description = f"Type a letter in chat to guess.\nValue: **{earned}**{random_lacan}\n\n**{' '.join(string)}**\n\n{empty}",
+            description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{empty}",
         )
+        embed.set_footer(text=f"Hangman game by {ctx.author}")
         orange = 0xF09F19
         incorrect = 0
         guessed = []
@@ -99,7 +148,7 @@ class Command(commands.Cog):
             except asyncio.TimeoutError:
                 embed.colour = 0xF09F19
                 await original.edit(embed = embed)
-                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game started by {ctx.author.mention} timed out.\nCorrect word: **{word}**\nValue: {earned}{random_lacan}', color=orange)
+                embed=Embed(':stopwatch:  Timed out!', f'The Nitro Type hangman game (**{type}**) started by {ctx.author.mention} timed out.\nCorrect word: **{word}**\nValue: {earned} {random_lacan}', color=orange)
                 return await embed.send(ctx)
                 #return await ctx.send("Your Game timed out.")
             if already_guessed:
@@ -146,13 +195,16 @@ class Command(commands.Cog):
                 except UnboundLocalError:
                     await dbclient.create_doc({'userid': str(ctx.author.id), 'points': earned})
                 
-                embed.description = f"You guessed the word and earned **{earned}** {random_lacan}!\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"You guessed the word and earned **{earned}** {random_lacan} in {type} mode!\n\n**{''.join(string)}**\n\n{new}"
+                embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0x40AC7B
             elif incorrect == len(man):
-                embed.description = f"You've been hanged! The word was \n\n**{' '.join([k for k in word])}**\n\n{new}"
+                embed.description = f"{ctx.author.mention} has been hanged!\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join([k for k in word])}**\n\n{new}"
+                embed.set_footer(text=f"Hangman game by {ctx.author}")
                 embed.colour = 0xE84444
             else:
-                embed.description = f"Type a letter in chat to guess.\n\n**{' '.join(string)}**\n\n{new}"
+                embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{new}"
+                embed.set_footer(text=f"Hangman game by {ctx.author}")
             await msg.delete()
             await original.edit(embed = embed)
     '''@hangman.error

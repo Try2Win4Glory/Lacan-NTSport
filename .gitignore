@@ -1,4 +1,8 @@
 *.pyc
 *.png
 *.html
+<<<<<<< HEAD
 .env
+=======
+.env
+>>>>>>> 0dc751adec63aa9cc58b6fff6a6493dea8e2f566

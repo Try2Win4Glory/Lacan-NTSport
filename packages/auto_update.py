@@ -90,11 +90,13 @@ class AutoUpdate(commands.Cog):
         if find == None or cond:
             while True:
                 daily_car = random.choice(data['list'])
-                if str(daily_car['name']) == 'Lacan Hypersport':
+
+                if str(daily_car['name']) == 'Fonicci Lacan Hypersport':
                     continue
                 else:
                     break
-            new_data = {"type": "daily", "timestamp": str(round(time.time())+86400), "car": daily_car['name'], "img": daily_car['options']['largeSrc'], "price": random.randint(25, 60)}
+            new_data = {"type": "daily", "timestamp": str(round(time.time())+86400), "car": daily_car['name'], "img": daily_car['options']['largeSrc'], "price": random.randint(100, 250)}
+
             update = await collection.update_one({'type': 'daily'}, {"$set": new_data}, upsert=True)
         find = await collection.find_one({'type': 'weekly'})
         try:
@@ -104,11 +106,11 @@ class AutoUpdate(commands.Cog):
         if find == None or cond:
             while True:
                 weekly_car = random.choice(data['list'])
-                if str(weekly_car['name']) == 'Lacan Hypersport':
+                if str(weekly_car['name']) == 'Fonicci Lacan Hypersport':
                     continue
                 else:
                     break
-            new_data = {"type": "weekly", "timestamp": str(round(time.time())+604800), "car": weekly_car['name'], "img": weekly_car['options']['largeSrc'], "price": random.randint(80, 125)}
+            new_data = {"type": "weekly", "timestamp": str(round(time.time())+604800), "car": weekly_car['name'], "img": weekly_car['options']['largeSrc'], "price": random.randint(700, 1750)}
             update = await collection.update_one({'type': 'weekly'}, {"$set": new_data}, upsert=True)     
         collection = dbclient.db['test']
         documents = await dbclient.get_array(collection, {'other.ended': False})

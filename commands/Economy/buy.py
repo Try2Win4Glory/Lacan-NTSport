@@ -22,6 +22,7 @@ class Command(commands.Cog):
             user = d
             break
         old = deepcopy(user)
+        #data = json.loads(requests.get('https://lacanitemshop.nitrotypers.repl.co/data.json').text)
         scollection = dbclient.db.shop
         data = {"data": "", "weekly": ""}
         async for x in scollection.find({}):
