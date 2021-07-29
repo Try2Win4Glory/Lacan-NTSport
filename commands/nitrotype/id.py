@@ -15,7 +15,7 @@ class Command(commands.Cog):
     async def id(self, ctx, user=None):
         #data = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={'key': os.getenv('DB_KEY')}).text)
         if user == None:
-            success, result = await get_username(str(ctx.author.id))
+            success, result, data = await get_username(str(ctx.author.id), include_data=True, bypass=True)
             if success:
                 racer = result
             else:
@@ -23,30 +23,30 @@ class Command(commands.Cog):
                 await embed.send(ctx)
                 return
             if racer.success:
-                success, result = await get_username(str(ctx.author.id), get_id=True)
+                success, result, data = await get_username(str(ctx.author.id), get_id=True, include_data=True, bypass=True)
                 userid = result
         if user != None:
             racer = await Racer(user)
-            success, result = await get_username(racer.username.lower(), get_id=True)
+            success, result, data = await get_username(racer.username.lower(), get_id=True, include_data=True, bypass=True)
             if racer.success:            
                 userid = result
         if not racer.success:
             userid = str(''.join(list(user)[3:-1]))
-            success, result = await get_username(str(userid))
+            success, result, data = await get_username(str(userid), include_data=True, bypass=True)
             if success:
                 racer = result
             else:
                 userid = str(''.join(list(user)[2:-1]))
-                success, result = await get_username(str(userid))
+                success, result, data = await get_username(str(userid), include_data=True, bypass=True)
                 if success:
                     racer = result
                 else:
-                    success, result = await get_username(str(userid))
+                    success, result, data = await get_username(str(userid), include_data=True, bypass=True)
                     if success:
                         racer = result
                     else:
                         userid = str(user)
-                        success, result = await get_username(str(userid))
+                        success, result, data = await get_username(str(userid), include_data=True, bypass=True)
                         if success:
                             racer = result
                         else:
@@ -63,6 +63,7 @@ class Command(commands.Cog):
         try:
             embed.field('Discord ID', '`'+userid+'`', inline=True)
             embed.field('Discord Mention', '<@'+userid+'>', inline=True)
+            embed.field('Verified?', '`'+str(data['verified'])+'`', inline=False)
         except:
             pass
         await embed.send(ctx)
