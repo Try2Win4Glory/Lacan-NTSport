@@ -1091,7 +1091,6 @@ class Guesser:
         text = fut.text
         result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+.*\]', text).group()
         data = json.loads('{"list": '+''.join(list(result)[:-1])+'}')
-
         scars = data['list']
         correct_car = choice(scars)
         self.pic = f'https://www.nitrotype.com/cars/{correct_car["options"]["largeSrc"]}'
