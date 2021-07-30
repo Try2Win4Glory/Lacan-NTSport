@@ -61,15 +61,6 @@ class Command(commands.Cog):
         discordid = discordid.replace("<@", "")
         discordid0 = discordid.replace("!", "")
         discordid1 = discordid0.replace(">", "")
-        success, userid = await get_username(discordid, get_id=True, bypass=True)
-        if success:
-            user = await self.client.fetch_user(userid)
-        else:
-            try:
-                user = await self.client.fetch_user(discordid)
-            except:
-                user = await self.client.fetch_user(discordid1)
-        print(user)
         dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
@@ -91,6 +82,15 @@ class Command(commands.Cog):
                   pass
                 await embed.send(ctx)
                 break
+        success, userid = await get_username(discordid, get_id=True, bypass=True)
+        if success:
+            user = await self.client.fetch_user(userid)
+        else:
+            try:
+                user = await self.client.fetch_user(discordid)
+            except:
+                user = await self.client.fetch_user(discordid1)
+        print(user)
                 #return
         #Remove roles if the server is premium:
         try:
