@@ -17,6 +17,7 @@ class Command(commands.Cog):
         easy = ['easy', 'e', 'ez', 'ey', '1', 'a']
         medium = ['medium', 'm', 'med', 'me', '2', 'b']
         hard = ['hard', 'h', 'ha', 'har', '3', 'c']
+        extreme = ['extreme', 'e', 'x', 'ex', 'extr', 'extrem'] 
  
         if type in easy:
             type = 'easy'
@@ -24,7 +25,12 @@ class Command(commands.Cog):
             type = 'medium'
         elif type in hard:
             type = 'hard'
-        types = ['easy', 'medium', 'hard']   
+        elif type in extreme:
+            type = 'extreme'
+        elif type == 'info':
+            embed=Embed('<:nt_basic:868772526321438740>  Nitrotype Hangman Info', '__**General Information**__\nThis is a Hangman game about Nitrotype. \nWhether cars, stickers, titles, well known players - you will find a huge variety of words!\n\n__**Difficulty Levels:**__\nThere are 4 different difficulty Levels.\n\n:thumbsup:**`easy`**: \n*"Are you a Nitrotype starter? Those words will fit perfect for you!"*\n- Very well known people in the Nitrotype Community\n- Very well known Nitrotype cars.\n- Very well known Nitrotype titles.\n- Very well known general typing words.\n\n:star:**`medium`**: \n*"Perfect for every average Nitrotype Player!"*\n- Well known people in the Nitrotype Community.\n- General words concerning Nitrotype.\n\n:star::star:**`hard`**:\n*"Loving challenges? You\'ll Never Beat Me!"*\n- Full Nitrotype car names.\n- Full Nitrotype loot item names.\n\n:star::star::star:**`extreme`**\n*"You think you know __everything__ about Nitrotype? - Only true Nitrotype Masters can beat this level!"*\n- Nitrotype titles collection.')
+            return await embed.send(ctx)
+        types = ['easy', 'medium', 'hard', 'extreme']   
         if type == None:
             type = random.choice(types)
         
@@ -75,13 +81,16 @@ class Command(commands.Cog):
         
         print(f"{ctx.guild.name} - #{ctx.channel.name} - {ctx.author.name} - {ctx.message.content}")
         if type == 'easy':
-            with open('./commands/Economy/hangeasy.txt') as f:
+            with open('./commands/Economy/words/hangeasy.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
         elif type == 'medium':
-            with open('./commands/Economy/hangmedium.txt') as f:
+            with open('./commands/Economy/words/hangmedium.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
         elif type == 'hard':
-            with open('./commands/Economy/hanghard.txt') as f:
+            with open('./commands/Economy/words/hanghard.txt') as f:
+                word = random.choice(f.readlines()).rstrip("\n")
+        elif type == 'extreme':
+            with open('./commands/Economy/words/hangextreme.txt') as f:
                 word = random.choice(f.readlines()).rstrip("\n")
         print(word)
         hang = [
@@ -96,7 +105,7 @@ class Command(commands.Cog):
         empty = '\n'.join(hang)
         #man = [['😲', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
         man = [['@', 2], [' |', 3], ['\\', 3, 7], ['/', 3], ['|', 4], ['/', 5], [' \\', 5]]
-        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\'', 'Ω', '-', '.', '!', '?', ',']
+        display = [' ', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '\'', 'Ω', '-', '.', '!', '?', ',', '&', '#', '_', '=', '<', '>', '|', '$', '%', '/', '[', ']','{', '}', '™️', '🎵', '✅', '⭕', '"', '+', '~']
         # Replace capital letters with lowercase letters
         word = word.lower()
         
@@ -112,12 +121,14 @@ class Command(commands.Cog):
             earned = round(len(word)/2)
         if type == 'hard':
             earned = len(word)
+        if type == 'extreme':
+            earned = len(word)+3
                            
         if carbonus:
             earned = earned+5
 
         embed = discord.Embed(
-            title = "Nitrotype Hangman",
+            title = "<:nt_basic:868772526321438740>  Nitrotype Hangman",
             color = ctx.author.color,
             description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{empty}",
         )

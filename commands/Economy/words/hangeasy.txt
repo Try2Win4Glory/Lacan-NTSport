@@ -11,7 +11,7 @@ penguin
 ace
 skittles
 mongoose
-assa
+asssa
 ssh
 toonidy
 vapor
@@ -98,3 +98,4 @@ goldfish
 overachiever
 underachiever
 teggsla
+colemak
