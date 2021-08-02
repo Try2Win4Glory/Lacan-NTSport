@@ -15,7 +15,6 @@ class Command(commands.Cog):
             return await response.text()
 
 
-
     def itemSearch(self, itemList, id, searchTerm):
         #Returns details about an item from bootstrap
         for item in itemList:
