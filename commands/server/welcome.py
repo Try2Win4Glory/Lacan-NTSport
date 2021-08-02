@@ -79,6 +79,7 @@ class Command(commands.Cog):
         embed.field('Channel', c.mention)
         embed.field('Message', msg.content)
         await embed.send(ctx)
+        
         if server_exists:
             await dbclient.update_array(collection, {'serverID': ctx.guild.id}, server_data)
         else:
