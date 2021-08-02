@@ -23,11 +23,7 @@ class Command(commands.Cog):
         if await ImproperType.check(ctx): return
         if ctx.author.id not in [
           #Try2Win4Glory
-            505338178287173642, 
-          #Typerious
-            637638904513691658, 
-          #adl212
-            396075607420567552]:
+            505338178287173642]:
             cooldown_add(str(ctx.author))
             
         racer = await Racer(username)
