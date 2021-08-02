@@ -47,7 +47,7 @@ class Command(commands.Cog):
     @commands.command()
     async def warn(self, ctx, userid, rulenum, *additional_note):
         #if await ImproperType.check(ctx): return
-        if ctx.author.id not in [505338178287173642, 637638904513691658, 396075607420567552]:
+        if ctx.author.id not in [505338178287173642]:
             embed=Embed('Error!', 'This commmand is developer only!', 'tools')
             return await embed.send(ctx)
         else:
