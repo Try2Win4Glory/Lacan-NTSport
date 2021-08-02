@@ -1,4 +1,4 @@
-'''Give your friend some lacans after they beg'''
+'''Your Lacans have been sent'''
 
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
@@ -11,7 +11,7 @@ class Command(commands.Cog):
     
     @commands.command()
     async def sent(self, ctx, sendto: discord.User, amount):
-        if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
+        if (ctx.author.id) not in [505338178287173642]:
             embed = Embed('Error!', 'Lol, did you really think it\'s possible for you to use this command 5540097> when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
             embed.footer('⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
             await embed.send(ctx)
