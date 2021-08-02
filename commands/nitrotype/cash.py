@@ -13,13 +13,6 @@ class Command(commands.Cog):
 
     @commands.command()
     async def cash(self, ctx, placement=None, accuracy=None, session=None, friends=None, gold=None, wampus=None):
-    # Print the values
-      print(placement)
-      print(accuracy)
-      print(session)
-      print(friends)
-      print(wampus)
-      print(gold)
     # Check if enough parameters entered
       if placement == None or accuracy == None or session == None or friends == None or gold == None:
         embed=Embed('Error!', 'Missing some required parameters. Please try again!\n`n.cash <placement> <accuracy> <session> <friends> <gold> <wampus>`\nIn case you are a non gold member, use `False` for the gold variable, otherwise use `True`. The `wampus` parameter is optional, only append it if you raced the wampus.\n__Example:__\n`n.cash 1 100 10 0 True Wampus` calculates the cash you receive with following requirements:\n- You placed **1st**.\n- Your rounded accuracy was **100%**.\n- Your had an ongoing session of **10** races.\n- You have Nitro Type Gold membership. \n- You raced with **0** friends. \n- You raced the **Wampus**.', 'warning')
