@@ -12,7 +12,6 @@ def cycle_news(news, current_page):
     else:
         return current_page + 1
 
-
 class Command(commands.Cog):
   
     def __init__(self, client):
