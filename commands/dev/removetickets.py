@@ -11,7 +11,7 @@ class Command(commands.Cog):
             json.dump(data, f, indent=4) 
     @commands.command()
     async def removetickets(self, ctx, user:discord.User=None, amount=None):
-        if ctx.author.id not in [505338178287173642, 637638904513691658, 396075607420567552]:
+        if ctx.author.id not in [505338178287173642]:
             return await ctx.send('Even the owner can\'t run the command and you think you can???')
         if user == None:
             return await ctx.send('You didn\'t give a user!')
