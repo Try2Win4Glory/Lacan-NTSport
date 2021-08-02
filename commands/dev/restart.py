@@ -1,4 +1,4 @@
-'''description'''
+'''Restart the bot'''
 
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
@@ -10,7 +10,7 @@ class Command(commands.Cog):
     
     @commands.command()
     async def restart(self, ctx):
-        if ctx.author.id not in [505338178287173642, 396075607420567552]:
+        if ctx.author.id not in [505338178287173642]:
             return
         else:
             embed = Embed('Success', 'Refreshed Cache And Restarted Bot!')
