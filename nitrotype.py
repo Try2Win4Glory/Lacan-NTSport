@@ -366,7 +366,7 @@ async def verify_race(ctx):
         await embed.send(ctx)
 
 async def verify_friend(ctx):
-    dbclient = DBClient()
+    dbclient = clientDB()
     collection = dbclient.db.NT_to_discord
     dbdata = await dbclient.get_array(collection, {})
     async for elem in dbdata:
