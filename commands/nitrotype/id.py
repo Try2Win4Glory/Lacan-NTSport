@@ -61,9 +61,16 @@ class Command(commands.Cog):
         embed.field('Nitrotype Display name', '`'+racer.name+'`', inline=True)
         embed.field('Nitrotype ID', '`'+str(racer.userid)+'`', inline=True)
         try:
+            verifiedstatus = str(data['verified'])
+            if verifiedstatus == 'true':
+                verifiedstatus = '<a:Check:797009550003666955>'
+            elif verifiedstatus == 'false':
+                verifiedstatus = '<a:false:800330847865143327>'
+            elif verifiedstatus == 'in progress':
+                verifiedstatus = ':stopwatch:'
             embed.field('Discord ID', '`'+userid+'`', inline=True)
             embed.field('Discord Mention', '<@'+userid+'>', inline=True)
-            embed.field('Verified?', '`'+str(data['verified'])+'`', inline=False)
+            embed.field('Verified Status', verifiedstatus, inline=False)
         except:
             pass
         await embed.send(ctx)

@@ -38,6 +38,7 @@ class Command(commands.Cog):
         embed = Embed('Car Image', 'Search Query: `'+str(id)+'`')
         embed.image('https://www.nitrotype.com/cars/'+cardata['options']['largeSrc'])
         embed.footer('Not the car you\'re looking for? Replace all spaces with _ .')
+        
         for k, v in cardata.items():
             embed.field(k, v)
         return await embed.send(ctx)
