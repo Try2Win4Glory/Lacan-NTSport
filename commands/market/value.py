@@ -1,5 +1,4 @@
 '''Get The Value Of A Racer'''
-
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 from sklearn.tree import DecisionTreeRegressor
