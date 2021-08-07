@@ -1,5 +1,4 @@
 '''Join the soviet union!'''
-
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 from discord import Member, File
