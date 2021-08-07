@@ -31,11 +31,11 @@ class Command(commands.Cog):
         async for d in data:
             user = d
             break
-        embed = Embed('<a:success:800340618579935233>  Success!', 'You\'ve collected your hourly succesfully!')
+        embed = Embed('<a:success:800340618579935233>  Success!', f'You\'ve collected your hourly **5** {random_lacan} succesfully!')
         try:
             old = user.copy()
             if ((round(time.time())-user['hourlystamp'] >= 3600)):
-                user['points'] += 3
+                user['points'] += 5
                 user['hourlystamp'] = round(time.time())
                 await dbclient.update_array(collection, old, user)
                 #Embed for lacan Log
@@ -56,7 +56,7 @@ class Command(commands.Cog):
                 user['points'] += 3
                 user['hourlystamp'] = round(time.time())
                 await dbclient.update_array(collection, old, user)
-                embed = Embed('<a:success:800340618579935233>  Success!', 'You\'ve collected your hourly succesfully!')
+                embed = Embed('<a:success:800340618579935233>  Success!', f'You\'ve collected your hourly **5** {random_lacan} succesfully!')
                 #Embed for lacan Log
                 #embed1 = discord.Embed(title=f'{random_lacan}  Lacan Log', description=str(ctx.author), color= green)
                 #embed1.add_field(name='__Won__', value=f'3')
@@ -66,9 +66,9 @@ class Command(commands.Cog):
                 #embed1.add_field(name='__User ID__', value=f'`{ctx.author.id}`')
                 #await channel.send(embed=embed1)
             else:
-                await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 3, 'hourlystamp': round(time.time())})
+                await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 5, 'hourlystamp': round(time.time())})
         except UnboundLocalError:
-          await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 3, 'hourlystamp': round(time.time())})
+          await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 5, 'hourlystamp': round(time.time())})
         await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
