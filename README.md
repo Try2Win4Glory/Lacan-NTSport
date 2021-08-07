@@ -7,13 +7,13 @@ We also have a Custom Discord Verification System, in which if you verify, the b
 
 Our Bot is still growing. We are trying our best to make the bot better and better every day. If you have any suggestions or feedback, either DM a dev, or type `n.message <your message>`. 
 
-Developers
+Developers:
 
 @⚡Try2Win4Glory⚡#1234
 
 @adl212#2235 - Inactive
 
-Credits
+Credits:
 
 @Xplode#6491
 

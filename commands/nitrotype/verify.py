@@ -7,7 +7,7 @@ import os
 import json
 import random, copy
 from mongoclient import DBClient
-from nitrotype import verify, verify_race
+from nitrotype import verify, verify_race, verify_friend
 import aiohttp
 import cloudscraper
 import asyncio
@@ -31,7 +31,7 @@ class Command(commands.Cog):
             async with session.get(url) as response:
                 return await response.text()
     @commands.command()
-    async def verify(self, ctx, type="friend"):
+    async def verify(self, ctx, type="link"):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         if type == 'car':
             return await verify(ctx)
@@ -49,7 +49,7 @@ class Command(commands.Cog):
             old = copy.deepcopy(dbdata)
             if dbdata['verified'] == 'false':
                 username = dbdata['NTuser']
-                embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and go [here](https://lns-verification.herokuapp.com/)! \nAfter that run `n.verify` again.')
+                embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and go [here](https://lns-verification.herokuapp.com/)! \nAfter that run `n.verify` again.\n\n**Attention:** In case you are currently in Europe :flag_eu:, please either switch to an US :flag_us: VPN or use `n.unregister`, register again and run `n.verify friend` instead.')
                 dbdata['verifyCar'] = None
                 dbdata['verified'] = 'in progress'
                 await dbclient.update_array(collection, old, dbdata)
@@ -63,7 +63,7 @@ class Command(commands.Cog):
                     embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
                     return await embed.send(ctx)
                 else:
-                    embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{dbdata["NTuser"]}** did not visit the link yet. In order to verify your ownership for **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and go [here](https://www.nitrotype.com/racer/lacanverification). \nAfter that make sure to run `n.verify` again.')
+                    embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{dbdata["NTuser"]}** did not visit the link yet. In order to verify your ownership for **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and go [here](https://lns-verification.herokuapp.com/). \nAfter that make sure to run `n.verify` again.\n\n**Attention:** In case you are currently in Europe :flag_eu:, please either switch to an US :flag_us: VPN or use `n.unregister`, register again and run `n.verify friend` instead.')
                     return await embed.send(ctx)
             if dbdata['verified'] == 'true':
                 embed = Embed('Error!', 'You are already verified :rofl:', 'joy')
