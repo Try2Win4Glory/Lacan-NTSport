@@ -44,7 +44,7 @@ class Command(commands.Cog):
                 data = d
                 break
             try:
-                if userid == ctx.author.id
+                if userid == ctx.author.id:
                     embed = Embed('Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
                 else:
                     embed = Embed('Balance', f'<@{userid}> has **{data["points"]}** {random_lacan}.', 'moneybag')
