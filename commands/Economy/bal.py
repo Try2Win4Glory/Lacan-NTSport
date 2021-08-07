@@ -33,7 +33,10 @@ class Command(commands.Cog):
             data = d
             break
         try:
-            embed = Embed('Your Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
+            if userid == ctx.author.id:
+                embed = Embed('Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
+            else:
+                embed = Embed('Balance', f'<@{userid}> has **{data["points"]}** {random_lacan}.', 'moneybag')
         except:
             userid = ''.join(list(userid)[2:-1])
             data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
@@ -41,7 +44,10 @@ class Command(commands.Cog):
                 data = d
                 break
             try:
-                embed = Embed('Your Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
+                if userid == ctx.author.id
+                    embed = Embed('Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
+                else:
+                    embed = Embed('Balance', f'<@{userid}> has **{data["points"]}** {random_lacan}.', 'moneybag')
             except:
                 userid = ''.join(list(userid)[1:])
                 data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
@@ -49,9 +55,15 @@ class Command(commands.Cog):
                     data = d
                     break
                 try:
-                    embed = Embed('Your Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
+                    if userid == ctx.author.id:
+                        embed = Embed('Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
+                    else:
+                        embed = Embed('Balance', f'<@{userid}> has **{data["points"]}** {random_lacan}.', 'moneybag')
                 except:
-                    embed = Embed('Error!', 'The user doesn\'t have any lacans!')
+                    if userid == ctx.author.id:
+                        embed = Embed('Error!', f'You don\'t have any {random_lacan}!', 'warning')
+                    else:
+                        embed = Embed('Error!', f'<@{userid}> doesn\'t have any {random_lacan}!', 'warning')
         return await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
