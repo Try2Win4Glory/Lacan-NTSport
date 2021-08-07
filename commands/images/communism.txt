@@ -37,7 +37,6 @@ class Command(commands.Cog):
         embed = embed.default_embed()
 
         await ctx.send(file=file, embed=embed)
-
         system(f'rm "./storage/communism/{target.id}.gif"')
     
 def setup(client):
