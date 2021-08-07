@@ -35,7 +35,6 @@ class Command(commands.Cog):
                 await msg.channel.send(f'No one won \n{msg.jump_url}')
             else:
                 await msg.channel.send(f'<@{winner}> won {msg.jump_url}')
-                
         except KeyError:
             await msg.channel.send(f'No one won because no one joined!\n{msg.jump_url}')
         giveaway['ended'] = True

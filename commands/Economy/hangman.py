@@ -152,7 +152,10 @@ class Command(commands.Cog):
                 return await embed.send(ctx)
                 #return await ctx.send("Your Game timed out.")
             if already_guessed:
-                await already_guessed.delete()
+                try:
+                    await already_guessed.delete()
+                except:
+                    pass
                 already_guessed = None
             if letter in guessed:
                 already_guessed = await ctx.send("You have already guessed that letter.")
@@ -205,7 +208,10 @@ class Command(commands.Cog):
             else:
                 embed.description = f"Type a letter in chat to guess.\n**Type:** {type}\n**Value:** {earned} {random_lacan}\n\n**{''.join(string)}**\n\n{new}"
                 embed.set_footer(text=f"Hangman game by {ctx.author}")
-            await msg.delete()
+            try:
+                await msg.delete()
+            except:
+                pass
             await original.edit(embed = embed)
     '''@hangman.error
     async def hangman_error(self, ctx, error):

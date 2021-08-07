@@ -24,7 +24,7 @@ class Command(commands.Cog):
             embed = Embed('Error!', 'LMAO you already ended the comp before!')
             return await embed.send(ctx)
         if ctx.author.id != other['author'] and ctx.author.id not in [505338178287173642, 637638904513691658, 396075607420567552]:
-            embed = Embed("Bruh Alert", "Yes thank you for trying ot delete someone **else\'s** competition!", "warning")
+            embed = Embed("Bruh Alert", "Yes thank you for trying to delete someone **else\'s** competition!", "warning")
             
             return await embed.send(ctx)
         embed = discord.Embed(title="Sucess!", description=f"You have succesfully ended the competition ***manually*** for Team **{other['team']}** and Comp ID `{compid}`! Results will be sent to dms!")

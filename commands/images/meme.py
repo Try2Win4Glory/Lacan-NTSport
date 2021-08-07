@@ -5,7 +5,6 @@ from packages.utils import Embed, ImproperType
 from packages.reddit import ImageFetcher
 
 class Command(commands.Cog):
-
     def __init__(self, client):
         self.client = client
         self.fetcher = ImageFetcher({'dankmemes' : 150, 'memes' : 150, 'meirl' : 50})

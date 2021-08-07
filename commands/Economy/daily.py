@@ -40,11 +40,11 @@ class Command(commands.Cog):
         async for d in data:
             user = d
             break
-        embed = Embed('<a:success:800340618579935233>  Success!', 'You\'ve collected your daily **5** '+random_lacan+' succesfully!')
+        embed = Embed('<a:success:800340618579935233>  Success!', 'You\'ve collected your daily **15** '+random_lacan+' succesfully!')
         try:
             old = user.copy()
             if ((round(time.time())-user['laststamp'] >= 75600)):
-                user['points'] += 5
+                user['points'] += 15
                 user['laststamp'] = round(time.time())
                 await dbclient.update_array(collection, old, user)
                 #await embed.send(ctx)
@@ -69,10 +69,10 @@ class Command(commands.Cog):
                 return await embed.send(ctx)
         except KeyError:
             if user['userid'] == str(ctx.author.id):
-                user['points'] += 5
+                user['points'] += 15
                 user['laststamp'] = round(time.time())
                 await dbclient.update_array(collection, old, user)
-                embed = Embed('<a:success:800340618579935233>  Success!', 'You\'ve collected your daily succesfully!')
+                embed = Embed('<a:success:800340618579935233>  Success!', f'You\'ve collected your daily **15** {random_lacan} succesfully!')
                 #Embed for lacan Log
                 #embed1 = discord.Embed(title=f'{random_lacan}  Lacan Log', description=str(ctx.author), color= green)
                 #embed1.add_field(name='__Won__', value=f'5')
@@ -82,9 +82,9 @@ class Command(commands.Cog):
                 #embed1.add_field(name='__User ID__', value=f'`{ctx.author.id}`')
                 #await channel.send(embed=embed1)
             else:
-                await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 5, 'laststamp': round(time.time())})
+                await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 15, 'laststamp': round(time.time())})
         except UnboundLocalError:
-          await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 5, 'laststamp': round(time.time())})
+          await dbclient.create_doc(collection, {'userid': str(ctx.author.id), 'points': 15, 'laststamp': round(time.time())})
         await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))

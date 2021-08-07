@@ -16,7 +16,7 @@ class Command(commands.Cog):
         data = await dbclient.get_big_array(collection, 'premium')
         for x in data['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
-                embed = Embed('Error!', 'This server is already premium!', 'warning')
+                embed = Embed('Error!', 'This server is already premium :diamond_shape_with_a_dot_inside:!', 'warning')
                 return await embed.send(ctx)
         else:
             del collection
@@ -37,7 +37,7 @@ class Command(commands.Cog):
             embed = Embed('Error!', 'You do not have 3000 lacans!', 'rofl')
             return await embed.send(ctx)
         await dbclient.update_array(collection, old, data)
-        embed = Embed('Success!', 'You have bought premium for this server, pending dev verification. \n\n*Please wait for a developer to accept your server for premium. If you get rejected, your lacans will be refunded.*', 'white check mark')
+        embed = Embed('Success!', 'You have bought premium :diamond_shape_with_a_dot_inside: for this server, pending dev verification. \n\n*Please wait for a developer to accept your server for premium. If you get rejected, your lacans will be refunded.*', 'white check mark')
         await embed.send(ctx)
         channel = discord.utils.get(self.client.get_all_channels(), id=810296381779476510)
         embed = Embed('Someone Wants Premium!', 'Click :ballot_box_with_check: to accept or :x: to deny.')

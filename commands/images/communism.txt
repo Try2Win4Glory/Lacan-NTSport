@@ -1,5 +1,4 @@
 '''Join the soviet union!'''
-
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 from discord import Member, File
@@ -37,7 +36,6 @@ class Command(commands.Cog):
         embed = embed.default_embed()
 
         await ctx.send(file=file, embed=embed)
-
         system(f'rm "./storage/communism/{target.id}.gif"')
     
 def setup(client):
