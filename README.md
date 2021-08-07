@@ -7,19 +7,15 @@ We also have a Custom Discord Verification System, in which if you verify, the b
 
 Our Bot is still growing. We are trying our best to make the bot better and better every day. If you have any suggestions or feedback, either DM a dev, or type `n.message <your message>`. 
 
-Developers
+Developers:
 
 @⚡Try2Win4Glory⚡#1234
 
-@Typerious#1482 - Inactive
-
-@Systematic Error - Inactive
-
 @adl212#2235 - Inactive
 
-Credits
+Credits:
 
-@Limt#6491
+@Xplode#6491
 
 
 To invite the bot to your server click [here](https://discord.com/oauth2/authorize?client_id=713352863153258556&permissions=469888065&redirect_uri=https%3A%2F%2Fnitrotype.com&scope=bot)
