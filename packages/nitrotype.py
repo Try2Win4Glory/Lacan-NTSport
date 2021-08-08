@@ -951,9 +951,9 @@ class RacerClass:
             #except ZeroDivisionError:
                 #self.third_perc = 0
             self.races = fn(self.races)
-            self.first = fn(self.first)
-            self.second = fn(self.second)
-            self.third = fn(self.third)
+            #self.first = fn(self.first)
+            #self.second = fn(self.second)
+            #self.third = fn(self.third)
 
             self.wpm_average = fn(newdata['avgSpeed'])
             self.wpm_high = fn(newdata['highestSpeed'])
