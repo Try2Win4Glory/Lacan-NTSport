@@ -879,7 +879,7 @@ class RacerClass:
             
             self.level = fn(newdata['level'])
             self.experience = fn(newdata['experience'])
-            self.points = fn(newdata['achievementPoints'])
+            #self.points = fn(newdata['achievementPoints'])
             #self.country = countries.get(newdata['country'], 'Unknown')
             #if self.country != 'Unknown':
                 #self.country += f' :flag_{newdata["country"].lower()}: '
