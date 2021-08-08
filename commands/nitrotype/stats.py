@@ -79,7 +79,7 @@ class Command(commands.Cog):
 
         #embed.field('\n\u200b', '\n\u200b')
 
-        embed.field('__Races__', f':checkered_flag: **{racer.races}** \n:first_place: **{racer.first}**\n:second_place: **{racer.second}**\n:third_place: **{racer.third}**', inline=True)
+        embed.field('__Races__', f':checkered_flag: **{racer.races}**', inline=True)
 
         #embed.field('\n\u200b', '\n\u200b')
 
