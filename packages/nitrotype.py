@@ -880,9 +880,9 @@ class RacerClass:
             self.level = fn(newdata['level'])
             self.experience = fn(newdata['experience'])
             self.points = fn(newdata['achievementPoints'])
-            self.country = countries.get(newdata['country'], 'Unknown')
-            if self.country != 'Unknown':
-                self.country += f' :flag_{newdata["country"].lower()}: '
+            #self.country = countries.get(newdata['country'], 'Unknown')
+            #if self.country != 'Unknown':
+                #self.country += f' :flag_{newdata["country"].lower()}: '
             self.views = fn(newdata['profileViews'])
             #self.created = date.fromtimestamp(newdata['createdStamp']).strftime('%d %B %Y')
             self.created = date.fromtimestamp(newdata['createdStamp']).strftime('%d %B %Y')
@@ -938,18 +938,18 @@ class RacerClass:
             self.first = newdata['placed1']
             self.second = newdata['placed2']
             self.third = newdata['placed3']
-            try:
-                self.first_perc = round((self.first/self.races)*100, 2)
-            except ZeroDivisionError:
-                self.first_perc = 0
-            try:
-                self.second_perc = round((self.second/self.races)*100, 2)
-            except ZeroDivisionError:
-                self.second_perc = 0
-            try:
-                self.third_perc = round((self.third/self.races)*100, 2)
-            except ZeroDivisionError:
-                self.third_perc = 0
+            #try:
+                #self.first_perc = round((self.first/self.races)*100, 2)
+            #except ZeroDivisionError:
+                #self.first_perc = 0
+            #try:
+                #self.second_perc = round((self.second/self.races)*100, 2)
+            #except ZeroDivisionError:
+                #self.second_perc = 0
+            #try:
+                #self.third_perc = round((self.third/self.races)*100, 2)
+            #except ZeroDivisionError:
+                #self.third_perc = 0
             self.races = fn(self.races)
             self.first = fn(self.first)
             self.second = fn(self.second)
