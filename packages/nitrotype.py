@@ -935,9 +935,9 @@ class RacerClass:
             self.nitros_total = fn(self.nitros_total)
 
             self.races = newdata['racesPlayed']
-            self.first = newdata['placed1']
-            self.second = newdata['placed2']
-            self.third = newdata['placed3']
+            #self.first = newdata['placed1']
+            #self.second = newdata['placed2']
+            #self.third = newdata['placed3']
             #try:
                 #self.first_perc = round((self.first/self.races)*100, 2)
             #except ZeroDivisionError:
