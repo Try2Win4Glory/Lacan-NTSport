@@ -67,9 +67,9 @@ class Command(commands.Cog):
         embed.thumbnail(racer.car)
 
 
-        print(racer.name+' is from '+racer.country)
+        #print(racer.name+' is from '+racer.country)
 
-        embed.field('__General Info__', f':small_blue_diamond: Level: **{racer.level}**\n:small_blue_diamond: XP: **{racer.experience}** \n:small_blue_diamond: **{racer.country}**\n:eyes: **{racer.views}** \n :birthday: **{racer.created}** \n <:nt_gold:861944319102418944> **{"Lifetime" if racer.lifetime_gold else "Gold" if racer.newdata["membership"] != "basic" else "Basic"}**', inline=True)
+        embed.field('__General Info__', f':small_blue_diamond: Level: **{racer.level}**\n:small_blue_diamond: XP: **{racer.experience}**\n:eyes: **{racer.views}** \n :birthday: **{racer.created}** \n <:nt_gold:861944319102418944> **{"Lifetime" if racer.lifetime_gold else "Gold" if racer.newdata["membership"] != "basic" else "Basic"}**', inline=True)
 
         #Achievement points: **{racer.points}**
 
@@ -79,7 +79,7 @@ class Command(commands.Cog):
 
         #embed.field('\n\u200b', '\n\u200b')
 
-        embed.field('__Races__', f':checkered_flag: **{racer.races}** \n:first_place: **{racer.first}** (**{racer.first_perc}%**)\n:second_place: **{racer.second}** (**{racer.second_perc}%**)\n:third_place: **{racer.third}** (**{racer.third_perc}%**)', inline=True)
+        embed.field('__Races__', f':checkered_flag: **{racer.races}** \n:first_place: **{racer.first}**\n:second_place: **{racer.second}**\n:third_place: **{racer.third}**', inline=True)
 
         #embed.field('\n\u200b', '\n\u200b')
 
