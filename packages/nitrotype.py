@@ -927,6 +927,15 @@ class RacerClass:
             self.cars_total = fn(self.cars_total)
             #self.current_car = cars.get(newdata['carID'])
             self.carid = newdata['carID']
+	
+	    self.longest_session = fn(newdata['longestSession'])
+		
+	    self.trailid = newdata['loot'][0]['lootID']
+	    self.trailname = newdata['loot'][0]['name']
+	    self.trail_asset = newdata['loot'][0]['assetKey']
+	    self.trail_rarity = newdata['loot'][0]['options']['rarity']
+ 	    self.trail_image = newdata['loot'][0]['options']['src']
+	    self.trail_created = date.fromtimestamp(newdata['loot'][0]['createdStamp']).strftime('%d %B %Y')
 
             self.nitros = newdata['nitros']
             self.nitros_used = newdata['nitrosUsed']
