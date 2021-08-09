@@ -83,7 +83,7 @@ class Command(commands.Cog):
 
         #embed.field('\n\u200b', '\n\u200b')
 
-        embed.field('__Cars__', f':race_car: **{racer.cars_owned}** owned\n:race_car: **{racer.cars_sold}** sold\n:race_car: **{racer.cars_total}** total\n:race_car: **{racer.current_car}**')
+        embed.field('__Cars__', f':race_car: **{racer.cars_owned}** owned\n:race_car: **{racer.cars_sold}** sold\n:race_car: **{racer.cars_total}** total')
 
         #embed.field('\n\u200b', '\n\u200b')
 
