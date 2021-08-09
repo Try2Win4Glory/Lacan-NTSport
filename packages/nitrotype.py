@@ -963,21 +963,21 @@ class RacerClass:
             self.wpm_average = fn(newdata['avgSpeed'])
             self.wpm_high = fn(newdata['highestSpeed'])
 		
-	    try:
-		self.trailid = newdata['loot'][0]['lootID']
-	    	self.trailname = newdata['loot'][0]['name']
-	    	self.trail_asset = newdata['loot'][0]['assetKey']
-	    	self.trail_rarity = newdata['loot'][0]['options']['rarity']
- 	    	self.trail_image = newdata['loot'][0]['options']['src']
-	    	self.trail_created = date.fromtimestamp(newdata['loot'][0]['createdStamp']).strftime('%d %B %Y')
+            try:
+                self.trailid = newdata['loot'][0]['lootID']
+                self.trailname = newdata['loot'][0]['name']
+                self.trail_asset = newdata['loot'][0]['assetKey']
+                self.trail_rarity = newdata['loot'][0]['options']['rarity']
+                self.trail_image = newdata['loot'][0]['options']['src']
+                self.trail_created = date.fromtimestamp(newdata['loot'][0]['createdStamp']).strftime('%d %B %Y')
             except:
-		self.trailid = 'None'
-		self.trailname = 'None'
-		self.trail_asset = 'None'
-		self.trail_rarity = 'None'
-		self.trail_image = 'None'
-		self.trail_created = 'None'
-	    '''
+                self.trailid = 'None'
+                self.trailname = 'None'
+                self.trail_asset = 'None'
+                self.trail_rarity = 'None'
+                self.trail_image = 'None'
+                self.trail_created = 'None'
+            '''
             self.money = newdata['money']
             self.money_spent = newdata['moneySpent']
             self.money_total = self.money + self.money_spent
