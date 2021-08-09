@@ -184,8 +184,8 @@ class Command(commands.Cog):
             roles_to_add = []
             role = get(ctx.message.guild.roles, name=racer.speed_role)
             roles_to_add.append(role)
-            role = get(ctx.message.guild.roles, name=racer.accuracy_role)
-            roles_to_add.append(role)
+            #role = get(ctx.message.guild.roles, name=racer.accuracy_role)
+            #roles_to_add.append(role)
             try:
               role = get(ctx.message.guild.roles, name=racer.race_role)
               await ctx.author.add_roles(role)

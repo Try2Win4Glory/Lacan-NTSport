@@ -67,9 +67,9 @@ class Command(commands.Cog):
         embed.thumbnail(racer.car)
 
 
-        print(racer.name+' is from '+racer.country)
+        #print(racer.name+' is from '+racer.country)
 
-        embed.field('__General Info__', f':small_blue_diamond: Level: **{racer.level}**\n:small_blue_diamond: XP: **{racer.experience}** \n:small_blue_diamond: **{racer.country}**\n:eyes: **{racer.views}** \n :birthday: **{racer.created}** \n <:nt_gold:861944319102418944> **{"Lifetime" if racer.lifetime_gold else "Gold" if racer.newdata["membership"] != "basic" else "Basic"}**', inline=True)
+        embed.field('__General Info__', f':small_blue_diamond: Level: **{racer.level}**\n:small_blue_diamond: XP: **{racer.experience}**\n:eyes: **{racer.views}** \n :birthday: **{racer.created}** \n <:nt_gold:861944319102418944> **{"Lifetime" if racer.lifetime_gold else "Gold" if racer.newdata["membership"] != "basic" else "Basic"}**', inline=True)
 
         #Achievement points: **{racer.points}**
 
@@ -79,11 +79,11 @@ class Command(commands.Cog):
 
         #embed.field('\n\u200b', '\n\u200b')
 
-        embed.field('__Races__', f':checkered_flag: **{racer.races}** \n:first_place: **{racer.first}** (**{racer.first_perc}%**)\n:second_place: **{racer.second}** (**{racer.second_perc}%**)\n:third_place: **{racer.third}** (**{racer.third_perc}%**)', inline=True)
+        embed.field('__Races__', f':checkered_flag: **{racer.races}**', inline=True)
 
         #embed.field('\n\u200b', '\n\u200b')
 
-        embed.field('__Cars__', f':race_car: **{racer.cars_owned}** owned\n:race_car: **{racer.cars_sold}** sold\n:race_car: **{racer.cars_total}** total\n:race_car: **{racer.current_car}**')
+        embed.field('__Cars__', f':race_car: **{racer.cars_owned}** owned\n:race_car: **{racer.cars_sold}** sold\n:race_car: **{racer.cars_total}** total')
 
         #embed.field('\n\u200b', '\n\u200b')
 
@@ -94,13 +94,14 @@ class Command(commands.Cog):
         '''
         embed.field('__Money__', f':dollar: **{racer.money}**\n:dollar: **{racer.money_spent}** spent\n:dollar: **{racer.money_total}** total')
         '''
+
         try:
-            embed.field('__Daily__', f':trophy: **{fn(racer.daily_races)}** races\n :trophy: **{fn(racer.daily_pre["errs"])}** errors \n :trophy: **{fn(racer.daily_pre["typed"])}** words\n :trophy: **{str(round(racer.daily_speed, 2))}** WPM\n :trophy: **{str(round(racer.daily_accuracy, 2))}**% acc')
+            embed.field('__Daily__', f':trophy: **{fn(racer.daily_races)}** races')
         except:
             pass
 
         try:
-            embed.field('__Season__', f':trophy: **{fn(racer.season_races)}** races\n :trophy: **{fn(racer.season_pre["errs"])}** errors \n :trophy: **{fn(racer.season_pre["typed"])}** words\n :trophy: **{str(round(racer.season_speed, 2))}** WPM\n :trophy: **{str(round(racer.season_accuracy, 2))}**% acc')
+            embed.field('__Season__', f':trophy: **{fn(racer.season_races)}** races')
         except:
             pass
 
