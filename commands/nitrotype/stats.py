@@ -79,12 +79,16 @@ class Command(commands.Cog):
 
         #embed.field('\n\u200b', '\n\u200b')
 
-        embed.field('__Races__', f':checkered_flag: **{racer.races}**', inline=True)
+        embed.field('__Races__', f':checkered_flag: **{racer.races}**\n:timer: **{racer.longest_session}**', inline=True)
 
         #embed.field('\n\u200b', '\n\u200b')
 
         embed.field('__Cars__', f':race_car: **{racer.cars_owned}** owned\n:race_car: **{racer.cars_sold}** sold\n:race_car: **{racer.cars_total}** total')
 
+        #embed.field('\n\u200b', '\n\u200b')
+        
+        embed.field('__Trails__', f'🌠 Name: **{racer.trailname}**\n🌠 Asset Key: **{racer.trail_asset}**\n🌠 Rarity: **{trail_rarity}**\n🌠 Created: **{trail_created}**\n🌠 Image: [Link](https://nitrotype.com{trail_image})')
+        
         #embed.field('\n\u200b', '\n\u200b')
 
         embed.field('__Nitros__', f':zap: **{racer.nitros}** owned\n:zap: **{racer.nitros_used}** used\n:zap: **{racer.nitros_total}** total')
