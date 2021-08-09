@@ -24,7 +24,7 @@ class Command(commands.Cog):
         await embed.send(ctx)
         await guild.create_role(name="Gold Member", colour=discord.Colour(0xFFFF00))
         await guild.create_role(name="Registered")
-        await guild.create_role(name=">99% Accuracy")
+        '''await guild.create_role(name=">99% Accuracy")
         await guild.create_role(name="99% Accuracy")
         await guild.create_role(name="98% Accuracy")
         await guild.create_role(name="97% Accuracy")
@@ -35,7 +35,7 @@ class Command(commands.Cog):
         await guild.create_role(name="84-86% Accuracy")
         await guild.create_role(name="80-83% Accuracy")
         await guild.create_role(name="75-79% Accuracy")
-        await guild.create_role(name="<75% Accuracy")
+        await guild.create_role(name="<75% Accuracy")'''
         await guild.create_role(name="220+ WPM")
         await guild.create_role(name="210-219 WPM")
         await guild.create_role(name="200-209 WPM")
