@@ -88,7 +88,7 @@ class Command(commands.Cog):
         #embed.field('\n\u200b', '\n\u200b')
         
         if racer.trailname != 'None':
-            embed.field('__Trails__', f'🌠 Name: **{racer.trailname}**\n🌠 Asset Key: **{racer.trail_asset}**\n🌠 Rarity: **{trail_rarity}**\n🌠 Created: **{trail_created}**\n🌠 Image: [Link](https://nitrotype.com{trail_image})')
+            embed.field('__Trails__', f'🌠 Name: **{racer.trailname}**\n🌠 Asset Key: **{racer.trail_asset}**\n🌠 Rarity: **{racer.trail_rarity}**\n🌠 Created: **{trail_created}**\n🌠 Image: [Link](https://nitrotype.com{trail_image})')
         else:
             pass
         #embed.field('\n\u200b', '\n\u200b')
