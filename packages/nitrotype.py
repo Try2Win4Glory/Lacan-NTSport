@@ -789,9 +789,10 @@ class RacerClass:
         scraper = cloudscraper.create_scraper()
         fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/racer/{racer}'))
         response = fut.text
-        newdata = json.loads('{"'+re.search(r'RACER_INFO: \{\"(.*)\}', response.strip()).group(1)+'}')
+        newdata = ('{"'+re.search(r'RACER_INFO: \{\"(.*)\}', response.strip()).group(1)+'}')
+        newdata = json.loads(newdata)
         self.newdata = newdata
-        #print(newdata)
+        print(newdata)
         if newdata == {}:
             self.success = False
             return
@@ -854,7 +855,7 @@ class RacerClass:
             '''self.car = f'https://www.nitrotype.com/cars/{newdata["carHueAngle"]}_large_1.png'''
             fut = await loop.run_in_executor(None, functools.partial(scraper.get,'https://www.nitrotype.com/index/d8dad03537419610ef21782a075dde2d94c465c61266-1266/bootstrap.js'))
             text = fut.text
-            result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+.*\]', text).group()
+            result = re.search(r'(\[\{\"id\"\:\d+,\"carID\":\d+.*\]\])(?:,\[\"P)', text).group(1)
             data = json.loads('{"list": '+''.join(list(result)[:-1])+'}')
             for elem in data['list']:
                 for v in elem.values():
@@ -924,7 +925,7 @@ class RacerClass:
             self.cars_owned = fn(self.cars_owned)
             self.cars_sold = fn(self.cars_sold)
             self.cars_total = fn(self.cars_total)
-            self.current_car = cars.get(newdata['carID'])
+            #self.current_car = cars.get(newdata['carID'])
             self.carid = newdata['carID']
 
             self.nitros = newdata['nitros']
@@ -965,7 +966,7 @@ class RacerClass:
             self.money_spent = fn(self.money_spent)
             self.money_total = fn(self.money_total)
             '''
-            self.boards = newdata['racingStats']
+            '''self.boards = newdata['racingStats']
             try:
                 for board in self.boards:
                     if str(board['board']) == "daily":
@@ -994,12 +995,13 @@ class RacerClass:
                 self.season_speed = 0
                 self.season_accuracy = 0
                 self.season_points = 0
-
+            '''
             self.speed_rounded = int(math.floor(int(self.wpm_average)/10)*10)
             if self.speed_rounded > 220:
                 self.speed_role = '220+ WPM'
             else:
                 self.speed_role = f'{str(self.speed_rounded)}-{str(self.speed_rounded+9)} WPM'
+            '''
             try:
                 accuracy = int(round(self.season_accuracy, 1))
             except:
@@ -1027,6 +1029,7 @@ class RacerClass:
             else:
                 print(accuracy)
                 self.accuracy_role = '<75% Accuracy'
+            '''
             self.race_roles = ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
             self.race_zones = [(int(x.split('+')[0]),) if '+' in x else range(int(x.split('-')[0].strip().replace(' Races', '')), int(x.split('-')[1].strip().replace(' Races', ''))) for x in self.race_roles]
             index = 0
