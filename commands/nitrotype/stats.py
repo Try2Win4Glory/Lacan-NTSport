@@ -94,18 +94,14 @@ class Command(commands.Cog):
         '''
         embed.field('__Money__', f':dollar: **{racer.money}**\n:dollar: **{racer.money_spent}** spent\n:dollar: **{racer.money_total}** total')
         '''
-        dacc = 100-(racer.daily_pre["errs"])/(racer.daily_pre["typed"])
-        dacc = str(round(dacc, 2))
-        sacc = 100-(racer.season_pre["errs"])/(racer.season_pre["typed"])
-        sacc = str(round(sacc, 2))
-                   
+
         try:
-            embed.field('__Daily__', f':trophy: **{fn(racer.daily_races)}** races\n :trophy: **{fn(racer.daily_pre["errs"])}** errors \n :trophy: **{fn(racer.daily_pre["typed"])}** characters\n :trophy: **{dacc}**% acc')
+            embed.field('__Daily__', f':trophy: **{fn(racer.daily_races)}** races')
         except:
             pass
 
         try:
-            embed.field('__Season__', f':trophy: **{fn(racer.season_races)}** races\n :trophy: **{fn(racer.season_pre["errs"])}** errors \n :trophy: **{fn(racer.season_pre["typed"])}** characters\n :trophy: **{sacc}**% acc')
+            embed.field('__Season__', f':trophy: **{fn(racer.season_races)}** races')
         except:
             pass
 
