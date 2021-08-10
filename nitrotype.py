@@ -416,7 +416,8 @@ async def verify_friend(ctx):
     else:
         embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
         return await embed.send(ctx)
-async def verify_link(ctx)
+    
+async def verify_link(ctx):
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
             dbdata = await collection.find_one({"userID":str(ctx.author.id)})
