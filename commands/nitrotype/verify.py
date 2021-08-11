@@ -31,7 +31,7 @@ class Command(commands.Cog):
             async with session.get(url) as response:
                 return await response.text()
     @commands.command()
-    async def verify(self, ctx, type="friend"):
+    async def verify(self, ctx, type="None"):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         if type == 'car':
             return await verify(ctx)
@@ -42,21 +42,7 @@ class Command(commands.Cog):
         if type == 'link':
             return await verify_link(ctx)
         else:
-            # Check current Title
-            if racer.title != 'Raw Racing Recruit':
-              changeto_type = 'title'
-              changeto = 'Raw Racing Recruit'
-            # Gold members are able to use Solid Gold instead
-            elif racer.title == 'Raw Racing Recruit' and racer.membership == 'gold':
-              changeto_type = 'title'
-              changeto = 'Solid Gold'
-            # Non Gold Members have to change their trail ranodmely
-            else:
-              changeto_type = 'trail'
-              basic_traillist = ['Bits', 'Puff', 'Shock', 'Lovely', 'Dust']
-              if racer.trailname in basic_traillist:
-                basic_traillist.remove(racer.trailname)
-              changeto = random.choice(basic_traillist)
+            
 
             # Get Collection            
             dbclient = DBClient()
@@ -74,6 +60,21 @@ class Command(commands.Cog):
               if elem['verified'] == 'false':
                 # Get the User's Nitrotype Username
                 racer = await Racer(elem['NTuser'])
+                # Check current Title
+                if racer.title != 'Raw Racing Recruit':
+                  changeto_type = 'title'
+                  changeto = 'Raw Racing Recruit'
+                # Gold members are able to use Solid Gold instead
+                elif racer.title == 'Raw Racing Recruit' and racer.membership == 'gold':
+                  changeto_type = 'title'
+                  changeto = 'Solid Gold'
+                # Non Gold Members have to change their trail ranodmely
+                else:
+                  changeto_type = 'trail'
+                  basic_traillist = ['Bits', 'Puff', 'Shock', 'Lovely', 'Dust']
+                  if racer.trailname in basic_traillist:
+                    basic_traillist.remove(racer.trailname)
+                  changeto = random.choice(basic_traillist)
                 # Verification Instructions
                 embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{elem["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and change your __{changeto_type}__ to **{changeto}**. \nAfter that, run `n.verify` again.\n\n**Attention:** Please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {changeto_type}.')
                 # Set Database Elements
