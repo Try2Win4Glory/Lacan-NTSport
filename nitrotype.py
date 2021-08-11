@@ -374,10 +374,10 @@ async def verify_friend(ctx):
         if elem['userID'] == str(ctx.author.id):
             if elem['verified'] == 'false':
                 username = elem['NTuser']
-                embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{elem["NTuser"]}**, friend me on nitrotype [here](https://www.nitrotype.com/racer/lacanverification)! \nAfter that run `n.verify` again.')
+                embed = Embed('📋  Verify your Identity!', f'In order to verify, your ownership of **{elem["NTuser"]}**, friend me on nitrotype [here](https://www.nitrotype.com/racer/lacanverification)! \nAfter that run `n.verify` again.')
                 elem['verifyCar'] = None
                 elem['verified'] = 'in progress'
-                dbclient = DBClient()
+                dbclient = clientDB()
                 collection = dbclient.db.NT_to_discord
                 await dbclient.update_array(collection, old, elem)
                 return await embed.send(ctx)
@@ -386,14 +386,18 @@ async def verify_friend(ctx):
                 loop = asyncio.get_event_loop()
                 
                 # Login with Username and Password
-                #fut = await loop.run_in_executor(None, functools.partial(session.post, 'https://www.nitrotype.com/api/login', data={'username': os.getenv('verification_username'), 'password': os.getenv('verification_password')}))
+                fut = await loop.run_in_executor(None, functools.partial(session.post, 'https://www.nitrotype.com/api/v2/auth/login/username', data={'username': os.getenv('verification_username'), 'password': os.getenv('verification_password')}))
+                resp = fut.json()
                 
                 # Login with Cookies
-                session.cookies['ntuserrem'] = os.environ["ntuserrem"]
+                '''session.cookies['ntuserrem'] = os.environ["ntuserrem"]
                 session.cookies['PHPNTSESSION'] = "applesandbananas"
-                session.cookies['applesandbananas'] = os.getenv('phpntsessiondata')
+                session.cookies['applesandbananas'] = os.getenv('phpntsessiondata')'''
 
-                fut = await loop.run_in_executor(None, functools.partial(session.get, 'https://www.nitrotype.com/api/friend-requests'))
+                headers = {
+                    "authorization": resp['results']['token']
+                }
+                fut = await loop.run_in_executor(None, functools.partial(session.get, 'https://www.nitrotype.com/api/friend-requests', headers=headers))
                 friends = json.loads(fut.text)
                 
                 print(friends)
@@ -403,15 +407,15 @@ async def verify_friend(ctx):
                     #elif friends['data']['requests']==None:
                         #break
                 else:
-                    embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/lacanverification) and friend request me. \nAfter that make sure to run `n.verify` again.')
+                    embed = Embed('⚠️  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/lacanverification) and friend request me. \nAfter that make sure to run `n.verify` again.')
                     return await embed.send(ctx)
                 elem['verified'] = 'true'
-                dbclient = DBClient()
+                dbclient = clientDB()
                 await dbclient.update_array(collection, old, elem)
                 embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
                 return await embed.send(ctx)
             if elem['verified'] == 'true':
-                embed = Embed('Error!', 'You are already verified :rofl:', 'joy')
+                embed = Embed('Error!', 'You are already verified 🤣', 'joy')
                 return await embed.send(ctx)
     else:
         embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
