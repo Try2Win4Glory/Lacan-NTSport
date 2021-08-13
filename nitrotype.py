@@ -366,6 +366,7 @@ async def verify_race(ctx):
         await embed.send(ctx)
 
 async def verify_friend(ctx):
+    "authorization": resp['results']['token'] -> "authorization": f"Bearer {resp['results']['token']}"
     dbclient = clientDB()
     collection = dbclient.db.NT_to_discord
     dbdata = await dbclient.get_array(collection, {})
