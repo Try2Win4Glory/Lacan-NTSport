@@ -798,11 +798,11 @@ class RacerClass:
             return
 
         try:
-		if not newdata['tag']:
-            		self.tag = ''
-        	else:
-            		self.tag = f"[{newdata['tag']}]"
-	except KeyError:
+            if not newdata['tag']:
+                self.tag = ''
+            else:
+                self.tag = f"[{newdata['tag']}]"
+        except KeyError:
 		self.tag = ''
         self.userid = newdata['userID']
         '''
