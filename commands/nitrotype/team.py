@@ -70,10 +70,8 @@ class Command(commands.Cog):
         teamid = info["teamID"]
         enrollment = info["enrollment"]
         activeperc = info["activePercent"]
-        lastact = info["lastActivity"]
-        lastmod = info["lastModified"]
 
-        embed.field('Info', f" :busts_in_silhouette: Members: {str(len(data['members']))}\n:id: Team ID: {teamid}\n:eyes: Team Views: {info['profileViews']}\n:birthday: Birthday: {birthday}\n<:team_competitions:800330847915868220> Enrollment: **{enrollment}**\n:bar_chart: Activity Percentage: {activeperc}%\n:hourglass: Last Activity: {lastact}\n:pencil: Last Modification: {lastmod}")
+        embed.field('Info', f" :busts_in_silhouette: Members: {str(len(data['members']))}\n:id: Team ID: {teamid}\n:eyes: Team Views: {info['profileViews']}\n:birthday: Birthday: {birthday}\n<:team_competitions:800330847915868220> Enrollment: **{enrollment}**\n:bar_chart: Activity Percentage: {activeperc}%\n:hourglass: Last Activity: {team.lastact}\n:pencil: Last Modification: {team.lastmod}")
         #requirements to be able to join/apply for the team
         embed.field('Requirements', f":stopwatch: Min Speed: {info['minSpeed']}\n:checkered_flag: Min Races: {info['minRaces']}")
         #officers/captain of team       
