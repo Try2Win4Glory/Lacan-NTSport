@@ -67,8 +67,13 @@ class Command(commands.Cog):
         embed = Embed(f"[{info['tag']}] {info['name']}", team.tag_and_name, 'race car')
         createdstamp = info['createdStamp']
         birthday = datetime.fromtimestamp(int(createdstamp))
+        teamid = info["teamID"]
+        enrollment = info["enrollment"]
+        activeperc = info["activePercent"]
+        lastact = info["lastActivity"]
+        lastmod = info["lastModified"]
 
-        embed.field('Info', f" :busts_in_silhouette: Members: {str(len(data['members']))}\n:eyes: Team Views: {info['profileViews']}\n:birthday: Birthday: {birthday}")
+        embed.field('Info', f" :busts_in_silhouette: Members: {str(len(data['members']))}\n:id: Team ID: {teamid}\n:eyes: Team Views: {info['profileViews']}\n:birthday: Birthday: {birthday}\n<:team_competitions:800330847915868220> Enrollment: **{enrollment}**\n:bar_chart: Activity Percentage: {activeperc}%\n:hourglass: Last Activity: {lastact}\n:pencil: Last Modification: {lastmod}")
         #requirements to be able to join/apply for the team
         embed.field('Requirements', f":stopwatch: Min Speed: {info['minSpeed']}\n:checkered_flag: Min Races: {info['minRaces']}")
         #officers/captain of team       
