@@ -1163,23 +1163,50 @@ class TeamClass:
             self.data = self.data['data']
             self.info = self.data["info"]
 
-            self.daily_pre = self.data['stats'][1]
-            self.daily_races = self.daily_pre['played']
-            self.daily_speed = int(self.daily_pre['typed'])/5/self.daily_pre['secs']*60
-            self.daily_accuracy = 100-((int(self.daily_pre['errs'])/int(self.daily_pre['typed']))*100)
-            self.daily_points = (self.daily_races*(100+(self.daily_speed/2))*self.daily_accuracy/100)
+            try:
+                self.daily_pre = self.data['stats'][1]
+                self.daily_races = self.daily_pre['played']
+                self.daily_speed = int(self.daily_pre['typed'])/5/self.daily_pre['secs']*60
+                self.daily_accuracy = 100-((int(self.daily_pre['errs'])/int(self.daily_pre['typed']))*100)
+                self.daily_points = (self.daily_races*(100+(self.daily_speed/2))*self.daily_accuracy/100)
+            except:
+                self.daily_pre = 0
+                self.daily_races = 0
+                self.daily_speed = 0
+                self.daily_accuracy = 0
+                self.daily_points = 0
 
-            self.season_pre = self.data['stats'][2]
-            self.season_races = self.season_pre['played']
-            self.season_speed = int(self.season_pre['typed'])/5/self.season_pre['secs']*60
-            self.season_accuracy = 100-((int(self.season_pre['errs'])/int(self.season_pre['typed']))*100)
-            self.season_points = (self.season_races*(100+(self.season_speed/2))*self.season_accuracy/100)
+            try:
+                self.season_pre = self.data['stats'][2]
+                self.season_races = self.season_pre['played']
+                self.season_speed = int(self.season_pre['typed'])/5/self.season_pre['secs']*60
+                self.season_accuracy = 100-((int(self.season_pre['errs'])/int(self.season_pre['typed']))*100)
+                self.season_points = (self.season_races*(100+(self.season_speed/2))*self.season_accuracy/100)
+            except:
+                self.season_pre = 0
+                self.season_races = 0
+                self.season_speed = 0
+                self.season_accuracy = 0
+                self.season_points = 0
 
-            self.alltime_pre = self.data['stats'][0]
-            self.alltime_races = self.alltime_pre['played']
-            self.alltime_speed = int(self.alltime_pre['typed'])/5/self.alltime_pre['secs']*60
-            self.alltime_accuracy = 100-((int(self.alltime_pre['errs'])/int(self.alltime_pre['typed']))*100)
-            self.alltime_points = (self.alltime_races*(100+(self.alltime_speed/2))*self.alltime_accuracy/100)
+            try:
+                self.alltime_pre = self.data['stats'][0]
+                self.alltime_races = self.alltime_pre['played']
+                self.alltime_speed = int(self.alltime_pre['typed'])/5/self.alltime_pre['secs']*60
+                self.alltime_accuracy = 100-((int(self.alltime_pre['errs'])/int(self.alltime_pre['typed']))*100)
+                self.alltime_points = (self.alltime_races*(100+(self.alltime_speed/2))*self.alltime_accuracy/100)
+            except:
+                self.alltime_pre = 0
+                self.alltime_races = 0
+                self.alltime_speed = 0
+                self.alltime_accuracy = 0
+                self.alltime_points = 0
+
+            self.teamid = self.info["teamID"]
+            self.enrollment = self.info["enrollment"]
+            self.activeperc = self.info["activePercent"]
+            self.lastact = date.fromtimestamp(self.info["lastActivity"]).strftime('%d %B %Y')
+            self.lastmod = date.fromtimestamp(self.info["lastModified"]).strftime('%d %B %Y')
 
             self.leaders = []
             self.captain = (self.info['username'], self.info['displayName'])
