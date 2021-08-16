@@ -366,7 +366,6 @@ async def verify_race(ctx):
         await embed.send(ctx)
 
 async def verify_friend(ctx):
-    #"authorization": resp['results']['token'] -> "authorization": f"Bearer {resp['results']['token']}"
     dbclient = clientDB()
     collection = dbclient.db.NT_to_discord
     dbdata = await dbclient.get_array(collection, {})
@@ -396,7 +395,8 @@ async def verify_friend(ctx):
                 session.cookies['applesandbananas'] = os.getenv('phpntsessiondata')'''
 
                 headers = {
-                    "authorization": resp['results']['token']
+                    #"authorization": resp['results']['token']
+                    "authorization": f"Bearer {resp['results']['token']}"
                 }
                 fut = await loop.run_in_executor(None, functools.partial(session.get, 'https://www.nitrotype.com/api/friend-requests', headers=headers))
                 friends = json.loads(fut.text)
