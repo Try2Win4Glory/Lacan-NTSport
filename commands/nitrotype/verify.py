@@ -40,6 +40,8 @@ class Command(commands.Cog):
         if type == 'friend':
             return await verify_friend(ctx)
         else:
+            return await verify_friend(ctx)
+            '''
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
             dbdata = await collection.find_one({"userID":str(ctx.author.id)})
@@ -67,6 +69,6 @@ class Command(commands.Cog):
                     return await embed.send(ctx)
             if dbdata['verified'] == 'true':
                 embed = Embed('Error!', 'You are already verified :rofl:', 'joy')
-                return await embed.send(ctx)
+                return await embed.send(ctx)'''
 def setup(client):
     client.add_cog(Command(client))
