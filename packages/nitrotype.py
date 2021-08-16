@@ -803,7 +803,7 @@ class RacerClass:
             else:
                 self.tag = f"[{newdata['tag']}]"
         except KeyError:
-		self.tag = ''
+            self.tag = ''
         self.userid = newdata['userID']
         '''
         userid = newdata['userID']
