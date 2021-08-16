@@ -26,6 +26,7 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.pointsdb
         if userid == None:
+            userid = ctx.author.id
             data = await dbclient.get_array(collection, {'$and': [{'userid': str(ctx.author.id)}, {'userid': str(ctx.author.id)}]})
         else:
             data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
