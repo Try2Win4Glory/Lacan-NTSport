@@ -3,7 +3,6 @@ import discord
 import asyncio
 import calendar
 import datetime
-from datetime import datetime, date
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 class Command(commands.Cog):
