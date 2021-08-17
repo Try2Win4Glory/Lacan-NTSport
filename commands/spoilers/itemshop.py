@@ -23,6 +23,7 @@ class Command(commands.Cog):
       weeklyspoiler = 'https://itemshopspoilers.adl2212.repl.co/weekly.png'
       tomorrow = datetime.date.today() + datetime.timedelta(days=1)
       embed=Embed(f'Itemshop of {tomorrow.month}/{tomorrow.day}/{tomorrow.year}', 'Those Items can be purchased in tomorrow\'s Itemshop.', 'eyes')
+      embed.field('Spoilers', f'Itemshop {tomorrow.month}/{tomorrow.day}/{tomorrow.year}')
       if display == 'daily':
         try:
           embed.image(dailyspoiler)
