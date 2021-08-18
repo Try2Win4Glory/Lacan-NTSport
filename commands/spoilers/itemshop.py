@@ -19,6 +19,8 @@ class Command(commands.Cog):
         display = 'weekly'
       else:
         display = 'daily'
+      dailyspoiler = ''
+      weeklyspoiler = ''
       dailyspoiler = 'https://itemshopspoilers.adl2212.repl.co/daily.png'
       weeklyspoiler = 'https://itemshopspoilers.adl2212.repl.co/weekly.png'
       tomorrow = datetime.date.today() + datetime.timedelta(days=1)
