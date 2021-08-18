@@ -370,7 +370,7 @@ async def verify_race(ctx):
 async def verify_link(ctx):
     dbclient = DBClient()
     collection = dbclient.db.NT_to_discord
-    dbdata = await collection.find_one({"userID":str(ctx.author.id)})
+    dbdata = await collection.find_one({"userID":'"'+str(ctx.author.id)+'"'})
     if dbdata == None:
         embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
         return await embed.send(ctx)
@@ -460,11 +460,12 @@ async def verify_switch(ctx):
     dbclient = DBClient()
     collection = dbclient.db.NT_to_discord
     dbdata = await collection.find_one({"userID":str(ctx.author.id)})
+    print(dbdata)
 
     # User is not registered yet
-    if dbdata == None:
-        embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
-        return await embed.send(ctx)
+    #if dbdata == None:
+        #embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
+        #return await embed.send(ctx)
             # Recognized the User
             #async for elem in dbdata:
     old = copy.deepcopy(dbdata)
