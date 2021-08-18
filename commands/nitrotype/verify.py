@@ -7,7 +7,7 @@ import os
 import json
 import random, copy
 from mongoclient import DBClient
-from nitrotype import verify, verify_race, verify_friend
+from nitrotype import verify, verify_race, verify_friend, verify_link, verify_switch
 import aiohttp
 import cloudscraper
 import asyncio
