@@ -459,7 +459,7 @@ async def verify_switch(ctx):
     # Get Collection            
     dbclient = DBClient()
     collection = dbclient.db.NT_to_discord
-    dbdata = await collection.find_one({"userID":""str(ctx.author.id)""})
+    dbdata = await collection.find_one({"userID":ctx.author.id})
     print(dbdata)
 
     # User is not registered yet
