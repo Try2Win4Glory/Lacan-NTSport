@@ -15,10 +15,13 @@ class Command(commands.Cog):
     async def itemshop(self, ctx):
       curr_date = date.today()
       weekday = calendar.day_name[curr_date.weekday()]
-      if weekday == 'Thursday' or weekday == 'Friday':
+      #if weekday == 'Thursday' or weekday == 'Friday':
+      if weekday == 'Friday':
         display = 'weekly'
       else:
         display = 'daily'
+      dailyspoiler = 'https://www.nitrotype.com'
+      weeklyspoiler = 'https://www.nitrotype.com'
       dailyspoiler = 'https://itemshopspoilers.adl2212.repl.co/daily.png'
       weeklyspoiler = 'https://itemshopspoilers.adl2212.repl.co/weekly.png'
       tomorrow = datetime.date.today() + datetime.timedelta(days=1)
