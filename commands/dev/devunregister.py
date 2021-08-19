@@ -175,12 +175,15 @@ class Command(commands.Cog):
                 try:
                   role = get(ctx.message.guild.roles, name='Registered')
                   roles_to_remove.append(role)
+                except:
+                  pass
+                await user.remove_roles(*roles_to_remove)
+                try:
                   roles_to_add=[]
                   role = get(ctx.message.guild.roles, name='Unregistered')
                   roles_to_add.append(role)
                 except:
-                  pass  
-                await user.remove_roles(*roles_to_remove)
+                  pass
                 try:
                   await user.add_roles(*roles_to_add)
                 except:
