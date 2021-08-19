@@ -61,6 +61,11 @@ class Command(commands.Cog):
             862845786580582401
         ]:
             teamswithroles.append('[5TORM]')
+        #Team RXV | Server Owner: 638050308899209247
+        if ctx.guild.id in [
+            747188472661540884
+        ]:
+            teamswithroles.append('[RXV]')
         premiumserver = False
         #dbdata = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": dbkey}).text)
         dbclient = DBClient()
