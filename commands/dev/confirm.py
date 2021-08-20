@@ -43,7 +43,8 @@ class Command(commands.Cog):
             discordid = discordid.replace(">", "")
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
-            dbdata = await dbclient.get_array(collection, {[{'userID': str(discordid)}]})
+            #dbdata = await dbclient.get_array(collection, {[{'userID': str(discordid)}]})
+            dbdata = await collection.find_one({"userID":str(discordid)})
             print(dbdata)
             old = copy.deepcopy(dbdata)
             async for elem in dbdata:
