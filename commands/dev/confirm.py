@@ -5,6 +5,7 @@ from packages.utils import Embed, ImproperType
 import discord
 import requests
 import json
+import copy
 import os
 from mongoclient import DBClient
 from packages.nitrotype import Racer
