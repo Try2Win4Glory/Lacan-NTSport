@@ -47,7 +47,7 @@ class Command(commands.Cog):
             dbdata = await collection.find_one({"userID":str(discordid)})
             print(dbdata)
             old = copy.deepcopy(dbdata)
-            async for elem in dbdata:
+            for elem in dbdata:
               elem['verified'] = 'true'
               await dbclient.update_array(collection, old, dbdata)
               embed=Embed('Success!', f'{ctx.author.mention} confirmed <@{discordid}>\'s Ownership of the NItrotype Account **{elem["NTuser"]}.')
