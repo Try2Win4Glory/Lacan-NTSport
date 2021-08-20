@@ -54,3 +54,5 @@ class Command(commands.Cog):
             else:
               embed = Embed('Error!', 'Doesn\'t seem like '+userid+' is registered!', 'warning')
               return await embed.send(ctx)
+def setup(client):
+    client.add_cog(Command(client))
