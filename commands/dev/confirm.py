@@ -44,13 +44,13 @@ class Command(commands.Cog):
             dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
             #dbdata = await dbclient.get_array(collection, {[{'userID': str(discordid)}]})
-            dbdata = await collection.find_one({"userID":str(discordid)})
+            dbdata = await collection.find_one({"userID":discordid})
             print(dbdata)
             old = copy.deepcopy(dbdata)
             for elem in dbdata:
               elem['verified'] = 'true'
               await dbclient.update_array(collection, old, dbdata)
-              embed=Embed('Success!', f'{ctx.author.mention} confirmed <@{discordid}>\'s Ownership of the NItrotype Account **{elem["NTuser"]}.')
+              embed=Embed('<a:Check:797009550003666955>  Success', f'{ctx.author.mention} confirmed <@{discordid}>\'s Ownership of the NItrotype Account **{elem["NTuser"]}.')
               await embed.send(ctx)
               break
             else:
