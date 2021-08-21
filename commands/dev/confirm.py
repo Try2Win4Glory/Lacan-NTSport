@@ -46,9 +46,9 @@ class Command(commands.Cog):
             #dbdata = await dbclient.get_array(collection, {[{'userID': str(discordid)}]})
             dbdata = await collection.find_one({"userID":discordid})
             print(dbdata)
+            ntuser = dbdata['NTuser']
             old = copy.deepcopy(dbdata)
             for elem in dbdata:
-              ntuser = elem['NTuser']
               # Delete previous Collection  
               await collection.delete_one(elem)
 
