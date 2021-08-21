@@ -50,7 +50,7 @@ class Command(commands.Cog):
             old = copy.deepcopy(dbdata)
             for elem in dbdata:
               # Delete previous Collection  
-              await collection.delete_one(elem)
+              await collection.delete_one(dbdata)
 
               # Create new Collection
               await dbclient.create_doc(collection, {
