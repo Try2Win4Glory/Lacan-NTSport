@@ -29,7 +29,13 @@ class Command(commands.Cog):
                #SSH Moderator
                 788549154560671755,
                #SSH Server Support
-                788549207149248562
+                788549207149248562,
+               #RXV Administrator
+                747195059820036096,
+               #RXV Moderator
+                876661287726252072,
+               #RXV Server Support
+                876661635266256916
             ]:
                 bypass = True
                 break
