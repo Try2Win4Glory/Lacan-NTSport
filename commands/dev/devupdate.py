@@ -24,7 +24,13 @@ class Command(commands.Cog):
                #SSH Server Support
                 788549207149248562,
                #N8TE Captain
-                741827726419165214
+                741827726419165214,
+               #RXV Administrator
+                747195059820036096,
+               #RXV Moderator
+                876661287726252072,
+               #RXV Server Support
+                876661635266256916
             ]:
                 bypass = True
                 break
