@@ -40,7 +40,13 @@ class Command(commands.Cog):
                #SSH Moderator
                 788549154560671755,
                #SSH Server Support
-                788549207149248562
+                788549207149248562,
+               #RXV Administrator
+                747195059820036096,
+               #RXV Moderator
+                876661287726252072,
+               #RXV Server Support
+                876661635266256916
             ]:
                 bypass = True
                 break
@@ -149,6 +155,11 @@ class Command(commands.Cog):
             862845786580582401
           ]:
             teamswithroles.append('[5TORM]')
+          #Team RXV | Server Owner: 638050308899209247
+          if ctx.guild.id in [
+            747188472661540884
+          ]:
+            teamswithroles.append('[RXV]')
         
           registered=['Registered']
           roles_to_remove=[]
@@ -170,12 +181,15 @@ class Command(commands.Cog):
                 try:
                   role = get(ctx.message.guild.roles, name='Registered')
                   roles_to_remove.append(role)
+                except:
+                  pass
+                await user.remove_roles(*roles_to_remove)
+                try:
                   roles_to_add=[]
                   role = get(ctx.message.guild.roles, name='Unregistered')
                   roles_to_add.append(role)
                 except:
-                  pass  
-                await user.remove_roles(*roles_to_remove)
+                  pass
                 try:
                   await user.add_roles(*roles_to_add)
                 except:

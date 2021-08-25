@@ -24,7 +24,13 @@ class Command(commands.Cog):
                #SSH Server Support
                 788549207149248562,
                #N8TE Captain
-                741827726419165214
+                741827726419165214,
+               #RXV Administrator
+                747195059820036096,
+               #RXV Moderator
+                876661287726252072,
+               #RXV Server Support
+                876661635266256916
             ]:
                 bypass = True
                 break
@@ -94,6 +100,11 @@ class Command(commands.Cog):
             862845786580582401
         ]:
             teamswithroles.append('[5TORM]')
+        #Team RXV | Server Owner: 638050308899209247
+        if ctx.guild.id in [
+            747188472661540884
+        ]:
+            teamswithroles.append('[RXV]')
             
         #data = requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text
         #data = json.loads(data)
