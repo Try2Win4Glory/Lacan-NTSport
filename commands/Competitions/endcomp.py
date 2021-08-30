@@ -21,18 +21,18 @@ class Command(commands.Cog):
         data = data
         other = data['other']
         if other['ended'] == True:
-            embed = Embed('Error!', 'LMAO you already ended the comp before!')
+            embed = Embed('Error!', 'You already ended the comp before!')
             return await embed.send(ctx)
-        if ctx.author.id != other['author'] and ctx.author.id not in [505338178287173642, 637638904513691658, 396075607420567552]:
+        if ctx.author.id != other['author'] and ctx.author.id not in [505338178287173642]:
             embed = Embed("Bruh Alert", "Yes thank you for trying to delete someone **else\'s** competition!", "warning")
             
             return await embed.send(ctx)
-        embed = discord.Embed(title="Sucess!", description=f"You have succesfully ended the competition ***manually*** for Team **{other['team']}** and Comp ID `{compid}`! Results will be sent to dms!")
+        embed = discord.Embed(title=":white_check_mark:  Sucess!", description=f"You have succesfully ended the competition ***manually*** for Team **{other['team']}** and Comp ID `{compid}`. View the results **[here](https://nitrotype-competitions.try2win4code.repl.co/comp/{compid})**!")
         date = other['endcomptime']
         timestamp = datetime.fromtimestamp(date)
         embed.set_footer(text=f"This competition was scheduled to end at {timestamp.strftime('%Y-%m-%d %H:%M:%S')}")
         await ctx.send(embed=embed)
-        lb = await nitrotype.l(str(compid))
+        '''lb = await nitrotype.l(str(compid))
         embed = discord.Embed(
             title='Competition results',
             description='This is where you can view everyone\'s progress during the competition!',
@@ -59,9 +59,9 @@ class Command(commands.Cog):
         user = await self.client.fetch_user(other['author'])
         try:
             await user.send(embed=embed)
-            await user.send('Your conpetition has ended! Comp ID: `'+compid+'`.  Check out the other categories of your competition by doing `n.lb '+compid+'` and adding `speed`, `accuracy`, `races`, or `points`. Ex: `n.lb '+compid+' points`')
+            await user.send('Your competition has ended! Comp ID: `'+compid+'`.  Check out the other categories of your competition by doing `n.lb '+compid+'` and adding `speed`, `accuracy`, `races`, or `points`. Ex: `n.lb '+compid+' points`')
         except:
-            pass
+            pass'''
           
           
         
