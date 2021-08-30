@@ -41,16 +41,21 @@ class Command(commands.Cog):
                 value=races
             )
             await ctx.send(embed=embed)'''
-        
+        try:
+            await nitrotype.update_comp(compid)
+        except:
+            embed = Embed('Competition Error', f'No Competition with the Competition ID `{compid}` exists. Please check again if you are actually using the correct ID.', 'x')
+            return await embed.send(ctx)
         if category not in ['races', 'speed', 'points', 'accuracy']:
             embed = Embed('Competition Leaderboard', f'View the Leaderboard of the Competition `{compid}` by clicking **[here](https://nitrotype-competitions.try2win4code.repl.co/comp/{compid})**.', 'medal')
+            return await embed.send(ctx)
         else:
             # Replace the category to get the correct link
             if category == 'speed':
                 category = 'wpm'
             if category == 'accuracy':
                 category = 'acc'
-            embed = Embed(f'Competition {category} Leaderboard', f'View the __{category}__ Leaderboard of the Competition `{compid}` by clicking **[here](https://nitrotype-competitions.try2win4code.repl.co/comp/{compid})**.', 'medal')
+            embed = Embed(f'Competition {category} Leaderboard', f'View the __{category}__ Leaderboard of the Competition `{compid}` by clicking **[here](https://nitrotype-competitions.try2win4code.repl.co/comp/{compid}?sortby={category})**.', 'medal')
             return await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
