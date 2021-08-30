@@ -44,11 +44,11 @@ class Command(commands.Cog):
         f.write(compid+'\n')
         await nitrotype.create_comp(team, compid, endcomptime, ctx.author.id)
         embed = discord.Embed(
-            title='Competition Created!',
-            description=f'The competition has been created. Do `n.lb {compid} <category>` to see the live leaderboards!',
+            title=':white_check_mark:  Competition Created!',
+            description=f'The competition for Team **{team}** ({thetime}{type}) has been created. Check **[this](https://nitrotype-competitions.try2win4code.repl.co/comp/{compid})** link to see the live leaderboards!',
             color=0x15E700
         )
-        embed.add_field(name="Competition ID", value=compid)
+        embed.add_field(name="Competition ID", value=f'`{compid}`')
         embed.set_footer(text="Don't lose your competition ID! You need it to check results and end the competition!")
         await ctx.send(embed=embed)
     
