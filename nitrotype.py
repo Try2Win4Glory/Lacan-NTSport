@@ -514,7 +514,7 @@ async def verify_switch(ctx):
             # User did not follow the instructions
             else:
                 # Failed to recognize the title change
-                embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their {dbdata["ChangeToType"]}__ to **{dbdata["ChangeTo"]}** yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.')
+                embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to \n\n*"{dbdata["ChangeTo"]}"*\n\n yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.', 'warning')
                 return await embed.send(ctx)
         # User has to change their trail
         elif dbdata['ChangeToType'] == 'trail':
@@ -529,7 +529,7 @@ async def verify_switch(ctx):
                 return await embed.send(ctx)
             else:
                 # Failed to recognize the trail change
-                embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to **{dbdata["ChangeTo"]}** yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.')
+                embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to \n\n*"{dbdata["ChangeTo"]}"*\n\n yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.', 'warning')
                 return await embed.send(ctx)
     # The User is already verified
     else:
