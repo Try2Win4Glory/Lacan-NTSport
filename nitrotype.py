@@ -464,7 +464,8 @@ async def verify_switch(ctx):
     #dbdata = await collection.find_one({"userID":discordid})
     dbclient = clientDB()
     collection = dbclient.db.NT_to_discord
-    dbdata = await dbclient.get_array(collection, {})
+    #dbdata = await dbclient.get_array(collection, {})
+    dbdata = await collection.find_one({"userID":str(ctx.author.id)})
     print(dbdata)
     old = copy.deepcopy(dbdata)
     
