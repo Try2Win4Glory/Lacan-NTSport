@@ -457,7 +457,7 @@ async def verify_friend(ctx):
 
 async def verify_switch(ctx):            
     # Get Collection            
-    dbclient = DBClient()
+    dbclient = clientDB()
     collection = dbclient.db.NT_to_discord
     discordid = ctx.author.id
     dbdata = await dbclient.get_array(collection, {'userID': discordid})
