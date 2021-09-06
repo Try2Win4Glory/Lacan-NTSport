@@ -457,20 +457,13 @@ async def verify_friend(ctx):
 
 async def verify_switch(ctx):            
     # Get Collection            
-    #dbclient = clientDB()
-    #collection = dbclient.db.NT_to_discord
-    #discordid = ctx.author.id
-    #dbdata = await dbclient.get_array(collection, {'userID': discordid})
-    #dbdata = await collection.find_one({"userID":discordid})
     dbclient = clientDB()
     collection = dbclient.db.NT_to_discord
-    #dbdata = await dbclient.get_array(collection, {})
     dbdata = await collection.find_one({"userID":str(ctx.author.id)})
     print(dbdata)
     old = copy.deepcopy(dbdata)
     
     for elem in dbdata:
-        if elem['userID'] == str(ctx.author.id):
             # Check whether the User is verified
             if elem['verified'] == 'false':
             # Get the User's Nitrotype Username
