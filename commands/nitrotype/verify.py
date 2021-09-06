@@ -31,7 +31,7 @@ class Command(commands.Cog):
             async with session.get(url) as response:
                 return await response.text()
     @commands.command()
-    async def verify(self, ctx, type="friend"):
+    async def verify(self, ctx, type="switch"):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         if type == 'car':
             return await verify(ctx)
