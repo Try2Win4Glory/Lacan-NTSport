@@ -440,7 +440,7 @@ async def verify_friend(ctx):
                     #elif friends['data']['requests']==None:
                         #break
                 else:
-                    embed = Embed('⚠️  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/lacanverification) and friend request me. \nAfter that make sure to run `n.verify` again.')
+                    embed = Embed('⚠️  Nearly there!', f'Nitro Type user **{elem["NTuser"]}** did not friend request me yet. In order to verify your ownership for **{elem["NTuser"]}**, click [here](https://www.nitrotype.com/racer/lacanverification) and friend request me. \nAfter that make sure to run `n.verify` again.\n\n__Note:__ I am currently checking for a Friend request sent by https://nitrotype.com/racer/{elem["NTuser"]}. Please check again if that is actually your Username and not Display Name. In case you wish to change your registered account, run `n.unregister` and register again.')
                     return await embed.send(ctx)
                 elem['verified'] = 'true'
                 dbclient = clientDB()
