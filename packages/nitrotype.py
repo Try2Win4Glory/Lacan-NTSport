@@ -838,7 +838,7 @@ class RacerClass:
             display_name = newdata['displayName'] or self.username
             self.name = display_name
 
-
+            self.title = newdata['title'].title()
 
             try:
                 self.racelogs = newdata['raceLogs']
