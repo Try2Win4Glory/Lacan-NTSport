@@ -485,18 +485,18 @@ async def verify_switch(ctx):
             basic_traillist = ['Bits', 'Puff', 'Shock', 'Lovely', 'Dust']
             if racer.trailname in basic_traillist:
                 basic_traillist.remove(racer.trailname)
-                changeto = random.choice(basic_traillist)
-            # Verification Instructions
-            embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and change your __{changeto_type}__ to **{changeto}**. \nAfter that, run `n.verify` again.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {changeto_type}.')
-            # Set Database Elements
-            dbdata['verifyCar'] = None
-            dbdata['verified'] = 'in progress'
-            dbdata['ChangeToType'] = changeto_type
-            dbdata['ChangeTo'] = changeto
-            # Update Database
-            await dbclient.update_array(collection, old, dbdata)
-            # Send the Embed
-            return await embed.send(ctx)
+            changeto = random.choice(basic_traillist)
+        # Verification Instructions
+        embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and change your __{changeto_type}__ to **{changeto}**. \nAfter that, run `n.verify` again.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {changeto_type}.')
+        # Set Database Elements
+        dbdata['verifyCar'] = None
+        dbdata['verified'] = 'in progress'
+        dbdata['ChangeToType'] = changeto_type
+        dbdata['ChangeTo'] = changeto
+        # Update Database
+        await dbclient.update_array(collection, old, dbdata)
+        # Send the Embed
+        return await embed.send(ctx)
 
     # The User already run the command before
     elif dbdata['verified'] == 'in progress':
