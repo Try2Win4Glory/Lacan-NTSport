@@ -364,6 +364,38 @@ async def verify_race(ctx):
     else:
         embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
         await embed.send(ctx)
+        
+
+
+async def verify_link(ctx):
+    dbclient = DBClient()
+    collection = dbclient.db.NT_to_discord
+    dbdata = await collection.find_one({"userID":str(ctx.author.id)})
+    if dbdata == None:
+        embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
+        return await embed.send(ctx)
+    old = copy.deepcopy(dbdata)
+    if dbdata['verified'] == 'false':
+        username = dbdata['NTuser']
+        embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and go [here](https://lns-verification.herokuapp.com/)! \nAfter that run `n.verify` again.\n\n**Attention:** In case you are currently in Europe :flag_eu:, please either switch to an US :flag_us: VPN or use `n.unregister`, register again and run `n.verify friend` instead.')
+        dbdata['verifyCar'] = None
+        dbdata['verified'] = 'in progress'
+        await dbclient.update_array(collection, old, dbdata)
+        return await embed.send(ctx)
+    if dbdata['verified'] == 'in progress':
+        v_collection = dbclient.db.verified
+        data = await v_collection.find_one({'timestamp': {'$gt': time.time()-1000}, 'username': dbdata['NTuser']})
+        if data is not None:
+            dbdata['verified'] = 'true'
+            await dbclient.update_array(collection, old, dbdata)
+            embed = Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
+            return await embed.send(ctx)
+        else:
+            embed = Embed(':warning:  Nearly there!', f'Nitro Type user **{dbdata["NTuser"]}** did not visit the link yet. In order to verify your ownership for **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and go [here](https://lns-verification.herokuapp.com/). \nAfter that make sure to run `n.verify` again.\n\n**Attention:** In case you are currently in Europe :flag_eu:, please either switch to an US :flag_us: VPN or use `n.unregister`, register again and run `n.verify friend` instead.')
+            return await embed.send(ctx)
+    if dbdata['verified'] == 'true':
+        embed = Embed('Error!', 'You are already verified :rofl:', 'joy')
+        return await embed.send(ctx)
 
 async def verify_friend(ctx):
     dbclient = clientDB()
@@ -420,4 +452,86 @@ async def verify_friend(ctx):
                 return await embed.send(ctx)
     else:
         embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
+        return await embed.send(ctx)
+    
+
+async def verify_switch(ctx):            
+    # Get Collection            
+    dbclient = clientDB()
+    collection = dbclient.db.NT_to_discord
+    dbdata = await collection.find_one({"userID":str(ctx.author.id)})
+    print(dbdata)
+    old = copy.deepcopy(dbdata)
+    
+    if dbdata == 'None':
+        embed = Embed('Error!', 'You have not registered yet. Make sure to run `n.register <username>`', 'warning')
+        return await embed.send(ctx)
+    
+    # Check whether the User is verified
+    if dbdata['verified'] == 'false':
+        # Get the User's Nitrotype Username
+        racer = await Racer(dbdata['NTuser'])
+        # Check current Title
+        if racer.title != 'Raw Racing Recruit':
+            changeto_type = 'title'
+            changeto = 'Raw Racing Recruit'
+        # Gold members are able to use Solid Gold instead
+        elif racer.title == 'Raw Racing Recruit' and racer.membership == 'gold':
+            changeto_type = 'title'
+            changeto = 'Solid Gold'
+        # Non Gold Members have to change their trail randomely
+        else:
+            changeto_type = 'trail'
+            basic_traillist = ['Bits', 'Puff', 'Shock', 'Lovely', 'Dust']
+            if racer.trailname in basic_traillist:
+                basic_traillist.remove(racer.trailname)
+            changeto = random.choice(basic_traillist)
+        # Verification Instructions
+        embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and change your __{changeto_type}__ to **{changeto}**. \nAfter that, run `n.verify` again.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {changeto_type}.')
+        # Set Database Elements
+        dbdata['verifyCar'] = None
+        dbdata['verified'] = 'in progress'
+        dbdata['ChangeToType'] = changeto_type
+        dbdata['ChangeTo'] = changeto
+        # Update Database
+        await dbclient.update_array(collection, old, dbdata)
+        # Send the Embed
+        return await embed.send(ctx)
+
+    # The User already run the command before
+    elif dbdata['verified'] == 'in progress':
+        racer = await Racer(dbdata['NTuser'])
+        # Check if the User followed the instructions
+        if dbdata['ChangeToType'] == 'title':
+            if dbdata['ChangeTo'] == racer.title:
+                # User is verified
+                dbdata['verified'] = 'true'
+                embed=Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
+                # Update Database
+                await dbclient.update_array(collection, old, dbdata)
+                # Send the Embed
+                return await embed.send(ctx)
+            # User did not follow the instructions
+            else:
+                # Failed to recognize the title change
+                embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to \n\n*"{dbdata["ChangeTo"]}"*\n\n yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.', 'warning')
+                return await embed.send(ctx)
+        # User has to change their trail
+        elif dbdata['ChangeToType'] == 'trail':
+            # Check if the User followed the instructions
+            if dbdata['ChangeTo'] == racer.trailname:
+                # User is verified
+                dbdata['verified'] = 'true'
+                embed=Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
+                # Update Database
+                await dbclient.update_array(collection, old, dbdata)
+                # Send the Embed
+                return await embed.send(ctx)
+            else:
+                # Failed to recognize the trail change
+                embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to \n\n*"{dbdata["ChangeTo"]}"*\n\n yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.', 'warning')
+                return await embed.send(ctx)
+    # The User is already verified
+    else:
+        embed=Embed('Error!', f'You are already verified to **{dbdata["NTuser"]}**. In case this is a Premium 💠 server, please run `n.update`.', 'joy')
         return await embed.send(ctx)
