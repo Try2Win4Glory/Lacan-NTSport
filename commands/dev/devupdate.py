@@ -105,7 +105,11 @@ class Command(commands.Cog):
             747188472661540884
         ]:
             teamswithroles.append('[RXV]')
-            
+        #Team CHESS | Server Owner: 272370019894165505
+        if ctx.guild.id in [
+            885285935149908008
+        ]:
+            teamswithroles.append('[CHESS]')
         #data = requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text
         #data = json.loads(data)
         dbclient = DBClient()
