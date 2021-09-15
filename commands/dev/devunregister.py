@@ -160,6 +160,11 @@ class Command(commands.Cog):
             747188472661540884
           ]:
             teamswithroles.append('[RXV]')
+          #Team CHESS | Server Owner: 272370019894165505
+          if ctx.guild.id in [
+            885285935149908008
+          ]:
+            teamswithroles.append('[CHESS]')
         
           registered=['Registered']
           roles_to_remove=[]
