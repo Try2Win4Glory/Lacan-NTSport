@@ -38,7 +38,7 @@ class Command(commands.Cog):
         data['premium'].append({'serverID': str(ctx.author.guild.id)})
         #requests.post('https://test-db.nitrotypers.repl.co', data={'key': os.getenv('DB_KEY'), 'data': json.dumps(data)})
         await dbclient.update_big_array(collection, 'premium', data)
-        embed = Embed('Success!', f'Server {str(ctx.author.guild.id)} has been added to premium! Run `n.roles` to create the roles for the server!', 'white_check_mark')
+        embed = Embed('Success!', f'Server `{str(ctx.author.guild.id)}` has been added to premium!', 'white_check_mark')
         embed.footer(f'⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
         await embed.send(ctx)
         try:
