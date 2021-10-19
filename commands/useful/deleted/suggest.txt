@@ -1,4 +1,4 @@
-'''You donated?'''
+'''Suggest a feature or command for the bot'''
 
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
@@ -11,7 +11,7 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command()
-    async def donated(self, ctx, *args):
+    async def suggest(self, ctx, *args):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         if await ImproperType.check(ctx): return
         author = ctx.author.name + '#' + ctx.author.discriminator
@@ -19,16 +19,16 @@ class Command(commands.Cog):
         for word in args:
             message += f' {word}'
 
-        if len(message[1:]) < 4:
-            await Embed('Error!', 'Donation Amount is smaller than 100K.', 'warning').send(ctx)
+        if len(message[1:]) < 40:
+            await Embed('Error!', 'Suggesstion Message is too short', 'warning').send(ctx)
         else:
-            for user_id in [437984033377484803, 750593131908563007]:
+            for user_id in [437984033377484803, 750593131908563007, 396075607420567552]:
                 user = self.client.get_user(user_id)
-                embed = Embed(f'Donation by {author}', message, 'wrench')
+                embed = Embed(f'Suggestion by {author}', message, 'wrench')
                 embed.footer(f"{date.fromtimestamp(round(time())).strftime('%d %B %Y')} UTC")
                 await user.send(embed=embed.default_embed(), content=None)
 
-            await Embed('Donation Amount sent!', 'Thanks for the donation!', 'wrench').send(ctx)
+            await Embed('Suggestion sent!', 'Thanks for your suggestion!', 'wrench').send(ctx)
 
 def setup(client):
     client.add_cog(Command(client))

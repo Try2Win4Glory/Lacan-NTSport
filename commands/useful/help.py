@@ -10,17 +10,17 @@ from packages.utils import Embed, ImproperType
 
 def commands_pagination(current_page):
     global categories
-    categories = ['nitrotype', 'Competitions', 'Economy', 'Premium', 'spoilers', 'market', 'images', 'server', 'giveaways', 'useful' #'dev'
+    categories = ['nitrotype', 'Competitions', 'Economy', 'Premium', 'useful' #'dev'
     ]
     category_emoji = {'nitrotype': 'race car',
                       'Competitions': 'trophy',
                       'Economy' : 'coin',
                       'Premium': 'diamond shape with a dot inside',
-                      'spoilers': 'eyes',
-                      'market': 'shopping cart',
-                      'images': 'frame photo',
-                      'server': 'zap',
-                      'giveaways': 'tada',
+                      #'spoilers': 'eyes',
+                      #'market': 'shopping cart',
+                      #'images': 'frame photo',
+                      #'server': 'zap',
+                      #'giveaways': 'tada',
                       'useful' : 'wrench'
                       #'dev': 'tools'
                       }

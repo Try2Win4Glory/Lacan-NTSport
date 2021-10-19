@@ -1,18 +1,17 @@
-'''Lists all the shards in the client instance'''
-
+'''Get a list of donators'''
 from discord.ext import commands
 from packages.utils import Embed, ImproperType
 
 class Command(commands.Cog):
 
     def __init__(self, client):
-        self.client = client
+        self.client= client
     
     @commands.command()
-    async def shard(self, ctx):
+    async def donators(self, ctx):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         if await ImproperType.check(ctx): return
-        await Embed('Nitrotype Bot\'s Current Shards', 'Sorry, we are currently not using a sharded client, it will probably be implemented before 1000 servers hit and definetely before 2500 servers.', 'wrench').send(ctx)
+        await Embed('Donators', f'Thanks to all the donations! \n `#1` **<@703447530779967500>** `15M` \n`#2` **<@490997811920240650>** `15M`\n`#3` **<@722446215463174144>** `20M` \n`#4` **<@731041476322263050>** `20M` \n `#5` **<@680205212966846484>** `5,1M` \n `#6` **<@765861861655838766>** `30M`', 'money_with_wings').send(ctx)
     
 def setup(client):
     client.add_cog(Command(client))

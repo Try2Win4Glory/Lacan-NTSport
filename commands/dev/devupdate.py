@@ -17,6 +17,12 @@ class Command(commands.Cog):
         for role in ctx.author.roles:
             if role.id in [
               #Insert permitted role IDs here
+               # NT Server Administrator
+                564902014245666816,
+               # NT Server Moderator
+                564913415152205866,
+               # NT Server Server Support
+                566369686967812112,
                #SSH Administrator
                 788549177545588796,
                #SSH Moderator
@@ -105,7 +111,11 @@ class Command(commands.Cog):
             747188472661540884
         ]:
             teamswithroles.append('[RXV]')
-            
+        #Team CHESS | Server Owner: 272370019894165505
+        if ctx.guild.id in [
+            885285935149908008
+        ]:
+            teamswithroles.append('[CHESS]')
         #data = requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text
         #data = json.loads(data)
         dbclient = DBClient()
@@ -337,7 +347,7 @@ class Command(commands.Cog):
                     print('gotcha')
                     print(role)
                 else:
-                      otherraceroles = ['"I < 3 Typing"', '"I Really Love Typing!"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
+                      otherraceroles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
                       if int(races) >= 500000:
                         role = get(ctx.message.guild.roles, name=otherraceroles[16])
                         await user.add_roles(role)

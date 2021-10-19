@@ -24,6 +24,12 @@ class Command(commands.Cog):
         for role in ctx.author.roles:
             if role.id in [
               #Insert permitted role IDs here
+               # NT Server Administrator
+                564902014245666816,
+               # NT Server Moderator
+                564913415152205866,
+               # NT Server Server Support
+                566369686967812112,
                #SSH Administrator
                 788549177545588796,
                #SSH Moderator
