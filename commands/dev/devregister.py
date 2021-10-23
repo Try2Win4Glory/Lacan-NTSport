@@ -83,13 +83,15 @@ class Command(commands.Cog):
             except:
               pass
             try:
-                channel1 = discord.utils.get(self.client.get_all_channels(), id=787018607481192479)
-                embed = Embed('Devregister', f'{str(discordid1)} was devregistered by {str(ctx.author.mention)}.', color=0xff0000)
+                channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                embed = Embed('<:dev:901381277477900358>  Devregister', f'<@{str(discordid1)}> was devregistered by {str(ctx.author.mention)}.', color=0x00ff00)
+                embed.field('ID', f'`{discordid1}`)
                 embed.field('Linked Account', f'`{ntuser}`')
                 embed.field('Link', f'[:link:](https://nitrotype.com/racer/{ntuser})')
-                embed.field('Registered by', f'{str(ctx.author.mention)}')
+                embed.field('Registered by', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                 embed.field('Author', f'`{str(ctx.author.id)}`')
-                msg = await channel1.send(embed=embed.default_embed())
+                embed.field('Guild', f'`{str(ctx.guild.name)}`)
+                msg1 = await channel1.send(embed=embed.default_embed())
             except:
                 print('Couldn\'t log devregister.')
 def setup(client):
