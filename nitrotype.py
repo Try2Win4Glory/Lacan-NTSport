@@ -3,6 +3,7 @@ from json import loads
 from re import findall
 from requests import get
 import json
+import discord
 import aiohttp
 import aiocfscrape
 import os, copy, random, asyncio
