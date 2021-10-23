@@ -108,7 +108,7 @@ class Command(commands.Cog):
                 try:
                     channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
                     embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(discordid1)}> unregistered.', color=0xff4040)
-                    embed.field('ID', f'`{str(ctx.author.id}`')
+                    embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Unregistered Account', f'`{dbdata["NTuser"]}`')
                     embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
                     embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
