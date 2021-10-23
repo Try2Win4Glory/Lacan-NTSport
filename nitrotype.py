@@ -491,7 +491,7 @@ async def verify_switch(ctx):
         embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and change your __{changeto_type}__ to **{changeto}**. \nAfter that, run `n.verify` again.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {changeto_type}.')
         await embed.send(ctx)
         #try:
-        channel1 = discord.utils.get(client.get_all_channels(), id=803938544175284244)
+        channel1 = discord.utils.get_channel(803938544175284244)
         embed = Embed(':x:  Verify', f'Verification process started by {str(ctx.author.mention)}.', color=0x00ff00)
         embed.field('ID', f'`{str(ctx.author.id)}`')
         embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
