@@ -76,12 +76,13 @@ class Command(commands.Cog):
             dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         except:
             dbdata = await dbclient.get_array(collection, {'NTuser': str(discordid1)})
-        unregistered_account = dbdata["NTuser"]
+        
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
                 break
         async for x in dbdata:
+                unregistered_account = x["NTuser"]
                 await collection.delete_one(x)
                #--Success Embed--#
                 embed = Embed('Success!', 'Unregistered discord user <@' +str(discordid1)+'>!','white_check_mark')
