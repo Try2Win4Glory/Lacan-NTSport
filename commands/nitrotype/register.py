@@ -62,7 +62,7 @@ class Command(commands.Cog):
             embed.field('ID', f'`{str(ctx.author.id)}`')
             embed.field('Linked Account', f'`{user}`')
             embed.field('Link', f'[:link:](https://nitrotype.com/racer/{user})')
-            embed.field('Registered by', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+            embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
             embed.field('Guild', f'`{str(ctx.guild.name)}`')
             msg1 = await channel1.send(embed=embed.default_embed())
         except:
