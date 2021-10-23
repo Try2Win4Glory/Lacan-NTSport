@@ -90,7 +90,7 @@ class Command(commands.Cog):
                 embed.field('Link', f'[:link:](https://nitrotype.com/racer/{ntuser})')
                 embed.field('Registered by', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                 embed.field('Author', f'`{str(ctx.author.id)}`')
-                embed.field('Guild', f'`{str(ctx.guild.name)}`)
+                embed.field('Guild', f'`{str(ctx.guild.name)}`')
                 msg1 = await channel1.send(embed=embed.default_embed())
             except:
                 print('Couldn\'t log devregister.')
