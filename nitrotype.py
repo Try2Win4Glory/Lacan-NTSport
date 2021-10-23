@@ -490,19 +490,19 @@ async def verify_switch(ctx):
         # Verification Instructions
         embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and change your __{changeto_type}__ to **{changeto}**. \nAfter that, run `n.verify` again.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {changeto_type}.')
         await embed.send(ctx)
-        #try:
-        channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-        embed = Embed(':x:  Verify', f'Verification process started by {str(ctx.author.mention)}.', color=0x00ff00)
-        embed.field('ID', f'`{str(ctx.author.id)}`')
-        embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
-        embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
-        embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
-        embed.field('Guild', f'`{str(ctx.guild.name)}`')
-        embed.field('Verification Type', f'`{changeto_type}`')
-        embed.field('Verification Change', f'`{changeto}`')
-        msg1 = await channel1.send(embed=embed.default_embed())
-        #except:
-            #print('Couldn\'t log verification start.')
+        try:
+            channel1 = discord.utils.get(client.get_all_channels(), id=803938544175284244)
+            embed = Embed(':x:  Verify', f'Verification process started by {str(ctx.author.mention)}.', color=0x00ff00)
+            embed.field('ID', f'`{str(ctx.author.id)}`')
+            embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
+            embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+            embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+            embed.field('Guild', f'`{str(ctx.guild.name)}`')
+            embed.field('Verification Type', f'`{changeto_type}`')
+            embed.field('Verification Change', f'`{changeto}`')
+            msg1 = await channel1.send(embed=embed.default_embed())
+        except:
+            print('Couldn\'t log verification start.')
         # Set Database Elements
         dbdata['verifyCar'] = None
         dbdata['verified'] = 'in progress'
@@ -524,7 +524,7 @@ async def verify_switch(ctx):
                 embed=Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
                 await embed.send(ctx)
                 try:
-                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    channel1 = discord.utils.get(client.get_all_channels(), id=803938544175284244)
                     embed = Embed(':white_check_mark:  Verify', f'Verification attempt by {str(ctx.author.mention)} suceeded.', color=0x00ff00)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
@@ -546,7 +546,7 @@ async def verify_switch(ctx):
                 embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to \n\n*"{dbdata["ChangeTo"]}"*\n\n yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.', 'warning')
                 await embed.send(ctx)
                 try:
-                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    channel1 = discord.utils.get(client.get_all_channels(), id=803938544175284244)
                     embed = Embed(':x:  Verify', f'Verification attempt by {str(ctx.author.mention)} failed.', color=0xffaa00)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
@@ -568,7 +568,7 @@ async def verify_switch(ctx):
                 embed=Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
                 await embed.send(ctx)
                 try:
-                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    channel1 = discord.utils.get(client.get_all_channels(), id=803938544175284244)
                     embed = Embed(':white_check_mark:  Verify', f'Verification attempt by {str(ctx.author.mention)} suceeded.', color=0x00ff00)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
@@ -589,7 +589,7 @@ async def verify_switch(ctx):
                 embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to \n\n*"{dbdata["ChangeTo"]}"*\n\n yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.', 'warning')
                 await embed.send(ctx)
                 try:
-                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    channel1 = discord.utils.get(client.get_all_channels(), id=803938544175284244)
                     embed = Embed(':x:  Verify', f'Verification attempt by {str(ctx.author.mention)} failed.', color=0xffaa00)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
