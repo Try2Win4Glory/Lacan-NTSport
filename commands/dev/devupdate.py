@@ -456,6 +456,17 @@ class Command(commands.Cog):
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
                 await user.add_roles(role)
+                
+            if ctx.guild.id in ['564880536401870858']:
+                try:
+                    role = get(ctx.message.guild.roles, id=654804415747850241)
+                    await user.add_roles(role)
+                    role = get(ctx.message.guild.roles, id=654801298297847838)
+                    await user.add_roles(role)
+                    role = get(ctx.message.guild.roles, id=654802074034503681)
+                    await user.add_roles(role)
+                except:
+                    pass
 
             role = get(ctx.message.guild.roles, name='Registered')
             try:
