@@ -530,8 +530,8 @@ async def verify_switch(ctx):
                     embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
                     embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                     embed.field('Guild', f'`{str(ctx.guild.name)}`')
-                    embed.field('Verification Type', f'`{dbdata['ChangeToType']}`')
-                    embed.field('Verification Change', f'`{dbdata['ChangeTo']}`')
+                    embed.field('Verification Type', f'`{dbdata["ChangeToType"]}`')
+                    embed.field('Verification Change', f'`{dbdata["ChangeTo"]}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
                 except:
                     print('Couldn\'t log verification success.')
@@ -552,8 +552,8 @@ async def verify_switch(ctx):
                     embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
                     embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                     embed.field('Guild', f'`{str(ctx.guild.name)}`')
-                    embed.field('Verification Type', f'`{dbdata['ChangeToType']}`')
-                    embed.field('Verification Change', f'`{dbdata['ChangeTo']}`')
+                    embed.field('Verification Type', f'`{dbdata["ChangeToType"]}`')
+                    embed.field('Verification Change', f'`{dbdata["ChangeTo"]}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
                 except:
                     print('Couldn\'t log verification fail.')
@@ -574,8 +574,8 @@ async def verify_switch(ctx):
                     embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
                     embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                     embed.field('Guild', f'`{str(ctx.guild.name)}`')
-                    embed.field('Verification Type', f'`{dbdata['ChangeToType']}`')
-                    embed.field('Verification Change', f'`{dbdata['ChangeTo']}`')
+                    embed.field('Verification Type', f'`{dbdata["ChangeToType"]}`')
+                    embed.field('Verification Change', f'`{dbdata["ChangeTo"]}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
                 except:
                     print('Couldn\'t log verification success.')
@@ -595,8 +595,8 @@ async def verify_switch(ctx):
                     embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
                     embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                     embed.field('Guild', f'`{str(ctx.guild.name)}`')
-                    embed.field('Verification Type', f'`{dbdata['ChangeToType']}`')
-                    embed.field('Verification Change', f'`{dbdata['ChangeTo']}`')
+                    embed.field('Verification Type', f'`{dbdata["ChangeToType"]}`')
+                    embed.field('Verification Change', f'`{dbdata["ChangeTo"]}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
                 except:
                     print('Couldn\'t log verification fail.')
