@@ -191,5 +191,5 @@ class Command(commands.Cog):
                 embed=Embed('Error!', f'You are already verified to **{dbdata["NTuser"]}**. In case this is a Premium 💠 server, please run `n.update`.', 'joy')
                 return await embed.send(ctx)
 
-        def setup(client):
+def setup(client):
             client.add_cog(Command(client))
