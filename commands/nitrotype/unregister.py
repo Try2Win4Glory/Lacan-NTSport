@@ -82,8 +82,10 @@ class Command(commands.Cog):
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
                 break
+        
         async for x in dbdata:
             if str(ctx.author.id) == x['userID']:
+                unregistered_account = x["NTuser"]
                 if premiumserver:
                     roles_to_remove = []
                     for role in (ctx.author.roles):
@@ -101,7 +103,7 @@ class Command(commands.Cog):
                     except:
                         pass 
                 print('yes')
-                racer = await Racer(dbdata['NTuser'])
+
                 await collection.delete_one(x)
                 embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
                 
@@ -109,13 +111,13 @@ class Command(commands.Cog):
                     channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
                     embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(discordid1)}> unregistered.', color=0xff4040)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
-                    embed.field('Unregistered Account', f'`{dbdata["NTuser"]}`')
-                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+                    embed.field('Unregistered Account', f'`{unregistered_account}`')
+                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{unregistered_account})')
                     embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                     embed.field('Guild', f'`{str(ctx.guild.name)}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
                 except:
-                    print('Couldn\'t log devunregister.')
+                    print('Couldn\'t log unregister.')
                
                 await embed.send(ctx)
                 #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})
