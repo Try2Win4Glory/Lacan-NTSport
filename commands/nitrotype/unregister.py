@@ -107,20 +107,20 @@ class Command(commands.Cog):
 
                 await collection.delete_one(x)
                 embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
-                
-                try:
-                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                    embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(discordid1)}> unregistered.', color=0xff4040)
-                    embed.field('ID', f'`{str(ctx.author.id)}`')
-                    embed.field('Unregistered Account', f'`{unregistered_account}`')
-                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{unregistered_account})')
-                    embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
-                    embed.field('Guild', f'`{str(ctx.guild.name)}`')
-                    msg1 = await channel1.send(embed=embed.default_embed())
-                except:
-                    print('Couldn\'t log unregister.')
-               
                 await embed.send(ctx)
+                
+                #try:
+                channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(discordid1)}> unregistered.', color=0xff4040)
+                embed.field('ID', f'`{str(ctx.author.id)}`')
+                embed.field('Unregistered Account', f'`{unregistered_account}`')
+                embed.field('Link', f'[:link:](https://nitrotype.com/racer/{unregistered_account})')
+                embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                msg1 = await channel1.send(embed=embed.default_embed())
+                #except:
+                    #print('Couldn\'t log unregister.')
+
                 #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})
                 return
 def setup(client):
