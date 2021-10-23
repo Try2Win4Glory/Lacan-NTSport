@@ -107,12 +107,11 @@ class Command(commands.Cog):
                 
                 try:
                     channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                    embed = Embed('<:dev:901381277477900358>  Devunregister', f'<@{str(discordid1)}> was devunregistered by {str(ctx.author.mention)}.', color=0xff4040)
-                    embed.field('ID', f'`{discordid1}`')
+                    embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(discordid1)}> unregistered.', color=0xff4040)
+                    embed.field('ID', f'`{str(ctx.author.id}`')
                     embed.field('Unregistered Account', f'`{dbdata["NTuser"]}`')
                     embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
-                    embed.field('Unregistered by', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
-                    embed.field('Author', f'`{str(ctx.author.id)}`')
+                    embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                     embed.field('Guild', f'`{str(ctx.guild.name)}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
                 except:
