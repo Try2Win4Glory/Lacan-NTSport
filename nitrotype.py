@@ -488,6 +488,20 @@ async def verify_switch(ctx):
             changeto = random.choice(basic_traillist)
         # Verification Instructions
         embed = Embed(':clipboard:  Verify your Identity!', f'In order to verify, your ownership of **{dbdata["NTuser"]}**, login to [Nitrotype](https://www.nitrotype.com/login) and change your __{changeto_type}__ to **{changeto}**. \nAfter that, run `n.verify` again.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {changeto_type}.')
+        await embed.send(ctx)
+        try:
+            channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+            embed = Embed(':x:  Verify', f'Verification process started by {str(ctx.author.mention)}.', color=0x00ff00)
+            embed.field('ID', f'`{str(ctx.author.id)}`')
+            embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
+            embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+            embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+            embed.field('Guild', f'`{str(ctx.guild.name)}`')
+            embed.field('Verification Type', f'`{changeto_type}`')
+            embed.field('Verification Change', f'`{changeto}`')
+            msg1 = await channel1.send(embed=embed.default_embed())
+        except:
+            print('Couldn\'t log verification start.')
         # Set Database Elements
         dbdata['verifyCar'] = None
         dbdata['verified'] = 'in progress'
@@ -495,8 +509,8 @@ async def verify_switch(ctx):
         dbdata['ChangeTo'] = changeto
         # Update Database
         await dbclient.update_array(collection, old, dbdata)
-        # Send the Embed
-        return await embed.send(ctx)
+        # Return
+        return
 
     # The User already run the command before
     elif dbdata['verified'] == 'in progress':
@@ -507,15 +521,43 @@ async def verify_switch(ctx):
                 # User is verified
                 dbdata['verified'] = 'true'
                 embed=Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
+                await embed.send(ctx)
+                try:
+                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    embed = Embed(':white_check_mark:  Verify', f'Verification attempt by {str(ctx.author.mention)} suceeded.', color=0x00ff00)
+                    embed.field('ID', f'`{str(ctx.author.id)}`')
+                    embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
+                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+                    embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                    embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                    embed.field('Verification Type', f'`{dbdata['ChangeToType']}`')
+                    embed.field('Verification Change', f'`{dbdata['ChangeTo']}`')
+                    msg1 = await channel1.send(embed=embed.default_embed())
+                except:
+                    print('Couldn\'t log verification success.')
                 # Update Database
                 await dbclient.update_array(collection, old, dbdata)
-                # Send the Embed
-                return await embed.send(ctx)
+                # Return
+                return
             # User did not follow the instructions
             else:
                 # Failed to recognize the title change
                 embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to \n\n*"{dbdata["ChangeTo"]}"*\n\n yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.', 'warning')
-                return await embed.send(ctx)
+                await embed.send(ctx)
+                try:
+                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    embed = Embed(':x:  Verify', f'Verification attempt by {str(ctx.author.mention)} failed.', color=0xffaa00)
+                    embed.field('ID', f'`{str(ctx.author.id)}`')
+                    embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
+                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+                    embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                    embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                    embed.field('Verification Type', f'`{dbdata['ChangeToType']}`')
+                    embed.field('Verification Change', f'`{dbdata['ChangeTo']}`')
+                    msg1 = await channel1.send(embed=embed.default_embed())
+                except:
+                    print('Couldn\'t log verification fail.')
+                return
         # User has to change their trail
         elif dbdata['ChangeToType'] == 'trail':
             # Check if the User followed the instructions
@@ -523,14 +565,42 @@ async def verify_switch(ctx):
                 # User is verified
                 dbdata['verified'] = 'true'
                 embed=Embed('<a:Check:797009550003666955>  Success', 'You\'ve been verified! In case this is a premium 💠 server run `n.update` to update your roles.')
+                await embed.send(ctx)
+                try:
+                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    embed = Embed(':white_check_mark:  Verify', f'Verification attempt by {str(ctx.author.mention)} suceeded.', color=0x00ff00)
+                    embed.field('ID', f'`{str(ctx.author.id)}`')
+                    embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
+                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+                    embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                    embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                    embed.field('Verification Type', f'`{dbdata['ChangeToType']}`')
+                    embed.field('Verification Change', f'`{dbdata['ChangeTo']}`')
+                    msg1 = await channel1.send(embed=embed.default_embed())
+                except:
+                    print('Couldn\'t log verification success.')
                 # Update Database
                 await dbclient.update_array(collection, old, dbdata)
-                # Send the Embed
-                return await embed.send(ctx)
+                # Return
+                return
             else:
                 # Failed to recognize the trail change
                 embed=Embed('Error!', f'Nitrotype User **{dbdata["NTuser"]}** did not change their __{dbdata["ChangeToType"]}__ to \n\n*"{dbdata["ChangeTo"]}"*\n\n yet.\n\n**Attention:** Sometimes, Nitrotype might not work right away, so please be friendly enough to give me some time to recognize your changes (max. ~5 minutes) after you changed your {dbdata["ChangeToType"]}.', 'warning')
-                return await embed.send(ctx)
+                await embed.send(ctx)
+                try:
+                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    embed = Embed(':x:  Verify', f'Verification attempt by {str(ctx.author.mention)} failed.', color=0xffaa00)
+                    embed.field('ID', f'`{str(ctx.author.id)}`')
+                    embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
+                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+                    embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                    embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                    embed.field('Verification Type', f'`{dbdata['ChangeToType']}`')
+                    embed.field('Verification Change', f'`{dbdata['ChangeTo']}`')
+                    msg1 = await channel1.send(embed=embed.default_embed())
+                except:
+                    print('Couldn\'t log verification fail.')
+                return
     # The User is already verified
     else:
         embed=Embed('Error!', f'You are already verified to **{dbdata["NTuser"]}**. In case this is a Premium 💠 server, please run `n.update`.', 'joy')
