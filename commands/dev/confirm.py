@@ -72,9 +72,21 @@ class Command(commands.Cog):
               })
               embed=Embed('<a:Check:797009550003666955>  Success', f'{ctx.author.mention} confirmed <@{discordid}>\'s Ownership of the Nitrotype Account **{ntuser}**.')
               await embed.send(ctx)
+              try:
+                channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                embed = Embed('<:dev:901381277477900358>  Confirm', f'<@{str(discordid)}>\'s Ownership was confirmed by {str(ctx.author.mention)}.', color=0x00ff00)
+                embed.field('ID', f'`{discordid}`')
+                embed.field('Linked Account', f'`{ntuser}`')
+                embed.field('Link', f'[:link:](https://nitrotype.com/racer/{ntuser})')
+                embed.field('Registered by', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                embed.field('Author', f'`{str(ctx.author.id)}`')
+                embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                msg1 = await channel1.send(embed=embed.default_embed())
+              except:
+                print('Couldn\'t log confirm.')
               break
             else:
-              embed = Embed('Error!', 'Doesn\'t seem like '+userid+' is registered!', 'warning')
+              embed = Embed('Error!', 'Doesn\'t seem like `'+userid+'` is registered!', 'warning')
               return await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
