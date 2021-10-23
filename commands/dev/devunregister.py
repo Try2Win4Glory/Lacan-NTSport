@@ -76,11 +76,11 @@ class Command(commands.Cog):
             dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         except:
             dbdata = await dbclient.get_array(collection, {'NTuser': str(discordid1)})
+        unregistered_account = dbdata["NTuser"]
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
                 break
-        racer = await Racer(dbdata['NTuser'])
         async for x in dbdata:
                 await collection.delete_one(x)
                #--Success Embed--#
@@ -215,8 +215,8 @@ class Command(commands.Cog):
                 channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
                 embed = Embed('<:dev:901381277477900358>  Devunregister', f'<@{str(discordid1)}> was devunregistered by {str(ctx.author.mention)}.', color=0xff4040)
                 embed.field('ID', f'`{discordid1}`')
-                embed.field('Unregistered Account', f'`{dbdata["NTuser"]}`')
-                embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+                embed.field('Unregistered Account', f'`{unregistered_account}`')
+                embed.field('Link', f'[:link:](https://nitrotype.com/racer/{unregistered_account})')
                 embed.field('Unregistered by', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                 embed.field('Author', f'`{str(ctx.author.id)}`')
                 embed.field('Guild', f'`{str(ctx.guild.name)}`')
