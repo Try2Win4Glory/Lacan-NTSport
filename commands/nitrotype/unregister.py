@@ -100,9 +100,23 @@ class Command(commands.Cog):
                         await ctx.author.add_roles(role)
                     except:
                         pass 
-                print('yes') 
+                print('yes')
+                racer = await Racer(dbdata['NTuser'])
                 await collection.delete_one(x)
                 embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
+                
+                try:
+                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    embed = Embed('<:dev:901381277477900358>  Devunregister', f'<@{str(discordid1)}> was devunregistered by {str(ctx.author.mention)}.', color=0xff4040)
+                    embed.field('ID', f'`{discordid1}`')
+                    embed.field('Unregistered Account', f'`{dbdata["NTuser"]}`')
+                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
+                    embed.field('Unregistered by', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                    embed.field('Author', f'`{str(ctx.author.id)}`')
+                    embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                    msg1 = await channel1.send(embed=embed.default_embed())
+                except:
+                    print('Couldn\'t log devunregister.')
                
                 await embed.send(ctx)
                 #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})
