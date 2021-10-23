@@ -42,7 +42,7 @@ class Command(commands.Cog):
             return await verify_friend(ctx)
         else:          
             # Get Collection            
-            dbclient = clientDB()
+            dbclient = DBClient()
             collection = dbclient.db.NT_to_discord
             dbdata = await collection.find_one({"userID":str(ctx.author.id)})
             print(dbdata)
