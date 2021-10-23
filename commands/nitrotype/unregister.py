@@ -5,6 +5,7 @@ from packages.nitrotype import Racer
 import requests
 import os
 import json
+import discord
 from discord.utils import get
 from mongoclient import DBClient
 class Command(commands.Cog):
