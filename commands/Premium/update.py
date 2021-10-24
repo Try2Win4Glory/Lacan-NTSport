@@ -265,15 +265,12 @@ class Command(commands.Cog):
                 await ctx.author.add_roles(role)
                 
             if ctx.guild.id in ['564880536401870858']:
-                try:
                     role = get(ctx.message.guild.roles, id=654804415747850241)
                     await ctx.author.add_roles(role)
                     role = get(ctx.message.guild.roles, id=654801298297847838)
                     await ctx.author.add_roles(role)
                     role = get(ctx.message.guild.roles, id=654802074034503681)
                     await ctx.author.add_roles(role)
-                except:
-                    pass
 
             role = get(ctx.message.guild.roles, name='Registered')
             try:
