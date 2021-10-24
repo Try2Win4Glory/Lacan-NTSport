@@ -214,6 +214,7 @@ class Command(commands.Cog):
           print('failed to remove roles')
         try:
                 channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
                 embed = Embed('<:dev:901381277477900358>  Devunregister', f'<@{str(discordid1)}> was devunregistered by {str(ctx.author.mention)}.', color=0xff4040)
                 embed.field('ID', f'`{discordid1}`')
                 embed.field('Unregistered Account', f'`{unregistered_account}`')
@@ -222,6 +223,7 @@ class Command(commands.Cog):
                 embed.field('Author', f'`{str(ctx.author.id)}`')
                 embed.field('Guild', f'`{str(ctx.guild.name)}`')
                 msg1 = await channel1.send(embed=embed.default_embed())
+                msg2 = await channel2.send(embed=embed.default_embed())
         except:
                 print('Couldn\'t log devunregister.')
     
