@@ -255,15 +255,12 @@ class Command(commands.Cog):
               elif int(races) >= 0:
                 role = get(ctx.message.guild.roles, name=otherraceroles[0])
                 roles_to_add.append(role)
-              print(role)
-              print(roles_to_add)
-
-            #roles_to_add.append(role)
             
             if racer.membership == 'gold': 
                 role = get(ctx.message.guild.roles, name="Gold Member")
                 await ctx.author.add_roles(role)
                 
+            # NT Server Category Roles
             if ctx.guild.id in [564880536401870858]:
                     role = get(ctx.message.guild.roles, id=654804415747850241)
                     roles_to_add.append(role)
@@ -271,16 +268,32 @@ class Command(commands.Cog):
                     roles_to_add.append(role)
                     role = get(ctx.message.guild.roles, id=654802074034503681)
                     roles_to_add.append(role)
-                    
-                    if int(racer.created) <= 1430172000:
+            
+            # Other Fun Roles  
+            try:
+                if int(racer.created) <= 1430172000:
                         role = get(ctx.message.guild.roles, name="v1 Veteran")
                         roles_to_add.append(role)
-                    if int(racer.created) >= 1430172000 and racer.created <= 1559685600:
+            except:
+                pass
+            try:
+                if int(racer.created) > 1430172000 and racer.created <= 1559685600:
                         role = get(ctx.message.guild.roles, name="v2 Veteran")
                         roles_to_add.append(role)
-                    if int(racer.longest_session) >= 800:
+            except:
+                pass
+            try:
+                if int(racer.longest_session) >= 800:
                         role=get(ctx.message.guild.roles, name="Sessionist")
                         roles_to_add.append(role)
+            except:
+                pass
+            try:
+                if int(racer.views) >= 5000:
+                    role=get(ctx.message.guild.roles, name="Popular")
+                    roles_to_add.append(role)
+            except:
+                pass
                     
             print(roles_to_add)
 
@@ -289,7 +302,7 @@ class Command(commands.Cog):
                 await ctx.author.add_roles(role)
 
             except Exception:
-                embed = Embed('Error!', 'The bot is not able to update your roles. Make sure I have the `Manage Roles` permission, am ranked higher than that roles and you did a season race yet.')
+                embed = Embed('Error!', 'The bot is not able to update your roles. Make sure I have the `Manage Roles` permission, am ranked higher than that roles and you did a season race yet.', 'warning')
                 await embed.send(ctx)
            #Teamroles
             if str(racer.tag) in teamswithroles:
