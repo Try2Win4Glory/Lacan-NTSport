@@ -457,16 +457,40 @@ class Command(commands.Cog):
                 role = get(ctx.message.guild.roles, name="Gold Member")
                 await user.add_roles(role)
                 
-            if ctx.guild.id in ['564880536401870858']:
-                try:
+            # NT Server Category Roles
+            if ctx.guild.id in [564880536401870858]:
                     role = get(ctx.message.guild.roles, id=654804415747850241)
                     await user.add_roles(role)
                     role = get(ctx.message.guild.roles, id=654801298297847838)
                     await user.add_roles(role)
                     role = get(ctx.message.guild.roles, id=654802074034503681)
                     await user.add_roles(role)
-                except:
-                    pass
+            
+            # Other Fun Roles  
+            try:
+                if int(racer.created) <= 1430172000:
+                        role = get(ctx.message.guild.roles, name="v1 Veteran")
+                        await user.add_roles(role)
+            except:
+                pass
+            try:
+                if int(racer.created) > 1430172000 and racer.created <= 1559685600:
+                        role = get(ctx.message.guild.roles, name="v2 Veteran")
+                        await user.add_roles(role)
+            except:
+                pass
+            try:
+                if int(racer.longest_session) >= 800:
+                        role=get(ctx.message.guild.roles, name="Sessionist")
+                        await user.add_roles(role)
+            except:
+                pass
+            try:
+                if int(racer.views) >= 5000:
+                    role=get(ctx.message.guild.roles, name="Popular")
+                    await user.add_roles(role)
+            except:
+                pass
 
             role = get(ctx.message.guild.roles, name='Registered')
             try:
