@@ -264,7 +264,7 @@ class Command(commands.Cog):
                 role = get(ctx.message.guild.roles, name="Gold Member")
                 await ctx.author.add_roles(role)
                 
-            if ctx.guild.id in ['564880536401870858']:
+            if ctx.guild.id in [564880536401870858]:
                     role = get(ctx.message.guild.roles, id=654804415747850241)
                     roles_to_add.append(role)
                     role = get(ctx.message.guild.roles, id=654801298297847838)
