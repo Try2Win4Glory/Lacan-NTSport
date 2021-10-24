@@ -266,11 +266,23 @@ class Command(commands.Cog):
                 
             if ctx.guild.id in ['564880536401870858']:
                     role = get(ctx.message.guild.roles, id=654804415747850241)
-                    await ctx.author.add_roles(role)
+                    roles_to_add.append(role)
                     role = get(ctx.message.guild.roles, id=654801298297847838)
-                    await ctx.author.add_roles(role)
+                    roles_to_add.append(role)
                     role = get(ctx.message.guild.roles, id=654802074034503681)
-                    await ctx.author.add_roles(role)
+                    roles_to_add.append(role)
+                    
+                    if racer.created <= 1430172000:
+                        role = get(ctx.message.guild.roles, name="v1 Veteran")
+                        roles_to_add.append(role)
+                    if racer.created >= 1430172000 and racer.created <= 1559685600:
+                        role = get(ctx.message.guild.roles, name="v2 Veteran")
+                        roles_to_add.append(role)
+                    if racer.longest_session >= 800:
+                        role=get(ctx.message.guild.roles, name="Sessionist")
+                        roles_to_add.append(role)
+                    
+            print(roles_to_add)
 
             role = get(ctx.message.guild.roles, name='Registered')
             try:
