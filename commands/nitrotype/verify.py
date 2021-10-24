@@ -77,7 +77,7 @@ class Command(commands.Cog):
                 try:
                     channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
                     channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
-                    embed = Embed(':x:  Verify', f'Verification process started by {str(ctx.author.mention)}.', color=0x00ff00)
+                    embed = Embed(':regional_indicator_v:  Verify', f'Verification process started by {str(ctx.author.mention)}.', color=0x00ff00)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
                     embed.field('Link', f'[:link:](https://nitrotype.com/racer/{dbdata["NTuser"]})')
