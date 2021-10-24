@@ -111,6 +111,7 @@ class Command(commands.Cog):
                 
                 try:
                     channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
                     embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(ctx.author.id)}> unregistered.', color=0xff4040)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Unregistered Account', f'`{unregistered_account}`')
@@ -118,6 +119,7 @@ class Command(commands.Cog):
                     embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                     embed.field('Guild', f'`{str(ctx.guild.name)}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
+                    msg2 = await channel2.send(embed=embed.default_embed())
                 except:
                     print('Couldn\'t log unregister.')
 
