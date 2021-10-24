@@ -36,6 +36,10 @@ class Command(commands.Cog):
         await guild.create_role(name="80-83% Accuracy")
         await guild.create_role(name="75-79% Accuracy")
         await guild.create_role(name="<75% Accuracy")'''
+        await guild.create_role(name="v1 Veteran")
+        await guild.create_role(name="v2 Veteran")
+        await guild.create_role(name="Sessionist")
+        await guild.create_role(name="Popular")
         await guild.create_role(name="220+ WPM")
         await guild.create_role(name="210-219 WPM")
         await guild.create_role(name="200-209 WPM")
