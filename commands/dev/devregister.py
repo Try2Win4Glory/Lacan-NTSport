@@ -84,6 +84,7 @@ class Command(commands.Cog):
               pass
             try:
                 channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
                 embed = Embed('<:dev:901381277477900358>  Devregister', f'<@{str(discordid1)}> was devregistered by {str(ctx.author.mention)}.', color=0x00ff00)
                 embed.field('ID', f'`{discordid1}`')
                 embed.field('Linked Account', f'`{ntuser}`')
@@ -92,6 +93,7 @@ class Command(commands.Cog):
                 embed.field('Author', f'`{str(ctx.author.id)}`')
                 embed.field('Guild', f'`{str(ctx.guild.name)}`')
                 msg1 = await channel1.send(embed=embed.default_embed())
+                msg2 = await channel2.send(embed=embed.default_embed())
             except:
                 print('Couldn\'t log devregister.')
 def setup(client):
