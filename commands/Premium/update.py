@@ -299,25 +299,25 @@ class Command(commands.Cog):
             try:
                 if int(racer.created_timestamp) <= 1430172000:
                         role = get(ctx.message.guild.roles, name="v1 Veteran")
-                        roles_to_add.append(role)
+                        await ctx.author.add_roles(role)
             except:
                 pass
             try:
                 if int(racer.created_timestamp) > 1430172000 and racer.created_timestamp <= 1559685600:
                         role = get(ctx.message.guild.roles, name="v2 Veteran")
-                        roles_to_add.append(role)
+                        await ctx.author.add_roles(role)
             except:
                 pass
             try:
                 if int(racer.longest_session_sessionist) >= 800:
                         role = get(ctx.message.guild.roles, name="Sessionist")
-                        roles_to_add.append(role)
+                        await ctx.author.add_roles(role)
             except:
                 pass
 
             if int(racer.popular_views) >= 10000:
                     role=get(ctx.message.guild.roles, name="Popular")
-                    roles_to_add.append(role)
+                    await ctx.author.add_roles(role)
                     
             # Check for Gold Type
             if racer.lifetime_gold:
@@ -330,13 +330,13 @@ class Command(commands.Cog):
             if gold == 'lifetime':
                 try:
                     role = get(ctx.message.guild.roles, name="Lifetime Gold")
-                    roles_to_add.append(role)
+                    await ctx.author.add_roles(role)
                 except:
                     print('Update: Failed to add Lifetime Gold role.')
             elif gold == 'yearly':
                 try:
                     role = get(ctx.message.guild.roles, name="Yearly Gold")
-                    roles_to_add.append(role)
+                    await ctx.author.add_roles(role)
                 except:
                     print('Update: Failed to add Yearly Gold role.')
             else:
