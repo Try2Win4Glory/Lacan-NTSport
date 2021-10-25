@@ -257,9 +257,34 @@ class Command(commands.Cog):
                 role = get(ctx.message.guild.roles, name=otherraceroles[0])
                 roles_to_add.append(role)
             
-            if racer.membership == 'gold': 
-                role = get(ctx.message.guild.roles, name="Gold Member")
-                await ctx.author.add_roles(role)
+            try:
+                # Normal Gold Member Role
+                if racer.membership == 'gold': 
+                    role = get(ctx.message.guild.roles, name="Gold Member")
+                    await ctx.author.add_roles(role)
+            except:
+                # Check for Gold Type
+                if racer.lifetime_gold:
+                    gold = 'lifetime'
+                else:
+                    if racer.membership != 'basic':
+                        gold = 'yearly'
+                    else:
+                        gold = 'basic'
+                if gold == 'lifetime':
+                    try:
+                        role = get(ctx.message.guild.roles, name="Lifetime Gold")
+                        roles_to_add.append(role)
+                    except:
+                        print('Update: Failed to add Lifetime Gold role.')
+                if gold == 'yearly':
+                    try:
+                        role = get(ctx.message.guild.roles, name="Yearly Gold")
+                        roles_to_add.append(role)
+                    except:
+                        print('Update: Failed to add Yearly Gold role.')
+                else:
+                    pass
                 
             # NT Server Category Roles
             if ctx.guild.id in [564880536401870858]:
@@ -285,7 +310,7 @@ class Command(commands.Cog):
                 pass
             try:
                 if int(racer.longest_session_sessionist) >= 800:
-                        role=get(ctx.message.guild.roles, name="Sessionist")
+                        role = get(ctx.message.guild.roles, name="Sessionist")
                         roles_to_add.append(role)
             except:
                 pass
@@ -293,6 +318,29 @@ class Command(commands.Cog):
             if int(racer.popular_views) >= 10000:
                     role=get(ctx.message.guild.roles, name="Popular")
                     roles_to_add.append(role)
+                    
+            # Check for Gold Type
+            if racer.lifetime_gold:
+                gold = 'lifetime'
+            else:
+                if racer.membership != 'basic':
+                    gold = 'yearly'
+                else:
+                    gold = 'basic'
+            if gold == 'lifetime':
+                try:
+                    role = get(ctx.message.guild.roles, name="Lifetime Gold")
+                    roles_to_add.append(role)
+                except:
+                    print('Update: Failed to add Lifetime Gold role.')
+            elif gold == 'yearly':
+                try:
+                    role = get(ctx.message.guild.roles, name="Yearly Gold")
+                    roles_to_add.append(role)
+                except:
+                    print('Update: Failed to add Yearly Gold role.')
+            else:
+                pass
                     
             print(roles_to_add)
 
