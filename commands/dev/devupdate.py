@@ -167,7 +167,7 @@ class Command(commands.Cog):
               return await embed.send(ctx)
         for role in (user.roles):
             name = role.name
-            if name in listofroles or name in teamswithroles or name in achievementroles or name in funroles:
+            if name in listofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles:
                 role = get(ctx.message.guild.roles, id=role.id)
                 await user.remove_roles(role)
             try:
