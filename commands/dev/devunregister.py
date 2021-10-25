@@ -181,7 +181,7 @@ class Command(commands.Cog):
         roles_to_remove = []
         for role in (removefrom.roles):
             name = role.name
-            if name in thelistofroles or name in teamswithroles or name in achievementroles or name in funroles:
+            if name in thelistofroles or name in listofroles or name in teamswithroles or name in achievementroles or name in funroles:
                 role = get(ctx.message.guild.roles, id=role.id)
                 roles_to_remove.append(role)
         try:
