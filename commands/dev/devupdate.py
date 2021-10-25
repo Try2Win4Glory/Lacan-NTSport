@@ -459,13 +459,16 @@ class Command(commands.Cog):
                 await user.add_roles(role)
                 
             # NT Server Category Roles
-            if ctx.guild.id in [564880536401870858]:
+            try:
+                if ctx.guild.id in [564880536401870858]:
                     role = get(ctx.message.guild.roles, id=654804415747850241)
                     await user.add_roles(role)
                     role = get(ctx.message.guild.roles, id=654801298297847838)
                     await user.add_roles(role)
                     role = get(ctx.message.guild.roles, id=654802074034503681)
                     await user.add_roles(role)
+            except:
+                print('Devupdate: Failed to add Category roles.')
             
             # Other Fun Roles  
             try:
@@ -487,7 +490,7 @@ class Command(commands.Cog):
             except:
                 pass
             try:
-                if int(racer.views) >= 5000:
+                if int(racer.popular_views) >= 10000:
                     role=get(ctx.message.guild.roles, name="Popular")
                     await user.add_roles(role)
             except:
