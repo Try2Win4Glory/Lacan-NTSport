@@ -454,10 +454,34 @@ class Command(commands.Cog):
                         role = get(ctx.message.guild.roles, name=otherraceroles[0])
                         await user.add_roles(role)
           
-            if racer.membership == 'gold': 
-                role = get(ctx.message.guild.roles, name="Gold Member")
-                await user.add_roles(role)
-                
+            try:
+                if racer.membership == 'gold': 
+                    role = get(ctx.message.guild.roles, name="Gold Member")
+                    await user.add_roles(role)
+            except:
+                # Check for Gold Type
+                if racer.lifetime_gold:
+                    gold = 'lifetime'
+                else:
+                    if racer.membership != 'basic':
+                        gold = 'yearly'
+                    else:
+                        gold = 'basic'
+                if gold == 'lifetime':
+                    try:
+                        role = get(ctx.message.guild.roles, name="Lifetime Gold")
+                        await user.add_roles(role)
+                    except:
+                        print('Update: Failed to add Lifetime Gold role.')
+                if gold == 'yearly':
+                    try:
+                        role = get(ctx.message.guild.roles, name="Yearly Gold")
+                        await user.add_roles(role)
+                    except:
+                        print('Update: Failed to add Yearly Gold role.')
+                else:
+                    pass    
+            
             # NT Server Category Roles
             try:
                 if ctx.guild.id in [564880536401870858]:
