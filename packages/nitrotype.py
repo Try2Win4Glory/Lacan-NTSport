@@ -967,6 +967,7 @@ class RacerClass:
             self.wpm_high = fn(newdata['highestSpeed'])
 	
             self.created_timestamp = newdata['createdStamp']
+            self.popular_views = newdata['profileViews']
 		
             try:
                 self.trailid = newdata['loot'][0]['lootID']
