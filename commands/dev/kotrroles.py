@@ -22,7 +22,9 @@ class Command(commands.Cog):
         embed.footer(f'Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot.\n⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
         guild = ctx.guild
         await embed.send(ctx)
-        await guild.create_role(name="Gold Member", colour=discord.Colour(0xFFFF00))
+        #await guild.create_role(name="Gold Member", colour=discord.Colour(0xFFFF00))
+        await guild.create_role(name="Lifetime Gold", color=discord.Colour(0xffff00))
+        await guild.create_role(name="Yearly Gold", color=discord.Colour(0xffff66))
         await guild.create_role(name="Registered")
         '''await guild.create_role(name=">99% Accuracy")
         await guild.create_role(name="99% Accuracy")
