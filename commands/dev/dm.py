@@ -20,10 +20,11 @@ class Command(commands.Cog):
           if message == None:
             return await ctx.send('Please specify a message you want to send.')
           else:
-            embed=Embed('New Direct Message', 'speech_left')
+            embed=Embed('New Direct Message', 'Sent to you.', 'speech_left')
             embed.field('Author:', f'Message sent by {ctx.author}')
-            embed.field('Message:', f'Following message was sent: {message}')
-            return await user.send(embed=Embed.default_embed())
+            embed.field('Message:', f'Following message was sent: \n\n```{message}```')
+            msg = await user.send(embed=embed.default_embed())
+            return
         else:
             return await ctx.send('You do not have perms, dude.')
     

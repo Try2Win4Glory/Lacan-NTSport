@@ -76,11 +76,13 @@ class Command(commands.Cog):
             dbdata = await dbclient.get_array(collection, {'userID': str(discordid1)})
         except:
             dbdata = await dbclient.get_array(collection, {'NTuser': str(discordid1)})
+        
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
                 break
         async for x in dbdata:
+                unregistered_account = x["NTuser"]
                 await collection.delete_one(x)
                #--Success Embed--#
                 embed = Embed('Success!', 'Unregistered discord user <@' +str(discordid1)+'>!','white_check_mark')
@@ -112,6 +114,8 @@ class Command(commands.Cog):
           thelistofroles = ["Gold Member", [], ["220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM"], ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]]
           listofroles = ["Gold Member", "220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM", "500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
           achievementroles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
+          funroles = ["v1 Veteran", "v2 Veteran", "Sessionist", "Popular"]
+          goldroles = ["Gold Member", "Lifetime Gold", "Yearly Gold"]
           teamswithroles = [
           # Insert Global Team Tags Here
           ]
@@ -174,42 +178,38 @@ class Command(commands.Cog):
         except:
             pass
         
+        removefrom = await ctx.guild.fetch_member(discordid1)
+        roles_to_remove = []
+        for role in (removefrom.roles):
+            name = role.name
+            if name in thelistofroles or name in listofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles:
+                role = get(ctx.message.guild.roles, id=role.id)
+                roles_to_remove.append(role)
         try:
-            registered=['Registered']
-            roles_to_remove=[]
-            try:
-              success, userid = await get_username(discordid, get_id=True)
-              if success:
-                  user = await ctx.guild.fetch_member(userid)
-              else:
-                  user = await ctx.guild.fetch_member(discordid)
-            except:
-              user = await ctx.guild.fetch_member(discordid)
-
-            for role in (user.roles):
-                name = role.name
-                if name in thelistofroles or name in teamswithroles or name in achievementroles or name in registered:
-                    print('devunregister roles in user roles')
-                    role = get(ctx.message.guild.roles, id=role.id)
-                    roles_to_remove.append(role)
-                    try:
-                      role = get(ctx.message.guild.roles, name='Registered')
-                      roles_to_remove.append(role)
-                    except:
-                      pass
-                    await user.remove_roles(*roles_to_remove)
-                    try:
-                      roles_to_add=[]
-                      role = get(ctx.message.guild.roles, name='Unregistered')
-                      roles_to_add.append(role)
-                    except:
-                      pass
-                    try:
-                      await user.add_roles(*roles_to_add)
-                    except:
-                      pass
+            await removefrom.remove_roles(*roles_to_remove)
         except:
-          print('failed to remove roles')
+            print('Devunregister: Failed to remove user\'s roles.')
+        try:
+            role = get(ctx.message.guild.roles, name='Registered')
+            await removefrom.remove_roles(role)
+            role = get(ctx.message.guild.roles, name='Unregistered')
+            await removefrom.add_roles(role)
+        except:
+            pass
+        try:
+                channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                embed = Embed('<:dev:901381277477900358>  Devunregister', f'<@{str(discordid1)}> was devunregistered by {str(ctx.author.mention)}.', color=0xff4040)
+                embed.field('ID', f'`{discordid1}`')
+                embed.field('Unregistered Account', f'`{unregistered_account}`')
+                embed.field('Link', f'[:link:](https://nitrotype.com/racer/{unregistered_account})')
+                embed.field('Unregistered by', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                embed.field('Author', f'`{str(ctx.author.id)}`')
+                embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                msg1 = await channel1.send(embed=embed.default_embed())
+                msg2 = await channel2.send(embed=embed.default_embed())
+        except:
+                print('Couldn\'t log devunregister.')
     
 def setup(client):
     client.add_cog(Command(client))

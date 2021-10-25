@@ -5,6 +5,7 @@ from packages.nitrotype import Racer
 import requests
 import os
 import json
+import discord
 from mongoclient import DBClient
 class Command(commands.Cog):
 
@@ -56,5 +57,18 @@ class Command(commands.Cog):
         #await dbclient.update_big_array(collection, 'registered', dbdata)
         embed = Embed('<a:Check:797009550003666955>  Success!', 'You are now registered to `' + racer.username.lower() + '`. Type `n.verify` to verify your ownership!')
         await embed.send(ctx)
+        try:
+            channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+            channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+            embed = Embed(':regional_indicator_r:  Register', f'<@{str(ctx.author.id)}> registered.', color=0x00ff00)
+            embed.field('ID', f'`{str(ctx.author.id)}`')
+            embed.field('Linked Account', f'`{user}`')
+            embed.field('Link', f'[:link:](https://nitrotype.com/racer/{user})')
+            embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+            embed.field('Guild', f'`{str(ctx.guild.name)}`')
+            msg1 = await channel1.send(embed=embed.default_embed())
+            msg2 = await channel2.send(embed=embed.default_embed())
+        except:
+            print('Couldn\'t log register.')
 def setup(client):
     client.add_cog(Command(client))

@@ -5,6 +5,7 @@ from packages.nitrotype import Racer
 import requests
 import os
 import json
+import discord
 from discord.utils import get
 from mongoclient import DBClient
 class Command(commands.Cog):
@@ -17,6 +18,8 @@ class Command(commands.Cog):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         thelistofroles = ["Registered", "Gold Member", ">99% Accuracy", "99% Accuracy", "98% Accuracy", "97% Accuracy", "96% Accuracy", "94-95% Accuracy", "90-93% Accuracy", "87-89% Accuracy", "84-86% Accuracy", "80-83% Accuracy", "75-79% Accuracy", "<75% Accuracy", "220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM", "500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
         achievementroles = ['"I < 3 Typing"', '"I Really Love Typing!"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
+        funroles = ["v1 Veteran", "v2 Veteran", "Sessionist", "Popular"]
+        goldroles = ["Gold Member", "Lifetime Gold", "Yearly Gold"]
         teamswithroles = [
           # Insert Global Team Tags Here
         ]
@@ -82,17 +85,21 @@ class Command(commands.Cog):
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
                 break
+        
         async for x in dbdata:
             if str(ctx.author.id) == x['userID']:
+                unregistered_account = x["NTuser"]
                 if premiumserver:
                     roles_to_remove = []
                     for role in (ctx.author.roles):
                         name = role.name
-                        if name in thelistofroles or name in teamswithroles or name in achievementroles:
+                        if name in thelistofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles:
                             role = get(ctx.message.guild.roles, id=role.id)
                             roles_to_remove.append(role)
-                    if roles_to_remove != []:
+                    try:
                         await ctx.author.remove_roles(*roles_to_remove)
+                    except:
+                        print('Failed to remove roles upon unregistering.')
                     try:
                         role = get(ctx.message.guild.roles, name='Registered')
                         await ctx.author.remove_roles(role)
@@ -100,11 +107,26 @@ class Command(commands.Cog):
                         await ctx.author.add_roles(role)
                     except:
                         pass 
-                print('yes') 
+                print('yes')
+
                 await collection.delete_one(x)
                 embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
-               
                 await embed.send(ctx)
+                
+                try:
+                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+                    channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                    embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(ctx.author.id)}> unregistered.', color=0xff4040)
+                    embed.field('ID', f'`{str(ctx.author.id)}`')
+                    embed.field('Unregistered Account', f'`{unregistered_account}`')
+                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{unregistered_account})')
+                    embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+                    embed.field('Guild', f'`{str(ctx.guild.name)}`')
+                    msg1 = await channel1.send(embed=embed.default_embed())
+                    msg2 = await channel2.send(embed=embed.default_embed())
+                except:
+                    print('Couldn\'t log unregister.')
+
                 #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})
                 return
 def setup(client):

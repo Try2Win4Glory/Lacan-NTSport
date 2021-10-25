@@ -57,6 +57,9 @@ class Command(commands.Cog):
         thelistofroles = ["Gold Member", [], ["220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM"], ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]]
         listofroles = ["Gold Member", "220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM", "500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
         achievementroles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
+        funroles = ["v1 Veteran", "v2 Veteran", "Sessionist", "Popular"]
+        goldroles = ["Gold Member", "Lifetime Gold", "Yearly Gold"]
+        registered = ["Registered"]
         teamswithroles = [
           # Insert Global Team Tags Here
         ]
@@ -165,7 +168,7 @@ class Command(commands.Cog):
               return await embed.send(ctx)
         for role in (user.roles):
             name = role.name
-            if name in listofroles or name in teamswithroles or name in achievementroles:
+            if name in listofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles or name in registered:
                 role = get(ctx.message.guild.roles, id=role.id)
                 await user.remove_roles(role)
             try:
@@ -453,9 +456,71 @@ class Command(commands.Cog):
                         role = get(ctx.message.guild.roles, name=otherraceroles[0])
                         await user.add_roles(role)
           
-            if racer.membership == 'gold': 
-                role = get(ctx.message.guild.roles, name="Gold Member")
-                await user.add_roles(role)
+            try:
+                if racer.membership == 'gold': 
+                    role = get(ctx.message.guild.roles, name="Gold Member")
+                    await user.add_roles(role)
+            except:
+                # Check for Gold Type
+                if racer.lifetime_gold:
+                    gold = 'lifetime'
+                else:
+                    if racer.membership != 'basic':
+                        gold = 'yearly'
+                    else:
+                        gold = 'basic'
+                if gold == 'lifetime':
+                    try:
+                        role = get(ctx.message.guild.roles, name="Lifetime Gold")
+                        await user.add_roles(role)
+                    except:
+                        print('Update: Failed to add Lifetime Gold role.')
+                if gold == 'yearly':
+                    try:
+                        role = get(ctx.message.guild.roles, name="Yearly Gold")
+                        await user.add_roles(role)
+                    except:
+                        print('Update: Failed to add Yearly Gold role.')
+                else:
+                    pass    
+            
+            # NT Server Category Roles
+            try:
+                if ctx.guild.id in [564880536401870858]:
+                    role = get(ctx.message.guild.roles, id=654804415747850241)
+                    await user.add_roles(role)
+                    role = get(ctx.message.guild.roles, id=654801298297847838)
+                    await user.add_roles(role)
+                    role = get(ctx.message.guild.roles, id=654802074034503681)
+                    await user.add_roles(role)
+            except:
+                print('Devupdate: Failed to add Category roles.')
+            
+            # Other Fun Roles  
+            try:
+                if int(racer.created_timestamp) <= 1430172000:
+                        role = get(ctx.message.guild.roles, name="v1 Veteran")
+                        await user.add_roles(role)
+            except:
+                pass
+            try:
+                if int(racer.created_timestamp) > 1430172000 and racer.created_timestamp <= 1559685600:
+                        role = get(ctx.message.guild.roles, name="v2 Veteran")
+                        await user.add_roles(role)
+            except:
+                pass
+            try:
+                if int(racer.longest_session_sessionist) >= 800:
+                        role=get(ctx.message.guild.roles, name="Sessionist")
+                        await user.add_roles(role)
+            except:
+                pass
+            try:
+                if int(racer.popular_views) >= 10000:
+                    role=get(ctx.message.guild.roles, name="Popular")
+                    await user.add_roles(role)
+            except:
+                pass
 
             role = get(ctx.message.guild.roles, name='Registered')
             try:
