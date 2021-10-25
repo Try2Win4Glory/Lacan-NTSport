@@ -272,19 +272,19 @@ class Command(commands.Cog):
             
             # Other Fun Roles  
             try:
-                if int(racer.created) <= 1430172000:
+                if int(racer.created_timestamp) <= 1430172000:
                         role = get(ctx.message.guild.roles, name="v1 Veteran")
                         roles_to_add.append(role)
             except:
                 pass
             try:
-                if int(racer.created) > 1430172000 and racer.created <= 1559685600:
+                if int(racer.created_timestamp) > 1430172000 and racer.created_timestamp <= 1559685600:
                         role = get(ctx.message.guild.roles, name="v2 Veteran")
                         roles_to_add.append(role)
             except:
                 pass
             try:
-                if int(racer.longest_session) >= 800:
+                if int(racer.longest_session_sessionist) >= 800:
                         role=get(ctx.message.guild.roles, name="Sessionist")
                         roles_to_add.append(role)
             except:
