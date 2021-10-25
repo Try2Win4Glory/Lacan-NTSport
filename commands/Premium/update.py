@@ -289,9 +289,8 @@ class Command(commands.Cog):
                         roles_to_add.append(role)
             except:
                 pass
-            print(racer.views)
-            print(int(racer.views))
-            if int(racer.views) >= 5000:
+
+            if int(racer.popular_views) >= 5000:
                     role=get(ctx.message.guild.roles, name="Popular")
                     roles_to_add.append(role)
                     
