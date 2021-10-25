@@ -59,6 +59,7 @@ class Command(commands.Cog):
         achievementroles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
         funroles = ["v1 Veteran", "v2 Veteran", "Sessionist", "Popular"]
         goldroles = ["Gold Member", "Lifetime Gold", "Yearly Gold"]
+        registered = ["Registered"]
         teamswithroles = [
           # Insert Global Team Tags Here
         ]
@@ -167,7 +168,7 @@ class Command(commands.Cog):
               return await embed.send(ctx)
         for role in (user.roles):
             name = role.name
-            if name in listofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles:
+            if name in listofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles or name in registered:
                 role = get(ctx.message.guild.roles, id=role.id)
                 await user.remove_roles(role)
             try:
