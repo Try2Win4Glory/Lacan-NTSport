@@ -315,9 +315,12 @@ class Command(commands.Cog):
             except:
                 pass
 
-            if int(racer.popular_views) >= 10000:
+            try:
+                if int(racer.popular_views) >= 10000:
                     role=get(ctx.message.guild.roles, name="Popular")
                     await ctx.author.add_roles(role)
+            except:
+                pass
                     
             # Check for Gold Type
             if racer.lifetime_gold:
