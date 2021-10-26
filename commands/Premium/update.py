@@ -300,21 +300,21 @@ class Command(commands.Cog):
             try:
                 if int(racer.created_timestamp) <= 1430172000:
                         role = get(ctx.message.guild.roles, name="v1 Veteran")
-                        if role != 'None':
+                        if role != None:
                             roles_to_add.append(role)
             except:
                 pass
             try:
                 if int(racer.created_timestamp) > 1430172000 and racer.created_timestamp <= 1559685600:
                         role = get(ctx.message.guild.roles, name="v2 Veteran")
-                        if role != 'None':
+                        if role != None:
                             roles_to_add.append(role)
             except:
                 pass
             try:
                 if int(racer.longest_session_sessionist) >= 800:
                         role = get(ctx.message.guild.roles, name="Sessionist")
-                        if role != 'None':
+                        if role != None:
                             roles_to_add.append(role)
             except:
                 pass
@@ -322,7 +322,7 @@ class Command(commands.Cog):
             try:
                 if int(racer.popular_views) >= 10000:
                     role=get(ctx.message.guild.roles, name="Popular")
-                    if role != 'None':
+                    if role != None:
                         roles_to_add.append(role)
             except:
                 pass
@@ -338,14 +338,14 @@ class Command(commands.Cog):
             if gold == 'lifetime':
                 try:
                     role = get(ctx.message.guild.roles, name="Lifetime Gold")
-                    if role != 'None':
+                    if role != None:
                         roles_to_add.append(role)
                 except:
                     print('Update: Failed to add Lifetime Gold role.')
             elif gold == 'yearly':
                 try:
                     role = get(ctx.message.guild.roles, name="Yearly Gold")
-                    if role != 'None':
+                    if role != None:
                         roles_to_add.append(role)
                 except:
                     print('Update: Failed to add Yearly Gold role.')
@@ -354,21 +354,21 @@ class Command(commands.Cog):
             try:
                 if int(racer.nitro_enthusiast) >= 10000:
                     role = get(ctx.message.guild.roles, name="Nitro Enthusiast")
-                    if role != 'None':
+                    if role != None:
                         roles_to_add.append(role)
             except:
                 pass
             try:
                 if int(racer.car_collector) >= 200:
                     role = get(ctx.message.guild.roles, name="Car Collector")
-                    if role != 'None':
+                    if role != None:
                         roles_to_add.append(role)
             except:
                 pass
             try:
                 if int(racer.high_speed)-int(racer.average_speed) >= 50:
                     role = get(ctx.message.guild.roles, name="Undulation Master")
-                    if role != 'None':
+                    if role != None:
                         roles_to_add.append(role)
             except:
                     pass
