@@ -522,7 +522,7 @@ class Command(commands.Cog):
             except:
                 pass
             try:
-                if int(racer.nitros_used) >= 10000:
+                if int(racer.nitro_enthusiast) >= 10000:
                     role = get(ctx.message.guild.roles, name="Nitro Enthusiast")
                     await user.add_roles(role)
             except:
