@@ -925,6 +925,7 @@ class RacerClass:
                 elif car[1] == 'sold':
                     self.cars_sold += 1
                 self.cars_total += 1
+            self.car_collector = self.cars_owned
             self.cars_owned = fn(self.cars_owned)
             self.cars_sold = fn(self.cars_sold)
             self.cars_total = fn(self.cars_total)
@@ -970,6 +971,9 @@ class RacerClass:
             self.created_timestamp = newdata['createdStamp']
             self.popular_views = newdata['profileViews']
             self.longest_session_sessionist = newdata['longestSession']
+            self.car_collector = self.car_collector
+            self.high_speed = newdata['highestSpeed']
+            self.average_speed = newdata['avgSpeed']
 		
             try:
                 self.trailid = newdata['loot'][0]['lootID']
