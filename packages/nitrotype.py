@@ -934,6 +934,7 @@ class RacerClass:
 
             self.nitros = newdata['nitros']
             self.nitros_used = newdata['nitrosUsed']
+            self.nitro_enthusiast = self.nitros_used
             self.nitros_total = self.nitros + self.nitros_used
             self.nitros = fn(self.nitros)
             self.nitros_used = fn(self.nitros_used)
@@ -971,6 +972,7 @@ class RacerClass:
             self.created_timestamp = newdata['createdStamp']
             self.popular_views = newdata['profileViews']
             self.longest_session_sessionist = newdata['longestSession']
+            self.nitro_enthusiast = self.nitro_enthusiast
             self.car_collector = self.car_collector
             self.high_speed = newdata['highestSpeed']
             self.average_speed = newdata['avgSpeed']
