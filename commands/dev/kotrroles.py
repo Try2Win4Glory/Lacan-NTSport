@@ -45,6 +45,7 @@ class Command(commands.Cog):
         await guild.create_role(name="Car Collector")
         await guild.create_role(name="Nitro Enthusiast")
         await guild.create_role(name="Undulation Master")
+        await guild.create_role(name="Try Hard")
         await guild.create_role(name="220+ WPM")
         await guild.create_role(name="210-219 WPM")
         await guild.create_role(name="200-209 WPM")
