@@ -540,7 +540,7 @@ class Command(commands.Cog):
             except:
                 pass
             try:
-                if int(racer.high_speed)-int(racer.average_speed) <= 20:
+                if int(racer.high_speed)-int(racer.average_speed) <= 25:
                     role = get(ctx.message.guild.roles, name="Try Hard")
                     await user.add_roles(role)
             except:
