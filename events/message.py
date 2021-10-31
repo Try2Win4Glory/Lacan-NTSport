@@ -22,9 +22,9 @@ class Events(commands.Cog):
             print('Recognized Moderated Server.')
             if any(profanity_w in message.content.strip().lower() for profanity_w in profanity_w):
                 print('Recognized Profanity in moderated Server.')
+                await message.channel.purge(limit=1)
                 await message.channel.send(f"{message.author.mention}, Please refrain from using profanity!")
                 await asyncio.sleep(0.1) # makes it unabusable.
-                await message.channel.purge(limit=1)
                 return await self.client.process_commands(message) # prevents bot looping
         
         timestamps = []
