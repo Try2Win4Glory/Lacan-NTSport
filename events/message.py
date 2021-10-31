@@ -11,6 +11,20 @@ class Events(commands.Cog):
 
     @commands.Cog.listener()
     async def on_message(self, message):
+        
+        with open('profanity.txt', 'r') as file:
+        profanity_w = [profanity_w.strip(', ').lower() for profanity_w in file.read()]
+        
+        languagefilter = [719414661686099989]
+        if message.guild.id in languagefilter:
+            print('Recognized Moderated Server.')
+            if any(profanity_w in message.content.strip().lower() for profanity_w in profanity_w):
+                print('Recognized Profanity in moderated Server.')
+                await message.channel.send(f"{message.author.mention}, Please refrain from using profanity!")
+                await asyncio.sleep(0.1) # makes it unabusable.
+                await message.channel.purge(limit=1)
+                await client.process_commands(message) # prevents bot looping
+        
         timestamps = []
         authors = []
         banned = [713352863153258556]
