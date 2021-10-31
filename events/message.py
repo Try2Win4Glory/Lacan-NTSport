@@ -13,7 +13,7 @@ class Events(commands.Cog):
     async def on_message(self, message):
         
         with open('profanity.txt', 'r') as file:
-        profanity_w = [profanity_w.strip(', ').lower() for profanity_w in file.read()]
+            profanity_w = [profanity_w.strip(', ').lower() for profanity_w in file.read()]
         
         languagefilter = [719414661686099989]
         if message.guild.id in languagefilter:
