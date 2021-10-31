@@ -8,13 +8,13 @@ import random
 class Events(commands.Cog):
     def __init__(self, client):
         self.client = client
-
-with open('profanity.txt', 'r') as file:
-    profanity_w = [profanity_w.strip(', ').lower() for profanity_w in file.read()]
     
     @commands.Cog.listener()
     async def on_message(self, message):
         
+        with open('profanity.txt', 'r') as file:
+            profanity_w = [profanity_w.strip(', ').lower() for profanity_w in file.read()]
+            
         languagefilter = [719414661686099989]
         if message.guild.id in languagefilter:
             print('Recognized Moderated Server.')
