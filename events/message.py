@@ -24,8 +24,7 @@ class Events(commands.Cog):
                 print('Recognized Profanity in moderated Server.')
                 await message.delete()
                 await message.channel.send(f"{message.author.mention}, Please refrain from using profanity!")
-                await asyncio.sleep(0.1) # makes it unabusable.
-                return await self.client.process_commands(message) # prevents bot looping
+                return #await self.client.process_commands(message) # prevents bot looping
         
         timestamps = []
         authors = []
