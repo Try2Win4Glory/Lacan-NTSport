@@ -5,6 +5,12 @@ from statistics import mean
 import discord
 import asyncio
 import random
+
+with open('profanity.txt', 'r') as file:
+  global profanity
+  read_file = file.read()
+  profanity = read_file.strip(', ').lower()
+
 class Events(commands.Cog):
     def __init__(self, client):
         self.client = client
@@ -12,15 +18,12 @@ class Events(commands.Cog):
     @commands.Cog.listener()
     async def on_message(self, message):
         
-        with open('profanity.txt', 'r') as file:
-            profanity_w = [profanity_w.strip(', ').lower() for profanity_w in file.read()]
-            
         if message.author.bot == True:
             return
         languagefilter = [719414661686099989]
         if message.guild.id in languagefilter:
             print('Recognized Moderated Server.')
-            if any(profanity_w in message.content.strip().lower() for profanity_w in profanity_w):
+            if any(profanity in message.content.strip().lower()):
                 print('Recognized Profanity in moderated Server.')
                 await message.delete()
                 await message.channel.send(f"{message.author.mention}, Please refrain from using profanity!")
