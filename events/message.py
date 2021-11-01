@@ -8,7 +8,7 @@ import random
 
 with open('profanity.txt', 'r') as file:
   global profanity
-  read_file = file.read()
+  read_file = file.readlines()
   #profanity = read_file.strip(', ').lower()
   profanity = read_file.strip().lower()
 
