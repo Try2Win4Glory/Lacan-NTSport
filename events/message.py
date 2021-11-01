@@ -23,7 +23,10 @@ class Events(commands.Cog):
         languagefilter = [719414661686099989]
         if message.guild.id in languagefilter:
             print('Recognized Moderated Server.')
-            if any(str(profanity) in str(message.content.strip().lower())):
+            print(f'Read File: {read_file}')
+            print(f'Profanity: {profanity}')
+            for x in profanity:
+              if x in message.content.strip().lower():
                 print('Recognized Profanity in moderated Server.')
                 await message.delete()
                 await message.channel.send(f"{message.author.mention}, Please refrain from using profanity!")
