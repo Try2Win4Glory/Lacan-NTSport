@@ -10,7 +10,7 @@ with open('profanity.txt', 'r') as file:
   global profanity
   read_file = file.read()
   #profanity = read_file.strip(', ').lower()
-  profanity = read_file.splitlines().lower()
+  profanity = read_file.strip().lower()
 
 class Events(commands.Cog):
     def __init__(self, client):
