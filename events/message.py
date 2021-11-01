@@ -25,8 +25,8 @@ class Events(commands.Cog):
             print('Recognized Moderated Server.')
             print(f'Read File: {read_file}')
             print(f'Profanity: {profanity}')
-            for x in profanity:
-              if x in message.content.strip().lower():
+            for word in profanity:
+              if word in message.content.lower():
                 print('Recognized Profanity in moderated Server.')
                 await message.delete()
                 await message.channel.send(f"{message.author.mention}, Please refrain from using profanity!")
