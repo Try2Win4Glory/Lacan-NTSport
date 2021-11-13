@@ -8,8 +8,9 @@ import random
 
 with open('profanity.txt', 'r') as file:
   global profanity
-  read_file = file.readlines()
-  profanity = read_file.split('\n')
+  #read_file = file.readlines()
+  #profanity = read_file
+  profanity = ['badword']
 
 class Events(commands.Cog):
     def __init__(self, client):
