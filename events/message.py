@@ -24,7 +24,7 @@ class Events(commands.Cog):
         languagefilter = [719414661686099989]
         if message.guild.id in languagefilter:
             print('Recognized Moderated Server.')
-            print(f'Read File: {read_file}')
+            #print(f'Read File: {read_file}')
             print(f'Profanity: {profanity}')
             for word in profanity:
               if word in message.content.lower():
