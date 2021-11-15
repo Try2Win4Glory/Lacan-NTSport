@@ -77,7 +77,7 @@ class Events(commands.Cog):
                 await ctx.author.add_roles(*roles_to_add)
                 
                 autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
-                embed=Embed(':white_check_mark: Updated Member', f'{member.mention}'s roles were automatically updated upon joining.')
+                embed=Embed(':white_check_mark: Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.')
                 return await autochannel.send(embed=embed.default_embed())
         
         try:
