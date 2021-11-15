@@ -1065,13 +1065,24 @@ class RacerClass:
             '''
             self.race_roles = ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
             self.race_zones = [(int(x.split('+')[0]),) if '+' in x else range(int(x.split('-')[0].strip().replace(' Races', '')), int(x.split('-')[1].strip().replace(' Races', ''))) for x in self.race_roles]
+            self.kotr_roles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
+            self.kotr_roles = self.kotr_roles.reverse()
             index = 0
             races = newdata['racesPlayed']
             for zone in self.race_zones:
                 if int(races) in zone:
-                    self.race_role = self.race_roles[index]
+                    self.race_role = self.kotr_roles[index]
                     break
                 index += 1
+            if self.membership == 'basic':
+            	self.gold_role = None
+            else:
+		self.gold_role = 'Gold Member'
+		if self.lifetime_gold == 'True':
+                    self.lifetime_gold_role = 'Lifetime Gold'
+		else:
+                    if self.lifetime_gold == 'True':
+			self.yearly_gold_role = 'Yearly Gold'
             self.friend_reqs_allowed = ':white_check_mark: ' if newdata['allowFriendRequests'] == 1 else ':negative_squared_cross_mark:'
             self.looking_for_team = ':white_check_mark: ' if newdata['lookingForTeam'] == 1 else ':negative_squared_cross_mark:'
 async def Racer(username):
