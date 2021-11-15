@@ -1063,17 +1063,68 @@ class RacerClass:
                 print(accuracy)
                 self.accuracy_role = '<75% Accuracy'
             '''
-            self.race_roles = ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
-            self.race_zones = [(int(x.split('+')[0]),) if '+' in x else range(int(x.split('-')[0].strip().replace(' Races', '')), int(x.split('-')[1].strip().replace(' Races', ''))) for x in self.race_roles]
+            '''self.race_roles = ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
+            self.race_zones = [(int(x.split('+')[0]),) if '+' in x else range(int(x.split('-')[0].strip().replace(' Races', '')), int(x.split('-')[1].strip().replace(' Races', ''))) for x in self.race_roles]'''
             self.kotr_roles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
             self.kotr_roles = self.kotr_roles.reverse()
-            index = 0
+            '''index = 0
             races = newdata['racesPlayed']
             for zone in self.race_zones:
                 if int(races) in zone:
-                    self.race_role = self.kotr_roles[index]
+                    self.race_role = self.race_roles[index]
                     break
-                index += 1
+                index += 1'''
+            if int(races) >= 500000:
+                self.race_role = self.kotr_roles[0]
+            elif int(races) >= 250000:
+                self.race_role = self.kotr_roles[1]
+            elif int(races) >= 200000:
+                self.race_role = self.kotr_roles[2]
+            elif int(races) >= 150000:
+                self.race_role = self.kotr_roles[3]
+            elif int(races) >= 125000:
+                self.race_role = self.kotr_roles[4]
+            elif int(races) >= 100000:
+                self.race_role = self.kotr_roles[5]
+            elif int(races) >= 75000:
+                self.race_role = self.kotr_roles[6]
+            elif int(races) >= 50000:
+                self.race_role = self.kotr_roles[7]
+            elif int(races) >= 40000:
+                self.race_role = self.kotr_roles[8]
+            elif int(races) >= 30000:
+                self.race_role = self.kotr_roles[9]
+            elif int(races) >= 20000:
+                self.race_role = self.kotr_roles[10]
+            elif int(races) >= 10000:
+                self.race_role = self.kotr_roles[11]
+            elif int(races) >= 5000:
+                self.race_role = self.kotr_roles[12]
+            elif int(races) >= 1000:
+                self.race_role = self.kotr_roles[13]
+            elif int(races) >= 500:
+                self.race_role = self.kotr_roles[14]
+            elif int(races) >= 100:
+                self.race_role = self.kotr_roles[15]
+            elif int(races) >= 0:
+                self.race_role = self.kotr_roles[16]
+	self.race_role.replace('500000+ Races', '"The Wild Legend"')
+            self.race_role.replace('250000-499999 Races', '"The Wild Legend"')
+            self.race_role.replace('200000-249999 Races', '"The Wild Legend"')
+            self.race_role.replace('150000-199999 Races', '"The Wild Legend"')
+            self.race_role.replace('125000-149999 Races', '"The Wild Legend"')
+            self.race_role.replace('100000-124999 Races', '"The Wild Legend"')
+            self.race_role.replace('75000-99999 Races', '"The Wild Legend"')
+            self.race_role.replace('50000-74999 Races', '"The Wild Legend"')
+            self.race_role.replace('40000-49999 Races', '"The Wild Legend"')
+            self.race_role.replace('30000-39999 Races', '"The Wild Legend"')
+            self.race_role.replace('20000-29999 Races', '"The Wild Legend"')
+            self.race_role.replace('10000-19999 Races', '"The Wild Legend"')
+            self.race_role.replace('5000-9999 Races', '"The Wild Legend"')
+            self.race_role.replace('1000-4999 Races', '"The Wild Legend"')
+            self.race_role.replace('500-999 Races', '"The Wild Legend"')
+            self.race_role.replace('100-499 Races', '"The Wild Legend"')
+            self.race_role.replace('0-99 Races', '"The Wild Legend"')
             if self.membership == 'basic':
             	self.gold_role = None
 		#self.lifetime_gold_role = None
