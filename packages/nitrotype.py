@@ -1108,23 +1108,7 @@ class RacerClass:
                 self.race_role = self.kotr_roles[15]
             elif int(races) >= 0:
                 self.race_role = self.kotr_roles[16]
-	self.race_role.replace('500000+ Races', '"The Wild Legend"')
-            self.race_role.replace('250000-499999 Races', '"The Wild Legend"')
-            self.race_role.replace('200000-249999 Races', '"The Wild Legend"')
-            self.race_role.replace('150000-199999 Races', '"The Wild Legend"')
-            self.race_role.replace('125000-149999 Races', '"The Wild Legend"')
-            self.race_role.replace('100000-124999 Races', '"The Wild Legend"')
-            self.race_role.replace('75000-99999 Races', '"The Wild Legend"')
-            self.race_role.replace('50000-74999 Races', '"The Wild Legend"')
-            self.race_role.replace('40000-49999 Races', '"The Wild Legend"')
-            self.race_role.replace('30000-39999 Races', '"The Wild Legend"')
-            self.race_role.replace('20000-29999 Races', '"The Wild Legend"')
-            self.race_role.replace('10000-19999 Races', '"The Wild Legend"')
-            self.race_role.replace('5000-9999 Races', '"The Wild Legend"')
-            self.race_role.replace('1000-4999 Races', '"The Wild Legend"')
-            self.race_role.replace('500-999 Races', '"The Wild Legend"')
-            self.race_role.replace('100-499 Races', '"The Wild Legend"')
-            self.race_role.replace('0-99 Races', '"The Wild Legend"')
+
             if self.membership == 'basic':
             	self.gold_role = None
 		#self.lifetime_gold_role = None
