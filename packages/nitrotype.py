@@ -1067,7 +1067,7 @@ class RacerClass:
             self.race_zones = [(int(x.split('+')[0]),) if '+' in x else range(int(x.split('-')[0].strip().replace(' Races', '')), int(x.split('-')[1].strip().replace(' Races', ''))) for x in self.race_roles]'''
             races = newdata['racesPlayed']
             kotr_roles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
-            kotr_roles = kotr_roles.reverse()
+            #kotr_roles = kotr_roles.reverse()
             '''index = 0
             races = newdata['racesPlayed']
             for zone in self.race_zones:
@@ -1076,39 +1076,39 @@ class RacerClass:
                     break
                 index += 1'''
             if int(races) >= 500000:
-                self.race_role = kotr_roles[0]
+                self.race_role = kotr_roles[16]
             elif int(races) >= 250000:
-                self.race_role = kotr_roles[1]
+                self.race_role = kotr_roles[15]
             elif int(races) >= 200000:
-                self.race_role = kotr_roles[2]
+                self.race_role = kotr_roles[14]
             elif int(races) >= 150000:
-                self.race_role = kotr_roles[3]
+                self.race_role = kotr_roles[13]
             elif int(races) >= 125000:
-                self.race_role = kotr_roles[4]
+                self.race_role = kotr_roles[12]
             elif int(races) >= 100000:
-                self.race_role = kotr_roles[5]
+                self.race_role = kotr_roles[11]
             elif int(races) >= 75000:
-                self.race_role = kotr_roles[6]
+                self.race_role = kotr_roles[10]
             elif int(races) >= 50000:
-                self.race_role = kotr_roles[7]
+                self.race_role = kotr_roles[9]
             elif int(races) >= 40000:
                 self.race_role = kotr_roles[8]
             elif int(races) >= 30000:
-                self.race_role = kotr_roles[9]
+                self.race_role = kotr_roles[7]
             elif int(races) >= 20000:
-                self.race_role = kotr_roles[10]
+                self.race_role = kotr_roles[6]
             elif int(races) >= 10000:
-                self.race_role = kotr_roles[11]
+                self.race_role = kotr_roles[5]
             elif int(races) >= 5000:
-                self.race_role = kotr_roles[12]
+                self.race_role = kotr_roles[4]
             elif int(races) >= 1000:
-                self.race_role = kotr_roles[13]
+                self.race_role = kotr_roles[3]
             elif int(races) >= 500:
-                self.race_role = kotr_roles[14]
+                self.race_role = kotr_roles[2]
             elif int(races) >= 100:
-                self.race_role = kotr_roles[15]
+                self.race_role = kotr_roles[1]
             elif int(races) >= 0:
-                self.race_role = kotr_roles[16]
+                self.race_role = kotr_roles[0]
 
             if self.membership == 'basic':
             	self.gold_role = None
