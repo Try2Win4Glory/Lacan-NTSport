@@ -137,6 +137,8 @@ class Events(commands.Cog):
                                 rolelist.append(role)
                     except:
                         pass
+            
+                    await member.add_roles(*roles_to_add)
 
                     autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
                     embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.\n\n__Added:__\n```{rolelist}```')
