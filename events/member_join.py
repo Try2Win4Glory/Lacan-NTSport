@@ -187,7 +187,7 @@ class Events(commands.Cog):
                     newnick = member.display_name
 
                     autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
-                    embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.\nThey are currenty linked to **[{username}](https://nitrotype.com/racer/{username})**.\n\nNickname: {oldnick} :arrow_right: {newnick}\n__Added:__\n```{rolelist}```')
+                    embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.\nThey are currenty linked to **[{username}](https://nitrotype.com/racer/{username})**.\n\nNickname: {oldnick} :arrow_right: {newnick}\n\n__Added:__\n```{rolelist}```')
                     await autochannel.send(embed=embed.default_embed())
                 except:
                     pass
