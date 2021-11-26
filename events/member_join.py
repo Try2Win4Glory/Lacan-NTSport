@@ -56,7 +56,7 @@ class Events(commands.Cog):
             rolelist = []
             #if str(member.guild.id) == server['serverID']:
             supportedservers = [719414661686099989, 763774963102122014]
-            if str(member.guild.id) in supportedservers:
+            if member.guild.id in supportedservers:
                 try:
                     try:
                         role = get(member.guild.roles, name='Registered')
