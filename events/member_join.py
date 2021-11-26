@@ -54,15 +54,7 @@ class Events(commands.Cog):
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for server in pdata['premium']:
             rolelist = []
-            #if str(member.guild.id) == server['serverID']:
-            supportedservers = [719414661686099989, 763774963102122014]
-            text_channel_list = []
-            for channel in member.guild.text_channels:
-                if channel.name == 'registration':
-                    sendto = channel
-                    send = True
-            #if member.guild.id in supportedservers:
-            if send == True:
+            if str(member.guild.id) == server['serverID']:
                 try:
                     try:
                         role = get(member.guild.roles, name='Registered')
@@ -194,20 +186,17 @@ class Events(commands.Cog):
                     
                     newnick = member.display_name
 
-                    #autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
+                    autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
                     embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.\nThey are currenty linked to **[{username}](https://nitrotype.com/racer/{username})**.\n\nNickname: {oldnick} :arrow_right: {newnick}\n__Added:__\n```{rolelist[name]}```')
-                    await sendto.send(embed=embed.default_embed())
+                    await autochannel.send(embed=embed.default_embed())
                 except:
                     pass
                 
         try:
             embed=Embed(f'Welcome to the server! :wave:', message)
-            #await channel.send(embed=embed.default_embed())
-            await sendto.send(embed=embed.default_embed())
+            await channel.send(embed=embed.default_embed())
         except:
             embed=Embed('Welcome to the server! :wave:', f'{member.mention} unfortunately isn\'t associated to a Nitro Type account yet. Please type `n.register` to start the registration process.')
-            #await channel.send(embed=embed.default_embed())
-            await sendto.send(embed=embed.default_embed())
-
+            await channel.send(embed=embed.default_embed())
 def setup(client):
     client.add_cog(Events(client))
