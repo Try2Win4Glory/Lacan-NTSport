@@ -53,7 +53,7 @@ class Events(commands.Cog):
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for server in pdata['premium']:
-            if str(ctx.author.guild.id) == server['serverID']:
+            if str(member.guild.id) == server['serverID']:
                 roles_to_add=[]
         
                 try:
