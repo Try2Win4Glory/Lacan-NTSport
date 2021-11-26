@@ -1115,15 +1115,11 @@ class RacerClass:
 		#self.lifetime_gold_role = None
 		#self.yearly_gold_role = None
             else:
-                try:
-                    get(ctx.message.guild.roles, name='Gold Member')
-                    self.gold_role = 'Gold Member'
-                except:
-                    self.gold_role = 'Gold Member'
-                    if self.lifetime_gold == True:
-                        self.gold_role = 'Lifetime Gold'
-                    else:
-                        self.gold_role = 'Yearly Gold'
+                self.classic_gold_role = 'Gold Member'
+                if self.lifetime_gold == True:
+                    self.gold_role = 'Lifetime Gold'
+                if self.lifetime_gold == False:
+                    self.gold_role = 'Yearly Gold'
             self.friend_reqs_allowed = ':white_check_mark: ' if newdata['allowFriendRequests'] == 1 else ':negative_squared_cross_mark:'
             self.looking_for_team = ':white_check_mark: ' if newdata['lookingForTeam'] == 1 else ':negative_squared_cross_mark:'
 async def Racer(username):
