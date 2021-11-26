@@ -59,32 +59,32 @@ class Events(commands.Cog):
         
                 try:
                     role = get(member.guild.roles, name=speed)
-                    await roles_to_add.append(role)
+                    roles_to_add.append(role)
                 except Exception as e:
                     print(e)
 
                 try:
                     role = get(member.guild.roles, name=races)
-                    await roles_to_add.append(role)
+                    roles_to_add.append(role)
                 except Exception as e:
                     print(e)
 
                 try:
                     role = get(member.guild.roles, name=gold)
-                    await roles_to_add.append(role)
+                    roles_to_add.append(role)
                 except Exception as e:
                     print(e)
-
-                await member.add_roles(*roles_to_add)
                 
+                await member.add_roles(*roles_to_add)
                 autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
-                embed=Embed(':white_check_mark: Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.')
-                return await autochannel.send(embed=embed.default_embed())
-        
+                embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.')
+                await autochannel.send(embed=embed.default_embed())
+                
         try:
             await channel.send(embed=embed.default_embed())
         except:
             embed=Embed('Welcome to the server! :wave:', f'{member.mention} unfortunately isn\'t associated to a Nitro Type account yet. Please type `n.register` to start the registration process.')
-            return await channel.send(embed=embed.default_embed())
+            await channel.send(embed=embed.default_embed())
+
 def setup(client):
     client.add_cog(Events(client))
