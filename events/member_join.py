@@ -89,6 +89,54 @@ class Events(commands.Cog):
                             rolelist.append(role)
                     except Exception as e:
                         print(e)
+                        
+                        
+                    #OTHER ROLES
+                    # NT Server Category Roles
+                    roles_to_add = []
+                    if member.guild.id in [564880536401870858]:
+                        role = get(member.guild.roles, id=654804415747850241)
+                        roles_to_add.append(role)
+                        role = get(member.guild.roles, id=654801298297847838)
+                        roles_to_add.append(role)
+                        role = get(member.guild.roles, id=654802074034503681)
+                        roles_to_add.append(role)
+                        rolelist.append('Category Roles')
+
+                    # Other Fun Roles  
+                    try:
+                        if int(racer.created_timestamp) <= 1430172000:
+                                role = get(member.guild.roles, name="v1 Veteran")
+                                if role != None:
+                                    roles_to_add.append(role)
+                                    rolelist.append(role)
+                    except:
+                        pass
+                    try:
+                        if int(racer.created_timestamp) > 1430172000 and racer.created_timestamp <= 1559685600:
+                                role = get(member.guild.roles, name="v2 Veteran")
+                                if role != None:
+                                    roles_to_add.append(role)
+                                    rolelist.append(role)
+                    except:
+                        pass
+                    try:
+                        if int(racer.longest_session_sessionist) >= 800:
+                                role = get(member.guild.roles, name="Sessionist")
+                                if role != None:
+                                    roles_to_add.append(role)
+                                    rolelist.append(role)
+                    except:
+                        pass
+
+                    try:
+                        if int(racer.popular_views) >= 10000:
+                            role=get(member.guild.roles, name="Popular")
+                            if role != None:
+                                roles_to_add.append(role)
+                                rolelist.append(role)
+                    except:
+                        pass
 
                     autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
                     embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.\n\n__Added:__\n```{rolelist}```')
