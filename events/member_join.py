@@ -1,6 +1,7 @@
 from discord.ext import commands
 from packages.utils import Embed
 from mongoclient import DBClient
+from discord.utils import get
 import discord
 from nitrotype import NT_to_discord
 class Events(commands.Cog):
@@ -74,7 +75,7 @@ class Events(commands.Cog):
                 except Exception as e:
                     print(e)
 
-                await ctx.author.add_roles(*roles_to_add)
+                await member.add_roles(*roles_to_add)
                 
                 autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
                 embed=Embed(':white_check_mark: Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.')
