@@ -48,39 +48,39 @@ class Events(commands.Cog):
         #message = message.replace('{{user.racer.accuracy}}', accuracy)
         message = message.replace('{{user.racer.races}}', races)
         message = message.replace('{{user.gold}}', gold)
-        embed=Embed(f'Welcome to the server! :wave:', message)
         
         dbclient = DBClient()
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for server in pdata['premium']:
             if str(member.guild.id) == server['serverID']:
-                roles_to_add=[]
-        
                 try:
-                    role = get(member.guild.roles, name=speed)
-                    roles_to_add.append(role)
-                except Exception as e:
-                    print(e)
+                    try:
+                        role = get(member.guild.roles, name=speed)
+                        await member.add_roles(role)
+                    except Exception as e:
+                        print(e)
 
-                try:
-                    role = get(member.guild.roles, name=races)
-                    roles_to_add.append(role)
-                except Exception as e:
-                    print(e)
+                    try:
+                        role = get(member.guild.roles, name=races)
+                        await member.add_roles(role)
+                    except Exception as e:
+                        print(e)
 
-                try:
-                    role = get(member.guild.roles, name=gold)
-                    roles_to_add.append(role)
-                except Exception as e:
-                    print(e)
-                
-                await member.add_roles(*roles_to_add)
-                autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
-                embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.')
-                await autochannel.send(embed=embed.default_embed())
+                    try:
+                        role = get(member.guild.roles, name=gold)
+                        await member.add_roles(role)
+                    except Exception as e:
+                        print(e)
+
+                    autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
+                    embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.')
+                    await autochannel.send(embed=embed.default_embed())
+                except:
+                    pass
                 
         try:
+            embed=Embed(f'Welcome to the server! :wave:', message)
             await channel.send(embed=embed.default_embed())
         except:
             embed=Embed('Welcome to the server! :wave:', f'{member.mention} unfortunately isn\'t associated to a Nitro Type account yet. Please type `n.register` to start the registration process.')
