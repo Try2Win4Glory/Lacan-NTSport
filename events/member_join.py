@@ -53,28 +53,45 @@ class Events(commands.Cog):
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for server in pdata['premium']:
+            rolelist = []
             if str(member.guild.id) == server['serverID']:
                 try:
                     try:
+                        role = get(member.guild.roles, name='Registered')
+                        await member.add_roles(role)
+                        rolelist.append(role)
+                    except Exception as e:
+                        print(e)
+                        
+                    try:
                         role = get(member.guild.roles, name=speed)
                         await member.add_roles(role)
+                        rolelist.append(role)
                     except Exception as e:
                         print(e)
 
                     try:
                         role = get(member.guild.roles, name=races)
                         await member.add_roles(role)
+                        rolelist.append(role)
                     except Exception as e:
                         print(e)
 
                     try:
-                        role = get(member.guild.roles, name=gold)
-                        await member.add_roles(role)
+                        try:
+                            role = get(member.guild.roles, name=gold)
+                            await member.add_roles(role)
+                            rolelist.append(role)
+                        except:
+                            gold = racer.classic_gold_role
+                            role = get(member.guild.roles, name=gold)
+                            await member.add_roles(role)
+                            rolelist.append(role)
                     except Exception as e:
                         print(e)
 
                     autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
-                    embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.')
+                    embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.\n\n__Added:__\n```{rolelist}```')
                     await autochannel.send(embed=embed.default_embed())
                 except:
                     pass
