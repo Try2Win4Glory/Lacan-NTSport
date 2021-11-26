@@ -112,24 +112,24 @@ class Events(commands.Cog):
                                 if role != None:
                                     roles_to_add.append(role)
                                     rolelist.append(role)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
                     try:
                         if int(racer.created_timestamp) > 1430172000 and racer.created_timestamp <= 1559685600:
                                 role = get(member.guild.roles, name="v2 Veteran")
                                 if role != None:
                                     roles_to_add.append(role)
                                     rolelist.append(role)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
                     try:
                         if int(racer.longest_session_sessionist) >= 800:
                                 role = get(member.guild.roles, name="Sessionist")
                                 if role != None:
                                     roles_to_add.append(role)
                                     rolelist.append(role)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
 
                     try:
                         if int(racer.popular_views) >= 10000:
@@ -137,54 +137,54 @@ class Events(commands.Cog):
                             if role != None:
                                 roles_to_add.append(role)
                                 rolelist.append(role)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
                     
                     #Other fun roles
                     try:
                         if int(racer.nitro_enthusiast) >= 10000:
                             role = get(member.guild.roles, name="Nitro Enthusiast")
                             if role != None:
-                                roles_to_add.append(role)
+                                await member.add_roles(role)
                                 rolelist.append(role)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
                     try:
                         if int(racer.car_collector) >= 200:
                             role = get(member.guild.roles, name="Car Collector")
                             if role != None:
-                                roles_to_add.append(role)
+                                await member.add_roles(role)
                                 rolelist.append(role)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
                     try:
                         if int(racer.high_speed)-int(racer.average_speed) >= 50:
                             role = get(member.guild.roles, name="Undulation Master")
                             if role != None:
-                                roles_to_add.append(role)
+                                await member.add_roles(role)
                                 rolelist.append(role)
-                    except:
-                            pass
+                    except Exception as e:
+                        print(e)
                     try:
                         if int(racer.high_speed)-int(racer.average_speed) <= 25:
                             role = get(member.guild.roles, name="Try Hard")
                             if role != None:
-                                roles_to_add.append(role)
+                                await member.add_roles(role)
                                 rolelist.append(role)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
             
                     try:
                         await member.add_roles(*roles_to_add)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
                     
                     oldnick = member.display_name
                     
                     try:
                         await member.edit(nick=racer.tag+' ' +racer.name)
-                    except:
-                        pass
+                    except Exception as e:
+                        print(e)
                     
                     newnick = member.display_name
 
