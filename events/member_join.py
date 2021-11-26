@@ -54,7 +54,9 @@ class Events(commands.Cog):
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for server in pdata['premium']:
             rolelist = []
-            if str(member.guild.id) == server['serverID']:
+            #if str(member.guild.id) == server['serverID']:
+            supportedservers = [719414661686099989, 763774963102122014]
+            if str(member.guild.id) in supportedservers:
                 try:
                     try:
                         role = get(member.guild.roles, name='Registered')
@@ -137,14 +139,57 @@ class Events(commands.Cog):
                                 rolelist.append(role)
                     except:
                         pass
+                    
+                    #Other fun roles
+                    try:
+                        if int(racer.nitro_enthusiast) >= 10000:
+                            role = get(member.guild.roles, name="Nitro Enthusiast")
+                            if role != None:
+                                roles_to_add.append(role)
+                                rolelist.append(role)
+                    except:
+                        pass
+                    try:
+                        if int(racer.car_collector) >= 200:
+                            role = get(member.guild.roles, name="Car Collector")
+                            if role != None:
+                                roles_to_add.append(role)
+                                rolelist.append(role)
+                    except:
+                        pass
+                    try:
+                        if int(racer.high_speed)-int(racer.average_speed) >= 50:
+                            role = get(member.guild.roles, name="Undulation Master")
+                            if role != None:
+                                roles_to_add.append(role)
+                                rolelist.append(role)
+                    except:
+                            pass
+                    try:
+                        if int(racer.high_speed)-int(racer.average_speed) <= 25:
+                            role = get(member.guild.roles, name="Try Hard")
+                            if role != None:
+                                roles_to_add.append(role)
+                                rolelist.append(role)
+                    except:
+                        pass
             
                     try:
                         await member.add_roles(*roles_to_add)
                     except:
                         pass
+                    
+                    oldnick = member.display_name
+                    
+                    try:
+                        await member.edit(nick=racer.tag+' ' +racer.name)
+                    except:
+                        pass
+                    
+                    newnick = member.display_name
 
                     autochannel = discord.utils.get(self.client.get_all_channels(), id=channel_id)
-                    embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.\n\n__Added:__\n```{rolelist}```')
+                    embed=Embed(':white_check_mark:  Updated Member', f'{member.mention}\'s roles were automatically updated upon joining.\nThey are currenty linked to **[{username}](https://nitrotype.com/racer/{username})**.\n\nNickname: {oldnick} :arrow_right: {newnick}\n__Added:__\n```{rolelist[name]}```')
                     await autochannel.send(embed=embed.default_embed())
                 except:
                     pass
