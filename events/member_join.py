@@ -58,19 +58,19 @@ class Events(commands.Cog):
                 roles_to_add=[]
         
                 try:
-                    role = get(ctx.message.guild.roles, name=speed)
+                    role = get(guild.roles, name=speed)
                     await roles_to_add.append(role)
                 except Exception as e:
                     print(e)
 
                 try:
-                    role = get(ctx.message.guild.roles, name=races)
+                    role = get(guild.roles, name=races)
                     await roles_to_add.append(role)
                 except Exception as e:
                     print(e)
 
                 try:
-                    role = get(ctx.message.guild.roles, name=gold)
+                    role = get(guild.roles, name=gold)
                     await roles_to_add.append(role)
                 except Exception as e:
                     print(e)
