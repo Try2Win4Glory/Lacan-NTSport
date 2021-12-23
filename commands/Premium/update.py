@@ -468,14 +468,14 @@ class Command(commands.Cog):
             await embed.send(ctx)
             user = await ctx.guild.fetch_member(ctx.author.id)
             try:
-                welcomedm=Embed('Welcome!', f'Welcome to the server, <@{ctx.author.id}>. This is the main chat. Be certain to read <#564881321038446622> if you have not already. You can access giveaways at level 10 in server activity, or by donating $ 10,000,000 (if you have gold). Besides that, have fun!')
+                welcomedm = discord.Embed(title='Welcome!', description=f'Welcome to the server, <@{ctx.author.id}>. :wave: <#564902600835858453> is the main chat. Be certain to read <#564881321038446622> if you have not already. You can access giveaways at level 10 in server activity, or by donating $ 10,000,000 (if you have gold). Besides that, have fun!', color=0xFF6347)
                 await user.send(welcomedm)
             except:
                 try:
                     channel = discord.utils.get(client.get_all_channels(), id=564881373039689735)
-                    welcomedm=Embed(':warning:  Failed to send DM', f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `!welcome`.')
-                    await channel.send(welcomedm)
-                except:
-                    pass
+                    welcomeerror = discord.Embed(title=':warning:  Failed to send DM', description=f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `!welcome`.', color=0xFF6347)
+                    await channel.send(welcomeerror)
+                except Exception as e:
+                    print(e)
 def setup(client):
     client.add_cog(Command(client))
