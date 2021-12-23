@@ -465,10 +465,17 @@ class Command(commands.Cog):
                       embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
                       return await embed.send(ctx)
             embed = Embed('<a:Check:797009550003666955>  Success!', 'Successfully updated your roles and nickname!')        
-            if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
-                embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
-            else:
-                embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
             await embed.send(ctx)
+            user = await ctx.guild.fetch_member(ctx.author.id)
+            try:
+                welcomedm=Embed('Welcome!', f'Welcome to the server, <@{ctx.author.id}>. This is the main chat. Be certain to read <#564881321038446622> if you have not already. You can access giveaways at level 10 in server activity, or by donating $ 10,000,000 (if you have gold). Besides that, have fun!')
+                await user.send(welcomedm)
+            except:
+                try:
+                    channel = discord.utils.get(client.get_all_channels(), id=564881373039689735)
+                    welcomedm=Embed(':warning:  Failed to send DM', f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `!welcome`.')
+                    await channel.send(welcomedm)
+                except:
+                    pass
 def setup(client):
     client.add_cog(Command(client))
