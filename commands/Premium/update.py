@@ -11,6 +11,7 @@ from datetime import date
 import random
 from mongoclient import DBClient
 from nitrotype import get_username
+import discord
 class Command(commands.Cog):
 
     def __init__(self, client):
