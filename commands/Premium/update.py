@@ -469,19 +469,20 @@ class Command(commands.Cog):
             embed = Embed('<a:Check:797009550003666955>  Success!', 'Successfully updated your roles and nickname!')        
             await embed.send(ctx)
             if ctx.guild.id in [564880536401870858]:
-                user = await ctx.guild.fetch_member(ctx.author.id)
-                try:
-                    welcomedm = discord.Embed(title=':wave:  Welcome!', description=f'Welcome to the server, <@{ctx.author.id}>. :grinning: \n\n:speech_left: **Chat:** :speech_left:\n<#564902600835858453> is the main chat. \n\n:information_source: **Information:** :information_source:\nBe certain to read <#564881321038446622> if you have not already. \n\n:tada: **Giveaways:** :tada:\nYou can access giveaways at level 10 in server activity, or by donating $ 10,000,000 (if you have gold). \n\nBesides that, have fun! :partying_face:', color=0xFF6347)
-                    welcomedm.set_footer(text="Nitro Type Discord")
-                    await user.send(embed=welcomedm)
-                except:
+                if ctx.channel.id in [564881373039689735]:
+                    user = await ctx.guild.fetch_member(ctx.author.id)
                     try:
-                        client = self.client
-                        channel = discord.utils.get(client.get_all_channels(), id=564881373039689735)
-                        welcomeerror = discord.Embed(title=':warning:  Failed to send DM', description=f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `!welcome`.', color=0xFF6347)
-                        welcomeerror.set_footer(text="Manual greeting")
-                        await channel.send(embed=welcomeerror)
-                    except Exception as e:
-                        print(e)
+                        welcomedm = discord.Embed(title=':wave:  Welcome!', description=f'Welcome to the server, <@{ctx.author.id}>. :grinning: \n\n:speech_left: **Chat:** :speech_left:\n<#564902600835858453> is the main chat. \n\n:information_source: **Information:** :information_source:\nBe certain to read <#564881321038446622> if you have not already. \n\n:tada: **Giveaways:** :tada:\nYou can access giveaways at level 10 in server activity, or by donating $ 10,000,000 (if you have gold). \n\nBesides that, have fun! :partying_face:', color=0xFF6347)
+                        welcomedm.set_footer(text="Nitro Type Discord")
+                        await user.send(embed=welcomedm)
+                    except:
+                        try:
+                            client = self.client
+                            channel = discord.utils.get(client.get_all_channels(), id=564881373039689735)
+                            welcomeerror = discord.Embed(title=':warning:  Failed to send DM', description=f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `!welcome`.', color=0xFF6347)
+                            welcomeerror.set_footer(text="Manual greeting")
+                            await channel.send(embed=welcomeerror)
+                        except Exception as e:
+                            print(e)
 def setup(client):
     client.add_cog(Command(client))
