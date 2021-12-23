@@ -12,6 +12,7 @@ import random
 from mongoclient import DBClient
 from nitrotype import get_username
 import discord
+from discord import Message
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -470,12 +471,13 @@ class Command(commands.Cog):
             user = await ctx.guild.fetch_member(ctx.author.id)
             try:
                 welcomedm = discord.Embed(title='Welcome!', description=f'Welcome to the server, <@{ctx.author.id}>. :wave: <#564902600835858453> is the main chat. Be certain to read <#564881321038446622> if you have not already. You can access giveaways at level 10 in server activity, or by donating $ 10,000,000 (if you have gold). Besides that, have fun!', color=0xFF6347)
-                await user.send(welcomedm)
+                await user.send(embed=welcomedm)
             except:
                 try:
+                    client = self.client
                     channel = discord.utils.get(client.get_all_channels(), id=564881373039689735)
                     welcomeerror = discord.Embed(title=':warning:  Failed to send DM', description=f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `!welcome`.', color=0xFF6347)
-                    await channel.send(welcomeerror)
+                    await channel.send(embed=welcomeerror)
                 except Exception as e:
                     print(e)
 def setup(client):
