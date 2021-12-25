@@ -479,7 +479,7 @@ class Command(commands.Cog):
                         try:
                             client = self.client
                             channel = discord.utils.get(client.get_all_channels(), id=564881373039689735)
-                            welcomeerror = discord.Embed(title=':warning:  Failed to send DM', description=f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `!welcome`.', color=0xFF6347)
+                            welcomeerror = discord.Embed(title=':warning:  Failed to send DM', description=f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `;welcome <@{ctx.author.id}>`.', color=0xFF6347)
                             welcomeerror.set_footer(text="Manual greeting")
                             await channel.send(embed=welcomeerror)
                         except Exception as e:
