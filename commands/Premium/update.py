@@ -11,6 +11,8 @@ from datetime import date
 import random
 from mongoclient import DBClient
 from nitrotype import get_username
+import discord
+from discord import Message
 class Command(commands.Cog):
 
     def __init__(self, client):
@@ -465,10 +467,22 @@ class Command(commands.Cog):
                       embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
                       return await embed.send(ctx)
             embed = Embed('<a:Check:797009550003666955>  Success!', 'Successfully updated your roles and nickname!')        
-            if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
-                embed.footer('This command is a premium 💠 only command. Run n.premium to learn more about premium.','https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
-            else:
-                embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \nThis command is a premium 💠 only command.', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
             await embed.send(ctx)
+            if ctx.guild.id in [564880536401870858]:
+                if ctx.channel.id in [564881373039689735]:
+                    user = await ctx.guild.fetch_member(ctx.author.id)
+                    try:
+                        welcomedm = discord.Embed(title=':wave:  Welcome!', description=f'Welcome to the server, <@{ctx.author.id}>. :grinning: \n\n:speech_left: **Chat:** :speech_left:\n<#564902600835858453> is the main chat. \n\n:information_source: **Information:** :information_source:\nBe certain to read <#564881321038446622> if you have not already. \n\n:tada: **Giveaways:** :tada:\nYou can access giveaways at level 10 in server activity, or by donating $ 10,000,000 (if you have gold). \n\nBesides that, have fun! :partying_face:', color=0xFF6347)
+                        welcomedm.set_footer(text="Nitro Type Discord")
+                        await user.send(embed=welcomedm)
+                    except:
+                        try:
+                            client = self.client
+                            channel = discord.utils.get(client.get_all_channels(), id=564881373039689735)
+                            welcomeerror = discord.Embed(title=':warning:  Failed to send DM', description=f'<@{ctx.author.id}> has their Direct Messages turned off.\nPlease manually greet them with Dyno by using `;welcome <@{ctx.author.id}>`.', color=0xFF6347)
+                            welcomeerror.set_footer(text="Manual greeting")
+                            await channel.send(embed=welcomeerror)
+                        except Exception as e:
+                            print(e)
 def setup(client):
     client.add_cog(Command(client))
