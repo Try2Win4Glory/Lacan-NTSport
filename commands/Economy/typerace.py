@@ -67,7 +67,7 @@ class Command(commands.Cog):
         await ctx.send(file=file, embed=embed.default_embed())
         def check(message: discord.Message):
             message.author.id == ctx.author.id
-            message.channel.id == channel.id
+            message.channel == ctx.channel
             return
         start = round(time.time())
         try:
@@ -78,7 +78,7 @@ class Command(commands.Cog):
         list_of_lacans = ['<:lacan_economy_1:801006407536607262>','<:lacan_economy_2:801004873612132382>','<:lacan_economy_3:801004873214722079>','<:lacan_economy_4:801004868126113822>','<:lacan_economy_5:801004868348936203>','<:lacan_economy_6:801004863433605160>','<:lacan_economy_7:801004870643220481>','<:lacan_economy_8:801004872820457483>','<:lacan_economy_9:801004872417804298>','<:lacan_economy_10:801004872811413514>']
         random_lacan = random.choice(list_of_lacans)
         channels = self.client.get_all_channels()
-        channel = get(channels, id=803879362226946088)
+        #channel = get(channels, id=message.channel)
         green =0x40AC7B
         red = 0xE84444
         orange = 0xF09F19
