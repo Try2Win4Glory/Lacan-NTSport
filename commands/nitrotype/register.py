@@ -39,7 +39,7 @@ class Command(commands.Cog):
         #dbdata = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": dbkey}).text)
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        dbdata = await dbclient.get_array(collection, {})
+        '''dbdata = await dbclient.get_array(collection, {})
         async for x in dbdata:
             if str(ctx.author.id) == x['userID']:
                 embed = Embed('Error!', 'You\'ve already registered!\nRun `n.verify` to check if you already verified your identity and in case this is a premium :diamond_shape_with_a_dot_inside: server and you are already verified, run `n.update` to update your roles.', 'warning')
@@ -48,8 +48,24 @@ class Command(commands.Cog):
             if user == x['NTuser']:
                         embed = Embed('Error!', 'Someone is already registered to this account!\nFor more information on who is registered to **'+x['NTuser']+'**, run `n.id '+x['NTuser']+'`.', 'warning')
                         await embed.send(ctx)
-                        return
-        else:
+                        return'''
+        check = False
+        try:
+            discordidsearch = ctx.author.id
+            discordiddata = await collection.find_one({"userID":discordidsearch})
+            for x in discordiddata:
+                embed = Embed('Error!', 'You\'ve already registered!\nRun `n.verify` to check if you already verified your identity and in case this is a premium :diamond_shape_with_a_dot_inside: server and you are already verified, run `n.update` to update your roles.', 'warning')
+                return await embed.send(ctx)
+            usernamesearch = racer.username.lower()
+            usernamedata = await collection.find_one({"NTuser":usernamesearch})
+            for x in usernamedata:
+                embed = Embed('Error!', 'Someone is already registered to this account!\nFor more information on who is registered to **'+x['NTuser']+'**, run `n.id '+x['NTuser']+'`.', 'warning')
+                return await embed.send(ctx)
+            check = True
+        except Exception as e:
+            print(e)
+            return
+        if check == True:
             await dbclient.create_doc(collection, {"userID": str(ctx.author.id), "NTuser": racer.username.lower(), "verified": "false"})
             #if json.loads(requests.post('https://test-db.nitrotypers.repl.co', data={"key": dbkey, "data": json.dumps(dbdata)}).text)['success'] == 'true':
         dbclient = DBClient()
@@ -59,7 +75,10 @@ class Command(commands.Cog):
         await embed.send(ctx)
         try:
             channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-            channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+            dontlog = [505338178287173642]
+            if ctx.author.id not in dontlog:
+                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
             embed = Embed(':regional_indicator_r:  Register', f'<@{str(ctx.author.id)}> registered.', color=0x00ff00)
             embed.field('ID', f'`{str(ctx.author.id)}`')
             embed.field('Linked Account', f'`{user}`')
@@ -67,7 +86,9 @@ class Command(commands.Cog):
             embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
             embed.field('Guild', f'`{str(ctx.guild.name)}`')
             msg1 = await channel1.send(embed=embed.default_embed())
-            msg2 = await channel2.send(embed=embed.default_embed())
+            if ctx.author.id not in dontlog:
+                    msg2 = await channel2.send(embed=embed.default_embed())
+                    msg3 = await channel3.send(embed=embed.defailt_embed())
         except:
             print('Couldn\'t log register.')
 def setup(client):
