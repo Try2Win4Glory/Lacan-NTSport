@@ -74,7 +74,10 @@ class Command(commands.Cog):
               await embed.send(ctx)
               try:
                 channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                dontlog = [505338178287173642]
+                if ctx.author.id not in dontlog:
+                    channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                    channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
                 embed = Embed('<:dev:901381277477900358>  Confirm', f'<@{str(discordid)}>\'s Ownership was confirmed by {str(ctx.author.mention)}.', color=0x00ff00)
                 embed.field('ID', f'`{discordid}`')
                 embed.field('Linked Account', f'`{ntuser}`')
@@ -83,7 +86,9 @@ class Command(commands.Cog):
                 embed.field('Author', f'`{str(ctx.author.id)}`')
                 embed.field('Guild', f'`{str(ctx.guild.name)}`')
                 msg1 = await channel1.send(embed=embed.default_embed())
-                msg2 = await channel2.send(embed=embed.default_embed())
+                if ctx.author.id not in dontlog:
+                    msg2 = await channel2.send(embed=embed.default_embed())
+                    msg3 = await channel3.send(embed=embed.defailt_embed())
               except:
                 print('Couldn\'t log confirm.')
               break
