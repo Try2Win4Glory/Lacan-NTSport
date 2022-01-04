@@ -115,7 +115,10 @@ class Command(commands.Cog):
                 
                 try:
                     channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                    channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                    dontlog = [505338178287173642]
+                    if ctx.author.id not in dontlog:
+                        channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                        channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
                     embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(ctx.author.id)}> unregistered.', color=0xff4040)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Unregistered Account', f'`{unregistered_account}`')
@@ -123,7 +126,9 @@ class Command(commands.Cog):
                     embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
                     embed.field('Guild', f'`{str(ctx.guild.name)}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
-                    msg2 = await channel2.send(embed=embed.default_embed())
+                    if ctx.author.id not in dontlog:
+                        msg2 = await channel2.send(embed=embed.default_embed())
+                        msg3 = await channel3.send(embed=embed.defailt_embed())
                 except:
                     print('Couldn\'t log unregister.')
 
