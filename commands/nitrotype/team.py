@@ -85,7 +85,7 @@ class Command(commands.Cog):
         except IndexError:
             pass
         embed.field('Leaders', leaders)
-        if {info['otherRequirements']} != '""':
+        if {info['otherRequirements']} != "":
             embed.field('Description', f" {info['otherRequirements']}")
         else:
             embed.field('Description', 'No description for this team exists! :(')
