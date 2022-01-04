@@ -85,10 +85,11 @@ class Command(commands.Cog):
         except IndexError:
             pass
         embed.field('Leaders', leaders)
-        if {info['otherRequirements']} != "":
-            embed.field('Description', f" {info['otherRequirements']}")
+        otherreqs = info['otherRequirements']
+        if otherreqs:
+            embed.field('Description', f"{otherreqs}")
         else:
-            embed.field('Description', 'No description for this team exists! :(')
+            embed.field('Description', 'No description for this team exists.')
         #team stats
         try:
           embed.field('Stats', f":trophy: **Daily**\n{team.daily_races} races ({round(int(team.daily_speed), 2)} wpm, {round(team.daily_accuracy, 2)}% acc)\n{round(team.daily_points, 2)} points\n:trophy: **Season**\n{team.season_races} races ({round(int(team.season_speed), 2)} wpm, {round(team.season_accuracy, 2)}% acc)\n{round(team.season_points, 2)} points\n:trophy: **All-Time**\n{team.alltime_races} races ({round(int(team.alltime_speed), 2)} wpm, {round(team.alltime_accuracy, 2)}% acc)\n{round(team.alltime_points, 2)} points")
