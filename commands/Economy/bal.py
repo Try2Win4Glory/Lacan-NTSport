@@ -18,7 +18,7 @@ class Command(commands.Cog):
         list_of_lacans = ['<:lacan_economy_1:801006407536607262>','<:lacan_economy_2:801004873612132382>','<:lacan_economy_3:801004873214722079>','<:lacan_economy_4:801004868126113822>','<:lacan_economy_5:801004868348936203>','<:lacan_economy_6:801004863433605160>','<:lacan_economy_7:801004870643220481>','<:lacan_economy_8:801004872820457483>','<:lacan_economy_9:801004872417804298>','<:lacan_economy_10:801004872811413514>']
         random_lacan = random.choice(list_of_lacans)
         channels = self.client.get_all_channels()
-        channel = get(channels, id=803938544175284244)
+        #channel = get(channels, id=803938544175284244)
         green =0x40AC7B
         red = 0xE84444
         orange = 0xF09F19
@@ -34,10 +34,15 @@ class Command(commands.Cog):
             data = d
             break
         try:
+            user = await self.client.fetch_user(userid)
+        except:
+            embed=Embed(':warning:  Error!', 'Please use a valid Discord User in order to execute this command.')
+            return await embed.send(ctx)
+        try:
             if userid == ctx.author.id:
                 embed = Embed('Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
             else:
-                embed = Embed('Balance', f'<@{userid}> has **{data["points"]}** {random_lacan}.', 'moneybag')
+                embed = Embed('Balance', f'<@{user.id}> has **{data["points"]}** {random_lacan}.', 'moneybag')
         except:
             userid = ''.join(list(userid)[2:-1])
             data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
@@ -48,7 +53,7 @@ class Command(commands.Cog):
                 if userid == ctx.author.id:
                     embed = Embed('Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
                 else:
-                    embed = Embed('Balance', f'<@{userid}> has **{data["points"]}** {random_lacan}.', 'moneybag')
+                    embed = Embed('Balance', f'<@{user.id}> has **{data["points"]}** {random_lacan}.', 'moneybag')
             except:
                 userid = ''.join(list(userid)[1:])
                 data = await dbclient.get_array(collection, {'$and': [{'userid': userid}, {'userid': userid}]})
@@ -59,12 +64,12 @@ class Command(commands.Cog):
                     if userid == ctx.author.id:
                         embed = Embed('Balance', f'You have **{data["points"]}** {random_lacan}.', 'moneybag')
                     else:
-                        embed = Embed('Balance', f'<@{userid}> has **{data["points"]}** {random_lacan}.', 'moneybag')
+                        embed = Embed('Balance', f'<@{user.id}> has **{data["points"]}** {random_lacan}.', 'moneybag')
                 except:
                     if userid == ctx.author.id:
                         embed = Embed('Error!', f'You don\'t have any {random_lacan}!', 'warning')
                     else:
-                        embed = Embed('Error!', f'<@{userid}> doesn\'t have any {random_lacan}!', 'warning')
+                        embed = Embed('Error!', f'<@{user.id}> doesn\'t have any {random_lacan}!', 'warning')
         return await embed.send(ctx)
 def setup(client):
     client.add_cog(Command(client))
