@@ -53,12 +53,14 @@ class Command(commands.Cog):
         try:
             discordidsearch = ctx.author.id
             discordiddata = await collection.find_one({"userID":discordidsearch})
-            for x in discordiddata:
+            #async for x in discordiddata:
+            if discordiddata != None:
                 embed = Embed('Error!', 'You\'ve already registered!\nRun `n.verify` to check if you already verified your identity and in case this is a premium :diamond_shape_with_a_dot_inside: server and you are already verified, run `n.update` to update your roles.', 'warning')
                 return await embed.send(ctx)
             usernamesearch = racer.username.lower()
             usernamedata = await collection.find_one({"NTuser":usernamesearch})
-            for x in usernamedata:
+            #async for x in usernamedata:
+            if usernamedata != None:
                 embed = Embed('Error!', 'Someone is already registered to this account!\nFor more information on who is registered to **'+x['NTuser']+'**, run `n.id '+x['NTuser']+'`.', 'warning')
                 return await embed.send(ctx)
             check = True
