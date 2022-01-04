@@ -65,9 +65,9 @@ class Command(commands.Cog):
         file = discord.File("text.png", filename="text.png")
         embed.image(url="attachment://text.png")
         await ctx.send(file=file, embed=embed.default_embed())
-        def check(message: discord.Message):
+        def check(message: discord.Message, channel: discord.Channel):
             message.author.id == ctx.author.id
-            message.channel.id == ctx.channel.id
+            message.channel.id == channel.id
             return
         start = round(time.time())
         try:
