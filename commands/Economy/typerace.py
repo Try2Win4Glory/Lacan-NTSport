@@ -67,7 +67,7 @@ class Command(commands.Cog):
         await ctx.send(file=file, embed=embed.default_embed())
         def check(message: discord.Message):
             message.author.id == ctx.author.id
-            message.channel == ctx.channel
+            message.channel.id == ctx.channel.id
             return
         start = round(time.time())
         try:
