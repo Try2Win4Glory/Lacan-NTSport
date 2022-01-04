@@ -33,6 +33,11 @@ class Command(commands.Cog):
         async for d in data:
             data = d
             break
+        
+        userid = userid.replace("<@", "")
+        userid = userid.replace("!", "")
+        userid = userid.replace(">", "")
+        
         try:
             user = await self.client.fetch_user(userid)
         except:
