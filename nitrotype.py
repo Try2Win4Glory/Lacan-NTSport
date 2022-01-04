@@ -253,7 +253,8 @@ async def check_perms(userid, perms: dict):
 async def get_all_cars():
     requests = cloudscraper.create_scraper()
     text = requests.get('https://www.nitrotype.com/index/d8dad03537419610ef21782a075dde2d94c465c61266-1266/bootstrap.js').text
-    result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+.*\]', text).group()
+    #result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+.*\]', text).group()
+    result = re.search(r'(\[\{\"id\"\:\d+,\"carID\":\d+.*\]\])(?:,\[\"P)', text).group(1)
     data = '{"list": '+''.join(list(result)[:-1])+'}'
     data = json.loads(data)
     return data
