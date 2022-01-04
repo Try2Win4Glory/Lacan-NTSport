@@ -1173,7 +1173,7 @@ class Guesser:
         loop = asyncio.get_event_loop()
         fut = scraper.get(f'https://www.nitrotype.com/index//bootstrap.js')
         text = fut.text
-        result = re.search(r'\[\{\"id\"\:\d+,\"carID\":\d+.*\]', text).group(1)
+        result = re.search(r'(\[\{\"id\"\:\d+,\"carID\":\d+.*\]\])(?:,\[\"P)', text).group(1)
         data = json.loads('{"list": '+''.join(list(result)[:-1])+'}')
         scars = data['list']
         correct_car = choice(scars)
