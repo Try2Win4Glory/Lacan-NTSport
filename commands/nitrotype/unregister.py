@@ -84,7 +84,7 @@ class Command(commands.Cog):
         try:
             discordidsearch = ctx.author.id
             discordiddata = await collection.find_one({"userID":str(discordidsearch)})
-            unregistered_account = discordiddata["NTUser"]
+            unregistered_account = discordiddata["NTuser"]
             
             # No account associated.
             if discordiddata == None:
