@@ -84,14 +84,15 @@ class Command(commands.Cog):
         try:
             discordidsearch = ctx.author.id
             discordiddata = await collection.find_one({"userID":str(discordidsearch)})
-            unregistered_account = discordiddata["NTuser"]
             
             # No account associated.
             if discordiddata == None:
                 embed=Embed(':warning:  Error!', f'No associated account was found for {ctx.author.mention}.')
                 return await embed.send(ctx)
+            # Current associated account.
+            unregistered_account = discordiddata["NTuser"]
         except Exception as e:
-            embed=Embed(':warning:  Something doesn\'t seem right...', 'An unexpected error occured. Please try again later.')
+            embed=Embed(':warning:  Something doesn\'t seem right...', 'An unexpected error occured while trying to disconnect your nitrotype account. Please try again later.')
             await embed.send(ctx)
             print(e)
             return
@@ -108,7 +109,7 @@ class Command(commands.Cog):
             if premiumiddata != None:
                 premiumserver = True
         except Exception as e:
-            embed=Embed(':warning:  Something doesn\'t seem right...', 'An unexpected error occured. Please try again later.')
+            embed=Embed(':warning:  Something doesn\'t seem right...', 'An unexpected error occured while trying to remove your roles. Please try again later.')
             await embed.send(ctx)
             print(e)
             return
