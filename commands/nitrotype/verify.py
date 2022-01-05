@@ -76,7 +76,10 @@ class Command(commands.Cog):
                 await embed.send(ctx)
                 try:
                     channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                    channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                    dontlog = [505338178287173642]
+                    if ctx.author.id not in dontlog:
+                        channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                        channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
                     embed = Embed(':regional_indicator_v:  Verify', f'Verification process started by {str(ctx.author.mention)}.', color=0x00ff00)
                     embed.field('ID', f'`{str(ctx.author.id)}`')
                     embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
@@ -86,7 +89,9 @@ class Command(commands.Cog):
                     embed.field('Verification Type', f'`{changeto_type}`')
                     embed.field('Verification Change', f'`{changeto}`')
                     msg1 = await channel1.send(embed=embed.default_embed())
-                    msg2 = await channel2.send(embed=embed.default_embed())
+                    if ctx.author.id not in dontlog:
+                        msg2 = await channel2.send(embed=embed.default_embed())
+                        msg3 = await channel3.send(embed=embed.default_embed())
                 except:
                     print('Couldn\'t log verification start.')
                 # Set Database Elements
@@ -111,7 +116,10 @@ class Command(commands.Cog):
                         await embed.send(ctx)
                         try:
                             channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                            channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                            dontlog = [505338178287173642]
+                            if ctx.author.id not in dontlog:
+                                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                                channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
                             embed = Embed(':white_check_mark:  Verify', f'Verification attempt by {str(ctx.author.mention)} suceeded.', color=0x00ff00)
                             embed.field('ID', f'`{str(ctx.author.id)}`')
                             embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
@@ -121,7 +129,9 @@ class Command(commands.Cog):
                             embed.field('Verification Type', f'`{dbdata["ChangeToType"]}`')
                             embed.field('Verification Change', f'`{dbdata["ChangeTo"]}`')
                             msg1 = await channel1.send(embed=embed.default_embed())
-                            msg2 = await channel2.send(embed=embed.default_embed())
+                            if ctx.author.id not in dontlog:
+                                msg2 = await channel2.send(embed=embed.default_embed())
+                                msg3 = await channel3.send(embed=embed.default_embed())
                         except:
                             print('Couldn\'t log verification success.')
                         # Update Database
@@ -135,7 +145,10 @@ class Command(commands.Cog):
                         await embed.send(ctx)
                         try:
                             channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                            channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                            dontlog = [505338178287173642]
+                            if ctx.author.id not in dontlog:
+                                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                                channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
                             embed = Embed(':x:  Verify', f'Verification attempt by {str(ctx.author.mention)} failed.', color=0xffaa00)
                             embed.field('ID', f'`{str(ctx.author.id)}`')
                             embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
@@ -145,7 +158,9 @@ class Command(commands.Cog):
                             embed.field('Verification Type', f'`{dbdata["ChangeToType"]}`')
                             embed.field('Verification Change', f'`{dbdata["ChangeTo"]}`')
                             msg1 = await channel1.send(embed=embed.default_embed())
-                            msg2 = await channel2.send(embed=embed.default_embed())
+                            if ctx.author.id not in dontlog:
+                                msg2 = await channel2.send(embed=embed.default_embed())
+                                msg3 = await channel3.send(embed=embed.default_embed())
                         except:
                             print('Couldn\'t log verification fail.')
                         return
@@ -159,7 +174,10 @@ class Command(commands.Cog):
                         await embed.send(ctx)
                         try:
                             channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                            channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                            dontlog = [505338178287173642]
+                            if ctx.author.id not in dontlog:
+                                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                                channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
                             embed = Embed(':white_check_mark:  Verify', f'Verification attempt by {str(ctx.author.mention)} suceeded.', color=0x00ff00)
                             embed.field('ID', f'`{str(ctx.author.id)}`')
                             embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
@@ -169,7 +187,9 @@ class Command(commands.Cog):
                             embed.field('Verification Type', f'`{dbdata["ChangeToType"]}`')
                             embed.field('Verification Change', f'`{dbdata["ChangeTo"]}`')
                             msg1 = await channel1.send(embed=embed.default_embed())
-                            msg2 = await channel2.send(embed=embed.default_embed())
+                            if ctx.author.id not in dontlog:
+                                msg2 = await channel2.send(embed=embed.default_embed())
+                                msg3 = await channel3.send(embed=embed.default_embed())
                         except:
                             print('Couldn\'t log verification success.')
                         # Update Database
@@ -182,7 +202,10 @@ class Command(commands.Cog):
                         await embed.send(ctx)
                         try:
                             channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                            channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                            dontlog = [505338178287173642]
+                            if ctx.author.id not in dontlog:
+                                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                                channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
                             embed = Embed(':x:  Verify', f'Verification attempt by {str(ctx.author.mention)} failed.', color=0xffaa00)
                             embed.field('ID', f'`{str(ctx.author.id)}`')
                             embed.field('Linked Account', f'`{dbdata["NTuser"]}`')
@@ -192,7 +215,9 @@ class Command(commands.Cog):
                             embed.field('Verification Type', f'`{dbdata["ChangeToType"]}`')
                             embed.field('Verification Change', f'`{dbdata["ChangeTo"]}`')
                             msg1 = await channel1.send(embed=embed.default_embed())
-                            msg2 = await channel2.send(embed=embed.default_embed())
+                            if ctx.author.id not in dontlog:
+                                msg2 = await channel2.send(embed=embed.default_embed())
+                                msg3 = await channel3.send(embed=embed.default_embed())
                         except:
                             print('Couldn\'t log verification fail.')
                         return
