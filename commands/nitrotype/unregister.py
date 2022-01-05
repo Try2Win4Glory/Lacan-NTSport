@@ -76,63 +76,85 @@ class Command(commands.Cog):
             teamswithroles.append('[CHESS]')
         premiumserver = False
         #dbdata = json.loads(requests.get('https://test-db.nitrotypers.repl.co', data={"key": dbkey}).text)
+        
+        
+        #dbdata = await dbclient.get_array(collection, {})
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
-        dbdata = await dbclient.get_array(collection, {})
+        try:
+            discordidsearch = ctx.author.id
+            discordiddata = await collection.find_one({"userID":str(discordidsearch)})
+            unregistered_account = discordiddata["NTUser"]
+            
+            # No account associated.
+            if discordiddata == None:
+                embed=Embed(':warning:  Error!', f'No associated account was found for {ctx.author.mention}.')
+                return await embed.send(ctx)
+        except Exception as e:
+            embed=Embed(':warning:  Something doesn\'t seem right...', 'An unexpected error occured. Please try again later.')
+            await embed.send(ctx)
+            print(e)
+            return
+        
         pcollection = dbclient.db.premium
         pdata = await dbclient.get_big_array(pcollection, 'premium')
         for x in pdata['premium']:
             if x['serverID'] == str(ctx.author.guild.id):
                 premiumserver = True
                 break
-        
-        async for x in dbdata:
-            if str(ctx.author.id) == x['userID']:
-                unregistered_account = x["NTuser"]
-                if premiumserver:
-                    roles_to_remove = []
-                    for role in (ctx.author.roles):
-                        name = role.name
-                        if name in thelistofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles:
-                            role = get(ctx.message.guild.roles, id=role.id)
-                            roles_to_remove.append(role)
-                    try:
-                        await ctx.author.remove_roles(*roles_to_remove)
-                    except:
-                        print('Failed to remove roles upon unregistering.')
-                    try:
-                        role = get(ctx.message.guild.roles, name='Registered')
-                        await ctx.author.remove_roles(role)
-                        role = get(ctx.message.guild.roles, name='Unregistered')
-                        await ctx.author.add_roles(role)
-                    except:
-                        pass 
-                print('yes')
+        try:
+            premiumsearch = ctx.guild.id
+            premiumiddata = await pcollection.find_one({"serverID":str(premiumsearch)})
+            if premiumiddata != None:
+                premiumserver = True
+        except Exception as e:
+            embed=Embed(':warning:  Something doesn\'t seem right...', 'An unexpected error occured. Please try again later.')
+            await embed.send(ctx)
+            print(e)
+            return
+         
+        if premiumserver:
+            roles_to_remove = []
+            for role in (ctx.author.roles):
+                name = role.name
+                if name in thelistofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles:
+                    role = get(ctx.message.guild.roles, id=role.id)
+                    roles_to_remove.append(role)
+            try:
+                await ctx.author.remove_roles(*roles_to_remove)
+            except:
+                print('Failed to remove roles upon unregistering.')
+            try:
+                role = get(ctx.message.guild.roles, name='Registered')
+                await ctx.author.remove_roles(role)
+                role = get(ctx.message.guild.roles, name='Unregistered')
+                await ctx.author.add_roles(role)
+            except:
+                pass 
 
-                await collection.delete_one(x)
-                embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
-                await embed.send(ctx)
+        await collection.delete_one(discordiddata)
+        embed = Embed('<a:Check:797009550003666955>  Success!', f'Unregistered {ctx.author.mention}!')
+        await embed.send(ctx)
                 
-                try:
-                    channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
-                    dontlog = [505338178287173642]
-                    if ctx.author.id not in dontlog:
-                        channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
-                        channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
-                    embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(ctx.author.id)}> unregistered.', color=0xff4040)
-                    embed.field('ID', f'`{str(ctx.author.id)}`')
-                    embed.field('Unregistered Account', f'`{unregistered_account}`')
-                    embed.field('Link', f'[:link:](https://nitrotype.com/racer/{unregistered_account})')
-                    embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
-                    embed.field('Guild', f'`{str(ctx.guild.name)}`')
-                    msg1 = await channel1.send(embed=embed.default_embed())
-                    if ctx.author.id not in dontlog:
-                        msg2 = await channel2.send(embed=embed.default_embed())
-                        msg3 = await channel3.send(embed=embed.default_embed())
-                except:
-                    print('Couldn\'t log unregister.')
-
-                #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})
-                return
+        try:
+            channel1 = discord.utils.get(self.client.get_all_channels(), id=803938544175284244)
+            dontlog = [505338178287173642]
+            if ctx.author.id not in dontlog:
+                channel2 = discord.utils.get(self.client.get_all_channels(), id=901503736013262888)
+                channel3 = discord.utils.get(self.client.get_all_channels(), id=924334305570852916)
+            embed = Embed(':regional_indicator_u:  Unregister', f'<@{str(ctx.author.id)}> unregistered.', color=0xff4040)
+            embed.field('ID', f'`{str(ctx.author.id)}`')
+            embed.field('Unregistered Account', f'`{unregistered_account}`')
+            embed.field('Link', f'[:link:](https://nitrotype.com/racer/{unregistered_account})')
+            embed.field('Author', f'{str(ctx.author.name)}#{str(ctx.author.discriminator)}')
+            embed.field('Guild', f'`{str(ctx.guild.name)}`')
+            msg1 = await channel1.send(embed=embed.default_embed())
+            if ctx.author.id not in dontlog:
+                msg2 = await channel2.send(embed=embed.default_embed())
+                msg3 = await channel3.send(embed=embed.default_embed())
+        except:
+            print('Couldn\'t log unregister.')
+        #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(dbdata)})
+        return
 def setup(client):
     client.add_cog(Command(client))
