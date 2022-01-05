@@ -91,7 +91,7 @@ class Command(commands.Cog):
             msg1 = await channel1.send(embed=embed.default_embed())
             if ctx.author.id not in dontlog:
                     msg2 = await channel2.send(embed=embed.default_embed())
-                    msg3 = await channel3.send(embed=embed.defailt_embed())
+                    msg3 = await channel3.send(embed=embed.default_embed())
         except:
             print('Couldn\'t log register.')
 def setup(client):
