@@ -66,7 +66,7 @@ class Command(commands.Cog):
         embed.image(url="attachment://text.png")
         await ctx.send(file=file, embed=embed.default_embed())
         def check(message: discord.Message):
-            return message.author.id == ctx.author.id
+            return message.author.id == ctx.author.id and message.channel == ctx.channel
         start = round(time.time())
         try:
             response = await self.client.wait_for('message', timeout=15, check=check)
