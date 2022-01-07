@@ -22,14 +22,17 @@ class Command(commands.Cog):
       allowed = False
       permitted = []
       permittedservers = [
-      # SSH Server Server Support
-        788549207149248562,
-      # SSH Server Developer -> ONLY FOR TESTING PURPOSES
-        797709977569591317
+      # SSH Server
+        788547373701136425
       ]
       
       if ctx.guild.id in permittedservers:
-        permitted = [927141411680317451]
+        permitted = [
+        # SSH Server Server Support
+            788549207149248562,
+        # SSH Server Developer -> ONLY FOR TESTING PURPOSES
+            797709977569591317
+        ]
 
     # Check for Author Permissions.
       for role in ctx.author.roles:
