@@ -14,121 +14,122 @@ class Command(commands.Cog):
     @commands.command()
     async def devupdate(self, ctx, userid):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
-        for role in ctx.author.roles:
-            if role.id in [
-              #Insert permitted role IDs here
-               # NT Server Administrator
-                564902014245666816,
-               # NT Server Moderator
-                564913415152205866,
-               # NT Server Server Support
-                566369686967812112,
-               #SSH Administrator
-                788549177545588796,
-               #SSH Moderator
-                788549154560671755,
-               #SSH Server Support
-                788549207149248562,
-               #N8TE Captain
-                741827726419165214,
-               #RXV Administrator
-                747195059820036096,
-               #RXV Moderator
-                876661287726252072,
-               #RXV Server Support
-                876661635266256916
-            ]:
-                bypass = True
-                break
+
+      dev = [505338178287173642]
+      # Check for Premium Status
+      dbclient = DBClient()
+      pcollection = dbclient.db.premium
+      pdata = await dbclient.get_big_array(pcollection, 'premium')
+      for server in pdata['premium']:
+          if str(ctx.author.guild.id) == server['serverID']:
+              break
+      else:
+          embed = Embed('Error!', 'Unfortunately, this isn\'t a premium server! Run `n.premium` to learn more about premium!', 'warning')
+          return await embed.send(ctx)
+
+      dbclient = DBClient()
+      collection = dbclient.client.dev.devupdate
+      serversearch = ctx.guild.id
+      x = await collection.find_one({"serverID":serversearch})
+      
+      if ctx.author.id in dev:
+        permittedserver = True
+        bypass = True
+      else:
+      # Server Devupdate  Not Supported
+        if x == None:
+          permittedserver = False
+          embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to update another user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
+          return await embed.send(ctx)
+    # Server Devupdate Supported
         else:
-            bypass = False
-        if (ctx.author.id) not in [
-          #Try2Win4Glory
-            505338178287173642
-          ] and bypass == False:
-        
-            embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to register a user in this way when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
+          permittedserver = True
 
-            embed.footer('⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
+    # Author Permitted Check
+        if permittedserver == True:
+          for role in ctx.author.roles:
+            if str(role.id) in str(x['permitted']):
+              bypass = True
+            else:
+              bypass = False
+          if ctx.author.id in dev:
+            bypass = True
+          print(bypass)
 
+
+      if bypass == False:
+            embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to update another user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
             return await embed.send(ctx)
-        else:
+      else:
             pass
-        thelistofroles = ["Gold Member", [], ["220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM"], ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]]
-        listofroles = ["Gold Member", "220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM", "500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
-        achievementroles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
-        funroles = ["v1 Veteran", "v2 Veteran", "Sessionist", "Popular", "Undulation Master", "Nitro Enthusiast", "Car Collector", "Try Hard"]
-        goldroles = ["Gold Member", "Lifetime Gold", "Yearly Gold"]
-        registered = ["Registered"]
-        teamswithroles = [
+      thelistofroles = ["Gold Member", [], ["220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM"], ["500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]]
+      listofroles = ["Gold Member", "220+ WPM", "210-219 WPM", "200-209 WPM", "190-199 WPM", "180-189 WPM", "170-179 WPM", "160-169 WPM", "150-159 WPM", "140-149 WPM", "130-139 WPM", "120-129 WPM", "110-119 WPM", "100-109 WPM", "90-99 WPM", "80-89 WPM", "70-79 WPM", "60-69 WPM", "50-59 WPM", "40-49 WPM", "30-39 WPM", "20-29 WPM", "10-19 WPM", "1-9 WPM", "500000+ Races", "250000-499999 Races", "200000-249999 Races", "150000-199999 Races", "100000-149999 Races", "75000-99999 Races", "50000-74999 Races", "40000-49999 Races", "30000-39999 Races", "20000-29999 Races", "10000-19999 Races", "5000-9999 Races", "3000-4999 Races", "1000-2999 Races","500-999 Races", "100-499 Races", "50-99 Races", "1-49 Races"]
+      achievementroles = ['"I < 3 Typing!"', '"I Really Love Typing"', '"Bonkers About Typing"', '"Bananas About Typing"', '"You\'ve Gotta Be Kidding"', '"Corsair"', '"Pirc"', '"Carrie"', '"Anne"', '"Lackin\' Nothin\'"', '"Outback Officer"', '"I Love Shoes 2"', '"I Love Shoes 12.5"', '"I Love Shoes 15.0"', '"I Love Shoes 20.0"', '"The Wildest of Flowers"', '"The Wild Legend"']
+      funroles = ["v1 Veteran", "v2 Veteran", "Sessionist", "Popular", "Undulation Master", "Nitro Enthusiast", "Car Collector", "Try Hard"]
+      goldroles = ["Gold Member", "Lifetime Gold", "Yearly Gold"]
+      registered = ["Registered"]
+      teamswithroles = [
           # Insert Global Team Tags Here
         ]
 
         #Team N8TE | Server Owner: 630761745140547625
-        if ctx.guild.id in [
+      if ctx.guild.id in [
           636582509429260289
         ]:
           teamswithroles.append('[N8TE]')
         #Team DRPT | Server Owner: 723224207651111003
-        if ctx.guild.id in [
+      if ctx.guild.id in [
           742854336618561608
         ]:
           teamswithroles.append('[DRPT]')
         #Team RRN | Server Owner: 653772108815532053
-        if ctx.guild.id in [
+      if ctx.guild.id in [
           696055942055198760
         ]:
           teamswithroles.append('[RRN]')
         #Team NEWS | Server Owner: 272370019894165505
-        if ctx.guild.id in [
+      if ctx.guild.id in [
           835305919679692850
         ]:
           teamswithroles.append('[NEWS]')
         #Team TEST | Server Owner: 505338178287173642
-        if ctx.guild.id in [
+      if ctx.guild.id in [
           833317505888026644
         ]:
           teamswithroles.append('[TEST]')
         #Team TBZ | Server Owner: 657296213087092756
-        if ctx.guild.id in [
+      if ctx.guild.id in [
             857697272317345792
         ]:
             teamswithroles.append('[TBZ]')
         #Team SSH | Server Owner: 363082908270985217
-        if ctx.guild.id in [
+      if ctx.guild.id in [
             788547373701136425
         ]:
             teamswithroles.append('[SSH]')
          #Team NYM | Server Owner: 714147755974721556
-        if ctx.guild.id in [
+      if ctx.guild.id in [
             860954147342909440
         ]:
             teamswithroles.append('[NYM]')
         #Team 5TORM | Server Owner: 850880126979932180
-        if ctx.guild.id in [
+      if ctx.guild.id in [
             862845786580582401
         ]:
             teamswithroles.append('[5TORM]')
         #Team RXV | Server Owner: 638050308899209247
-        if ctx.guild.id in [
+      if ctx.guild.id in [
             747188472661540884
         ]:
             teamswithroles.append('[RXV]')
         #Team CHESS | Server Owner: 272370019894165505
-        if ctx.guild.id in [
+      if ctx.guild.id in [
             885285935149908008
         ]:
             teamswithroles.append('[CHESS]')
         #data = requests.get('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY')}).text
         #data = json.loads(data)
-        dbclient = DBClient()
-        pcollection = dbclient.db.premium
-        pdata = await dbclient.get_big_array(pcollection, 'premium')
-        for server in pdata['premium']:
-            if str(ctx.author.guild.id) == server['serverID']:
-                break
-        else:
-            embed = Embed('Error!', 'Unfortunately, this isn\'t a premium server! Run `n.premium` to learn more about premium!', 'warning')
+        
             
             #if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
               #embed.footer('Become a premium 💠 member today!', 'https://media.discordapp.net/attachments/719414661686099993/765110312482766919/NT_Server_Halloween_Logo_2020_GIF.gif')
@@ -144,29 +145,29 @@ class Command(commands.Cog):
                   new_data = new_data.replace(ch, '')
               return new_data'''
 
-        try:
+      try:
             #Sent with ID
             user = await ctx.guild.fetch_member(userid)
-        except:
-          try:
+      except:
+        try:
             #Enable Mention Computer
             userid0 = userid.replace("<@!", "")
             userid1 = userid0.replace(">", "")
             print(userid)
             #Fetch User
             user = await ctx.guild.fetch_member(userid1)
-          except:
-            try:
+        except:
+          try:
               #Enable Mention Mobile
               userid0 = userid.replace("<@", "")
               userid1 = userid0.replace(">", "")
               print(userid)
               #Fetch User
               user = await ctx.guild.fetch_member(userid1)
-            except:
+          except:
               embed = Embed('Error!', 'I couldn\'t get the user you are trying to update!', 'warning')
               return await embed.send(ctx)
-        for role in (user.roles):
+      for role in (user.roles):
             name = role.name
             if name in listofroles or name in teamswithroles or name in achievementroles or name in funroles or name in goldroles or name in registered:
                 role = get(ctx.message.guild.roles, id=role.id)
@@ -176,18 +177,18 @@ class Command(commands.Cog):
               await user.remove_roles(role)
             except:
               pass  
-        collection = dbclient.db.NT_to_discord
-        data = await dbclient.get_array(collection, {'$and': [{'userID': str(user.id), 'verified': 'true'}]})
-        async for player in data:
+      collection = dbclient.db.NT_to_discord
+      data = await dbclient.get_array(collection, {'$and': [{'userID': str(user.id), 'verified': 'true'}]})
+      async for player in data:
             ntuser = player['NTuser']
             break
-        else:
+      else:
             embed = Embed('Error!', 'Doesn\'t seem like '+userid+' is registered!', 'warning')
             return await embed.send(ctx)
-        racer = await Racer(ntuser)
+      racer = await Racer(ntuser)
         
   
-        if user.id in []:
+      if user.id in []:
             #T2W4G's Speed Role
             listofroles = thelistofroles[2]
             role = get(ctx.message.guild.roles,
@@ -225,7 +226,7 @@ class Command(commands.Cog):
                 await embed.send(ctx)
             return
             
-        else:
+      else:
             wpm = int(racer.wpm_average)
             listofroles = thelistofroles[2]
             if wpm > 220:
