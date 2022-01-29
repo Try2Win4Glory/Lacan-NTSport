@@ -61,6 +61,7 @@ class Command(commands.Cog):
           for role in ctx.author.roles:
             if str(role.id) in str(x['permitted']):
               bypass = True
+              break
             else:
               bypass = False
 
