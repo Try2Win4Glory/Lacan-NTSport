@@ -34,11 +34,15 @@ class Command(commands.Cog):
       
       dev = await collection.find_one({"bypass":"dev"})
       bypass = False
-
-      if ctx.author.id in dev["dev"]:
-        print('Developer')
-        permittedserver = True
-        devbypass = True
+      
+      if dev != None:
+        if ctx.author.id in dev["dev"]:
+          print('Developer')
+          permittedserver = True
+          devbypass = True
+        else:
+          permittedserver = False
+          devbypass = False
       else:
         permittedserver = False
         devbypass = False
