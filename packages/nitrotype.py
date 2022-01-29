@@ -789,6 +789,7 @@ class RacerClass:
         scraper = cloudscraper.create_scraper()
         fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/racer/{racer}'))
         response = fut.text
+        #print(response)
         newdata = ('{"'+re.search(r'RACER_INFO: \{\"(.*)\}', response.strip()).group(1)+'}')
         newdata = json.loads(newdata)
         self.newdata = newdata
@@ -805,29 +806,34 @@ class RacerClass:
         except KeyError:
             self.tag = ''
         self.userid = newdata['userID']
-        '''
-        userid = newdata['userID']
-        #print(userid)
-        newdata = loads(get(f'https://test.nitrotype.com/api/players/{str(userid)}').text)['data']
-        self.newdata = loads(get(f'https://test.nitrotype.com/api/players/{str(userid)}').text)['data']
-        '''
-        self.success = True
-        if self.success:
-            fut = await loop.run_in_executor(None, functools.partial(
-                scraper.post,
-                'https://www.nitrotype.com/api/purchase/validate-user-product',
-                 data={
-                     'username': racer,
-                     'type': 'gold'
-                     }
-                 )
-            )
-            response = fut.json()
-            self.lifetime_gold = False
+        #Just Space So that I don\'t have to move everything
+        space1 = 'space'
+        if space1 == 'space':
             try:
-                self.lifetime_gold = True if response['success'] == False and 'lifetime' in response['data']['username'] else False
+              space2 = 'space'
+              if space2 == 'space':
+                '''
+                self.success = True
+                if self.success:
+                  fut = await loop.run_in_executor(None, functools.partial(
+                      scraper.post,
+                      'https://www.nitrotype.com/api/purchase/validate-user-product',
+                      data={
+                          'username': racer,
+                          'type': 'gold'
+                          }
+                      )
+                  )
+                  response = fut.json()
+                  '''
+                self.lifetime_gold = False
+                '''try:
+                    self.lifetime_gold = True if response['success'] == False and 'lifetime' in response['data']['username'] else False
+                except:
+                    pass
+                    self.lifetime_gold=False'''
             except:
-                pass
+              pass
             self.carIDs = []
             for elem in newdata['cars']:
                 if elem[1] == 'owned':
@@ -1207,7 +1213,8 @@ class TeamClass:
                 self.data = loads(await api_get(f'teams/{team}', session))'''
             loop = asyncio.get_running_loop()
             scraper = cloudscraper.create_scraper()
-            fut = await loop.run_in_executor(None, functools.partial(scraper.get,f'https://www.nitrotype.com/api/v2/teams/{team}'))
+            print(team)
+            fut = await loop.run_in_executor(None,functools.partial(scraper.get,f'https://www.nitrotype.com/api/v2/teams/{team}'))
             print(fut.text)
             self.data = json.loads(fut.text)
             self.success = True
