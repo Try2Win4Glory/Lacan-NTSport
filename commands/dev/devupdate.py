@@ -15,7 +15,7 @@ class Command(commands.Cog):
     async def devupdate(self, ctx, userid):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
 
-      dev = [505338178287173642]
+      #dev = [505338178287173642]
       # Check for Premium Status
       dbclient = DBClient()
       pcollection = dbclient.db.premium
@@ -32,21 +32,28 @@ class Command(commands.Cog):
       serversearch = ctx.guild.id
       x = await collection.find_one({"serverID":serversearch})
       
-      if ctx.author.id in dev:
+      dev = await collection.find_one({"bypass":"dev"})
+      bypass = False
+
+      if ctx.author.id in dev["dev"]:
+        print('Developer')
         permittedserver = True
-        bypass = True
+        devbypass = True
       else:
-      # Server Devupdate  Not Supported
-        if x == None:
-          permittedserver = False
-          embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to update another user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
-          return await embed.send(ctx)
+        permittedserver = False
+        devbypass = False
+
+    # Server Devupdate  Not Supported
+      if x == None and devbypass != True:
+        permittedserver = False
+        embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to update another user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
+        return await embed.send(ctx)
     # Server Devupdate Supported
-        else:
-          permittedserver = True
+      else:
+        permittedserver = True
 
     # Author Permitted Check
-        if permittedserver == True:
+      if permittedserver == True and devbypass != True:
           for role in ctx.author.roles:
             if str(role.id) in str(x['permitted']):
               bypass = True
@@ -56,6 +63,8 @@ class Command(commands.Cog):
             bypass = True
           print(bypass)
 
+      if bypass == False and devbypass == True:
+        bypass = True
 
       if bypass == False:
             embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to update another user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
