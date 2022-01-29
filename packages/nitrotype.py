@@ -826,7 +826,8 @@ class RacerClass:
                   )
                   response = fut.json()
                   '''
-                self.lifetime_gold = False
+                self.success = True
+		self.lifetime_gold = False
                 '''try:
                     self.lifetime_gold = True if response['success'] == False and 'lifetime' in response['data']['username'] else False
                 except:
