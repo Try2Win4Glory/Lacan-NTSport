@@ -30,11 +30,11 @@ class Command(commands.Cog):
       dbclient = DBClient()
       collection = dbclient.client.dev.devupdate
       serversearch = ctx.guild.id
+      print(serversearch)
       x = await collection.find_one({"serverID":serversearch})
       
       dev = await collection.find_one({"bypass":"dev"})
       bypass = False
-      
       if dev != None:
         if ctx.author.id in dev["dev"]:
           print('Developer')
@@ -48,12 +48,12 @@ class Command(commands.Cog):
         devbypass = False
 
     # Server Devupdate  Not Supported
-      if x == None and devbypass != True:
+      if x == None and devbypass == False:
         permittedserver = False
-        embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to update another user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
+        embed = Embed('Error!', 'This server does not have permission to use this command. Click [here](https://www.latlmes.com/entertainment/permission-application-1) to apply for permission.', 'warning')
         return await embed.send(ctx)
     # Server Devupdate Supported
-      else:
+      elif x != None or devbypass == True:
         permittedserver = True
 
     # Author Permitted Check
@@ -61,11 +61,9 @@ class Command(commands.Cog):
           for role in ctx.author.roles:
             if str(role.id) in str(x['permitted']):
               bypass = True
+              break
             else:
               bypass = False
-          if ctx.author.id in dev:
-            bypass = True
-          print(bypass)
 
       if bypass == False and devbypass == True:
         bypass = True
