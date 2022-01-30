@@ -31,13 +31,12 @@ class Command(commands.Cog):
       collection = dbclient.client.dev.devupdate
       serversearch = ctx.guild.id
       print(serversearch)
-      x = await collection.find_one({"serverID":serversearch})
+      x = await collection.find_one({"serverID":str(serversearch)})
       
       dev = await collection.find_one({"bypass":"dev"})
       bypass = False
       if dev != None:
-        if ctx.author.id in dev["dev"]:
-          print('Developer')
+        if str(ctx.author.id) in str(dev["dev"]):
           permittedserver = True
           devbypass = True
         else:
