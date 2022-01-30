@@ -28,12 +28,12 @@ class Command(commands.Cog):
           return await embed.send(ctx)
 
       dbclient = DBClient()
-      collection = dbclient.client.dev.devupdate
+      permcollection = dbclient.client.dev.devupdate
       serversearch = ctx.guild.id
       print(serversearch)
-      x = await collection.find_one({"serverID":str(serversearch)})
+      x = await permcollection.find_one({"serverID":str(serversearch)})
       
-      dev = await collection.find_one({"bypass":"dev"})
+      dev = await permcollection.find_one({"bypass":"dev"})
       bypass = False
       if dev != None:
         if str(ctx.author.id) in str(dev["dev"]):
