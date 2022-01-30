@@ -11,7 +11,7 @@ class Command(commands.Cog):
         self.client = client
     
     @commands.command()
-    async def delroles(self, ctx):
+    async def delroles(self, ctx, registered=None):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
         if (ctx.author.id) not in [505338178287173642]:
             embed = Embed('Error!', 'You\'re not a developer of this bot! Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
@@ -23,6 +23,8 @@ class Command(commands.Cog):
         funroles = ["Sessionist", "Popular", "v1 Veteran", "v2 Veteran", "Car Collector", "Nitro Enthusiast", "Undulation Master", "Try Hard"]
         goldroles = ["Gold Member", "Lifetime Gold", "Yearly Gold"]
         guild = ctx.guild
+        if registered == 'r':
+          listofroles.append("Registered")
         for role in guild.roles:
             if str(role.name) in listofroles or str(role.name) in achievementroles or str(role.name) in funroles or str(role.name) in goldroles:
                 await role.delete()
