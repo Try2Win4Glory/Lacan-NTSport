@@ -23,7 +23,7 @@ class Command(commands.Cog):
         funroles = ["Sessionist", "Popular", "v1 Veteran", "v2 Veteran", "Car Collector", "Nitro Enthusiast", "Undulation Master", "Try Hard"]
         goldroles = ["Gold Member", "Lifetime Gold", "Yearly Gold"]
         guild = ctx.guild
-        if registered != None:
+        if registered == 'r':
           listofroles.append("Registered")
         for role in guild.roles:
             if str(role.name) in listofroles or str(role.name) in achievementroles or str(role.name) in funroles or str(role.name) in goldroles:
