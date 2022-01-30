@@ -21,42 +21,48 @@ class Command(commands.Cog):
         if not racer.success:
             embed = Embed('Error!', 'Nitrotype user not found! Make sure to use `n.devregister <Mention / ID> <username>.', 'warning')
             return await embed.send(ctx)
-        for role in ctx.author.roles:
-            if role.id in [
-              #Insert permitted role IDs here
-               # NT Server Administrator
-                564902014245666816,
-               # NT Server Moderator
-                564913415152205866,
-               # NT Server Server Support
-                566369686967812112,
-               #SSH Administrator
-                788549177545588796,
-               #SSH Moderator
-                788549154560671755,
-               #SSH Server Support
-                788549207149248562,
-               #RXV Administrator
-                747195059820036096,
-               #RXV Moderator
-                876661287726252072,
-               #RXV Server Support
-                876661635266256916
-            ]:
+
+        dbclient = DBClient()
+        permcollection = dbclient.client.dev.devregister
+        serversearch = ctx.guild.id
+        x = await permcollection.find_one({"serverID":str(serversearch)})
+        dev = await permcollection.find_one({"bypass":"dev"})
+        bypass = False
+        if dev != None:
+          if str(ctx.author.id) in str(dev["dev"]):
+            permittedserver = True
+            devbypass = True
+          else:
+            permittedserver = False
+            devbypass = False
+        else:
+          permittedserver = False
+          devbypass = False
+
+      # Server Devregister  Not Supported
+        if x == None and devbypass == False:
+          permittedserver = False
+          embed = Embed('Error!', 'This server does not have permission to use this command. Click [here](https://www.latlmes.com/entertainment/permission-application-1) to apply for permission.', 'warning')
+          return await embed.send(ctx)
+      # Server Devregister Supported
+        elif x != None or devbypass == True:
+          permittedserver = True
+
+      # Author Permitted Check
+        if permittedserver == True and devbypass != True:
+            for role in ctx.author.roles:
+              if str(role.id) in str(x['permitted']):
                 bypass = True
                 break
-        else:
-            bypass = False
-        if (ctx.author.id) not in [
-          #Try2Win4Glory
-            505338178287173642
-        ] and not bypass:
-        
-            embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to register a user in this way when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
+              else:
+                bypass = False
 
-            embed.footer('⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
+        if bypass == False and devbypass == True:
+          bypass = True
 
-            return await embed.send(ctx)
+        if bypass == False:
+          embed = Embed('Error!', 'Lol. Did you really think it\'s possible for you to register another user when you are not a dev? Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
+          return await embed.send(ctx)
         else:
             discordid = discordid.replace("!", "")
             discordid0 = discordid.replace("<@", "")
