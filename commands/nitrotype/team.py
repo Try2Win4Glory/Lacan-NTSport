@@ -18,6 +18,7 @@ class Command(commands.Cog):
         dbclient = DBClient()
         collection = dbclient.db.NT_to_discord
         thedata = await dbclient.get_array(collection, {})
+        print(thedata)
         if team_name == '': 
             async for player in thedata:
                 if player['userID'] == str(ctx.author.id):
@@ -62,16 +63,17 @@ class Command(commands.Cog):
             return            
 
         info = team.info
-        data = team.data
+        results = team.data
         #info section of embed
         embed = Embed(f"[{info['tag']}] {info['name']}", team.tag_and_name, 'race car')
+        #'race car')
         createdstamp = info['createdStamp']
         birthday = datetime.fromtimestamp(int(createdstamp))
         teamid = info["teamID"]
         enrollment = info["enrollment"]
         activeperc = info["activePercent"]
 
-        embed.field('Info', f" :busts_in_silhouette: Members: {str(len(data['members']))}\n:id: Team ID: {teamid}\n:eyes: Team Views: {info['profileViews']}\n:birthday: Birthday: {birthday}\n<:team_competitions:800330847915868220> Enrollment: **{enrollment}**\n:bar_chart: Activity Percentage: {activeperc}%\n:hourglass: Last Activity: {team.lastact}\n:pencil: Last Modification: {team.lastmod}")
+        embed.field('Info', f" :busts_in_silhouette: Members: {str(len(results['members']))}\n:id: Team ID: {teamid}\n:eyes: Team Views: {info['profileViews']}\n:birthday: Birthday: {birthday}\n<:team_competitions:800330847915868220> Enrollment: **{enrollment}**\n:bar_chart: Activity Percentage: {activeperc}%\n:hourglass: Last Activity: {team.lastact}\n:pencil: Last Modification: {team.lastmod}")
         #requirements to be able to join/apply for the team
         embed.field('Requirements', f":stopwatch: Min Speed: {info['minSpeed']}\n:checkered_flag: Min Races: {info['minRaces']}")
         #officers/captain of team       
@@ -82,8 +84,8 @@ class Command(commands.Cog):
                   leaders += ':man_police_officer: **'+elem[0]+'**[:link:](https://www.nitrotype.com/racer/'+elem[0]+')\n'
                 else:
                   leaders += ':man_police_officer: **'+elem[1]+'**[:link:](https://www.nitrotype.com/racer/'+elem[0]+')\n'
-        except IndexError:
-            pass
+        except IndexError as e:
+            print(e)
         embed.field('Leaders', leaders)
         otherreqs = info['otherRequirements']
         if otherreqs:
