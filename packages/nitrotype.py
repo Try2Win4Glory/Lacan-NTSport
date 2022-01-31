@@ -1209,26 +1209,30 @@ class TeamClass:
         self.team = team
     async def create_attr(self):
         team = self.team
+        team = team.upper()
         try:
             '''async with aiocfscrape.CloudflareScraper() as session:
                 self.data = loads(await api_get(f'teams/{team}', session))'''
             loop = asyncio.get_running_loop()
             scraper = cloudscraper.create_scraper()
-            print(team)
             fut = await loop.run_in_executor(None,functools.partial(scraper.get,f'https://www.nitrotype.com/api/v2/teams/{team}'))
             print(fut.text)
-            self.data = json.loads(fut.text)
+            try:
+              self.data = json.loads(fut.text)
+            except Exception as e:
+              print(e)
             self.success = True
-            if self.data['success'] == False:
+            if self.data['status'] != "OK":
+                print('fail')
                 self.success = False
                 self.data = {}
                 return
-        except Exception as e:
-            print(e)
+        except:
             self.data = {}
         else:
-            self.data = self.data['data']
+            self.data = self.data["results"]
             self.info = self.data["info"]
+            print(self.info)
 
             try:
                 self.daily_pre = self.data['stats'][1]
