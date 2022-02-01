@@ -41,14 +41,14 @@ async def create_comp(team, compid, endcomptime, authorid, async_cloudflare=Fals
     page = await team_data(team, async_cloudflare)
     info = json.loads(page)
     dbclient = DBClient()
-    data = {
-        "data": {
+    results = {
+        "results": {
             "compid": str(compid),
             "players": [],
             "other": {}
         }
     }
-    for elem in info['data']['members']:
+    for elem in info['results']['members']:
         #if elem['displayName'] != None:
         if elem['displayName'] != None:
             displayname = elem['displayName']
@@ -66,7 +66,7 @@ async def create_comp(team, compid, endcomptime, authorid, async_cloudflare=Fals
             typed = 0
             secs = 0
             errs = 0
-        data['data']['players'].append({
+        results['results']['players'].append({
             "username": elem['username'],
             "starting-races": elem['played'],
             "ending-races": elem['played'],
@@ -79,13 +79,13 @@ async def create_comp(team, compid, endcomptime, authorid, async_cloudflare=Fals
             "ending-secs": float(secs),
             "starting-errs": (errs), "ending-errs": (errs)
         })
-    data['data']['other'] = {
+    results['results']['other'] = {
         "team": team,
         "endcomptime": endcomptime,
         "author": authorid,
         "ended": False
     }
-    await dbclient.create_doc(dbclient.db.test, data['data'])
+    await dbclient.create_doc(dbclient.db.test, results['results'])
     return True
 
 async def update_comp(compid, async_cloudflare=False):
@@ -104,7 +104,7 @@ async def update_comp(compid, async_cloudflare=False):
     info = json.loads(page)
     try:
         for user in players:
-            for elem in info['data']['members']:
+            for elem in info['results']['members']:
                 if user['username'] == elem['username']:
                     try:
                         racer = await Racer(user['username'])
@@ -137,7 +137,7 @@ async def update_comp(compid, async_cloudflare=False):
             else:
                 user['stillinteam'] = False
         res = [ sub['username'] for sub in players ]
-        for elem in info['data']['members']:
+        for elem in info['results']['members']:
             if elem['username'] in res:
                 continue
             else:
