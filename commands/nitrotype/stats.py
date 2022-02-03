@@ -69,7 +69,7 @@ class Command(commands.Cog):
 
 
         #print(racer.name+' is from '+racer.country)
-
+        print(racer.newdata["membership"])
         if racer.lifetime_gold:
           gold = 'Lifetime'
         elif racer.newdata["membership"] != "basic":
@@ -77,24 +77,27 @@ class Command(commands.Cog):
         else:
           gold = 'Basic'
         
-        header = '-------------------'
+        header = '-------------------\n'
         space = '       '
+        space2 = '     '
+
         if racer.trailname != 'None':
           trail_created = racer.newdata['loot'][0]['createdStamp']
         else:
           pass
         
         created = racer.newdata['createdStamp']
-        hammercreated = f'<t:{created}:f>'
+        hammercreated = f'<t:{created}:d>'
 
         races = racer.newdata['racesPlayed']
         nitros = racer.newdata['nitrosUsed']
-        nitrosperrace = (races)/(nitros)
+        nitrosperrace = (nitros)/(races)
         roundednitrosperrace = round(nitrosperrace, 2)
 
         embed.field(f':race_car:{space}Racing', f'{header}:checkered_flag: **{racer.races}**\n:timer: **{racer.longest_session}**\n:stopwatch: Average: **{racer.wpm_average}**\n:stopwatch: High: **{racer.wpm_high}**')
 
         embed.field(f'<:info:938430460227358771>{space}Useful', f'{header}:diamond_shape_with_a_dot_inside: Level **{racer.level}**\n:diamond_shape_with_a_dot_inside: **{racer.experience} XP**\n:eyes: **{racer.views}**\n:tada: {hammercreated}')
+
 
         if gold == 'Lifetime':
           goldemoji = '<:old_nt_gold:938434881933938699>'
@@ -106,19 +109,19 @@ class Command(commands.Cog):
         if gold != 'Yearly':
           embed.field(f':medal:{space}Gold Info', f'{header}{goldemoji} `{gold}`')
         else:
-          embed.field(f':medal:{space}Gold Info', f'{header}{goldemoji} `{gold}`\n{goldemoji} Expires: <t:{racer.gold_until}:d>\n{goldemoji} Purchased: {racer.last_purchase}')
+          embed.field(f':medal:{space}Gold Info', f'{header}{goldemoji} `{gold}`\n{goldemoji} Expires: <t:{racer.gold_until}:d>\n{goldemoji} Purchased: <t:{racer.last_purchase}:d>')
           
 
         embed.field(f':police_car:{space}Cars', f'{header}:blue_car: Owned: {racer.cars_owned}\n:blue_car: ID: `{racer.carid}`')
 
         if racer.trailname != 'None':
-          embed.field(f':star: {space}Trails', f'{header}🌠 **{racer.trailname}**\n🌠 **{racer.trail_rarity}**\n🌠 <t:{trail_created}:d> <t:{trail_created}:t>')
+          embed.field(f':star: {space}Trails', f'{header}🌠 **{racer.trailname}**\n🌠 **{racer.trail_rarity}**\n🌠 <t:{trail_created}:d>')
         else:
           pass
 
         embed.field(f'<:nitro:938450286488457327>{space}Nitros', f'{header}:zap: **∞** owned\n:zap: **{racer.nitros_used}** used\n:zap: **{roundednitrosperrace}**/:checkered_flag:')
 
-        embed.field(f':gear:{space}Add / Invite', f'{header}\n:bust_in_silhouette: Friends: {racer.friend_reqs_allowed}\n:bust_in_silhouette: Teams: {racer.looking_for_team}')
+        embed.field(f':gear:{space2}Add/Invite', f'{header}:bust_in_silhouette: Friends: {racer.friend_reqs_allowed}\n:bust_in_silhouette: Teams: {racer.looking_for_team}')
 
 
 
