@@ -4,7 +4,8 @@ from bs4 import BeautifulSoup
 from re import findall
 from json import loads
 import json, re
-from datetime import date
+import datetime
+from datetime import date, datetime
 from random import randint, choice
 from packages.misc import format_number as fn
 import aiohttp
@@ -812,12 +813,12 @@ class RacerClass:
             try:
               space2 = 'space'
               if space2 == 'space':
-                '''
+                
                 self.success = True
                 if self.success:
                   fut = await loop.run_in_executor(None, functools.partial(
                       scraper.post,
-                      'https://www.nitrotype.com/api/purchase/validate-user-product',
+                      'https://www.nitrotype.com/api/v2/payments/products/',
                       data={
                           'username': racer,
                           'type': 'gold'
@@ -825,16 +826,34 @@ class RacerClass:
                       )
                   )
                   response = fut.json()
+                  print(response)
                   '''
                 self.success = True
                 self.lifetime_gold = False
-                '''try:
-                    self.lifetime_gold = True if response['success'] == False and 'lifetime' in response['data']['username'] else False
-                except:
-                    pass
-                    self.lifetime_gold=False'''
+                '''
+                try:
+                    self.lifetime_gold = True if response['status'] == "INVALID_REQUEST" and 'lifetime' in response['results']['username'] else False
+                except Exception as e:
+                    print(e)
+                    self.lifetime_gold=False
             except:
               pass
+
+            if self.lifetime_gold == False and newdata['membership'] == 'gold':
+              self.gold_until = response['results']['user']['goldUntil']
+              last_purchase = response['results']['user']['lastPurchase']
+              last_purchase = last_purchase[0:8]
+              lpyear = last_purchase[0:4]
+              lpmonth = last_purchase[4:6]
+              lpday = last_purchase[6:8]
+              dt = datetime(
+              year=int(lpyear),
+              month=int(lpmonth),
+              day=int(lpday)
+              )
+              self.last_purchase = int(dt.timestamp())
+              
+
             self.carIDs = []
             for elem in newdata['cars']:
                 if elem[1] == 'owned':
