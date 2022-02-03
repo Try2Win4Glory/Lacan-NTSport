@@ -5,7 +5,7 @@ from re import findall
 from json import loads
 import json, re
 import datetime
-from datetime import date
+from datetime import date, datetime
 from random import randint, choice
 from packages.misc import format_number as fn
 import aiohttp
@@ -839,16 +839,20 @@ class RacerClass:
             except:
               pass
 
-            if self.lifetime_gold == False:
+            if self.lifetime_gold == False and newdata['membership'] == 'gold':
               self.gold_until = response['results']['user']['goldUntil']
               last_purchase = response['results']['user']['lastPurchase']
               last_purchase = last_purchase[0:8]
               lpyear = last_purchase[0:4]
               lpmonth = last_purchase[4:6]
               lpday = last_purchase[6:8]
-              bought = datetime.date(int(lpyear), int(lpmonth), int(lpday))
-              print(bought)
-              self.last_purchase = bought
+              dt = datetime(
+              year=int(lpyear),
+              month=int(lpmonth),
+              day=int(lpday)
+              )
+              self.last_purchase = int(dt.timestamp())
+              
 
             self.carIDs = []
             for elem in newdata['cars']:
