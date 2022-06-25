@@ -79,7 +79,7 @@ class Command(commands.Cog):
             #requests.post('https://test-db.nitrotypers.repl.co', data={"key": os.getenv('DB_KEY'), "data": json.dumps(data)})
             embed = Embed('Success!', f'<@{str(ctx.author.id)}> just connected discord user <@'+discordid1+'> with NT username `' + ntuser + '`! \nIn case this is a premium :diamond_shape_with_a_dot_inside: server, <@'+discordid1+'> needs to run `n.update` to update their roles.', 'white_check_mark')
             
-            if (ctx.author.id) in [396075607420567552, 505338178287173642, 637638904513691658]:
+            if (ctx.author.id) in [396075607420567552, 505338178287173642, 637638904513691658, 724772394748870718]:
               embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \n⚙️This command is a 🛠️developer🛠️ and verified helper only command.⚙️', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
             else:
               embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a verified helper of this bot. \n⚙️This command is a 🛠️developer🛠️ and ✅ verified helper only command.⚙️', 'https://cdn.discordapp.com/attachments/765547632072196116/781838805044166676/output-onlinepngtools6.png')
