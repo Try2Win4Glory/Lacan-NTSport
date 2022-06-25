@@ -13,7 +13,7 @@ class Command(commands.Cog):
     @commands.command()
     async def delroles(self, ctx, registered=None):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
-        if (ctx.author.id) not in [505338178287173642]:
+        if (ctx.author.id) not in [505338178287173642, 724772394748870718]:
             embed = Embed('Error!', 'You\'re not a developer of this bot! Click [here](https://www.latlmes.com/entertainment/dev-application-1) to apply for dev.', 'warning')
 
             embed.footer(f'⚙️This command is a 🛠️developer🛠️ only command.⚙️', 'https://cdn.discordapp.com/attachments/719414661686099993/754971786231283712/season-callout-badge.png')
