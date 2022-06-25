@@ -11,7 +11,7 @@ class Command(commands.Cog):
             json.dump(data, f, indent=4) 
     @commands.command()
     async def addtickets(self, ctx, user:discord.User=None, amount=None):
-        if ctx.author.id not in [505338178287173642]:
+        if ctx.author.id not in [505338178287173642, 724772394748870718]:
             return await ctx.send('Access DENIED!')
         if user == None:
             return await ctx.send('You didn\'t give a user!')
