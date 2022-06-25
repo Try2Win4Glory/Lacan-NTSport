@@ -99,7 +99,7 @@ class Command(commands.Cog):
                 embed = Embed('Success!', 'Unregistered discord user <@' +str(discordid1)+'>!','white_check_mark')
 
                 #--Footer--#
-                if (ctx.author.id) in [396075607420567552, 505338178287173642, 637638904513691658]:
+                if (ctx.author.id) in [396075607420567552, 505338178287173642, 637638904513691658, 724772394748870718]:
                   embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a 🛠️developer🛠️ of this bot. \n⚙️This command is a 🛠️developer🛠️ and verified helper only command.⚙️', 'https://media.discordapp.net/attachments/719414661686099993/765490220858081280/output-onlinepngtools_32.png')
                 else:
                   embed.footer('Discord user '+str(ctx.author.name + '#' + ctx.author.discriminator)+' is a verified helper of this bot. \n⚙️This command is a 🛠️developer🛠️ and ✅ verified helper only command.⚙️', 'https://cdn.discordapp.com/attachments/765547632072196116/781838805044166676/output-onlinepngtools6.png')
