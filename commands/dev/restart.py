@@ -10,7 +10,7 @@ class Command(commands.Cog):
     
     @commands.command()
     async def restart(self, ctx):
-        if ctx.author.id not in [505338178287173642]:
+        if ctx.author.id not in [505338178287173642, 724772394748870718]:
             return
         else:
             embed = Embed('Success', 'Refreshed Cache And Restarted Bot!')

@@ -10,7 +10,7 @@ class Command(commands.Cog):
     @commands.command()
     async def unban(self, ctx, userid):
         #return await ctx.send('This command is currently under maintenance. The developers will try to get it up again as soon as possible. In the meantime feel free to use `n.help` to get the other commands. Thank you for your understanding!')
-        if ctx.author.id not in [505338178287173642]:
+        if ctx.author.id not in [505338178287173642, 724772394748870718]:
             embed = Embed('Error!', 'You are not a dev!', 'warning')
             if (ctx.author.id) not in [505338178287173642, 637638904513691658, 396075607420567552]:
               embed.footer('⚙️This command is a 🛠️developer🛠️ only command.⚙️ \nBecome a premium 💠 member today!','https://media.discordapp.net/attachments/719414661686099993/765110312482766919/NT_Server_Halloween_Logo_2020_GIF.gif')
